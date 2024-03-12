@@ -19,11 +19,8 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
+   
     void Update()
-    {
-        
-    }
-    private void FixedUpdate()
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
@@ -39,7 +36,7 @@ public class PlayerController : MonoBehaviour
         hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, moveDelta,Mathf.Abs(moveDelta.magnitude*Time.deltaTime),LayerMask.GetMask("Blocking","Actor"));
        
         if(hit.collider == null) {
-            transform.Translate(moveDelta * speed);
+            transform.Translate(moveDelta * speed*Time.deltaTime);
         }
     }
   
