@@ -5,7 +5,7 @@ using UnityEngine;
 public class Collidable : MonoBehaviour
 {
     // Start is called before the first frame update
-   public ContactFilter2D contactFilter;   
+    public ContactFilter2D contactFilter;   
     private BoxCollider2D boxCollider;
     private Collider2D[] hits = new Collider2D[10];
     protected virtual void Start()
@@ -30,6 +30,6 @@ public class Collidable : MonoBehaviour
     }
     protected virtual void OnCollide(Collider2D other)
     {
-        Debug.Log(other.name);
+        Debug.Log("Collide not detect on "+other.name);
     }
 }

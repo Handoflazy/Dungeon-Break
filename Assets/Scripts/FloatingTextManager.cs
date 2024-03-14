@@ -13,10 +13,7 @@ public class FloatingTextManager : MonoBehaviour
     public GameObject textPrefab;
 
     private List<FloatingText> floatingTexts = new List<FloatingText>();
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
+    
 
     private void Update()
     {
