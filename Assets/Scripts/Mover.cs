@@ -29,15 +29,13 @@ public class Mover : Fighter
         }
         moveDelta += pushDirection;
         pushDirection = Vector3.Lerp(pushDirection,Vector3.zero, pushRecoverySpeed);
-        if(pushDirection!=Vector3.zero)
-        {
-            print(gameObject.name + "bi push");
-        }
+        
+        
         hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, moveDelta, Mathf.Abs(moveDelta.magnitude * Time.deltaTime), LayerMask.GetMask("Blocking", "Actor"));
         
         if (hit.collider == null)
         {
-            transform.Translate(moveDelta * speed * Time.deltaTime);
+            transform.Translate(speed * Time.deltaTime * moveDelta);
         }
     }
 }

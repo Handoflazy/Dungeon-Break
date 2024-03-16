@@ -70,8 +70,12 @@ public class Enemy : Mover
     }
     protected override void Death()
     {
-        Destroy(gameObject);
-        GameManager.instance.experience += xpValue;
+        gameObject.SetActive(false);
+        GameManager.instance.GrandXp(xpValue);
         GameManager.instance.ShowText("+" + xpValue + " xp", 30, Color.blue, transform.position, Vector3.up * 40, 1.0f);
+        if(GameManager.instance.GetExperience() > GameManager.instance.GetTotalExpToNextLvl()) {
+            GameManager.instance.LevelUp();
+        
+        }
     }
 }

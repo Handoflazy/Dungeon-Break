@@ -12,7 +12,7 @@ public class FloatingTextManager : MonoBehaviour
     public GameObject textContainer;
     public GameObject textPrefab;
 
-    private List<FloatingText> floatingTexts = new List<FloatingText>();
+    private List<FloatingText> floatingTexts = new();
     
 
     private void Update()
@@ -46,9 +46,11 @@ public class FloatingTextManager : MonoBehaviour
         FloatingText txt = floatingTexts.Find(t => !t.active);
         if(txt == null)
         {
-            print("da tao floating text moi");
-            txt = new FloatingText();
-            txt.origin = Instantiate(textPrefab);
+
+            txt = new FloatingText
+            {
+                origin = Instantiate(textPrefab)
+            };
             txt.origin.transform.SetParent(textContainer.transform);
             txt.text = txt.origin.GetComponent<TextMeshProUGUI>();
             floatingTexts.Add(txt);

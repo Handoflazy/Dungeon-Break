@@ -5,16 +5,27 @@ using UnityEngine;
 
 public class Weapon : Collidable
 {
-    [SerializeField] int damagePoint = 1;
-    [SerializeField] float pushForce = 3.0f;
-    public int weaponLevel = 0;
-    private SpriteRenderer SpriteRenderer;
+    //Damage struct
+    public int[] damagePoint = { 1, 2, 4, 6, 9 };
+    public float[] pushForce = { 1f, 2f, 2.7f, 3.5f, 5f, 7f };
+    
+    //Swing
+    private Animator anim;
     public float cooldown = 0.5f;
     public float lastWing;
+    //Upgrade
+    public int weaponLevel = 0;
+    private SpriteRenderer SpriteRenderer;
+    private void Awake()
+    {
+        SpriteRenderer = GetComponent<SpriteRenderer>();
+    }
     protected override void Start()
     {
         base.Start();
-        SpriteRenderer = GetComponent<SpriteRenderer>();
+        
+        anim = GetComponent<Animator>();
+       
     }
     protected override void OnCollide(Collider2D other)
     {
@@ -22,7 +33,7 @@ public class Weapon : Collidable
         {
             if(other.name!="Player")
             {
-                Damage dmg = new Damage { damageAmount = damagePoint, origin = transform.position, pushForce = pushForce };
+                Damage dmg = new() { damageAmount = damagePoint[weaponLevel], origin = transform.position, pushForce = pushForce[weaponLevel] };
                 other.SendMessage("ReceivedDamage", dmg);
             }
         }
@@ -42,6 +53,20 @@ public class Weapon : Collidable
     }
     private void Swing()
     {
-        print("Swing");
+        anim.SetTrigger("Swing");
+    }
+    public void UpgradeWeapon()
+    {
+        weaponLevel++;
+        SpriteRenderer.sprite = GameManager.instance.weaponSprites[weaponLevel];
+
+        //change stat
+
+    }
+    public void SetLevelWeapon(int level)
+    {
+        print(level);
+        weaponLevel = level;
+        SpriteRenderer.sprite = GameManager.instance.weaponSprites[weaponLevel];
     }
 }

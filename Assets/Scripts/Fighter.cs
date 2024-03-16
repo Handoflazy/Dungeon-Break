@@ -33,10 +33,7 @@ public class Fighter : MonoBehaviour
             pushDirection = (transform.position - dmg.origin).normalized * dmg.pushForce;
            
             GameManager.instance.ShowText(dmg.damageAmount.ToString(), 30, Color.red, transform.position, Vector3.zero, 0.5f);
-            if(pushDirection != Vector3.zero)
-            {
-                print(gameObject.name + "bi push");
-            }
+           
             if(hitPoint <= 0)
             {
                 hitPoint = 0;
