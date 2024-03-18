@@ -9,10 +9,10 @@ public class Enemy : Mover
     // Logic
     public float triggerLenth = 0.3f;
     public float chaseLength = 1.0f; // RANGE MOB
-    private bool chasing;
-    private bool collidingWithPlayer;
+    protected bool chasing;
+    protected bool collidingWithPlayer;
     private Transform playerTransform;
-    private Vector3 startingPostion;
+    protected Vector3 startingPostion;
 
     //hitBox
     private BoxCollider2D hitBox;
@@ -26,6 +26,10 @@ public class Enemy : Mover
         startingPostion = transform.position;
         hitBox = transform.GetChild(0).GetComponent<BoxCollider2D>();
 
+    }
+    public void SetStaringPos(Vector3 newPos)
+    {
+        startingPostion = newPos;
     }
     private void FixedUpdate()
     {

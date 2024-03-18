@@ -12,7 +12,7 @@ public class CameraManger : MonoBehaviour
     [SerializeField] Vector3 locationOffset;
     void Start()
     {
-        
+        target = GameObject.Find("Player").transform;
     }
 
     // Update is called once per frame

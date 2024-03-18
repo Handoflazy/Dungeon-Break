@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +15,11 @@ public class CharacterMenu : MonoBehaviour
     public Image characterSelectionSprite;
     public Image weaponSprite;
     public RectTransform xpBar;
-
+    
+    private void Start()
+    {   
+        currentCharacterSeletion = GameManager.instance.playerSprites.FindIndex(n => n == GameManager.instance.player.GetSprite());
+    }
     public void OnArrowClick(bool right)
     {
         if(right)

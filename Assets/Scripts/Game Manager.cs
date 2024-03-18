@@ -12,26 +12,37 @@ public class GameManager : MonoBehaviour
     public List<Sprite> weaponSprites;
     public List<int> weaponPrices;
     public List<int> xpTable;
-    public FloatingTextManager floatingTextManager;
+    
     private void Awake()
     {
         if(GameManager.instance != null)
         {
+            Destroy(player.gameObject);
+            Destroy(floatingTextManager.gameObject);
+           
+            Destroy(HUB);
+            Destroy(menu);
             Destroy(gameObject);
             return;
         }
-        floatingTextManager = GameObject.Find("Floating Text").GetComponent<FloatingTextManager>();
+        
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         instance = this;
         //PlayerPrefs.DeleteKey("SaveState");
         SceneManager.sceneLoaded += LoadState;
-        DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        
        
 
     }
     //logic
     public PlayerController player;
     public Weapon weapon;
+    public GameObject HUB;
+    public GameObject menu;
+    public FloatingTextManager floatingTextManager;
+    public Animator deathAim;
+    //infor
     public int pesos;
     public int experience;
     public int level;
@@ -92,10 +103,16 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetString("SaveState", s);
     }
     //Load State
-
+    public void OnSceneLoaded(Scene scene,LoadSceneMode mode)
+    {
+        player.transform.position = GameObject.Find("SpawnPos").transform.position;
+    }
     public void LoadState(Scene s, LoadSceneMode mode) {
+        SceneManager.sceneLoaded -= LoadState;
+        Debug.Log("load scene");
         if (!PlayerPrefs.HasKey("SaveState"))
             return;
+
         string[] data = PlayerPrefs.GetString("SaveState").Split('|');
         //change player skin
         level = int.Parse(data[0]);
@@ -104,11 +121,18 @@ public class GameManager : MonoBehaviour
         player.SetRender(int.Parse(data[3]));
         weapon.SetLevelWeapon(int.Parse(data[4]));
         //change the weapon level
-
+        player.transform.position = GameObject.Find("SpawnPos").transform.position;
 
 
     }
-    
+    public void Respawn()
+    {
+        deathAim.SetBool("isDeath", false);
+        PlayerPrefs.DeleteKey("SaveState");
+        SceneManager.LoadScene("Main1");
+        player.Respawn();
+        
+    }
     public Vector3 GenerateSpawnPos(float x, float y)
     {
         return new Vector3(Random.Range(-x,x),Random.Range(-y,y),0);
