@@ -6,7 +6,7 @@ public class Mover : Fighter
 {
     protected BoxCollider2D boxCollider;
     protected Vector3 moveDelta;
-    [SerializeField] float speed = 0.2f;
+    [SerializeField] protected float speed = 0.2f;
     protected RaycastHit2D hit;
     // Start is called before the first frame update
     protected virtual void Start()
@@ -16,7 +16,7 @@ public class Mover : Fighter
     }
 
     // Update is called once per frame
-    protected virtual void UpdateMotor(Vector3 Input)
+    protected virtual void UpdateMotor(Vector2 Input)
     {
         moveDelta = Input;
         if (Input.x > 0)

@@ -9,6 +9,7 @@ public class PlayerController : Mover
     private SpriteRenderer spriteRenderer;
     public HeartBar heartBar;
     private bool isAlive;
+    public Animator anim;
     // Update is called once per frame
     private void Awake()
     {
@@ -47,8 +48,13 @@ public class PlayerController : Mover
         float verticalInput = Input.GetAxisRaw("Vertical");
 
         Vector3 input = new(horizontalInput, verticalInput, 0);
-        if(isAlive)
+        if (isAlive)
+        {
             UpdateMotor(input.normalized);
+            print(input.magnitude);
+            anim.SetFloat("speed", input.magnitude);
+            
+        }
     }
     public void OnLevelUp(){
         maxHitPoint++;
