@@ -45,8 +45,8 @@ public class Player2 : Mover
     void Update()
     {
         
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
         input = new(horizontalInput, verticalInput);
         if (input.x > 0)
         {
