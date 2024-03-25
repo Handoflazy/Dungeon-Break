@@ -36,28 +36,9 @@ public class EnemyAI : Mover
         InvokeRepeating(nameof(PerformDetection), 0, detectionDelay);
     } 
     
-    void BackToSpawnPos()
-    {
-        new GameObject("EmptyObject").transform.position = startPos;
-        aiData.targets = new List<Transform>
-        {
-            new GameObject("EmptyObject").transform
-        };
-        StartCoroutine(DeleteObject(new GameObject("EmptyObject")));
-        
-    }
-    IEnumerator DeleteObject(GameObject gameObject)
-    {
-        
-        
-        
-        yield return new WaitForSeconds(4);
-        Destroy(gameObject);
-        transform.position = startPos;
-        aiData.targets = null;
-       
+  
+    
 
-    }
     private void PerformDetection()
     {
         foreach (var detector in detectors)
@@ -91,9 +72,6 @@ public class EnemyAI : Mover
         {
             Debug.Log("Stopping");
             movementInput = Vector2.zero;
-            if(transform.position !=startPos)
-            { BackToSpawnPos(); };
-            
             following = false;
         }
         else

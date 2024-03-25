@@ -11,6 +11,7 @@ public class TargetDetector : Detector
 
     [SerializeField]
     private bool showGizmos = false;
+    [SerializeField]
     private List<Transform> colliders;
     public override void Detect(AIData aIData)
     {

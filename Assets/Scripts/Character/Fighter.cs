@@ -26,19 +26,15 @@ public class Fighter : MonoBehaviour
     //All fighter can ReceiveDame / Die
     protected virtual void ReceivedDamage(Damage dmg)
     {
-        if (Time.time -lastImmune > immunetime)
+        hitPoint -= dmg.damageAmount;
+        pushDirection = (transform.position - dmg.origin).normalized * dmg.pushForce;
+
+        // GameManager.instance.ShowText(dmg.damageAmount.ToString(), 30, Color.red, transform.position, Vector3.zero, 0.5f);
+
+        if (hitPoint <= 0)
         {
-            lastImmune = Time.time;
-            hitPoint -= dmg.damageAmount;
-            pushDirection = (transform.position - dmg.origin).normalized * dmg.pushForce;
-           
-            GameManager.instance.ShowText(dmg.damageAmount.ToString(), 30, Color.red, transform.position, Vector3.zero, 0.5f);
-           
-            if(hitPoint <= 0)
-            {
-                hitPoint = 0;
-                Death();
-            }
+            hitPoint = 0;
+            Death();
         }
     }
 

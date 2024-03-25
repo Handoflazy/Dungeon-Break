@@ -78,8 +78,6 @@ public class Player2 : Mover
       
         moveDelta += pushDirection;
         pushDirection = Vector3.Lerp(pushDirection, Vector3.zero, pushRecoverySpeed);
-
-
         hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, moveDelta, Mathf.Abs(moveDelta.magnitude * Time.deltaTime), LayerMask.GetMask("Blocking", "Actor"));
 
         if (hit.collider == null)
@@ -114,7 +112,7 @@ public class Player2 : Mover
     {
         isAlive = false;
         base.Death();
-        GameManager.instance.deathAim.SetBool("isDeath", true);
+        //GameManager.instance.deathAim.SetBool("isDeath", true);
     }
 
 }
