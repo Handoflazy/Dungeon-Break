@@ -48,33 +48,26 @@ public class CharacterMenu : MonoBehaviour
         UpdateMenu();
     }
 
-    public void OnUpgradeClick()
-    {
-        if (GameManager.instance.TryUpdateWeapon())
-        {
-            UpdateMenu();
-        }
-    }
+  
     public void UpdateMenu()
     {
-        //Weapon
-        characterSelectionSprite.sprite = GameManager.instance.player.GetSprite();
-        weaponSprite.sprite = GameManager.instance.weaponSprites[GameManager.instance.weapon.weaponLevel];
-        if (GameManager.instance.weapon.weaponLevel == GameManager.instance.weaponSprites.Count-1)
-        {
-            upgradeCodeText.text ="MAX";
-        }
-        else
-        {
+        ////Weapon
+        //characterSelectionSprite.sprite = GameManager.instance.player.GetSprite();
+        //weaponSprite.sprite = GameManager.instance.weaponSprites[GameManager.instance.weapon.weaponLevel];
+        //if (GameManager.instance.weapon.weaponLevel == GameManager.instance.weaponSprites.Count-1)
+        //{
+        //    upgradeCodeText.text ="MAX";
+        //}
+        //else
+        //{
            
-            upgradeCodeText.text = GameManager.instance.weaponPrices[GameManager.instance.weapon.weaponLevel].ToString();
+        //    upgradeCodeText.text = GameManager.instance.weaponPrices[GameManager.instance.weapon.weaponLevel].ToString();
             
 
-        }
+        //}
 
         //META
         levelText.text = GameManager.instance.level.ToString();
-        hitPointText.text = GameManager.instance.player.hitPoint.ToString();
         pesosText.text = GameManager.instance.pesos.ToString();
         int Exp = GameManager.instance.experience;
         int ExpToNext = GameManager.instance.xpTable[GameManager.instance.level];

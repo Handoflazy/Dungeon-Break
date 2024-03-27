@@ -34,7 +34,7 @@ public class ContextResolver : MonoBehaviour
         Vector2 outputDirection = Vector2.zero;
         
     
-            for (int i = 1; i < 16; i++)
+            for (int i = 1; i < 16; i++)//using only half vector
             {
 
                 outputDirection = (Directions.eightDirections[i] * interest[i]).magnitude > outputDirection.magnitude ? Directions.eightDirections[i] * interest[i] : outputDirection;

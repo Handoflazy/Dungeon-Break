@@ -23,9 +23,11 @@ public class AIEnemy : Mover
     [SerializeField]
     private bool returnOriginPos = true;
     public bool isComingHome = false;
+    bool isAlive = true;
     // Start is called before the first frame update
     protected override void Start()
     {
+        isAlive = true;
         base.Start();
         aiEnemyMover = GetComponent<AIEnemyMover>();
         state = EnemyState.Idle;
@@ -44,7 +46,14 @@ public class AIEnemy : Mover
             }
 
         }
-        UpdateMotor(movementInput);
+
+    }
+    private void FixedUpdate()
+    {
+        if(isAlive)
+        {
+            UpdateMotor(movementInput);
+        }
     }
     Transform temp;
     void PerformDetection()
@@ -75,7 +84,7 @@ public class AIEnemy : Mover
         else
             isComingHome = false;
     }
-    void attack()
+    void Attack()
     {
         Damage dmg = new() { damageAmount = 1, origin = transform.position, pushForce = 3 };
         temp.SendMessage("ReceivedDamage", dmg);
@@ -97,7 +106,7 @@ public class AIEnemy : Mover
 
             if (distance < attackDistance)
             {
-                attack();
+                Attack();
                 movementInput = Vector2.zero;
                 yield return new WaitForSeconds(attackDelay);
                 StartCoroutine(ChaseAndAttack());
@@ -112,6 +121,10 @@ public class AIEnemy : Mover
 
             }
         }
+    }
+    protected override void Death()
+    {
+        gameObject.SetActive(false);
     }
 }
     // Update is called once per frame

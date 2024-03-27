@@ -1,29 +1,58 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
-
-public class PlayerController : Mover
+using UnityEngine.InputSystem;
+public class Player2 : Mover
 {
-
+    [Header("Reference")]
     private SpriteRenderer spriteRenderer;
-    public HeartBar heartBar;
+
+
+    [SerializeField]
+    private Animator anim;
+
+    [SerializeField]
+    private InputActionReference movement, attack, pointerPosition;
+
+    private WeaponParent weaponParent;
+
+    private Vector2 oldMovementInput = Vector2.zero;
+    private Vector2 pointerInput = Vector2.zero;
+    private float currentSpeed = 0;
     private bool isAlive;
-    public Animator anim;
-    // Update is called once per frame
+
+    private void OnEnable()
+    {
+        attack.action.performed += PerformAttack;
+    }
+    private void OnDisable()
+    {
+        attack.action.canceled -= PerformAttack;
+    }
+
+    private void PerformAttack(InputAction.CallbackContext context)
+    {
+
+        weaponParent.Attack();
+
+    }
+
+
     private void Awake()
     {
         isAlive = true;
         spriteRenderer = GetComponent<SpriteRenderer>();
-        
-        heartBar.SetMaxHearth(maxHitPoint);
-        heartBar.SetHealth(hitPoint);
 
-   
+        weaponParent = GetComponentInChildren<WeaponParent>();
+
+
     }
     protected override void ReceivedDamage(Damage dmg)
     {
-        if(!isAlive) { return; }
+        if (!isAlive) { return; }
         base.ReceivedDamage(dmg);
     }
     public Sprite GetSprite()
@@ -36,54 +65,111 @@ public class PlayerController : Mover
     }
     public void Respawn()
     {
-        hitPoint = maxHitPoint;
-        isAlive=true;
+        health.InitialHealth(maxHealth);
+        isAlive = true;
         lastImmune = Time.time;
         pushDirection = Vector3.zero;
     }
-    void Update()
-    {
-        heartBar.SetHealth(hitPoint);
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
+    Vector2 movementInput;
 
-        Vector3 input = new(horizontalInput, verticalInput, 0);
-        if (isAlive)
-        {
-            UpdateMotor(input.normalized);
-            print(input.magnitude);
-            anim.SetFloat("speed", input.magnitude);
-            
-        }
-    }
-    public void OnLevelUp(){
-        maxHitPoint++;
-        hitPoint = maxHitPoint;
-        GameManager.instance.ShowText("Level Up!", 30, Color.green, transform.position, Vector3.up, 2.0f);
-        heartBar.SetMaxHearth(maxHitPoint);
-   }
-   
-    public void Healing(int healingAmount)
+    private void AnimatedCharacter()
     {
-        if (hitPoint == maxHitPoint)
+        if (movementInput.magnitude > 0)
         {
-            return;
-        }
-        hitPoint += healingAmount;
-        if(hitPoint> maxHitPoint)
-        {
-            hitPoint = maxHitPoint;
+            anim.SetBool("isMoving", true);
         }
         else
         {
-            GameManager.instance.ShowText("+" + healingAmount.ToString()+ "HP",30, Color.green, transform.position, Vector3.up*30, 1.0f);
+            if (movementInput.magnitude == 0)
+            {
+                anim.SetBool("isMoving", false);
+            }
         }
+        Vector2 lookDirection = pointerInput - (Vector2)transform.position;
+        if (weaponParent.IsAttacking)
+            return;
+
+        if (lookDirection.x > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if (lookDirection.x < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+
+        }
+
+
+    }
+    void Update()
+    {
+
+        pointerInput = GetPointerInput();
+        //weaponParent.Pointerposition = pointerInput;
+
+
+        AnimatedCharacter();
+
+
+        movementInput = movement.action.ReadValue<Vector2>();
+
+
+    }
+    private Vector2 GetPointerInput()
+    {
+        Vector3 mousePos = pointerPosition.action.ReadValue<Vector2>();
+        mousePos.z = Camera.main.nearClipPlane;
+        return Camera.main.ScreenToWorldPoint(mousePos);
+    }
+    private void FixedUpdate()
+    {
+        if (isAlive)
+        {
+            if (Physics2D.BoxCast(transform.position, boxCollider.size, 0, movementInput,
+                Mathf.Abs(moveDelta.magnitude * Time.deltaTime), LayerMask.GetMask("Blocking", "Actor")).collider == null)
+            {
+                UpdateMotor(movementInput.normalized);
+            }
+
+        }
+    }
+    protected override void UpdateMotor(Vector2 Input)
+    {
+        if (Input.magnitude > 0 && currentSpeed >= 0)
+        {
+            oldMovementInput = movementInput;
+            currentSpeed += acceleration * maxSpeed * Time.deltaTime;
+        }
+        else
+        {
+            currentSpeed -= deceleration * maxSpeed * Time.deltaTime;
+        }
+        currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
+        rb.velocity = oldMovementInput * currentSpeed;
+
+    }
+    public void OnLevelUp()
+    {
+        
+        GameManager.instance.ShowText("Level Up!", 30, Color.green, transform.position, Vector3.up, 2.0f);
+
+    }
+
+    public void Healing(int healingAmount)
+    {
+
+        if (!health.IsFull)
+        {
+            health.Heal(healingAmount);
+        }
+
+
     }
     protected override void Death()
     {
         isAlive = false;
         base.Death();
-        GameManager.instance.deathAim.SetBool("isDeath", true);
+        //GameManager.instance.deathAim.SetBool("isDeath", true);
     }
 
 }
