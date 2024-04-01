@@ -6,7 +6,8 @@ using UnityEngine;
 public class Player2 : Mover
 {
     [Header("Reference")]
-    private SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
+    //GhostController ghostController;
     private Rigidbody2D rb;
    
     private bool isAlive;
@@ -17,9 +18,9 @@ public class Player2 : Mover
         isAlive = true;
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb= GetComponent<Rigidbody2D>();
-       
-
-   
+        /*ghostController = GetComponent<GhostController>();
+        ghostController.enabled = true;*/
+        
     }
     protected override void ReceivedDamage(Damage dmg)
     {
@@ -84,6 +85,7 @@ public class Player2 : Mover
         {
            rb.AddForce(input*speed*Time.deltaTime,ForceMode2D.Impulse);
         }
+        //ghostController.enabled = true;
     }
     public void OnLevelUp(){
         maxHitPoint++;

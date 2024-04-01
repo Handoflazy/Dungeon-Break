@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dungeon1.unity
     guid: bb70159e7dc87794c87e96dd5c4673bc
+  - enabled: 1
+    path: Assets/Scenes/Graveyard_1.unity
+    guid: 92fb0f7006e9b3e46931cc68a3165a19
+  - enabled: 1
+    path: Assets/Scenes/Graveyard_2.unity
+    guid: ab8abd7aa4784ac43b5123d2e29aeab4
   m_configObjects: {}
