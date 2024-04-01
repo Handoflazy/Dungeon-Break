@@ -16,7 +16,7 @@ public class Fighter : MonoBehaviour
     // immune system
     protected float immunetime = 1.0f;
     protected float lastImmune;
-    void Start()
+    protected virtual void Start()
     {
 
         health.InitialHealth(maxHealth);
