@@ -636,7 +636,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.2}
+    oldSize: {x: 0.16, y: 0.16}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -11476,23 +11476,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1243204939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 236773943}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1860690b46e1a54e80c9ded06de89cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ghostPrefab: {fileID: 1664255699883098184, guid: 40b3e1eb1631a2441be34308b68b4474, type: 3}
-  delay: 0.01
-  destroyTime: 0.1
-  color: {r: 0, g: 0, b: 0, a: 0.627451}
-  material: {fileID: 2100000, guid: 9c0721c9b4f3c4cb894656485acb9228, type: 2}
 --- !u!210 &1243204943
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -20156,7 +20139,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2915000562356537159, guid: c0763429e7b394b42ab39ba66ab7f04e, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.2
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 2915000562356537159, guid: c0763429e7b394b42ab39ba66ab7f04e, type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
@@ -20226,7 +20209,8 @@ PrefabInstance:
       propertyPath: spriteRenderer
       value: 
       objectReference: {fileID: 902148738}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6293279109904778744, guid: c0763429e7b394b42ab39ba66ab7f04e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3699746204959687427, guid: c0763429e7b394b42ab39ba66ab7f04e, type: 3}
@@ -20242,9 +20226,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1811004772538025597, guid: c0763429e7b394b42ab39ba66ab7f04e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1243204938}
-    - targetCorrespondingSourceObject: {fileID: 1811004772538025597, guid: c0763429e7b394b42ab39ba66ab7f04e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1243204939}
     - targetCorrespondingSourceObject: {fileID: 1811004772538025597, guid: c0763429e7b394b42ab39ba66ab7f04e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1243204944}
