@@ -5192,13 +5192,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 0x72_DungeonTilesetII_v1.7_265
+      name: axe
       rect:
         serializedVersion: 2
-        x: 320
-        y: 336
-        width: 16
-        height: 16
+        x: 324
+        y: 321
+        width: 12
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5754,27 +5754,6 @@ TextureImporter:
       bones: []
       spriteID: c4d8a516a70c05645b4aec211eda9635
       internalID: -1929054338
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 0x72_DungeonTilesetII_v1.7_292
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 320
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 12bcbf1e8be29074ebe6aeb875cee90b
-      internalID: -1058499532
       vertices: []
       indices: 
       edges: []
@@ -13378,7 +13357,6 @@ TextureImporter:
       0x72_DungeonTilesetII_v1.7_262: -340251163
       0x72_DungeonTilesetII_v1.7_263: 1223324522
       0x72_DungeonTilesetII_v1.7_264: -442329461
-      0x72_DungeonTilesetII_v1.7_265: 542698999
       0x72_DungeonTilesetII_v1.7_266: 1564586317
       0x72_DungeonTilesetII_v1.7_267: 921210245
       0x72_DungeonTilesetII_v1.7_268: 1964676172
@@ -13826,6 +13804,7 @@ TextureImporter:
       0x72_DungeonTilesetII_v1.7_98: 915562230
       0x72_DungeonTilesetII_v1.7_99: 884552319
       GreatDiamonSword: 1064527597
+      axe: 542698999
       knight1_0: -617959163
       knight1_1: 1371076883
       knight1_2: 834420755

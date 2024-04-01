@@ -9,14 +9,11 @@ public class Player2 : Mover
 {
     [Header("Reference")]
     private SpriteRenderer spriteRenderer;
-
-
     [SerializeField]
     private Animator anim;
 
     [SerializeField]
     private InputActionReference movement, attack, pointerPosition;
-
     private WeaponParent weaponParent;
 
     private Vector2 oldMovementInput = Vector2.zero;
@@ -47,6 +44,7 @@ public class Player2 : Mover
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         weaponParent = GetComponentInChildren<WeaponParent>();
+        
 
 
     }
@@ -54,6 +52,7 @@ public class Player2 : Mover
     {
         if (!isAlive) { return; }
         base.ReceivedDamage(dmg);
+       
     }
     public Sprite GetSprite()
     {
@@ -74,6 +73,7 @@ public class Player2 : Mover
 
     private void AnimatedCharacter()
     {
+       
         if (movementInput.magnitude > 0)
         {
             anim.SetBool("isMoving", true);
@@ -88,7 +88,7 @@ public class Player2 : Mover
         Vector2 lookDirection = pointerInput - (Vector2)transform.position;
         if (weaponParent.IsAttacking)
             return;
-
+   
         if (lookDirection.x > 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -104,15 +104,15 @@ public class Player2 : Mover
     void Update()
     {
 
-        pointerInput = GetPointerInput();
-        //weaponParent.Pointerposition = pointerInput;
-
-
-        AnimatedCharacter();
-
 
         movementInput = movement.action.ReadValue<Vector2>();
-
+        if (weaponParent.IsAttacking)
+        {
+            return;
+        }
+        pointerInput = GetPointerInput();
+        weaponParent.Pointerposition = pointerInput;
+        AnimatedCharacter();
 
     }
     private Vector2 GetPointerInput()

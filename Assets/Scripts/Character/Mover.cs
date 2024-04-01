@@ -16,8 +16,9 @@ public class Mover : Fighter
     
     protected RaycastHit2D hit;
 
-    protected virtual void Start()
+    protected override void Start()
     {
+        base.Start();
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
     }

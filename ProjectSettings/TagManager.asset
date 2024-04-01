@@ -54,3 +54,6 @@ TagManager:
   - name: Weapon
     uniqueID: 1332609957
     locked: 0
+  - name: Hub
+    uniqueID: 3830766345
+    locked: 0
