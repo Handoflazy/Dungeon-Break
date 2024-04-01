@@ -5,18 +5,23 @@ using UnityEngine;
 public class Mover : Fighter
 {
     [Header("Information")]
+    protected Rigidbody2D rb;
     protected BoxCollider2D boxCollider;
     protected Vector3 moveDelta;
-    [SerializeField] protected float speed = 0.2f;
+    [SerializeField] protected float acceleration = 0.2f;
+
+    [SerializeField] protected float deceleration = 0.2f;
+    
+    [SerializeField] protected float maxSpeed = 1f;
+    
     protected RaycastHit2D hit;
-    // Start is called before the first frame update
+
     protected virtual void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
-    // Update is called once per frame
     protected virtual void UpdateMotor(Vector2 Input)
     {
         moveDelta = Input;
@@ -29,14 +34,13 @@ public class Mover : Fighter
             transform.localScale = new Vector3(-1, 1, 1);
         }
         moveDelta += pushDirection;
+      
         pushDirection = Vector3.Lerp(pushDirection,Vector3.zero, pushRecoverySpeed);
-        transform.Translate(speed * Time.deltaTime * moveDelta);
+        hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, moveDelta, Mathf.Abs(moveDelta.magnitude * Time.deltaTime), LayerMask.GetMask("Blocking", "Actor"));
 
-        //hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, moveDelta, Mathf.Abs(moveDelta.magnitude * Time.deltaTime), LayerMask.GetMask("Blocking", "Actor"));
-
-        //if (hit.collider == null)
-        //{
-        //    transform.Translate(speed * Time.deltaTime * moveDelta);
-        //}
+        if (hit.collider == null)
+        {
+            rb.velocity = moveDelta * acceleration;
+        }
     }
 }

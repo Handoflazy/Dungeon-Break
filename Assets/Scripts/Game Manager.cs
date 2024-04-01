@@ -51,23 +51,9 @@ public class GameManager : MonoBehaviour
     {
         floatingTextManager.Show(msg,fontSize, color, position, motion, duration);  
     }
-    public bool TryUpdateWeapon()
-    {
-        if (weapon.weaponLevel >= weaponSprites.Count)
-        {
-
-            return false;
-        }
-        if (pesos >= weaponPrices[weapon.weaponLevel])
-        {
-            pesos -= weaponPrices[weapon.weaponLevel];
-            weapon.UpgradeWeapon();
-            return true;
-        }
-        return false;
-            
+    
         
-    }
+    
     public int GetExperience()
     {
         return experience;
@@ -99,7 +85,7 @@ public class GameManager : MonoBehaviour
         s += pesos.ToString() + "|";
         s += experience.ToString() + "|";
         s += playerSprites.FindIndex(n=>n==player.GetSprite()) + "|";
-        s += weapon.weaponLevel;
+     
         PlayerPrefs.SetString("SaveState", s);
     }
     //Load State
@@ -119,7 +105,6 @@ public class GameManager : MonoBehaviour
         pesos = int.Parse(data[1]);
         experience = int.Parse(data[2]);
         player.SetRender(int.Parse(data[3]));
-        weapon.SetLevelWeapon(int.Parse(data[4]));
         //change the weapon level
         player.transform.position = GameObject.Find("SpawnPos").transform.position;
 
