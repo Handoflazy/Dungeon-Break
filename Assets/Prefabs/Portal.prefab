@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7079778476557890301}
   - component: {fileID: 7150006544800881332}
-  - component: {fileID: 1574669222164952716}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
@@ -78,32 +77,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.73127085, y: 0.23515546}
   m_EdgeRadius: 0
---- !u!114 &1574669222164952716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1152465633960130196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30e408c3a4cf85145b0511e0ceb05dab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  contactFilter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
-  sceneNames:
-  - Scene1
-  - Dungeon1

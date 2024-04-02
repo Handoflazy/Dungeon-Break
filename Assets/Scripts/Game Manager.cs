@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         
-        player = GameObject.Find("Player").GetComponent<Player2>();
+        player = GameObject.Find("Player").GetComponent<Player>();
         instance = this;
         //PlayerPrefs.DeleteKey("SaveState");
         SceneManager.sceneLoaded += LoadState;
@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
 
     }
     //logic
-    public Player2 player;
+    public Player player;
     public Weapon weapon;
     public GameObject HUB;
     public GameObject menu;

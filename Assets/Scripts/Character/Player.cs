@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class Player2 : Mover
+public class Player : Mover
 {
     [Header("Reference")]
     private SpriteRenderer spriteRenderer;

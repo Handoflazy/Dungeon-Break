@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/FirePoint_Circle.prefab.meta
 guid: 6b92b93c8ee34724592bc86836cd5f38
+========
+guid: 556fb9fb0d8685c4b9bd1eceee95194d
+>>>>>>>> Thien_hehe:Assets/Prefabs/LevelMove.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
