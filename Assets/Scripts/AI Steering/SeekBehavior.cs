@@ -48,10 +48,10 @@ public class SeekBehavior : SteeringBehavior
         {
             Vector2 leftVector = new Vector2(-directionToTarget.y, directionToTarget.x);
             Vector2 rightVector = -leftVector;
-            float dotLeft = Vector2.Dot(leftVector.normalized, Directions.eightDirections[i]);
-            float dotRight = Vector2.Dot(rightVector.normalized, Directions.eightDirections[i]);
-            float result = dotLeft > dotRight ? dotLeft : dotRight;
-            //float result = Vector2.Dot(Directions.eightDirections[i], directionToTarget.normalized);
+            //float dotLeft = Vector2.Dot(leftVector.normalized, Directions.eightDirections[i]);
+            //float dotRight = Vector2.Dot(rightVector.normalized, Directions.eightDirections[i]);
+            //float result = dotLeft > dotRight ? dotLeft : dotRight;
+            float result = Vector2.Dot(Directions.eightDirections[i], directionToTarget.normalized);
             if (result > 0)
             {
                 float valueToPutIn = result;

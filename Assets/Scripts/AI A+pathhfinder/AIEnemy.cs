@@ -4,8 +4,9 @@ using UnityEditor;
 using UnityEngine;
 using Pathfinding;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine.Events;
 
-public class AIEnemy : Mover
+public class AIEnemy : PlayerSystem
 {
     [Header("AIEnemy")]
     public EnemyState state;
@@ -13,23 +14,48 @@ public class AIEnemy : Mover
     private AIEnemyMover aiEnemyMover;
     [SerializeField]
     private DetectPlayer detectTarget;
+
+    private Flash flash;
+    [Header("AI Setting")]
     [SerializeField]
     private float detectionDelay = 0.05f, attackDelay = 1f, aiUpdateDeplay = 0.05f;
+
+   
     [SerializeField]
     private float attackDistance;
     [SerializeField]
     private Vector2 movementInput = Vector2.zero;
-    bool following = false;
     [SerializeField]
     private bool returnOriginPos = true;
     public bool isComingHome = false;
     bool isAlive = true;
-    // Start is called before the first frame update
-    protected override void Start()
+
+    [Header("Other Reference")]
+    [SerializeField]
+    private GameObject deathVFXParticlePrefap;
+
+    public UnityEvent OnDeathEvent;
+
+    private void OnEnable()
+    {
+        player.ID.playerEvents.onDeath += Death;
+    }
+
+    private void OnDisable()
+    {
+        player.ID.playerEvents.onDeath -= Death;
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        flash = transform.GetChild(0).GetComponent<Flash>();
+        aiEnemyMover = GetComponent<AIEnemyMover>(); 
+    }
+
+    protected void Start()
     {
         isAlive = true;
-        base.Start();
-        aiEnemyMover = GetComponent<AIEnemyMover>();
         state = EnemyState.Idle;
         startPosition = transform.position;
         InvokeRepeating(nameof(PerformDetection), 0, detectionDelay);
@@ -37,11 +63,11 @@ public class AIEnemy : Mover
     }
     private void Update()
     {
-        if (temp != null)
+        if (playerTransform != null)
         {
-            if (!following)
+            if (state != EnemyState.Chasing)
             {
-                following = true;
+                state = EnemyState.Chasing;
                 StartCoroutine(ChaseAndAttack());
             }
 
@@ -52,15 +78,13 @@ public class AIEnemy : Mover
     {
         if(isAlive)
         {
-            UpdateMotor(movementInput);
+            player.ID.playerEvents.OnMove(movementInput);
         }
     }
-    Transform temp;
+    Transform playerTransform;
     void PerformDetection()
     {
-        if (!isComingHome) { temp = detectTarget.DetectTarget(); }
-
-
+        if (!isComingHome) { playerTransform = detectTarget.DetectTarget(); }
     }
     IEnumerator FinishEmptyPath()
     {
@@ -71,7 +95,7 @@ public class AIEnemy : Mover
             yield return new WaitForSeconds(aiUpdateDeplay);
             StartCoroutine(FinishEmptyPath());
         }
-        else if (!temp && Vector2.Distance(transform.position, startPosition) > aiEnemyMover.targetRechedThreshold && returnOriginPos)
+        else if (!playerTransform && Vector2.Distance(transform.position, startPosition) > aiEnemyMover.targetRechedThreshold && returnOriginPos)
         {
             {
                 aiEnemyMover.targetPosition = startPosition;
@@ -84,25 +108,31 @@ public class AIEnemy : Mover
         else
             isComingHome = false;
     }
-    void Attack()
-    {
-        Damage dmg = new() { damageAmount = 1, origin = transform.position, pushForce = 3 };
-        temp.SendMessage("ReceivedDamage", dmg);
 
+    void Attack()
+    {   
+        Damage dmg = new() { damageAmount = 5, origin = transform.position, pushForce = 1 };
+        if (playerTransform.gameObject.TryGetComponent(out Damageable damageableObject))
+        {
+            damageableObject.DealDamage(dmg);
+        }
+        else
+        {
+            Debug.Log("That object cannot be damaged.");
+        }
     }
     IEnumerator ChaseAndAttack()
     {
-        if (temp == null)
+        if (playerTransform == null)
         {
-            print("stop");
-            following = false;
+            state = EnemyState.Idle;
             movementInput = Vector2.zero;
             FinishEmptyPath();
             StartCoroutine(FinishEmptyPath());
         }
         else
         {
-            float distance = Vector2.Distance(transform.position, temp.position);
+            float distance = Vector2.Distance(transform.position, playerTransform.position);
 
             if (distance < attackDistance)
             {
@@ -113,7 +143,7 @@ public class AIEnemy : Mover
             }
             else
             {
-                aiEnemyMover.targetPosition = temp.position;
+                aiEnemyMover.targetPosition = playerTransform.position;
                 aiEnemyMover.UpdatePath();
                 movementInput = aiEnemyMover.GetDirectionToMove();
                 yield return new WaitForSeconds(aiUpdateDeplay);
@@ -122,10 +152,19 @@ public class AIEnemy : Mover
             }
         }
     }
-    protected override void Death()
+    public void Death()
     {
-        gameObject.SetActive(false);
+        StartCoroutine(SecondBeforeFade());
+        
+        
     }
+    public IEnumerator SecondBeforeFade()
+    {
+        yield return new WaitForSeconds(flash.GetRestoreMatTime());
+        OnDeathEvent?.Invoke();
+        
+    }
+   
 }
     // Update is called once per frame
 

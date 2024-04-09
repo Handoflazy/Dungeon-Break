@@ -15,7 +15,7 @@ public class EnemyManger : MonoBehaviour
             GameObject enemy = EnemyBool.SharedInstance.GetPooledObject();
             if (enemy != null)
             {
-                enemy.transform.position = GameManager.instance.GenerateSpawnPos(1, 0.5f);
+               
                 enemy.SetActive(true);
             }
         }

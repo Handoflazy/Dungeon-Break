@@ -1,13 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Fighter : MonoBehaviour
 {
-    // Start is called before the first frame update
-    [SerializeField]
-    protected Health health;
     [SerializeField]
     protected int maxHealth;
     public float pushRecoverySpeed;
@@ -16,27 +16,22 @@ public class Fighter : MonoBehaviour
     // immune system
     protected float immunetime = 1.0f;
     protected float lastImmune;
+
     protected virtual void Start()
     {
 
-        health.InitialHealth(maxHealth);
+       
     }
 
     //All fighter can ReceiveDame / Die
     protected virtual void ReceivedDamage(Damage dmg)
     {
-        health.TakeDame(dmg.damageAmount);
+       
         pushDirection = (transform.position - dmg.origin).normalized * dmg.pushForce;
-
-        // GameManager.instance.ShowText(dmg.damageAmount.ToString(), 30, Color.red, transform.position, Vector3.zero, 0.5f);
-
-       if(health.CurrentHealth <= 0)
-        {
-            Death();
-        }
+        NguyenSingleton.Instance.floatingTextManager.Show(dmg.damageAmount.ToString(), 30, UnityEngine.Color.red, transform.position, Vector3.zero, 0.5f);
     }
 
-   protected virtual void Death()
+    public virtual void Death()
     {
         print(gameObject.name + "is Death");
     }

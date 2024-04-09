@@ -13,6 +13,8 @@ public class FloatingTextManager : MonoBehaviour
     public GameObject textPrefab;
 
     private List<FloatingText> floatingTexts = new();
+
+    
     private void Start()
     {
        
@@ -27,6 +29,7 @@ public class FloatingTextManager : MonoBehaviour
     }
     public void Show(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
     {
+        
         FloatingText floatingtxt = GetFloatingText();
         if(floatingtxt == null)
         {

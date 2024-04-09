@@ -2,72 +2,80 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MeleeWeapon : Weapon
 {
-    public ContactFilter2D contactFilter;
-    private BoxCollider2D boxCollider;
-    public Collider2D[] hits = new Collider2D[20];
-    public int damagePoint = 1;
-    public float pushForce = 1;
+    [SerializeField]
+    private Transform weaponCollider;
+    public int damagePoint = 0;
+    public float pushForce = 0;
+    [SerializeField]
+    Animator anim;
+    [SerializeField]
+    private LayerMask layerMask;
+    public GameObject slashAnimPrefab;
+    public SlashAnim slashAnim;
+    GameObject slashAnimationObject;
+    private bool onLeftSide = false;
+
+    public void OnChangeSideEvent(bool onRightSide)
+    {
+        this.onLeftSide = onRightSide;
+    }
+
+
     private void Awake()
     {
-        boxCollider = GetComponent<BoxCollider2D>();
-    }
-    public  virtual void CompleteSwing()
-    {
-        for (int i = 0; i < hits.Length; i++)
-        {
-            if (hits[i] == null)
-            {
-                continue;
-            }
-            else
-            {
-                if ((hits[i].gameObject.CompareTag("Fighter")))
-                {
-                    if ((hits[i].name != "Player"))
-                    {
-                        print("deal dame");
-                        Damage dmg = new() { damageAmount = damagePoint, origin = transform.position, pushForce = pushForce };
-                        hits[i].SendMessage("ReceivedDamage", dmg);
-                        hits[i] = null;
-                       
-                    }
-                }
-            }
+        _weaponType = WeaponType.Melee;
+        anim = GetComponent<Animator>();
 
-        }
-        
+        CreateSlashObject();
+       
+    }
+
+    private void CreateSlashObject()
+    {
+        slashAnimationObject = Instantiate(slashAnimPrefab, transform.parent);
+        slashAnimationObject.name = "SlashAnimation";
+        slashAnim = GameObject.Find("SlashAnimation").GetComponent<SlashAnim>();
+    }
+
+    public  virtual void CompleteSwingEvent()
+    {
+        weaponCollider.gameObject.SetActive(false);
+
     }
     IEnumerator RevertColor(SpriteRenderer render)
     {
         yield return new WaitForSeconds(0.2f);
-
         render.color = Color.white;
     }
-
-    protected virtual void Update()
+    public void SwingUpFipAnimEvent()
     {
-        boxCollider.OverlapCollider(contactFilter, hits);
-        for (int i = 0; i < hits.Length; i++)
+        SpriteRenderer temp = slashAnim.GetComponent<SpriteRenderer>();
+        slashAnimationObject.transform.rotation = Quaternion.Euler(-180, 0, 0);
+        if (onLeftSide)
         {
-            if (hits[i] == null)
-            {
-                continue;
-            }
-            else
-            {
-                if ((hits[i].gameObject.CompareTag("Fighter")))
-                {
-                    if ((hits[i].name != "Player"))
-                    {
-                        OnCollide(hits[i]);
-                       
-                    }
-                }
-            }
+            temp.flipX = true;
+        }
+        else
+        {
+            temp.flipX = false;
+        }
 
+    }
+    public void SwingDownFipAnimEvent()
+    {
+        SpriteRenderer temp = slashAnim.GetComponent<SpriteRenderer>();
+        slashAnimationObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+        if (onLeftSide)
+        {
+            temp.flipX = true;
+        }
+        else
+        {
+            temp.flipX = false;
         }
 
     }
@@ -77,6 +85,25 @@ public class MeleeWeapon : Weapon
         Render.color = Color.red;
         StartCoroutine(RevertColor(Render));
     }
-   
+    public override void OnUse()
+    {
+        anim.SetTrigger("Attack");
+    }
+    public void ActivateSlashAnim()
+    {
+        slashAnim.ActivateEffect();
+    }
+    public void DeactiveSlashAnim()
+    {
+        slashAnim.DeactivateEffect();
+    }
+    public void ActivateWeaponCollider()
+    {
+        weaponCollider.gameObject.SetActive(true);
+    }
+    public void DeactivateWeaponCollider()
+    {
+        weaponCollider.gameObject.SetActive(false);
+    }
 
 }

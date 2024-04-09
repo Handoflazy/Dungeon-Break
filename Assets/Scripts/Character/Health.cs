@@ -1,30 +1,56 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Health : MonoBehaviour
+public class Health : PlayerSystem
 {
 
-    [SerializeField]
-    private HeartBar healthBar;
-
+   
     public int MaxHealth { get; private set; }
-    public int CurrentHealth;
-    public bool IsFull { get; private set; }
-    public void InitialHealth(int maxHealh)
+    public int CurrentHealth {  get; private set; }
+    public UnityEvent OnHealthAtZero;
+    private void OnEnable()
     {
-        MaxHealth = maxHealh;
-        CurrentHealth = maxHealh;
-        IsFull = true;
-        healthBar.SetMaxHearth(maxHealh);
+        player.ID.playerEvents.onTakeDamage += TakeDame;
+        player.ID.playerEvents.OnHeal += Heal;
+        player.ID.playerEvents.onRespawn += InitialHealth;
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        if (player == null)
+        {
+            print(null);
+        }
+        MaxHealth = player.ID.maxHealth;
+    }
+    private void OnDisable()
+    {
+        player.ID.playerEvents.onTakeDamage -= TakeDame;
+        player.ID.playerEvents.OnHeal -= Heal;
+        player.ID.playerEvents.onRespawn -= InitialHealth;
+    }
+    public void InitialHealth()
+    {
+        MaxHealth = player.ID.maxHealth;
+        CurrentHealth = MaxHealth;
+        player.ID.playerEvents.OnHealthChanged?.Invoke(CurrentHealth);
     }
     public void TakeDame(int dameAmount)
     {
         CurrentHealth -= dameAmount;
-        if(CurrentHealth < 0)
+        
+        if (CurrentHealth <= 0)
+        {
+            player.ID.playerEvents.onDeath?.Invoke();
+            OnHealthAtZero?.Invoke();
             CurrentHealth = 0;
-        healthBar.SetHealth(CurrentHealth);
-        IsFull=false;
+        }
+        player.ID.playerEvents.OnHealthChanged?.Invoke(CurrentHealth);
+
     }
     public void Heal(int healAmount)
     {
@@ -32,9 +58,8 @@ public class Health : MonoBehaviour
         if (CurrentHealth > MaxHealth)
         {
             CurrentHealth = MaxHealth;
-            IsFull = true;
         }
-        healthBar.SetHealth(CurrentHealth);
-
+        player.ID.playerEvents.OnHealthChanged?.Invoke(CurrentHealth);
     }
 }
+

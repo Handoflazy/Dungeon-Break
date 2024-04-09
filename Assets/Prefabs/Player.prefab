@@ -494,6 +494,9 @@ MonoBehaviour:
   - {fileID: 0}
   damagePoint: 2
   pushForce: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &7220017806303106261
 GameObject:
   m_ObjectHideFlags: 0

@@ -444,7 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0893b20d06cecde46a7042344c6884dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetDetectionRange: 0.68
+  targetDetectionRange: 0.87
   obstacleLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -467,7 +467,7 @@ GameObject:
   - component: {fileID: 7701723741285173505}
   - component: {fileID: 8227063210502333306}
   - component: {fileID: 6094090734984458862}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: A Enemy
   m_TagString: Fighter
   m_Icon: {fileID: 0}
@@ -578,9 +578,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 8227063210502333306}
   maxHealth: 10
-  pushRecoverySpeed: 0.54
+  pushRecoverySpeed: 0.2
   acceleration: 0.2
-  deceleration: 0.2
+  deceleration: 1
   maxSpeed: 1
   state: 0
   startPosition: {x: 0, y: 0}
@@ -588,10 +588,11 @@ MonoBehaviour:
   detectionDelay: 0.05
   attackDelay: 1
   aiUpdateDeplay: 0.08
-  attackDistance: 0.22
+  attackDistance: 0.2
   movementInput: {x: 0, y: 0}
   returnOriginPos: 1
   isComingHome: 0
+  deathVFXParticlePrefap: {fileID: 8743165624367516653, guid: 27d99b88d1ff7824fb91dcba425a8752, type: 3}
 --- !u!114 &8227063210502333306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -604,8 +605,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ca5307cf3228f43919c138f9a2d30a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 1465209440418114517}
-  CurrentHealth: 0
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  onUpdateHealthBar:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1465209440418114517}
+        m_TargetAssemblyTypeName: HeartBar, Assembly-CSharp
+        m_MethodName: SetHealth
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onSpawn:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1465209440418114517}
+        m_TargetAssemblyTypeName: HeartBar, Assembly-CSharp
+        m_MethodName: SetMaxHearth
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!61 &6094090734984458862
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -808,6 +840,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5309280664336569132, guid: ea0f2ba97679320499a4ad0fcfe1c450, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2777667441813778145}
+    - targetCorrespondingSourceObject: {fileID: 5309280664336569132, guid: ea0f2ba97679320499a4ad0fcfe1c450, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4246907845087053303}
   m_SourcePrefab: {fileID: 100100000, guid: ea0f2ba97679320499a4ad0fcfe1c450, type: 3}
 --- !u!4 &1353337871828869791 stripped
 Transform:
@@ -840,3 +875,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4246907845087053303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4580871543955151352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c03151b5f69a344ca0863877506fb9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whiteFlashMat: {fileID: 2100000, guid: 7d4174c1b9a961e449225c8ac71d1722, type: 2}
+  restoreDefautMatTime: 0.05

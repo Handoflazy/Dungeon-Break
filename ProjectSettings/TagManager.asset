@@ -7,11 +7,13 @@ TagManager:
   - Fighter
   - Skill
   - Blocking
+  - Arrow
+  - Bow
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Cinemachine Confinder
   - Water
   - UI
   - 
@@ -19,7 +21,7 @@ TagManager:
   - Blocking
   - Actor
   - Player
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -58,4 +60,7 @@ TagManager:
     locked: 0
   - name: Hub
     uniqueID: 3830766345
+    locked: 0
+  - name: Render
+    uniqueID: 103071379
     locked: 0

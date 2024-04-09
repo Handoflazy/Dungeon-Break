@@ -9,15 +9,19 @@ public class NPCDialog : Collidable
     private float lastTime;
     protected override void Start()
     {
-        GameManager.instance.ShowText("Welcome", 50, Color.white, transform.position + new Vector3(0, 0.16f, 0), Vector3.zero, 1);
+        NguyenSingleton.Instance.floatingTextManager.Show("Welcome", 50, Color.white, transform.position + new Vector3(0, 0.16f, 0), Vector3.zero, 1);
         base.Start();
         lastTime = -cooldown;
     }
     protected override void OnCollide(Collider2D other)
     {
-        if(Time.time - lastTime > cooldown) {
-            lastTime = Time.time;
-            GameManager.instance.ShowText(message, 50, Color.white, transform.position + new Vector3(0,0.16f, 0), Vector3.zero, cooldown);
+        if (other.GetComponent<Player>() != null)
+        {
+            if (Time.time - lastTime > cooldown)
+            {
+                lastTime = Time.time;
+                NguyenSingleton.Instance.floatingTextManager.Show(message, 50, Color.white, transform.position + new Vector3(0, 0.16f, 0), Vector3.zero, cooldown);
+            }
         }
     }
 

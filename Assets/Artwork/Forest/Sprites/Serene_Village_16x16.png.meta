@@ -15502,6 +15502,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: TheTree
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d792238837c205340b170d1f65da7984
+      internalID: -2026344772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -16246,6 +16267,7 @@ TextureImporter:
       Serene_Village_16x16_97: 1019949427
       Serene_Village_16x16_98: -1425697881
       Serene_Village_16x16_99: 336713224
+      TheTree: -2026344772
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

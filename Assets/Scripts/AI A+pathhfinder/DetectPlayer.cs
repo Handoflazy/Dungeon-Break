@@ -11,6 +11,7 @@ public class DetectPlayer : MonoBehaviour
 
     [SerializeField]
     private bool showGizmos = false;
+
     private Transform targetPlayer;
     
     public Transform DetectTarget()

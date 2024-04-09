@@ -31,14 +31,12 @@ public class EnemyAI : Mover
     bool following = false;
     protected override void Start()
     {
+        base.Start();
         startPos = transform.position;
 
         InvokeRepeating(nameof(PerformDetection), 0, detectionDelay);
     } 
     
-  
-    
-
     private void PerformDetection()
     {
         foreach (var detector in detectors)
@@ -70,7 +68,6 @@ public class EnemyAI : Mover
     {
         if (aiData.currentTarget == null)
         {
-            Debug.Log("Stopping");
             movementInput = Vector2.zero;
             following = false;
         }

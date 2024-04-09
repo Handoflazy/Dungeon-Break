@@ -8,14 +8,20 @@ public class CameraLerp : MonoBehaviour
     [Range(0, 1)] public float smoothSpeed;
     // Start is called before the first frame update
 
-
+    private void Start()
+    {
+        target = GameObject.Find("Player").transform;
+    }
     // Update is called once per frame
     private void LateUpdate()
     {
 
-        Vector3 desirePosition = target.position;
-        desirePosition.z = -10;
-       
-        transform.position = Vector3.Lerp(transform.position, desirePosition, smoothSpeed);
+        if (target)
+        {
+            Vector3 desirePosition = target.position;
+            desirePosition.z = -10;
+
+            transform.position = Vector3.Lerp(transform.position, desirePosition, smoothSpeed); 
+        }
     }
 }

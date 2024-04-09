@@ -7,11 +7,8 @@ public class SlashAnim : MonoBehaviour
     [SerializeField]
     Transform localTransform;
     private Animator animator;
-
-    public static SlashAnim instance;
     private void Awake()
     {
-        instance = this;
         localTransform = gameObject.transform;
         animator = GetComponent<Animator>();
     }
@@ -20,8 +17,6 @@ public class SlashAnim : MonoBehaviour
         transform.SetPositionAndRotation(localTransform.position, localTransform.rotation);
         gameObject.SetActive(true);
         animator.Play("Entry_Slash");
-        
-        
     }
 
    
@@ -29,8 +24,7 @@ public class SlashAnim : MonoBehaviour
     public void DeactivateEffect()
     {
         gameObject.SetActive(false);
-        transform.SetPositionAndRotation(localTransform.position, localTransform.rotation);
-        transform.localScale = Vector3.one;
+        transform.rotation = Quaternion.identity;
     }
 
 

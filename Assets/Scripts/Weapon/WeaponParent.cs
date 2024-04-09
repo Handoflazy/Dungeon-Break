@@ -1,15 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class WeaponParent : MonoBehaviour
+public class WeaponParent : PlayerSystem
 {
+    
+    public UnityEvent onUseWeapon;
+    public Weapon equipmentWeapon;
     public Vector2 Pointerposition { get; set; }
-    public GameObject slashAnimPrefab;
-    public SlashAnim slashAnim;
-    [SerializeField]
-    private float SmoothAnim = 0.125f;
     [SerializeField]
     private SpriteRenderer playerRenderer;
     [SerializeField]
@@ -18,84 +19,74 @@ public class WeaponParent : MonoBehaviour
     private bool attackBlocked;
     [SerializeField]
     private float attackDelayTime;
-    [SerializeField]
-    private Animator anim;
-    
     public bool IsAttacking { get; set; }
-    
+
+   
+    private void OnEnable()
+    {
+        player.ID.playerEvents.OnAttack += Attack;
+        player.ID.playerEvents.OnMousePointer += GetPointerPos;
+
+       
+    }
+    private void OnDisable()
+    {
+        player.ID.playerEvents.OnAttack -= Attack;
+        player.ID.playerEvents.OnMousePointer -= GetPointerPos;
+       
+    }
+    private void Start()
+    {
+        equipmentWeapon = transform.GetComponentInChildren<Weapon>();
+        anim = transform.GetComponentInChildren<Animator>();
+    }
+
+    private void GetPointerPos(Vector2 pointerPos)
+    {
+        Pointerposition = pointerPos;
+    }
 
     private void Update()
     {
         if (IsAttacking)
             return;
         Vector2 direction = (Pointerposition - (Vector2)transform.position).normalized;
-        Vector2 scale = transform.localScale;
-
         if (direction.y < 0.64 && direction.y > -0.9)
         {
-
             if (direction.x < 0)
-                scale.y = -1;
-            else if (direction.x > 0) scale.y = 1;
-            transform.right = direction;
-            transform.localScale = scale;
+                transform.rotation = Quaternion.Euler(0, -180, 0);
+            else if (direction.x > 0) transform.rotation = Quaternion.Euler(0, 0, 0);
+            if (equipmentWeapon._weaponType != WeaponType.Melee)
+            {
+                transform.right = direction;        
+            }
         }
 
-        if (transform.up.y < 0 && transform.up.y >= -1)
-        {
-
-            weaponRenderer.sortingOrder = playerRenderer.sortingOrder + 1;
-        }
-        else
-        {
-            weaponRenderer.sortingOrder = playerRenderer.sortingOrder - 1;
-        }
     }
- 
+
     public void ResetIsAttacking()
     {
+        player.ID.playerEvents.OnUsingWeapon?.Invoke(false);
         IsAttacking = false;
-        anim.SetBool("SecondAttack", false);
     }
-    GameObject slashAnimationObject;
-    private void Awake()
-    {
-        anim = GetComponentInChildren<Animator>();
-      
-        slashAnimationObject = Instantiate(slashAnimPrefab, transform);
-        slashAnimationObject.name = "SlashAnimation";
-        transform.parent = transform;
-        slashAnim = GameObject.Find("SlashAnimation").GetComponent<SlashAnim>();
-    }
+
     IEnumerator AttackDelay()
     {
         yield return new WaitForSeconds(attackDelayTime);
         attackBlocked = false;
     }
-    public void SwingUpFipAnim()
-    {
-        slashAnimationObject.transform.localScale = new Vector3(1, -1, 1);
-    }
+
     public void Attack()
     {
-        if (!anim)
-        {
-            return;
-        } 
         if (attackBlocked)
-            return;   
+            return;
+
+        player.ID.playerEvents.OnUsingWeapon?.Invoke(true);
         IsAttacking = true;
         attackBlocked = true;
         anim.SetTrigger("Attack");
         StartCoroutine(AttackDelay());
     }
-    public void ActivateSlashAnim()
-    {
-        slashAnim.ActivateEffect();
-    }
-    public void DeactiveSlashAnim()
-    {
-        slashAnim.DeactivateEffect();
-    }
+
 }
 

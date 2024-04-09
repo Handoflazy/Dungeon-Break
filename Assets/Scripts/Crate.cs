@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class Crate : Fighter
 {
-    protected override void Death()
+    public override void Death()
     {
-       Destroy(gameObject);
-
+        NguyenSingleton.Instance.floatingTextManager.Show("Bro is dead", 30, UnityEngine.Color.red, transform.position, Vector3.zero, 0.5f);
     }
 }
