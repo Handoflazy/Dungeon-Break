@@ -89,6 +89,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""KeyBoard"",
+                    ""type"": ""Value"",
+                    ""id"": ""2bd503a4-c627-478b-a281-8d9bfdc9281d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -267,6 +276,61 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""ZoomMap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""629a9c2c-6a99-4ade-8146-b25bc8c7e800"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KeyBoard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec8fb9f4-824a-48c5-88b9-c784f8179f0c"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=2)"",
+                    ""groups"": """",
+                    ""action"": ""KeyBoard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f92da47a-334b-43ae-af67-ec3e124b7c85"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=3)"",
+                    ""groups"": """",
+                    ""action"": ""KeyBoard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""80adc363-9c6c-4d9a-9b7d-fc2c6e5ad65f"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=4)"",
+                    ""groups"": """",
+                    ""action"": ""KeyBoard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b62243a1-24fa-4eb6-9dd1-4afb7c337b3d"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=5)"",
+                    ""groups"": """",
+                    ""action"": ""KeyBoard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -336,6 +400,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Inventory "",
+            ""id"": ""b044697c-27be-4b3d-87b4-46a4feb08592"",
+            ""actions"": [],
+            ""bindings"": []
         }
     ],
     ""controlSchemes"": []
@@ -349,12 +419,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerInput_OpenMenu = m_PlayerInput.FindAction("OpenMenu", throwIfNotFound: true);
         m_PlayerInput_MovementSkill = m_PlayerInput.FindAction("MovementSkill", throwIfNotFound: true);
         m_PlayerInput_ZoomMap = m_PlayerInput.FindAction("ZoomMap", throwIfNotFound: true);
+        m_PlayerInput_KeyBoard = m_PlayerInput.FindAction("KeyBoard", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_ExitMenu = m_Menu.FindAction("ExitMenu", throwIfNotFound: true);
         // DealthMenu
         m_DealthMenu = asset.FindActionMap("DealthMenu", throwIfNotFound: true);
         m_DealthMenu_Click = m_DealthMenu.FindAction("Click", throwIfNotFound: true);
+        // Inventory 
+        m_Inventory = asset.FindActionMap("Inventory ", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -423,6 +496,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerInput_OpenMenu;
     private readonly InputAction m_PlayerInput_MovementSkill;
     private readonly InputAction m_PlayerInput_ZoomMap;
+    private readonly InputAction m_PlayerInput_KeyBoard;
     public struct PlayerInputActions
     {
         private @PlayerControls m_Wrapper;
@@ -434,6 +508,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @OpenMenu => m_Wrapper.m_PlayerInput_OpenMenu;
         public InputAction @MovementSkill => m_Wrapper.m_PlayerInput_MovementSkill;
         public InputAction @ZoomMap => m_Wrapper.m_PlayerInput_ZoomMap;
+        public InputAction @KeyBoard => m_Wrapper.m_PlayerInput_KeyBoard;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -464,6 +539,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ZoomMap.started += instance.OnZoomMap;
             @ZoomMap.performed += instance.OnZoomMap;
             @ZoomMap.canceled += instance.OnZoomMap;
+            @KeyBoard.started += instance.OnKeyBoard;
+            @KeyBoard.performed += instance.OnKeyBoard;
+            @KeyBoard.canceled += instance.OnKeyBoard;
         }
 
         private void UnregisterCallbacks(IPlayerInputActions instance)
@@ -489,6 +567,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ZoomMap.started -= instance.OnZoomMap;
             @ZoomMap.performed -= instance.OnZoomMap;
             @ZoomMap.canceled -= instance.OnZoomMap;
+            @KeyBoard.started -= instance.OnKeyBoard;
+            @KeyBoard.performed -= instance.OnKeyBoard;
+            @KeyBoard.canceled -= instance.OnKeyBoard;
         }
 
         public void RemoveCallbacks(IPlayerInputActions instance)
@@ -598,6 +679,44 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public DealthMenuActions @DealthMenu => new DealthMenuActions(this);
+
+    // Inventory 
+    private readonly InputActionMap m_Inventory;
+    private List<IInventoryActions> m_InventoryActionsCallbackInterfaces = new List<IInventoryActions>();
+    public struct InventoryActions
+    {
+        private @PlayerControls m_Wrapper;
+        public InventoryActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputActionMap Get() { return m_Wrapper.m_Inventory; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(InventoryActions set) { return set.Get(); }
+        public void AddCallbacks(IInventoryActions instance)
+        {
+            if (instance == null || m_Wrapper.m_InventoryActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_InventoryActionsCallbackInterfaces.Add(instance);
+        }
+
+        private void UnregisterCallbacks(IInventoryActions instance)
+        {
+        }
+
+        public void RemoveCallbacks(IInventoryActions instance)
+        {
+            if (m_Wrapper.m_InventoryActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IInventoryActions instance)
+        {
+            foreach (var item in m_Wrapper.m_InventoryActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_InventoryActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public InventoryActions @Inventory => new InventoryActions(this);
     public interface IPlayerInputActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -607,6 +726,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnOpenMenu(InputAction.CallbackContext context);
         void OnMovementSkill(InputAction.CallbackContext context);
         void OnZoomMap(InputAction.CallbackContext context);
+        void OnKeyBoard(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {
@@ -615,5 +735,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public interface IDealthMenuActions
     {
         void OnClick(InputAction.CallbackContext context);
+    }
+    public interface IInventoryActions
+    {
     }
 }

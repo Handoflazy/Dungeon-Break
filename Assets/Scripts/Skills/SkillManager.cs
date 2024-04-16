@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 [RequireComponent(typeof(Duration))]
 public class SkillManager : PlayerSystem
 {
+    public BoolEvent OnUsingMoveSkill;
+
     private Duration duration;
 
     public WeaponType WeaponType;
         
     public IMoveSkill iMoveSkill;
-    public AbtractSkill moveSkill;
+    private AbtractSkill moveSkill;
     private bool isMoveSkillCooldown;
     private bool isAttackSkillCooldown;
     private bool isDefendSkillCooldown;
@@ -24,13 +27,22 @@ public class SkillManager : PlayerSystem
     {
         player.ID.playerEvents.OnMoveSkillUsed += OnSpaceDown;
         player.ID.playerEvents.OnWeaponChage += OnWeaponChangeEvent;
+        player.ID.playerEvents.OnMoveSkillUsing += UsingSkillTrigger;
     }
 
     private void OnDisable()
     {
         player.ID.playerEvents.OnMoveSkillUsed -= OnSpaceDown;
         player.ID.playerEvents.OnWeaponChage -= OnWeaponChangeEvent;
+        player.ID.playerEvents.OnMoveSkillUsing -= UsingSkillTrigger;
     }
+
+    void UsingSkillTrigger(bool isUsing)
+    {
+        OnUsingMoveSkill?.Invoke(isUsing);
+    }
+
+
     private void HandleWeaponType()
     {
         Component c = gameObject.GetComponent<IMoveSkill>() as Component;

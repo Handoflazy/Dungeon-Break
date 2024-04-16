@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class AbtractSkill : PlayerSystem
 {
@@ -25,5 +26,13 @@ public class AbtractSkill : PlayerSystem
     public float GetCowndown()
     {
         return cooldown[level];
+    }
+    protected virtual Vector2 GetPointerPos()
+    {
+        Vector3 mousePos;
+        mousePos.x = Mouse.current.position.x.ReadValue();
+        mousePos.y = Mouse.current.position.y.ReadValue();
+        mousePos.z = Camera.main.nearClipPlane;
+        return Camera.main.ScreenToWorldPoint(mousePos);
     }
 }

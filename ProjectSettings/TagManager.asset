@@ -9,6 +9,7 @@ TagManager:
   - Blocking
   - Arrow
   - Bow
+  - Ignore
   layers:
   - Default
   - TransparentFX
@@ -52,15 +53,18 @@ TagManager:
   - name: Collidable
     uniqueID: 2859116669
     locked: 0
-  - name: Actor
-    uniqueID: 2443838815
-    locked: 0
-  - name: Weapon
-    uniqueID: 1332609957
+  - name: New Layer 7
+    uniqueID: 2170345755
     locked: 0
   - name: Hub
     uniqueID: 3830766345
     locked: 0
+  - name: Actor
+    uniqueID: 2443838815
+    locked: 0
   - name: Render
     uniqueID: 103071379
+    locked: 0
+  - name: Weapon
+    uniqueID: 1332609957
     locked: 0

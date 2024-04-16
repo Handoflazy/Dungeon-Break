@@ -5,10 +5,12 @@ using UnityEngine;
 public class AnimatedEnemy : PlayerSystem
 {
     Rigidbody2D rb;
+    [SerializeField]
+    Animator anim;
     protected override void Awake()
     {
         base.Awake();
-        rb = transform.parent.GetComponent<Rigidbody2D>();
+        rb = transform.GetComponent<Rigidbody2D>();
     }
     private void Update()
     {

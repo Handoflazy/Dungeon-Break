@@ -1,44 +1,48 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class AnimatedCharacter : PlayerSystem
 {
+
+    public static AnimatedCharacter Instance;
     Rigidbody2D rb;
-    Vector2 PointerPosition;
-    public BoolEvent OnLeftSide;
+    public event Action<bool> OnLeftSide;
     public bool isUsingWeapon;
+    [SerializeField]
+     Animator anim;
 
-
-    public void onReponseOnAttackingEvent()
-    {
-        NguyenSingleton.Instance.floatingTextManager.Show("Nguyen bo doi", 5, Color.blue, transform.position, Vector3.up, 2);
-    }
-    private void OnUsingWeaponEvent(bool isUsingWeapon)
+    public void OnUsingWeaponEvent(bool isUsingWeapon)
     {
         this.isUsingWeapon = isUsingWeapon;
     }
     protected override void Awake()
     {
         base.Awake(); rb = GetComponent<Rigidbody2D>();
+        Instance = this;
     }
 
     private void OnEnable()
     {
        
-        player.ID.playerEvents.OnMousePointer += GetPointer;
+     
         player.ID.playerEvents.OnUsingWeapon += OnUsingWeaponEvent;
 
     }
 
     private void OnDisable()
     {
-        player.ID.playerEvents.OnMousePointer -= GetPointer;
         player.ID.playerEvents.OnUsingWeapon -= OnUsingWeaponEvent;
     }
-    private void GetPointer(Vector2 pointerPosition)
+    private Vector2 GetPointerPos()
     {
-        PointerPosition = pointerPosition;
+        Vector3 mousePos;
+        mousePos.x = Mouse.current.position.x.ReadValue();
+        mousePos.y = Mouse.current.position.y.ReadValue();
+        mousePos.z = Camera.main.nearClipPlane;
+        return Camera.main.ScreenToWorldPoint(mousePos);
     }
     private void Update()
     {
@@ -55,7 +59,7 @@ public class AnimatedCharacter : PlayerSystem
         {
             return;
         }
-        Vector2 lookDirection = PointerPosition - (Vector2)transform.position;
+        Vector2 lookDirection = GetPointerPos() - (Vector2)transform.position;
         if (lookDirection.x > 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);

@@ -37,11 +37,11 @@ public class HUBManagement : MonoBehaviour
     }
 
 
-    void UpdateHealth(int health)
+    public void UpdateHealth(int health)
     {
        UpdateHealthBar?.Invoke(health);
     }
-    void UpdateDuration(int duration)
+    public void UpdateDuration(int duration)
     {
         UpdateDurationBar?.Invoke(duration);
     }
