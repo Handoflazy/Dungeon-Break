@@ -47,6 +47,7 @@ namespace SunnyValleyVersion
             }
             else
             {
+                currentHealth = 0;
                 OnDeathWithReference?.Invoke(sender);
                 isDead = true;
                 OnDeathEvent?.Invoke();

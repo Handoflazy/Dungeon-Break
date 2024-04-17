@@ -55,27 +55,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""SkillOne"",
-                    ""type"": ""Button"",
-                    ""id"": ""a6a02e26-308a-443a-8456-3720e36b9318"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""OpenMenu"",
                     ""type"": ""Button"",
                     ""id"": ""bfbf1cba-1965-41d1-a2ca-e1f018e8df6f"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""MovementSkill"",
-                    ""type"": ""Button"",
-                    ""id"": ""99ca928b-215f-4bd6-b48c-e9b9729eec2d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -98,6 +80,33 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""SkillOne"",
+                    ""type"": ""Button"",
+                    ""id"": ""a6a02e26-308a-443a-8456-3720e36b9318"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SkillSecond"",
+                    ""type"": ""Button"",
+                    ""id"": ""49466d7f-da40-48bc-91c9-b1b61fffe6ec"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MovementSkill"",
+                    ""type"": ""Button"",
+                    ""id"": ""99ca928b-215f-4bd6-b48c-e9b9729eec2d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -246,28 +255,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""fc7398a8-2e8e-4e26-8fa5-dec658ac11b4"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SkillOne"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""064e8231-c22b-4f8b-9c47-9177802ce488"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MovementSkill"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""1cf76d72-81ea-423a-ad2b-97c9445e8cd5"",
                     ""path"": ""<Keyboard>/m"",
                     ""interactions"": """",
@@ -329,6 +316,39 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": ""Scale(factor=5)"",
                     ""groups"": """",
                     ""action"": ""KeyBoard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0d3cb6a1-4bf6-493a-9389-d60c42b75de9"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkillSecond"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fc7398a8-2e8e-4e26-8fa5-dec658ac11b4"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkillOne"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""064e8231-c22b-4f8b-9c47-9177802ce488"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MovementSkill"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -415,11 +435,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerInput_Movement = m_PlayerInput.FindAction("Movement", throwIfNotFound: true);
         m_PlayerInput_PointerPosition = m_PlayerInput.FindAction("PointerPosition", throwIfNotFound: true);
         m_PlayerInput_Attack = m_PlayerInput.FindAction("Attack", throwIfNotFound: true);
-        m_PlayerInput_SkillOne = m_PlayerInput.FindAction("SkillOne", throwIfNotFound: true);
         m_PlayerInput_OpenMenu = m_PlayerInput.FindAction("OpenMenu", throwIfNotFound: true);
-        m_PlayerInput_MovementSkill = m_PlayerInput.FindAction("MovementSkill", throwIfNotFound: true);
         m_PlayerInput_ZoomMap = m_PlayerInput.FindAction("ZoomMap", throwIfNotFound: true);
         m_PlayerInput_KeyBoard = m_PlayerInput.FindAction("KeyBoard", throwIfNotFound: true);
+        m_PlayerInput_SkillOne = m_PlayerInput.FindAction("SkillOne", throwIfNotFound: true);
+        m_PlayerInput_SkillSecond = m_PlayerInput.FindAction("SkillSecond", throwIfNotFound: true);
+        m_PlayerInput_MovementSkill = m_PlayerInput.FindAction("MovementSkill", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_ExitMenu = m_Menu.FindAction("ExitMenu", throwIfNotFound: true);
@@ -492,11 +513,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerInput_Movement;
     private readonly InputAction m_PlayerInput_PointerPosition;
     private readonly InputAction m_PlayerInput_Attack;
-    private readonly InputAction m_PlayerInput_SkillOne;
     private readonly InputAction m_PlayerInput_OpenMenu;
-    private readonly InputAction m_PlayerInput_MovementSkill;
     private readonly InputAction m_PlayerInput_ZoomMap;
     private readonly InputAction m_PlayerInput_KeyBoard;
+    private readonly InputAction m_PlayerInput_SkillOne;
+    private readonly InputAction m_PlayerInput_SkillSecond;
+    private readonly InputAction m_PlayerInput_MovementSkill;
     public struct PlayerInputActions
     {
         private @PlayerControls m_Wrapper;
@@ -504,11 +526,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_PlayerInput_Movement;
         public InputAction @PointerPosition => m_Wrapper.m_PlayerInput_PointerPosition;
         public InputAction @Attack => m_Wrapper.m_PlayerInput_Attack;
-        public InputAction @SkillOne => m_Wrapper.m_PlayerInput_SkillOne;
         public InputAction @OpenMenu => m_Wrapper.m_PlayerInput_OpenMenu;
-        public InputAction @MovementSkill => m_Wrapper.m_PlayerInput_MovementSkill;
         public InputAction @ZoomMap => m_Wrapper.m_PlayerInput_ZoomMap;
         public InputAction @KeyBoard => m_Wrapper.m_PlayerInput_KeyBoard;
+        public InputAction @SkillOne => m_Wrapper.m_PlayerInput_SkillOne;
+        public InputAction @SkillSecond => m_Wrapper.m_PlayerInput_SkillSecond;
+        public InputAction @MovementSkill => m_Wrapper.m_PlayerInput_MovementSkill;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -527,21 +550,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
-            @SkillOne.started += instance.OnSkillOne;
-            @SkillOne.performed += instance.OnSkillOne;
-            @SkillOne.canceled += instance.OnSkillOne;
             @OpenMenu.started += instance.OnOpenMenu;
             @OpenMenu.performed += instance.OnOpenMenu;
             @OpenMenu.canceled += instance.OnOpenMenu;
-            @MovementSkill.started += instance.OnMovementSkill;
-            @MovementSkill.performed += instance.OnMovementSkill;
-            @MovementSkill.canceled += instance.OnMovementSkill;
             @ZoomMap.started += instance.OnZoomMap;
             @ZoomMap.performed += instance.OnZoomMap;
             @ZoomMap.canceled += instance.OnZoomMap;
             @KeyBoard.started += instance.OnKeyBoard;
             @KeyBoard.performed += instance.OnKeyBoard;
             @KeyBoard.canceled += instance.OnKeyBoard;
+            @SkillOne.started += instance.OnSkillOne;
+            @SkillOne.performed += instance.OnSkillOne;
+            @SkillOne.canceled += instance.OnSkillOne;
+            @SkillSecond.started += instance.OnSkillSecond;
+            @SkillSecond.performed += instance.OnSkillSecond;
+            @SkillSecond.canceled += instance.OnSkillSecond;
+            @MovementSkill.started += instance.OnMovementSkill;
+            @MovementSkill.performed += instance.OnMovementSkill;
+            @MovementSkill.canceled += instance.OnMovementSkill;
         }
 
         private void UnregisterCallbacks(IPlayerInputActions instance)
@@ -555,21 +581,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
-            @SkillOne.started -= instance.OnSkillOne;
-            @SkillOne.performed -= instance.OnSkillOne;
-            @SkillOne.canceled -= instance.OnSkillOne;
             @OpenMenu.started -= instance.OnOpenMenu;
             @OpenMenu.performed -= instance.OnOpenMenu;
             @OpenMenu.canceled -= instance.OnOpenMenu;
-            @MovementSkill.started -= instance.OnMovementSkill;
-            @MovementSkill.performed -= instance.OnMovementSkill;
-            @MovementSkill.canceled -= instance.OnMovementSkill;
             @ZoomMap.started -= instance.OnZoomMap;
             @ZoomMap.performed -= instance.OnZoomMap;
             @ZoomMap.canceled -= instance.OnZoomMap;
             @KeyBoard.started -= instance.OnKeyBoard;
             @KeyBoard.performed -= instance.OnKeyBoard;
             @KeyBoard.canceled -= instance.OnKeyBoard;
+            @SkillOne.started -= instance.OnSkillOne;
+            @SkillOne.performed -= instance.OnSkillOne;
+            @SkillOne.canceled -= instance.OnSkillOne;
+            @SkillSecond.started -= instance.OnSkillSecond;
+            @SkillSecond.performed -= instance.OnSkillSecond;
+            @SkillSecond.canceled -= instance.OnSkillSecond;
+            @MovementSkill.started -= instance.OnMovementSkill;
+            @MovementSkill.performed -= instance.OnMovementSkill;
+            @MovementSkill.canceled -= instance.OnMovementSkill;
         }
 
         public void RemoveCallbacks(IPlayerInputActions instance)
@@ -722,11 +751,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnPointerPosition(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
-        void OnSkillOne(InputAction.CallbackContext context);
         void OnOpenMenu(InputAction.CallbackContext context);
-        void OnMovementSkill(InputAction.CallbackContext context);
         void OnZoomMap(InputAction.CallbackContext context);
         void OnKeyBoard(InputAction.CallbackContext context);
+        void OnSkillOne(InputAction.CallbackContext context);
+        void OnSkillSecond(InputAction.CallbackContext context);
+        void OnMovementSkill(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

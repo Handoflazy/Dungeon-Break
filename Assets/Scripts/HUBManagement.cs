@@ -8,43 +8,45 @@ using UnityEngine.Events;
 public class HUBManagement : MonoBehaviour
 {
     public PlayerID playerID;
-
-    public IntEvent UpdateHealthBar;
-    public IntEvent UpdateDurationBar;
-
-    public IntEvent OnInitialHealthBar;
-    public IntEvent OnInitialDurationBar;
-
+    [SerializeField] private SliderBar healthBar;
+    [SerializeField] private SliderBar durationBar;
 
     private void OnEnable()
     {
-        playerID.playerEvents.OnHealthChanged += UpdateHealth;
-        playerID.playerEvents.OnDurationChanged += UpdateDuration;
-        //playerID.playerEvents.onDeath += DisplayGameOver;
-        //playerID.playerEvents.onRespawn += HideGameOver;
+        playerID.playerEvents.OnDurationChanged += OnDurationChanged;
+        playerID.playerEvents.onInitialDuration += InitialMaxValueDurationBar;
     }
     private void OnDisable()    
     {
-        playerID.playerEvents.OnHealthChanged -= UpdateHealth;
-        playerID.playerEvents.OnDurationChanged -= UpdateDuration;
-        //playerID.playerEvents.onDeath -= DisplayGameOver;
-        //playerID.playerEvents.onRespawn -= HideGameOver;
+        playerID.playerEvents.OnDurationChanged -= OnDurationChanged;
+        playerID.playerEvents.onInitialDuration -= InitialMaxValueDurationBar;
     }
     private void Awake()
     {
-        OnInitialHealthBar?.Invoke(playerID.maxHealth); 
-        OnInitialDurationBar?.Invoke(playerID.maxDuration); 
+        healthBar = transform.GetChild(0).GetComponent<SliderBar>();
+        durationBar = transform.GetChild(1).GetComponent<SliderBar>();
+
+    }
+
+    public void InitialMaxValueHealthBar(int maxHealth)
+    {
+       healthBar.SetMaxValue(maxHealth);
+    }
+    public void InitialMaxValueDurationBar(int maxDuration)
+    {
+        durationBar.SetMaxValue(maxDuration);
+    }
+
+    public void OnHealthChanged(int currentHealth)
+    {
+        healthBar.SetValue(currentHealth);
+    }
+    public void OnDurationChanged(int currentDuration)
+    {
+        durationBar.SetValue(currentDuration);
     }
 
 
-    public void UpdateHealth(int health)
-    {
-       UpdateHealthBar?.Invoke(health);
-    }
-    public void UpdateDuration(int duration)
-    {
-        UpdateDurationBar?.Invoke(duration);
-    }
 
     //public void DisplayGameOver()
     //{

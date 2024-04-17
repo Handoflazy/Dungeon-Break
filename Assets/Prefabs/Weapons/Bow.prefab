@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5648201073172420050}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Arrow Spawn Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1272130155412195851}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.036, y: -0.015, z: 0}
+  m_LocalPosition: {x: -0.028, y: -0.011, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 5645656752451634058}
   - component: {fileID: -3143481816172197276}
   - component: {fileID: 7844098522102350686}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ MonoBehaviour:
   description: 
   damagePoint: 1
   pushForce: 1
-  WeaponType: 0
+  WeaponType: 2
   weaponInfor: {fileID: 11400000, guid: f32686c3834fd15419689f9b2c03673d, type: 2}
   distance: 1
   arrowSpawnPoint: {fileID: 5648201073172420050}

@@ -68,19 +68,26 @@ public class PlayerInputPatformNew : PlayerSystem, PlayerControls.IPlayerInputAc
        }
     }
 
-    public void OnSkillOne(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Performed)
-        {
-            player.ID.playerEvents.OnWeaponChage?.Invoke();
-        }
-    }
-
     public void OnClick(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
             print("OnAttak");
+        }
+    }
+
+    public void OnSkillOne(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            player.ID.playerEvents.OnSkillOneUsed?.Invoke();
+        }
+    }
+    public void OnSkillSecond(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            player.ID.playerEvents.OnSkillSecondUsed?.Invoke();
         }
     }
 
@@ -108,6 +115,7 @@ public class PlayerInputPatformNew : PlayerSystem, PlayerControls.IPlayerInputAc
           
         }
     }
+
 }
 
 [Serializable]

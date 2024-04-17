@@ -9,15 +9,9 @@ using UnityEngine.Events;
 [RequireComponent(typeof(DamageSource))]
 public class CommonArrow : MonoBehaviour
 {
-    private Rigidbody2D rb;
     [SerializeField] float speed;
     public float Distance { get; set; }
     private float flyDistance = 0;
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
-
     private void OnEnable()
     {
         flyDistance = 0;

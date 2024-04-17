@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class AbtractSkill : PlayerSystem
 {
     public int maxLevel { get; set; }
-    public int level { get; set; }
+    public int level;
 
     public bool canUse { get; protected set; }
     [SerializeField]

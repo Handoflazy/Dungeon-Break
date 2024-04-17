@@ -10,13 +10,19 @@ public class SkillManager : PlayerSystem
 
     private Duration duration;
 
-    public WeaponType WeaponType;
+    public WeaponType weaponType;
         
     public IMoveSkill iMoveSkill;
+
     private AbtractSkill moveSkill;
+    private AbtractSkill firstSkill;
+    private AbtractSkill secondSkill;
+
     private bool isMoveSkillCooldown;
     private bool isAttackSkillCooldown;
     private bool isDefendSkillCooldown;
+
+
 
     protected override void Awake()
     {
@@ -25,16 +31,20 @@ public class SkillManager : PlayerSystem
     }
     private void OnEnable()
     {
-        player.ID.playerEvents.OnMoveSkillUsed += OnSpaceDown;
-        player.ID.playerEvents.OnWeaponChage += OnWeaponChangeEvent;
+        player.ID.playerEvents.OnMoveSkillUsed += OnMoveSkillUse;
+        player.ID.playerEvents.OnChangeWeapon += OnWeaponChangeEvent;
         player.ID.playerEvents.OnMoveSkillUsing += UsingSkillTrigger;
+        player.ID.playerEvents.OnSkillSecondUsed += OnSecondSkillUse;
+        player.ID.playerEvents.OnSkillOneUsed += OnFirstSkillUse;
     }
 
     private void OnDisable()
     {
-        player.ID.playerEvents.OnMoveSkillUsed -= OnSpaceDown;
-        player.ID.playerEvents.OnWeaponChage -= OnWeaponChangeEvent;
+        player.ID.playerEvents.OnMoveSkillUsed -= OnMoveSkillUse;
+        player.ID.playerEvents.OnChangeWeapon -= OnWeaponChangeEvent;
         player.ID.playerEvents.OnMoveSkillUsing -= UsingSkillTrigger;
+        player.ID.playerEvents.OnSkillSecondUsed -= OnSecondSkillUse;
+        player.ID.playerEvents.OnSkillSecondUsed -= OnFirstSkillUse;
     }
 
     void UsingSkillTrigger(bool isUsing)
@@ -46,32 +56,54 @@ public class SkillManager : PlayerSystem
     private void HandleWeaponType()
     {
         Component c = gameObject.GetComponent<IMoveSkill>() as Component;
-
+        Component e = gameObject.GetComponent<IFirstSkill>() as Component;
+        Component d = gameObject.GetComponent<ISecondSkill>() as Component;
         if (c != null)
         {
             Destroy(c);
         }
+        if(d != null)
+        {
+            Destroy(d);
+        }
+        if (e !=null)
+        {
+            Destroy(e);
+        }
 
-        switch(WeaponType)
+
+        switch(weaponType)
         {
             case WeaponType.Melee:
                 moveSkill = gameObject.AddComponent<DashSkill>();
+                secondSkill = gameObject.AddComponent<Giganize>();
+                firstSkill = gameObject.AddComponent<Wideslash>();
+                
                 break;
             case WeaponType.Range:
                 moveSkill = gameObject.AddComponent<LeapSkill>();
+                secondSkill = null;
+                firstSkill = null;
                 break;
             case WeaponType.Staff:
                 moveSkill = gameObject.AddComponent<TeleportSkill>();
+                secondSkill = null;
+                firstSkill = null;
                 break;
             default:
-                moveSkill = gameObject.AddComponent<DashSkill>();
+                moveSkill = null;
+                secondSkill = null;
+                firstSkill = null;
                 break;
+         
         }
 
 
     }
-    public void OnSpaceDown()
+    public void OnMoveSkillUse()
     {
+        if (!moveSkill)
+            return;
         int durationCost = moveSkill.GetDurationCost();
         if (durationCost < duration.CurrentDuration && !isMoveSkillCooldown)
         {
@@ -80,13 +112,45 @@ public class SkillManager : PlayerSystem
             StartCoroutine(StartMoveSkillCooldown(moveSkill.GetCowndown()));
         }
     }
-
+    public void OnSecondSkillUse()
+    {
+        print("da su dung skill 2");
+        if (secondSkill == null)
+            return;
+        int durationCost = secondSkill.GetDurationCost();
+        if (durationCost < duration.CurrentDuration && !isAttackSkillCooldown)
+        {
+            secondSkill.OnUsed();
+            duration.ReduceDuration(durationCost);
+            StartCoroutine(StartAttackSkillCooldown(secondSkill.GetCowndown()));
+        }
+    }
+    public void OnFirstSkillUse()
+    {
+        print("da su dung skill 1");
+        if (firstSkill == null)
+            return;
+        int durationCost =  firstSkill.GetDurationCost();
+        if (durationCost < duration.CurrentDuration && !isAttackSkillCooldown)
+        {
+         
+            firstSkill.OnUsed();
+            duration.ReduceDuration(durationCost);
+            StartCoroutine(StartAttackSkillCooldown(secondSkill.GetCowndown()));
+        }
+    }
     IEnumerator StartMoveSkillCooldown(float timeCD)
     {
         isMoveSkillCooldown = true;
         yield return new WaitForSeconds(timeCD);
         isMoveSkillCooldown = false;
 
+    }
+    IEnumerator StartAttackSkillCooldown(float timeCD)
+    {
+        isAttackSkillCooldown = true;
+        yield return new WaitForSeconds(timeCD);
+        isAttackSkillCooldown = false;
     }
 
     private void Start()
@@ -95,8 +159,9 @@ public class SkillManager : PlayerSystem
         isMoveSkillCooldown = false;
     }
 
-    public void OnWeaponChangeEvent()
+    public void OnWeaponChangeEvent(Weapon weapon)
     {
+        weaponType = weapon.WeaponType;
         HandleWeaponType();
         print("onweaponChange ");
     }

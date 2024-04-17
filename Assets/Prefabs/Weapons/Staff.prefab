@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 668572825835881018}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.06, y: 0.002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -73,12 +73,12 @@ SpriteRenderer:
   m_SortingLayerID: 1332609957
   m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3969566b4136fb04db3a3190711d8265, type: 3}
+  m_Sprite: {fileID: 1367379171, guid: 3969566b4136fb04db3a3190711d8265, type: 3}
   m_Color: {r: 0.30191636, g: 0.9339623, b: 0.09251513, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.32323232, y: 0.32323232}
+  m_DrawMode: 1
+  m_Size: {x: 0.04, y: 0.04}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -131,11 +131,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b09bc7829711f948bd69b885c790c2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagePoint: 1
+  itemName: 
+  description: 
+  damagePoint: 5
   pushForce: 2
-  WeaponType: 0
+  WeaponType: 1
   weaponInfor: {fileID: 11400000, guid: 06c2797157401a244bc079e6a1e3fc8b, type: 2}
-  distance: 10
+  distance: 3
   spawnLaserPos: {fileID: 5723168109363518614}
   LaserPrefab: {fileID: 5859806489077005788, guid: 0cea571ce20419846912ce8f3ab62c12, type: 3}
   weaponParent: {fileID: 0}

@@ -13,13 +13,13 @@ public class MagicWeapon : Weapon
 
     private List<GameObject> arrows = new();
     public WeaponParent weaponParent;
-
+    private float laserWitdh;
     private void Start()
     {
         weaponParent = transform.parent.GetComponent<WeaponParent>();
         WeaponAnim = GetComponent<Animator>();
+        laserWitdh = spawnLaserPos.gameObject.GetComponent<SpriteRenderer>().size.x;
     }
-
     readonly int FIRE_HASH = Animator.StringToHash("Fire");
     public override void Attack()
     {
@@ -28,7 +28,7 @@ public class MagicWeapon : Weapon
         laser.SetActive(true);
         laser.transform.position = spawnLaserPos.position;
         laser.transform.rotation = weaponParent.transform.rotation;
-        laser.GetComponent<Laser>().UpdateLaserRange(distance);
+        laser.GetComponent<Laser>().UpdateLaserRange(distance,laserWitdh*3);
     }
 
     private GameObject GetLaser()

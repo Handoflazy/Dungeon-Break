@@ -33,27 +33,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SkillOne",
-                    "type": "Button",
-                    "id": "a6a02e26-308a-443a-8456-3720e36b9318",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "OpenMenu",
                     "type": "Button",
                     "id": "bfbf1cba-1965-41d1-a2ca-e1f018e8df6f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "MovementSkill",
-                    "type": "Button",
-                    "id": "99ca928b-215f-4bd6-b48c-e9b9729eec2d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -76,6 +58,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "SkillOne",
+                    "type": "Button",
+                    "id": "a6a02e26-308a-443a-8456-3720e36b9318",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SkillSecond",
+                    "type": "Button",
+                    "id": "49466d7f-da40-48bc-91c9-b1b61fffe6ec",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MovementSkill",
+                    "type": "Button",
+                    "id": "99ca928b-215f-4bd6-b48c-e9b9729eec2d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -224,28 +233,6 @@
                 },
                 {
                     "name": "",
-                    "id": "fc7398a8-2e8e-4e26-8fa5-dec658ac11b4",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SkillOne",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "064e8231-c22b-4f8b-9c47-9177802ce488",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MovementSkill",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "1cf76d72-81ea-423a-ad2b-97c9445e8cd5",
                     "path": "<Keyboard>/m",
                     "interactions": "",
@@ -307,6 +294,39 @@
                     "processors": "Scale(factor=5)",
                     "groups": "",
                     "action": "KeyBoard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0d3cb6a1-4bf6-493a-9389-d60c42b75de9",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SkillSecond",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fc7398a8-2e8e-4e26-8fa5-dec658ac11b4",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SkillOne",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "064e8231-c22b-4f8b-9c47-9177802ce488",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MovementSkill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

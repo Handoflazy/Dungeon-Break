@@ -91,12 +91,17 @@ public class WeaponParent : PlayerSystem
     
     public void ChangeWeapon(Weapon newWeapon)
     {
+        
         transform.right = Vector3.zero;
         if (currentActiveWeapon != null)
         {
             Destroy(currentActiveWeapon.gameObject);
         }
+        
         currentActiveWeapon = newWeapon;
+        if (!newWeapon)       
+            return;
+       
         attackDelayTime = currentActiveWeapon.GetWeaponInfo().weaponCoolDown;
         AttackCooldown();
        

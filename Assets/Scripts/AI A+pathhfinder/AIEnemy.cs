@@ -100,7 +100,6 @@ public class AIEnemy : MonoBehaviour
 
     void Attack()
     {
-        print("Attack");
         Damage dmg = new() { damageAmount = 5, origin = transform.position, pushForce = 1 };
         if (playerTransform.gameObject.TryGetComponent(out Damageable damageableObject))
         {

@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 4850127949762937890}
   - component: {fileID: 2553451777840385991}
   - component: {fileID: 1002109820524638879}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bush 1
-  m_TagString: Fighter
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

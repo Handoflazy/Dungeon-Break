@@ -19,6 +19,7 @@ public class Duration : PlayerSystem
     private void Start()
     {
         StartCoroutine(RegeDuration());
+        player.ID.playerEvents.onInitialDuration?.Invoke(MaxDuration);
     }
     IEnumerator RegeDuration()
     {
@@ -38,6 +39,7 @@ public class Duration : PlayerSystem
     {
         MaxDuration = player.ID.maxDuration;
         CurrentDuration = MaxDuration;
+        player.ID.playerEvents.onInitialDuration?.Invoke(MaxDuration);
         player.ID.playerEvents.OnDurationChanged?.Invoke(CurrentDuration);
     }
     public void ReduceDuration(int durationAmount)

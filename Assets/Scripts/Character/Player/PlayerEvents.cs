@@ -10,7 +10,6 @@ public struct PlayerEvents
 
     public  Action OnAttack;
     public  Action<Vector2> OnMove;
-    public  Action OnWeaponChage;
     public  Action<Vector2> OnMousePointer;
 
     public Action<int> OnToggleActiveSlot;
@@ -50,6 +49,7 @@ public struct PlayerEvents
     //Duration Events;
     public Action onOutOfDuration;
     public Action<int> OnRefillDuration;
+    public Action<int> onInitialDuration;
 
 
 

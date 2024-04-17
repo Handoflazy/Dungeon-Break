@@ -50,9 +50,7 @@ public class ActiveInventory : MonoBehaviour
         }
 
         GameObject WeaponToSpawn = transform.GetChild(activeSlotIndexNum).GetComponent<InventorySlot>().GetWeaponInfo().weaponPrefab;
-        //GameObject newWeapon = Instantiate(WeaponToSpawn, activeWeapon.gameObject.transform.position, Quaternion.identity);
         GameObject newWeapon = Instantiate(WeaponToSpawn, activeWeapon.transform);
-        //newWeapon.transform.parent = activeWeapon.transform;
         OnWeaponChanged?.Invoke(newWeapon.GetComponent<Weapon>());
         player.ID.playerEvents.OnChangeWeapon?.Invoke(newWeapon.GetComponent<Weapon>());
         newWeapon.transform.localRotation = WeaponToSpawn.transform.rotation;
