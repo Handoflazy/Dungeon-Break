@@ -10,8 +10,13 @@ public struct PlayerEvents
 
     public  Action OnAttack;
     public  Action<Vector2> OnMove;
-    public  Action OnWeaponChage;
     public  Action<Vector2> OnMousePointer;
+
+    public Action<int> OnToggleActiveSlot;
+
+
+
+    public Action OnZoomCamera;
 
     //Animated Character
     
@@ -44,6 +49,7 @@ public struct PlayerEvents
     //Duration Events;
     public Action onOutOfDuration;
     public Action<int> OnRefillDuration;
+    public Action<int> onInitialDuration;
 
 
 
@@ -53,13 +59,16 @@ public struct PlayerEvents
     //Weapon Events
     public Action OnUseWeapon;
     public Action<bool> OnUsingWeapon;
+    public Action<Weapon> OnChangeWeapon;
 
     //Combat Events;
     public Action<Vector2> OnBeginPush;
 
 
     //Consume Event
+    // Scene Event
 
+    public Action OnSceneLoad;
    
 
 

@@ -4,27 +4,40 @@ using UnityEngine;
 
 public class SlashAnim : MonoBehaviour
 {
-    [SerializeField]
-    Transform localTransform;
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
+    public bool FacingLeft { get; set; }
+
+    private void OnDisable()
+    {
+        AnimatedCharacter.Instance.OnLeftSide -= OnChangeSideEvent;
+    }
+
+    private void OnChangeSideEvent(bool onLeft)
+    {
+        FacingLeft = onLeft;
+    }
     private void Awake()
     {
-        localTransform = gameObject.transform;
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
+    private void Start()
+    {
+        AnimatedCharacter.Instance.OnLeftSide += OnChangeSideEvent;
+    }
+    private readonly int Slash = Animator.StringToHash("Entry_Slash");
     public void ActivateEffect()
     {
-        transform.SetPositionAndRotation(localTransform.position, localTransform.rotation);
         gameObject.SetActive(true);
-        animator.Play("Entry_Slash");
+        animator.Play(Slash);
     }
 
    
 
     public void DeactivateEffect()
     {
-        gameObject.SetActive(false);
-        transform.rotation = Quaternion.identity;
+        //gameObject.SetActive(false);
     }
 
 

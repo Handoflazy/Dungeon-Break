@@ -25,4 +25,8 @@ public class Flash : MonoBehaviour
         yield return new WaitForSeconds(restoreDefautMatTime);
         spriteRenderer.material = defaultMat;
     }
+    public void OnTakeDamage(int currentHeal)
+    {
+        StartCoroutine(FlashRoutine());
+    }
 }

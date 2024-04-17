@@ -1,32 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class DamageSource : MonoBehaviour
+public class DamageSource : PlayerSystem
 {
-    public MeleeWeapon weapon;
+    public UnityEvent OnDeathEvent;
+    [SerializeField] private LayerMask ignoreMask;
+    private void OnEnable()
+    {
+        NguyenSingleton.Instance.ActiveInventory.OnWeaponChanged += OnChangeWeapon;
+    }
+    public Weapon weapon;
+
+    private void Start()
+    {
+        weapon = GameObject.Find("Player").GetComponentInChildren<Weapon>();
+    }
+    void OnChangeWeapon(Weapon newWeapon)
+    {
+        weapon = newWeapon;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-     
-        if (other.gameObject.CompareTag("Fighter")&&other.gameObject.name!="Player"){
-            Damage dmg = new() { damageAmount = weapon.damagePoint, origin = transform.position, pushForce = weapon.pushForce };
-        
-            if (other.gameObject.TryGetComponent(out Damageable damageableObject))
-            {
-                damageableObject.DealDamage(dmg);
-                Flash flashit = other.GetComponentInChildren<Flash>();
-                if (flashit)
-                {
-                    StartCoroutine(flashit.FlashRoutine());
-                }
-            }
-            else
-            {
-                Debug.Log("That object cannot be damaged.");
-            }
-          
-            
+        if ((ignoreMask & (1 << other.gameObject.layer)) != 0) { return; }
+        Damage dmg = new() { damageAmount = weapon.damagePoint, origin = transform.position, pushForce = weapon.pushForce };
+
+        if (other.gameObject.TryGetComponent(out Damageable damageableObject))
+        {
+            damageableObject.DealDamage(dmg, this.gameObject);  
         }
+        else
+        {
+            Debug.Log("That object cannot be damaged.");
+        }
+
+        OnDeathEvent?.Invoke();
 
     }
 }

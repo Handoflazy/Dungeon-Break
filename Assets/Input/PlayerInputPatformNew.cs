@@ -11,6 +11,7 @@ public class PlayerInputPatformNew : PlayerSystem, PlayerControls.IPlayerInputAc
     PlayerControls inputActions;
 
     public UnityEvent onMenu;
+    public Vector2DEvent MovementInput;
     public Vector2 MovementVector { get;private set; }
     public Vector2 MousePos { get; private set; }
 
@@ -35,13 +36,13 @@ public class PlayerInputPatformNew : PlayerSystem, PlayerControls.IPlayerInputAc
     public void OnMovement(InputAction.CallbackContext context)
     {
         this.MovementVector = context.ReadValue<Vector2>();
-        player.ID.playerEvents.OnMove?.Invoke(this.MovementVector);
+        MovementInput?.Invoke(MovementVector);
 
     }
 
     public void OnPointerPosition(InputAction.CallbackContext context)
     {
-        
+       
         UnityEngine.Vector3 mousePos = context.ReadValue<Vector2>();
         mousePos.z = Camera.main.nearClipPlane;
         player.ID.playerEvents.OnMousePointer?.Invoke(Camera.main.ScreenToWorldPoint(mousePos));
@@ -67,19 +68,26 @@ public class PlayerInputPatformNew : PlayerSystem, PlayerControls.IPlayerInputAc
        }
     }
 
-    public void OnSkillOne(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Performed)
-        {
-            player.ID.playerEvents.OnWeaponChage?.Invoke();
-        }
-    }
-
     public void OnClick(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
             print("OnAttak");
+        }
+    }
+
+    public void OnSkillOne(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            player.ID.playerEvents.OnSkillOneUsed?.Invoke();
+        }
+    }
+    public void OnSkillSecond(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            player.ID.playerEvents.OnSkillSecondUsed?.Invoke();
         }
     }
 
@@ -93,6 +101,23 @@ public class PlayerInputPatformNew : PlayerSystem, PlayerControls.IPlayerInputAc
 
     public void OnZoomMap(InputAction.CallbackContext context)
     {
-        
+        if (context.phase == InputActionPhase.Performed)
+        {
+            player.ID.playerEvents.OnZoomCamera?.Invoke();
+        }
     }
+
+    public void OnKeyBoard(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+        player.ID.playerEvents.OnToggleActiveSlot?.Invoke((int)context.ReadValue<float>());
+          
+        }
+    }
+
 }
+
+[Serializable]
+public class Vector2DEvent : UnityEvent<Vector2> { }
+

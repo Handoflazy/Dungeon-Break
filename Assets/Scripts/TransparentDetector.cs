@@ -15,6 +15,8 @@ public class TransparentDetector : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Tilemap tilemap;
 
+    public LayerMask layerMask;
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -23,7 +25,7 @@ public class TransparentDetector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Player>())
+        if ((layerMask & (1 << collision.gameObject.layer)) != 0)
         {
          
             if (spriteRenderer)
@@ -38,7 +40,8 @@ public class TransparentDetector : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Player>())
+        
+        if ((layerMask & (1<<collision.gameObject.layer))!=0)
         {
             if (spriteRenderer)
             {

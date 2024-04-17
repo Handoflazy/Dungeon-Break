@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class MoveManager : MonoBehaviour
@@ -26,19 +27,6 @@ public class DashSkill : AbtractSkill, IMoveSkill
 
     private Vector2 mousePos;
 
-    private void OnEnable()
-    {
-        player.ID.playerEvents.OnMousePointer += GetPointerPos;
-    }
-
-    private void OnDisable()
-    {
-        player.ID.playerEvents.OnMousePointer -= GetPointerPos;
-    }
-    private void GetPointerPos(Vector2 pointerPos)
-    {
-        mousePos = pointerPos;
-    }
     protected override void Awake()
     {
         base.Awake();
@@ -55,10 +43,10 @@ public class DashSkill : AbtractSkill, IMoveSkill
         
     }
     private IEnumerator Dash()
-    {
+    {  
         isDashing = true;
         player.ID.playerEvents.OnMoveSkillUsing?.Invoke(isDashing);
-        Vector2 direction = mousePos - (Vector2)transform.position;
+        Vector2 direction = GetPointerPos() - (Vector2)transform.position;
         rb.velocity = direction.normalized * dashingPower[level];
         trailRenderer.emitting = true;
         yield return new WaitForSeconds(dashTime[level]);
@@ -82,23 +70,6 @@ public class LeapSkill : AbtractSkill, IMoveSkill
     [SerializeField]
     private TrailRenderer trailRenderer;
 
-    private Vector2 mousePos;
-
-    private void OnEnable()
-    {
-        player.ID.playerEvents.OnMousePointer += GetPointerPos;
-    }
-
-    private void OnDisable()
-    {
-        player.ID.playerEvents.OnMousePointer -= GetPointerPos;
-    }
-    private void GetPointerPos(Vector2 pointerPos)
-    {
-        mousePos = pointerPos;
-    }
-
-
 
     protected override void Awake()
     {
@@ -116,7 +87,7 @@ public class LeapSkill : AbtractSkill, IMoveSkill
         
         isDashing = true;
         player.ID.playerEvents.OnMoveSkillUsing?.Invoke(isDashing);
-        Vector2 direction = mousePos - (Vector2)transform.position;
+        Vector2 direction = GetPointerPos() - (Vector2)transform.position;
         rb.velocity = direction.normalized * dashingPower[level];
         trailRenderer.emitting = true;
         yield return new WaitForSeconds(dashTime[level]);
@@ -142,21 +113,9 @@ public class TeleportSkill : AbtractSkill, IMoveSkill
     [SerializeField]
     private TrailRenderer trailRenderer;
 
-    private Vector2 mousePos;
 
-    private void OnEnable()
-    {
-        player.ID.playerEvents.OnMousePointer += GetPointerPos;
-    }
 
-    private void OnDisable()
-    {
-        player.ID.playerEvents.OnMousePointer -= GetPointerPos;
-    }
-    private void GetPointerPos(Vector2 pointerPos)
-    {
-        mousePos = pointerPos;
-    }
+
 
 
 
@@ -176,7 +135,7 @@ public class TeleportSkill : AbtractSkill, IMoveSkill
 
         isDashing = true;
         player.ID.playerEvents.OnMoveSkillUsing?.Invoke(isDashing);
-        Vector2 direction = mousePos - (Vector2)transform.position;
+        Vector2 direction = GetPointerPos() - (Vector2)transform.position;
         rb.velocity = direction.normalized * dashingPower[level];
         trailRenderer.emitting = true;
         yield return new WaitForSeconds(dashTime[level]);

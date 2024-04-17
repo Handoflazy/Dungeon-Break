@@ -6,7 +6,7 @@ using Pathfinding;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.Events;
 
-public class AIEnemy : PlayerSystem
+public class AIEnemy : MonoBehaviour
 {
     [Header("AIEnemy")]
     public EnemyState state;
@@ -19,8 +19,6 @@ public class AIEnemy : PlayerSystem
     [Header("AI Setting")]
     [SerializeField]
     private float detectionDelay = 0.05f, attackDelay = 1f, aiUpdateDeplay = 0.05f;
-
-   
     [SerializeField]
     private float attackDistance;
     [SerializeField]
@@ -32,23 +30,14 @@ public class AIEnemy : PlayerSystem
 
     [Header("Other Reference")]
     [SerializeField]
-    private GameObject deathVFXParticlePrefap;
-
+    public UnityEvent<Vector2> MovementInput;
     public UnityEvent OnDeathEvent;
 
-    private void OnEnable()
-    {
-        player.ID.playerEvents.onDeath += Death;
-    }
 
-    private void OnDisable()
-    {
-        player.ID.playerEvents.onDeath -= Death;
-    }
 
-    protected override void Awake()
+    protected  void Awake()
     {
-        base.Awake();
+        
         flash = transform.GetChild(0).GetComponent<Flash>();
         aiEnemyMover = GetComponent<AIEnemyMover>(); 
     }
@@ -78,7 +67,7 @@ public class AIEnemy : PlayerSystem
     {
         if(isAlive)
         {
-            player.ID.playerEvents.OnMove(movementInput);
+            MovementInput?.Invoke(movementInput);
         }
     }
     Transform playerTransform;
@@ -110,11 +99,11 @@ public class AIEnemy : PlayerSystem
     }
 
     void Attack()
-    {   
+    {
         Damage dmg = new() { damageAmount = 5, origin = transform.position, pushForce = 1 };
         if (playerTransform.gameObject.TryGetComponent(out Damageable damageableObject))
         {
-            damageableObject.DealDamage(dmg);
+            damageableObject.DealDamage(dmg, this.gameObject);
         }
         else
         {
@@ -155,8 +144,7 @@ public class AIEnemy : PlayerSystem
     public void Death()
     {
         StartCoroutine(SecondBeforeFade());
-        
-        
+  
     }
     public IEnumerator SecondBeforeFade()
     {

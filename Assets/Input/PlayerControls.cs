@@ -55,15 +55,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""SkillOne"",
-                    ""type"": ""Button"",
-                    ""id"": ""a6a02e26-308a-443a-8456-3720e36b9318"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""OpenMenu"",
                     ""type"": ""Button"",
                     ""id"": ""bfbf1cba-1965-41d1-a2ca-e1f018e8df6f"",
@@ -73,18 +64,45 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MovementSkill"",
+                    ""name"": ""ZoomMap"",
                     ""type"": ""Button"",
-                    ""id"": ""99ca928b-215f-4bd6-b48c-e9b9729eec2d"",
+                    ""id"": ""4044a982-5f8c-434b-8f9a-ed53b3bd08fa"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ZoomMap"",
+                    ""name"": ""KeyBoard"",
+                    ""type"": ""Value"",
+                    ""id"": ""2bd503a4-c627-478b-a281-8d9bfdc9281d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""SkillOne"",
                     ""type"": ""Button"",
-                    ""id"": ""4044a982-5f8c-434b-8f9a-ed53b3bd08fa"",
+                    ""id"": ""a6a02e26-308a-443a-8456-3720e36b9318"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SkillSecond"",
+                    ""type"": ""Button"",
+                    ""id"": ""49466d7f-da40-48bc-91c9-b1b61fffe6ec"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MovementSkill"",
+                    ""type"": ""Button"",
+                    ""id"": ""99ca928b-215f-4bd6-b48c-e9b9729eec2d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -237,6 +255,83 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""1cf76d72-81ea-423a-ad2b-97c9445e8cd5"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ZoomMap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""629a9c2c-6a99-4ade-8146-b25bc8c7e800"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KeyBoard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec8fb9f4-824a-48c5-88b9-c784f8179f0c"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=2)"",
+                    ""groups"": """",
+                    ""action"": ""KeyBoard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f92da47a-334b-43ae-af67-ec3e124b7c85"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=3)"",
+                    ""groups"": """",
+                    ""action"": ""KeyBoard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""80adc363-9c6c-4d9a-9b7d-fc2c6e5ad65f"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=4)"",
+                    ""groups"": """",
+                    ""action"": ""KeyBoard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b62243a1-24fa-4eb6-9dd1-4afb7c337b3d"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=5)"",
+                    ""groups"": """",
+                    ""action"": ""KeyBoard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0d3cb6a1-4bf6-493a-9389-d60c42b75de9"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkillSecond"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""fc7398a8-2e8e-4e26-8fa5-dec658ac11b4"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
@@ -254,17 +349,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""MovementSkill"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1cf76d72-81ea-423a-ad2b-97c9445e8cd5"",
-                    ""path"": ""<Keyboard>/m"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ZoomMap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -336,6 +420,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Inventory "",
+            ""id"": ""b044697c-27be-4b3d-87b4-46a4feb08592"",
+            ""actions"": [],
+            ""bindings"": []
         }
     ],
     ""controlSchemes"": []
@@ -345,16 +435,20 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerInput_Movement = m_PlayerInput.FindAction("Movement", throwIfNotFound: true);
         m_PlayerInput_PointerPosition = m_PlayerInput.FindAction("PointerPosition", throwIfNotFound: true);
         m_PlayerInput_Attack = m_PlayerInput.FindAction("Attack", throwIfNotFound: true);
-        m_PlayerInput_SkillOne = m_PlayerInput.FindAction("SkillOne", throwIfNotFound: true);
         m_PlayerInput_OpenMenu = m_PlayerInput.FindAction("OpenMenu", throwIfNotFound: true);
-        m_PlayerInput_MovementSkill = m_PlayerInput.FindAction("MovementSkill", throwIfNotFound: true);
         m_PlayerInput_ZoomMap = m_PlayerInput.FindAction("ZoomMap", throwIfNotFound: true);
+        m_PlayerInput_KeyBoard = m_PlayerInput.FindAction("KeyBoard", throwIfNotFound: true);
+        m_PlayerInput_SkillOne = m_PlayerInput.FindAction("SkillOne", throwIfNotFound: true);
+        m_PlayerInput_SkillSecond = m_PlayerInput.FindAction("SkillSecond", throwIfNotFound: true);
+        m_PlayerInput_MovementSkill = m_PlayerInput.FindAction("MovementSkill", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_ExitMenu = m_Menu.FindAction("ExitMenu", throwIfNotFound: true);
         // DealthMenu
         m_DealthMenu = asset.FindActionMap("DealthMenu", throwIfNotFound: true);
         m_DealthMenu_Click = m_DealthMenu.FindAction("Click", throwIfNotFound: true);
+        // Inventory 
+        m_Inventory = asset.FindActionMap("Inventory ", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -419,10 +513,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerInput_Movement;
     private readonly InputAction m_PlayerInput_PointerPosition;
     private readonly InputAction m_PlayerInput_Attack;
-    private readonly InputAction m_PlayerInput_SkillOne;
     private readonly InputAction m_PlayerInput_OpenMenu;
-    private readonly InputAction m_PlayerInput_MovementSkill;
     private readonly InputAction m_PlayerInput_ZoomMap;
+    private readonly InputAction m_PlayerInput_KeyBoard;
+    private readonly InputAction m_PlayerInput_SkillOne;
+    private readonly InputAction m_PlayerInput_SkillSecond;
+    private readonly InputAction m_PlayerInput_MovementSkill;
     public struct PlayerInputActions
     {
         private @PlayerControls m_Wrapper;
@@ -430,10 +526,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_PlayerInput_Movement;
         public InputAction @PointerPosition => m_Wrapper.m_PlayerInput_PointerPosition;
         public InputAction @Attack => m_Wrapper.m_PlayerInput_Attack;
-        public InputAction @SkillOne => m_Wrapper.m_PlayerInput_SkillOne;
         public InputAction @OpenMenu => m_Wrapper.m_PlayerInput_OpenMenu;
-        public InputAction @MovementSkill => m_Wrapper.m_PlayerInput_MovementSkill;
         public InputAction @ZoomMap => m_Wrapper.m_PlayerInput_ZoomMap;
+        public InputAction @KeyBoard => m_Wrapper.m_PlayerInput_KeyBoard;
+        public InputAction @SkillOne => m_Wrapper.m_PlayerInput_SkillOne;
+        public InputAction @SkillSecond => m_Wrapper.m_PlayerInput_SkillSecond;
+        public InputAction @MovementSkill => m_Wrapper.m_PlayerInput_MovementSkill;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -452,18 +550,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
-            @SkillOne.started += instance.OnSkillOne;
-            @SkillOne.performed += instance.OnSkillOne;
-            @SkillOne.canceled += instance.OnSkillOne;
             @OpenMenu.started += instance.OnOpenMenu;
             @OpenMenu.performed += instance.OnOpenMenu;
             @OpenMenu.canceled += instance.OnOpenMenu;
-            @MovementSkill.started += instance.OnMovementSkill;
-            @MovementSkill.performed += instance.OnMovementSkill;
-            @MovementSkill.canceled += instance.OnMovementSkill;
             @ZoomMap.started += instance.OnZoomMap;
             @ZoomMap.performed += instance.OnZoomMap;
             @ZoomMap.canceled += instance.OnZoomMap;
+            @KeyBoard.started += instance.OnKeyBoard;
+            @KeyBoard.performed += instance.OnKeyBoard;
+            @KeyBoard.canceled += instance.OnKeyBoard;
+            @SkillOne.started += instance.OnSkillOne;
+            @SkillOne.performed += instance.OnSkillOne;
+            @SkillOne.canceled += instance.OnSkillOne;
+            @SkillSecond.started += instance.OnSkillSecond;
+            @SkillSecond.performed += instance.OnSkillSecond;
+            @SkillSecond.canceled += instance.OnSkillSecond;
+            @MovementSkill.started += instance.OnMovementSkill;
+            @MovementSkill.performed += instance.OnMovementSkill;
+            @MovementSkill.canceled += instance.OnMovementSkill;
         }
 
         private void UnregisterCallbacks(IPlayerInputActions instance)
@@ -477,18 +581,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
-            @SkillOne.started -= instance.OnSkillOne;
-            @SkillOne.performed -= instance.OnSkillOne;
-            @SkillOne.canceled -= instance.OnSkillOne;
             @OpenMenu.started -= instance.OnOpenMenu;
             @OpenMenu.performed -= instance.OnOpenMenu;
             @OpenMenu.canceled -= instance.OnOpenMenu;
-            @MovementSkill.started -= instance.OnMovementSkill;
-            @MovementSkill.performed -= instance.OnMovementSkill;
-            @MovementSkill.canceled -= instance.OnMovementSkill;
             @ZoomMap.started -= instance.OnZoomMap;
             @ZoomMap.performed -= instance.OnZoomMap;
             @ZoomMap.canceled -= instance.OnZoomMap;
+            @KeyBoard.started -= instance.OnKeyBoard;
+            @KeyBoard.performed -= instance.OnKeyBoard;
+            @KeyBoard.canceled -= instance.OnKeyBoard;
+            @SkillOne.started -= instance.OnSkillOne;
+            @SkillOne.performed -= instance.OnSkillOne;
+            @SkillOne.canceled -= instance.OnSkillOne;
+            @SkillSecond.started -= instance.OnSkillSecond;
+            @SkillSecond.performed -= instance.OnSkillSecond;
+            @SkillSecond.canceled -= instance.OnSkillSecond;
+            @MovementSkill.started -= instance.OnMovementSkill;
+            @MovementSkill.performed -= instance.OnMovementSkill;
+            @MovementSkill.canceled -= instance.OnMovementSkill;
         }
 
         public void RemoveCallbacks(IPlayerInputActions instance)
@@ -598,15 +708,55 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public DealthMenuActions @DealthMenu => new DealthMenuActions(this);
+
+    // Inventory 
+    private readonly InputActionMap m_Inventory;
+    private List<IInventoryActions> m_InventoryActionsCallbackInterfaces = new List<IInventoryActions>();
+    public struct InventoryActions
+    {
+        private @PlayerControls m_Wrapper;
+        public InventoryActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputActionMap Get() { return m_Wrapper.m_Inventory; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(InventoryActions set) { return set.Get(); }
+        public void AddCallbacks(IInventoryActions instance)
+        {
+            if (instance == null || m_Wrapper.m_InventoryActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_InventoryActionsCallbackInterfaces.Add(instance);
+        }
+
+        private void UnregisterCallbacks(IInventoryActions instance)
+        {
+        }
+
+        public void RemoveCallbacks(IInventoryActions instance)
+        {
+            if (m_Wrapper.m_InventoryActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IInventoryActions instance)
+        {
+            foreach (var item in m_Wrapper.m_InventoryActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_InventoryActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public InventoryActions @Inventory => new InventoryActions(this);
     public interface IPlayerInputActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnPointerPosition(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
-        void OnSkillOne(InputAction.CallbackContext context);
         void OnOpenMenu(InputAction.CallbackContext context);
-        void OnMovementSkill(InputAction.CallbackContext context);
         void OnZoomMap(InputAction.CallbackContext context);
+        void OnKeyBoard(InputAction.CallbackContext context);
+        void OnSkillOne(InputAction.CallbackContext context);
+        void OnSkillSecond(InputAction.CallbackContext context);
+        void OnMovementSkill(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {
@@ -615,5 +765,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public interface IDealthMenuActions
     {
         void OnClick(InputAction.CallbackContext context);
+    }
+    public interface IInventoryActions
+    {
     }
 }

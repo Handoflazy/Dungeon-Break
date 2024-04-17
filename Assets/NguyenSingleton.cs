@@ -9,10 +9,13 @@ public class NguyenSingleton : MonoBehaviour
     public GameObject HUB;
     public GameObject mainCamera;
     public GameObject astarPathfinder;
-    public FloatingTextManager floatingTextManager { get; private set; }
-    public GameManager gameManager { get; private set; }
+    public FloatingTextManager FloatingTextManager { get; private set; }
+    public GameManager GameManager { get; private set; }
+    public SceneManagement SceneManagement { get; private set; }
 
+    public ActiveInventory ActiveInventory { get; private set; }    
 
+    public UIFade UIfade { get; private set; }
 
     private void Awake()
     {
@@ -24,8 +27,11 @@ public class NguyenSingleton : MonoBehaviour
         else
         {
             Instance = this;
-            floatingTextManager = GetComponentInChildren<FloatingTextManager>();
-            gameManager = GetComponentInChildren<GameManager>();
+            FloatingTextManager = GetComponentInChildren<FloatingTextManager>();
+            GameManager = GetComponentInChildren<GameManager>();
+            SceneManagement = GetComponentInChildren<SceneManagement>();
+            UIfade = GetComponentInChildren<UIFade>();
+            ActiveInventory = GetComponentInChildren<ActiveInventory>();
             DontDestroyOnLoad(gameObject);
         }
         

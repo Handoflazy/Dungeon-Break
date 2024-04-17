@@ -1,65 +1,58 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using SunnyValleyVersion;
 
-public class Health : PlayerSystem
+namespace SunnyValleyVersion
 {
 
-   
-    public int MaxHealth { get; private set; }
-    public int CurrentHealth {  get; private set; }
-    public UnityEvent OnHealthAtZero;
-    private void OnEnable()
+    public class Health : MonoBehaviour
     {
-        player.ID.playerEvents.onTakeDamage += TakeDame;
-        player.ID.playerEvents.OnHeal += Heal;
-        player.ID.playerEvents.onRespawn += InitialHealth;
-    }
+        [SerializeField]
+        private int currentHealth, maxHealth;
 
-    protected override void Awake()
-    {
-        base.Awake();
-        if (player == null)
-        {
-            print(null);
-        }
-        MaxHealth = player.ID.maxHealth;
-    }
-    private void OnDisable()
-    {
-        player.ID.playerEvents.onTakeDamage -= TakeDame;
-        player.ID.playerEvents.OnHeal -= Heal;
-        player.ID.playerEvents.onRespawn -= InitialHealth;
-    }
-    public void InitialHealth()
-    {
-        MaxHealth = player.ID.maxHealth;
-        CurrentHealth = MaxHealth;
-        player.ID.playerEvents.OnHealthChanged?.Invoke(CurrentHealth);
-    }
-    public void TakeDame(int dameAmount)
-    {
-        CurrentHealth -= dameAmount;
-        
-        if (CurrentHealth <= 0)
-        {
-            player.ID.playerEvents.onDeath?.Invoke();
-            OnHealthAtZero?.Invoke();
-            CurrentHealth = 0;
-        }
-        player.ID.playerEvents.OnHealthChanged?.Invoke(CurrentHealth);
+        public UnityEvent<GameObject> OnHitWithReference, OnDeathWithReference;
+        public UnityEvent OnDeathEvent;
 
-    }
-    public void Heal(int healAmount)
-    {
-        CurrentHealth += healAmount;
-        if (CurrentHealth > MaxHealth)
+        public UnityEvent<int> OnHealthChange;
+        public UnityEvent<int> OnInitalHealthBar;
+
+        [SerializeField]
+        private bool isDead = false;
+
+        private void Start()
         {
-            CurrentHealth = MaxHealth;
+            InitializeHealth(maxHealth);
         }
-        player.ID.playerEvents.OnHealthChanged?.Invoke(CurrentHealth);
+        public void InitializeHealth(int healthValue)
+        {
+            currentHealth = healthValue;
+            maxHealth = healthValue;
+            OnInitalHealthBar?.Invoke(healthValue);
+            isDead = false;
+        }
+
+        public void TakeDamage(int amount, GameObject sender)
+        {
+            if (isDead)
+                return;
+            if (sender.layer == gameObject.layer)
+                return;
+
+            currentHealth -= amount;
+            if (currentHealth > 0)
+            {
+                OnHitWithReference?.Invoke(sender);
+            }
+            else
+            {
+                currentHealth = 0;
+                OnDeathWithReference?.Invoke(sender);
+                isDead = true;
+                OnDeathEvent?.Invoke();
+            }
+            OnHealthChange?.Invoke(currentHealth);
+        }
     }
 }
-
