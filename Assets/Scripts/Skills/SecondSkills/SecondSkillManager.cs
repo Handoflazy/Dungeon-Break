@@ -13,7 +13,7 @@ public interface ISecondSkill
 {
 }
 
-public class Giganize : AbtractSkill, ISecondSkill
+public class Giganize : AbstractSkill, ISecondSkill
 {
     private SpriteRenderer spriteRenderer;
     [SerializeField] private float[] GiganFactor = { .3f, .6f, .8f, .1f };
@@ -28,7 +28,7 @@ public class Giganize : AbtractSkill, ISecondSkill
     protected override void Awake()
     {
         base.Awake();
-        spriteRenderer = transform.GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer = transform.GetChild(1).GetComponentInChildren<SpriteRenderer>();
         localScale = transform.localScale;
         initialColor = spriteRenderer.color;
 
@@ -104,4 +104,18 @@ public class Giganize : AbtractSkill, ISecondSkill
         }
 
     }
+
+    private void OnDestroy()
+    {
+        transform.localScale = localScale;
+    }
+
+}
+public class ExplosionArrow : AbstractSkill, ISecondSkill
+{
+
+}
+public class FireBall : AbstractSkill, ISecondSkill
+{
+
 }

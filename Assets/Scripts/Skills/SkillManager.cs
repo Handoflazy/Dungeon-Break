@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 public class SkillManager : PlayerSystem
 {
     public BoolEvent OnUsingMoveSkill;
+    public Weapon currentWeapon { get; set; }
 
     private Duration duration;
 
@@ -14,9 +15,9 @@ public class SkillManager : PlayerSystem
         
     public IMoveSkill iMoveSkill;
 
-    private AbtractSkill moveSkill;
-    private AbtractSkill firstSkill;
-    private AbtractSkill secondSkill;
+    private AbstractSkill moveSkill;
+    private AbstractSkill firstSkill;
+    private AbstractSkill secondSkill;
 
     private bool isMoveSkillCooldown;
     private bool isAttackSkillCooldown;
@@ -114,7 +115,7 @@ public class SkillManager : PlayerSystem
     }
     public void OnSecondSkillUse()
     {
-        print("da su dung skill 2");
+        
         if (secondSkill == null)
             return;
         int durationCost = secondSkill.GetDurationCost();
@@ -127,7 +128,7 @@ public class SkillManager : PlayerSystem
     }
     public void OnFirstSkillUse()
     {
-        print("da su dung skill 1");
+      
         if (firstSkill == null)
             return;
         int durationCost =  firstSkill.GetDurationCost();
@@ -161,9 +162,9 @@ public class SkillManager : PlayerSystem
 
     public void OnWeaponChangeEvent(Weapon weapon)
     {
+        currentWeapon = weapon;
         weaponType = weapon.WeaponType;
         HandleWeaponType();
-        print("onweaponChange ");
     }
 }
 

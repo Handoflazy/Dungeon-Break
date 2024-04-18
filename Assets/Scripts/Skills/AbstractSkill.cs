@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class AbtractSkill : PlayerSystem
+public class AbstractSkill : PlayerSystem
 {
     public int maxLevel { get; set; }
     public int level;

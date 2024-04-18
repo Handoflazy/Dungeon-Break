@@ -11,7 +11,7 @@ public interface IMoveSkill
 {
 }
 
-public class DashSkill : AbtractSkill, IMoveSkill
+public class DashSkill : AbstractSkill, IMoveSkill
 {
     [SerializeField]
     private float[] dashTime = { .1f, .2f, .3f, .5f };
@@ -56,7 +56,7 @@ public class DashSkill : AbtractSkill, IMoveSkill
     }
 
 }
-public class LeapSkill : AbtractSkill, IMoveSkill
+public class LeapSkill : AbstractSkill, IMoveSkill
 {
     [SerializeField]
     private float[] dashTime = { .2f, .2f, .3f, .5f };
@@ -99,7 +99,7 @@ public class LeapSkill : AbtractSkill, IMoveSkill
 }
 
 
-public class TeleportSkill : AbtractSkill, IMoveSkill
+public class TeleportSkill : AbstractSkill, IMoveSkill
 {
     [SerializeField]
     private float[] dashTime = { .2f, .2f, .3f, .5f };
