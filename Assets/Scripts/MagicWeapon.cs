@@ -36,7 +36,6 @@ public class MagicWeapon : Weapon
         GameObject Laser = arrows.Find(t => !t.active);
         if (Laser == null)
         {
-
             Laser = Instantiate(LaserPrefab);
             //arrow.transform.SetParent(transform);      
             arrows.Add(Laser);

@@ -1,3 +1,4 @@
+using FirstVersion;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,14 +6,8 @@ using UnityEngine;
 public class Weapon : Item, IWeapon
 {
     protected Animator WeaponAnim;
-    [SerializeField]
-    public int damagePoint = 0;
-    [SerializeField]
-    public float pushForce = 0;
     public WeaponType WeaponType;
-
-    [SerializeField]
-    private WeaponInfor weaponInfor;
+    public WeaponParent weaponParent;
     public override void Attack()
     {
         throw new System.NotImplementedException();
@@ -20,7 +15,16 @@ public class Weapon : Item, IWeapon
 
     public WeaponInfor GetWeaponInfo()
     {
-        return weaponInfor;
+        throw new System.NotImplementedException();
+    }
+    public virtual void OnTriggerWeapon(GameObject target)
+    {
+        foreach (var item in weaponParent.itemCurrentState)
+        {
+            if (!item.applyParameter)
+                return;
+            item.applyParameter.AffectCharacter(gameObject, target, item.value);
+        }
     }
 }
 public enum WeaponType

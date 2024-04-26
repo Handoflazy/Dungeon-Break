@@ -13,13 +13,13 @@ public interface IFirstSkill { }
 
 public class Wideslash : AbstractSkill, IFirstSkill
 {
-    [SerializeField]
+    [SerializeField] 
     private Animator Anim;
 
 
     private void Start()
     {
-        Anim = GetComponent<SkillManager>().currentWeapon.gameObject.GetComponent<Animator>();
+       // Anim = GetComponent<SkillManager>().currentWeapon.gameObject.GetComponent<Animator>();
     }
 
     private readonly int wideSlash = Animator.StringToHash("WideSlash");

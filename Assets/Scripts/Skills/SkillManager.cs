@@ -163,6 +163,8 @@ public class SkillManager : PlayerSystem
     public void OnWeaponChangeEvent(Weapon weapon)
     {
         currentWeapon = weapon;
+        if (weapon == null)
+            return;
         weaponType = weapon.WeaponType;
         HandleWeaponType();
     }
