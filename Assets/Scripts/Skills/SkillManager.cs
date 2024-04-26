@@ -88,8 +88,8 @@ public class SkillManager : PlayerSystem
                 break;
             case WeaponType.Staff:
                 moveSkill = gameObject.AddComponent<TeleportSkill>();
-                secondSkill = null;
-                firstSkill = null;
+                secondSkill = gameObject.AddComponent<MagicShield>();
+                firstSkill = gameObject.AddComponent<FireballSkill>(); 
                 break;
             default:
                 moveSkill = null;
@@ -137,7 +137,7 @@ public class SkillManager : PlayerSystem
          
             firstSkill.OnUsed();
             duration.ReduceDuration(durationCost);
-            StartCoroutine(StartAttackSkillCooldown(secondSkill.GetCowndown()));
+            StartCoroutine(StartAttackSkillCooldown(firstSkill.GetCowndown()));
         }
     }
     IEnumerator StartMoveSkillCooldown(float timeCD)

@@ -29,13 +29,13 @@ public class DamageSource : PlayerSystem
 
         if (other.gameObject.TryGetComponent(out Damageable damageableObject))
         {
-            damageableObject.DealDamage(dmg, this.gameObject);  
+            damageableObject.DealDamage(dmg, this.gameObject);
+
         }
         else
         {
             Debug.Log("That object cannot be damaged.");
         }
-
         OnDeathEvent?.Invoke();
 
     }

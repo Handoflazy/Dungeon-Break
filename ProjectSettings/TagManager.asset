@@ -10,6 +10,7 @@ TagManager:
   - Arrow
   - Bow
   - Ignore
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX

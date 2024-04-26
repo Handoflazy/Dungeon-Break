@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -115,7 +115,85 @@ public class ExplosionArrow : AbstractSkill, ISecondSkill
 {
 
 }
-public class FireBall : AbstractSkill, ISecondSkill
+public class MagicShield : AbstractSkill, ISecondSkill
 {
+    //[SerializeField]
+    //private float[] shieldCoolDown = { 5f, 3f, 3f, 2f };
+    
 
+    [SerializeField]
+    private float[] shieldKnockback = { 1f, 1f, 2f, 2f, 3f };
+
+    private bool isCasting = false;
+    private Animator anim;
+    GameObject shieldVFX;
+
+    private void Start()
+    {
+        shieldVFX = Instantiate(Resources.Load("Shield_2_Ref", typeof(GameObject))) as GameObject;
+        shieldVFX.gameObject.transform.SetParent(transform, false);
+        anim = shieldVFX.GetComponent<Animator>();
+        shieldVFX.SetActive(false);
+
+        cooldown = new[]{ 5f, 3f, 3f, 2f, 2f};
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+    }
+
+    public override void OnUsed()
+    {
+        if (!isCasting)
+        {
+            StartCoroutine(Shield());
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if (shieldVFX != null)
+        {
+            shieldVFX.transform.position = transform.position;
+        }
+    }
+
+    private int ShieldActive = Animator.StringToHash("Shield_2_active");
+    private void SetActiveAnim()
+    {
+        shieldVFX.SetActive(true);
+        anim.Play(ShieldActive);
+    }
+
+    private IEnumerator Shield()
+    {
+        isCasting = true;
+        //player.ID.playerEvents.OnMoveSkillUsing?.Invoke(isCasting);
+        SetActiveAnim();
+
+        yield return new WaitForSeconds(0.7f);
+        shieldVFX.SetActive(false);
+
+        yield return new WaitForSeconds(cooldown[level] - 0.7f);
+        isCasting = false;
+        //player.ID.playerEvents.OnMoveSkillUsing?.Invoke(isCasting);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            Rigidbody2D enemyRigidbody = other.gameObject.GetComponent<Rigidbody2D>();
+            if (enemyRigidbody != null)
+            {
+                // Lấy hướng knockback
+                Vector2 knockbackDirection = other.transform.position - transform.position;
+                knockbackDirection = knockbackDirection.normalized;
+
+                enemyRigidbody.AddForce(knockbackDirection * shieldKnockback[level], ForceMode2D.Impulse);
+            }
+        }
+    }
 }
