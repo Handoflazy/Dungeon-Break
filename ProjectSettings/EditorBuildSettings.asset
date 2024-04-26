@@ -5,22 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Forest1.unity
-    guid: 1cd403f51728cee44bcc108c4ce631e7
-  - enabled: 0
-    path: Assets/Scenes/Forest-2.unity
-    guid: 6262e1d46bbfe7244bfffb117fcc14ec
-  - enabled: 0
-    path: Assets/Scenes/Floor1.unity
-    guid: 22e4ced0f04dc694b9c1a4d14c0e88ef
   - enabled: 1
-    path: Assets/Scenes/ForestScence - Map 1.unity
-    guid: 7ab692474cc09f544a92a35884136a55
+    path: Assets/Scenes/Graveyard_1.unity
+    guid: 92fb0f7006e9b3e46931cc68a3165a19
+  - enabled: 1
+    path: Assets/Scenes/Graveyard_2.unity
+    guid: ab8abd7aa4784ac43b5123d2e29aeab4
+  - enabled: 1
+    path: Assets/Scenes/ForestScence - Map Boss.unity
+    guid: b5b80931decd5b94f9ce9b7fadaef326
   - enabled: 1
     path: Assets/Scenes/ForestScence - Map 2.unity
     guid: fea9b20cd064e7643b21020600f2f788
   - enabled: 1
-    path: Assets/Scenes/ForestScence - Map Boss.unity
-    guid: b5b80931decd5b94f9ce9b7fadaef326
+    path: Assets/Scenes/ForestScence - Map 1.unity
+    guid: 7ab692474cc09f544a92a35884136a55
+  - enabled: 1
+    path: Assets/Scenes/Dialog.unity
+    guid: 09c0a426871507d45bc0957920cdafa1
   m_configObjects: {}

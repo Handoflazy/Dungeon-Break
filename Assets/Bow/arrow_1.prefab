@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7919411271868804473}
   - component: {fileID: 1787876904755515762}
   - component: {fileID: -4609986862119842477}
+  - component: {fileID: -5200385786487106395}
   m_Layer: 0
   m_Name: arrow_1
   m_TagString: Arrow
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1332609957
-  m_SortingLayer: 4
+  m_SortingLayer: 7
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 5c1f0a72720fe424d8191bf97ff7ae65, type: 3}
   m_Color: {r: 0.9101068, g: 1, b: 0, a: 1}
@@ -202,7 +203,7 @@ TrailRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1332609957
-  m_SortingLayer: 4
+  m_SortingLayer: 7
   m_SortingOrder: 3
   m_Time: 0.2
   m_PreviewTimeScale: 1
@@ -284,7 +285,7 @@ SortingGroup:
   m_GameObject: {fileID: 4337864844432556813}
   m_Enabled: 1
   m_SortingLayerID: 1332609957
-  m_SortingLayer: 4
+  m_SortingLayer: 7
   m_SortingOrder: 5
   m_SortAtRoot: 0
 --- !u!114 &-4609986862119842477
@@ -313,6 +314,19 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+--- !u!114 &-5200385786487106395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4337864844432556813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17fe7374ed3cfe74086da0876f99b42a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathParticle: {fileID: 0}
 --- !u!1 &4691482861173100028
 GameObject:
   m_ObjectHideFlags: 0

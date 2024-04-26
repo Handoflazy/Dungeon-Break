@@ -2,7 +2,6 @@ using FirstVersion;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using FirstVersion;
 
 
 [CreateAssetMenu(menuName ="Item/ModifierStat/HealthModifider")]

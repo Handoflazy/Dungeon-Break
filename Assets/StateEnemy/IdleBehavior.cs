@@ -6,12 +6,14 @@ public class IdleBehavior : StateMachineBehaviour
 {
     protected Rigidbody2D rb;
     public Vector2 spawnPoint;
-
+    
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         rb = animator.GetComponent<Rigidbody2D>();
         spawnPoint = rb.transform.position;
+        
+        
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
