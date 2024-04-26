@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4694214719757982073}
   - component: {fileID: 500786978344189320}
   - component: {fileID: 9047241291624023233}
-  - component: {fileID: 3314389186985125995}
   - component: {fileID: 2574756622341220326}
+  - component: {fileID: -5642992761141750227}
   m_Layer: 0
   m_Name: BulletEnemyGra
   m_TagString: Untagged
@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1160e91683c9dec4fa8a4bbcc665024d, type: 2}
+  - {fileID: 2100000, guid: 7d4ff16cee33a47448c15a538d245d4f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -113,23 +113,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &3314389186985125995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2657269865228955643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57775c79083fb7a49a387c5568b63c7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 0
-  pushRecoverySpeed: 5
-  damage: 1
-  push: 5
+  m_Constraints: 4
 --- !u!61 &2574756622341220326
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -175,3 +159,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-5642992761141750227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2657269865228955643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cedde6f5a2a730444920463e796bb293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnDeathEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  ignoreMask:
+    serializedVersion: 2
+    m_Bits: 0
+  damage: 2
+  pushForce: 0.5

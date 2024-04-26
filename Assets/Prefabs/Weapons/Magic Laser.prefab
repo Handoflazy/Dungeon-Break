@@ -186,7 +186,7 @@ MonoBehaviour:
         m_CallState: 2
   ignoreMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1028
   weapon: {fileID: 0}
 --- !u!114 &4335081060955061192
 MonoBehaviour:

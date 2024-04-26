@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Knockback : Mover
 {
-    public float knockbackForce = 5f;
+    public float knockbackForce = 0.5f;
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Fighter"))
