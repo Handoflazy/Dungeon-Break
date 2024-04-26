@@ -7,13 +7,11 @@ using UnityEngine.UIElements;
 
 public class ComboBullets : StateMachineBehaviour
 {
-    //protected DetectPlayer detectTarget;
+    
     public Transform player;
-    //public GameObject bulletPrefab;
-    public int numberOfBullets = 10;
+    public GameObject bulletPrefab;
     public float bulletSpacing = 0.2f;
-    private CoroutineRunner coroutineRunner;
-
+    //public float timesinceFire = 0f;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -21,75 +19,49 @@ public class ComboBullets : StateMachineBehaviour
         /*detectTarget = animator.GetComponent<DetectPlayer>();
         player = detectTarget.DetectTarget();*/
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        
 
-        coroutineRunner = animator.GetComponent<CoroutineRunner>();
-        if (coroutineRunner == null)
-        {
-            coroutineRunner = animator.gameObject.AddComponent<CoroutineRunner>();
-        }
+        
+        //timesinceFire = Time.deltaTime;
         MultiBullet(animator);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        MultiBullet(animator);
+    }
+
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
         
     }
-    /*private void MultiBullet(Animator animator)
+    private void MultiBullet(Animator animator)
     {
-        for (int i = 0; i < numberOfBullets; i++)
-        {
-            GameObject bullet = ObjectPool.SharedInstance.GetPooledBulletEnemy();
-            if (bullet != null)
-            {
-                bullet.transform.position = animator.transform.position;
-                bullet.transform.rotation = animator.transform.rotation;
-                bullet.SetActive(true);
-            }
 
+        /*for (int i = 1; i < 5; i++)
+        {*/
+        /*GameObject bullet = ObjectPool.SharedInstance.GetPooledBulletEnemy();
+        if (bullet != null)
+        {
+            bullet.transform.position = animator.transform.position;
+            bullet.transform.rotation = animator.transform.rotation;
+            bullet.SetActive(true);
+        }*/
+            GameObject bullet = Instantiate(bulletPrefab, animator.transform.position, animator.transform.rotation);
             Vector3 lookDirection = (player.position - animator.transform.position).normalized;
             float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
             bullet.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.velocity = bullet.transform.right * 0.7f;
 
-            bullet.transform.position += bullet.transform.right * (bulletSpacing*i);
-        }
-
-    }*/
-
-    private void MultiBullet(Animator animator)
-    {
-        for (int i = 0; i < numberOfBullets; i++)
+            bullet.transform.position += bullet.transform.right*bulletSpacing ;
+        //}
+        /*else if (timesinceFire>= 1f)
         {
-            coroutineRunner.StartCoroutine(ShootBullets(animator));
-        }
-
+            
+            //animator.SetBool("ComboBullet", false);
+        }*/
     }
 
-    IEnumerator ShootBullets(Animator animator)
-    {
-
-
-        GameObject bullet = ObjectPoolEnemy.SharedInstance.GetPooledBulletBoss();
-        if (bullet != null)
-        {
-            bullet.transform.position = animator.transform.position;
-            bullet.transform.rotation = animator.transform.rotation;
-            bullet.SetActive(true);
-        }
-
-        Vector3 lookDirection = (player.position - animator.transform.position).normalized;
-        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-        bullet.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.velocity = bullet.transform.right * 0.7f;
-
-        //bullet.transform.position += bullet.transform.right * (bulletSpacing);
-        //bullet.SetActive(false);
-        yield return new WaitForSeconds(0.2f);
-
-    }
 
 }

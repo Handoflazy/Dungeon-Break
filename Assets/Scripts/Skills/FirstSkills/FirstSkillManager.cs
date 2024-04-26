@@ -23,14 +23,14 @@ public class Wideslash : AbstractSkill, IFirstSkill
     }
 
     private readonly int wideSlash = Animator.StringToHash("WideSlash");
-  
+
 
     public override void OnUsed()
     {
-       
-            Anim.Play(wideSlash);
-            print(1);
-        
+
+        Anim.Play(wideSlash);
+        print(1);
+
     }
 }
 
@@ -55,6 +55,7 @@ public class FireballSkill : AbstractSkill, IFirstSkill
         fireballVFX.SetActive(false);
     }
 
+
     protected override void Awake()
     {
         base.Awake();
@@ -75,6 +76,7 @@ public class FireballSkill : AbstractSkill, IFirstSkill
             fireballVFX.SetActive(false);
         }
     }
+
 
     public override void OnUsed()
     {
@@ -120,17 +122,53 @@ public class FireballSkill : AbstractSkill, IFirstSkill
         fireballVFX.SetActive(false);
         player.ID.playerEvents.OnMoveSkillUsing?.Invoke(isCasting);
     }
-
-    private bool CheckObstacleCollision()
-    {
-        Vector2 direction = GetPointerPos() - (Vector2)transform.position;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction.normalized, fireballDistance[level], LayerMask.GetMask("Blocking"));
-
-        if (hit.collider != null)
-        {
-            return true;
-        }
-        return false;
-    }
 }
 
+public class ExplosionArrowSkill : AbstractSkill, IMoveSkill
+{
+    /*[SerializeField]
+    private float[] dashTime = { .1f, .2f, .3f, .5f };*/
+
+    [SerializeField]
+    private float[] dashingPower = { 4, 5, 6, 7, 8 };
+
+    private bool isExplosion = false;
+    public float distance = 2f;
+    private Animator anim;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        anim = GetComponent<SkillManager>().currentWeapon.gameObject.GetComponent<Animator>();
+    }
+    public override void OnUsed()
+    {
+        //StartCoroutine(BackStep());
+        ExplosionArrow();
+    }
+    //private IEnumerator BackStep()
+    void ExplosionArrow()
+    {
+
+        isExplosion = true;
+        player.ID.playerEvents.OnMoveSkillUsing?.Invoke(isExplosion);
+        Vector2 direction = (Vector2)transform.position - GetPointerPos();
+        //rb.velocity = direction.normalized * dashingPower[level];
+
+        anim.SetTrigger("Fire");
+        GameObject arrow = Instantiate(Resources.Load("arrowExplosion", typeof(GameObject))) as GameObject;
+        CommonArrow arrowSetting = arrow.GetComponent<CommonArrow>();
+        arrowSetting.Distance = distance;
+        arrow.transform.position = transform.position;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        arrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward) * Quaternion.Euler(0, 0, 90);
+
+
+        //yield return new WaitForSeconds(dashTime[level]);
+        isExplosion = false;
+        player.ID.playerEvents.OnMoveSkillUsing?.Invoke(isExplosion);
+
+
+    }
+}

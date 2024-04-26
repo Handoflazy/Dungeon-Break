@@ -197,7 +197,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1851128481
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 330125700, guid: 6d5b035f0b6c7d34c966be52fb64e199, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -503,12 +503,13 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0}
   detectTarget: {fileID: 3996872979824630007}
   detectionDelay: 0.05
-  attackDelay: 1
   aiUpdateDeplay: 0.08
   attackDistance: 0.2
   movementInput: {x: 0, y: 0}
   returnOriginPos: 1
   isComingHome: 0
+  idleTime: 0
+  currentState: 0
   MovementInput:
     m_PersistentCalls:
       m_Calls:

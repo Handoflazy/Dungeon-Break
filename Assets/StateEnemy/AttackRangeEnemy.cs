@@ -9,7 +9,7 @@ public class AttackRangeEnemy : StateMachineBehaviour
 {
     protected DetectPlayer detectTarget;
     public Transform player;
-    //public GameObject bulletPrefab;
+    public GameObject bulletPrefab;
     public int numberOfBullets = 10;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -20,11 +20,11 @@ public class AttackRangeEnemy : StateMachineBehaviour
         {
             if (player.position.x > animator.transform.position.x)
             {
-                animator.transform.rotation = Quaternion.Euler(0, 180, 0);
+                animator.transform.rotation = Quaternion.Euler(0, 0, 0);
             }
             else if (player.position.x < animator.transform.position.x)
             {
-                animator.transform.rotation = Quaternion.Euler(0, 0, 0);
+                animator.transform.rotation = Quaternion.Euler(0, 180, 0);
             }
 
             float maxScatterAngle = (numberOfBullets - 1) * 10;

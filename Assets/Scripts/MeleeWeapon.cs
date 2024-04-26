@@ -8,6 +8,7 @@ public class MeleeWeapon : Weapon
 {
     [SerializeField]
     private LayerMask layerMask;
+    [SerializeField]
     private SlashAnim slashAnim;
     private DamageSource damageSource;
     private void Start()
