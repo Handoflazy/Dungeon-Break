@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -49,8 +49,9 @@ public class FireballSkill : AbstractSkill, IFirstSkill
     private void Start()
     {
         fireballVFX = Instantiate(Resources.Load("Fireball_Ref", typeof(GameObject))) as GameObject;
-        fireballVFX.gameObject.transform.SetParent(transform, false);
+        fireballVFX.gameObject.transform.SetParent(player.transform, false);
         anim = fireballVFX.GetComponent<Animator>();
+        fireballVFX.transform.localScale = new Vector3(0.5f, 0.5f, 0);
         fireballVFX.SetActive(false);
     }
 
@@ -59,6 +60,23 @@ public class FireballSkill : AbstractSkill, IFirstSkill
     {
         base.Awake();
     }
+
+    private void LateUpdate()
+    {
+        if (fireballVFX != null)
+        {
+            fireballVFX.transform.position = transform.position;
+        }
+        else
+        {
+            fireballVFX = Instantiate(Resources.Load("Fireball_Ref", typeof(GameObject))) as GameObject;
+            fireballVFX.gameObject.transform.SetParent(player.transform, false);
+            anim = fireballVFX.GetComponent<Animator>();
+            fireballVFX.transform.localScale = new Vector3(0.5f, 0.5f, 0);
+            fireballVFX.SetActive(false);
+        }
+    }
+
 
     public override void OnUsed()
     {
@@ -71,6 +89,7 @@ public class FireballSkill : AbstractSkill, IFirstSkill
     private readonly int FireballActive = Animator.StringToHash("Fireball_active_form2");
     private void SetActiveAnim()
     {
+        fireballVFX.transform.position = player.transform.position;
         fireballVFX.SetActive(true);
         anim.Play(FireballActive);
     }
@@ -103,20 +122,7 @@ public class FireballSkill : AbstractSkill, IFirstSkill
         fireballVFX.SetActive(false);
         player.ID.playerEvents.OnMoveSkillUsing?.Invoke(isCasting);
     }
-
-    private bool CheckObstacleCollision()
-    {
-        Vector2 direction = GetPointerPos() - (Vector2)transform.position;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction.normalized, fireballDistance[level], LayerMask.GetMask("Blocking"));
-
-        if (hit.collider != null)
-        {
-            return true;
-        }
-        return false;
-    }
 }
-
 
 public class ExplosionArrowSkill : AbstractSkill, IMoveSkill
 {

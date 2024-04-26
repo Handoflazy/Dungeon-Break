@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using FirstVersion;
 
 public class DamageEnemy : PlayerSystem
 {
@@ -18,7 +19,7 @@ public class DamageEnemy : PlayerSystem
 
         if (other.gameObject.TryGetComponent(out Damageable damageableObject))
         {
-            damageableObject.DealDamage(dmg, this.gameObject);
+            damageableObject.DealDamage(damage);
         }
         else
         {

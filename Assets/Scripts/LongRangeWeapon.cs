@@ -14,7 +14,6 @@ public class RangerWeapon : Weapon
     [SerializeField]
     private GameObject arrowPrefab;
     private List<GameObject> arrows = new();
-    public WeaponParent weaponParent;
 
     [SerializeField]
     private void Start()

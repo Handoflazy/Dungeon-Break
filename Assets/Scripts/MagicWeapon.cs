@@ -12,7 +12,6 @@ public class MagicWeapon : Weapon
     private GameObject LaserPrefab;
 
     private List<GameObject> arrows = new();
-    public WeaponParent weaponParent;
     private float laserWitdh;
     private void Start()
     {

@@ -139,7 +139,6 @@ public class TeleportSkill : AbstractSkill, IMoveSkill
     protected override void Awake()
     {
         base.Awake();
-
     }
 
     public override void OnUsed()
@@ -155,6 +154,7 @@ public class TeleportSkill : AbstractSkill, IMoveSkill
     {
         teleportVFX.SetActive(true);
         anim.Play(TeleportFlash);
+
     }
 
     private IEnumerator Teleport()
@@ -205,6 +205,5 @@ public class TeleportSkill : AbstractSkill, IMoveSkill
         }
         return false;
     }
-
 }
 

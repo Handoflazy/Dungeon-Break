@@ -20,6 +20,12 @@ public class Destructible : MonoBehaviour
         gameObject.SetActive(false);
 
     }
+    public void DestroyWithPracticle()
+    {
+        if (deathParticle) Instantiate(deathParticle, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+
+    }
     public void DisappearAfterTime(float t)
     {
         StartCoroutine(DisappearAfterSeconds(t));

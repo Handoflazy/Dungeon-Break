@@ -10,19 +10,19 @@ public class UIController : MonoBehaviour
 
     public void TogglerMusic()
     {
-        AudioManager.instance.ToggleMusic();
+        NguyenSingleton.Instance.AudioManager.ToggleMusic();
     }
     public void TogglerSFX()
     {
-        AudioManager.instance.ToggleSFX();
+        NguyenSingleton.Instance.AudioManager.ToggleSFX();
     }
     public void MusicVolume()
     {
-        AudioManager.instance.MusicVolume(_musicSlider.value);
+        NguyenSingleton.Instance.AudioManager.MusicVolume(_musicSlider.value);
     }
     public void SFXVolume()
     {
-        AudioManager.instance.SFXVolume(_sfxSlider.value);
+        NguyenSingleton.Instance.AudioManager.SFXVolume(_sfxSlider.value);
     }
 
     public void SoundSystem()

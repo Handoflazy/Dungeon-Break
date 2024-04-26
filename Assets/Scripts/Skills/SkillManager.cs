@@ -88,8 +88,8 @@ public class SkillManager : PlayerSystem
                 break;
             case WeaponType.Staff:
                 moveSkill = gameObject.AddComponent<TeleportSkill>();
-                secondSkill = null;
-                firstSkill = gameObject.AddComponent<FireballSkill>();
+                secondSkill = gameObject.AddComponent<MagicShield>();
+                firstSkill = gameObject.AddComponent<FireballSkill>(); 
                 break;
             default:
                 moveSkill = null;

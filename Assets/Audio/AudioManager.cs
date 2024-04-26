@@ -7,7 +7,6 @@ using System;
 
 public class AudioManager : MonoBehaviour
 {
-     public static AudioManager instance;
     
      [Header("----------- Audio Source ----------")]
      [SerializeField] AudioSource musicSource;
@@ -20,20 +19,6 @@ public class AudioManager : MonoBehaviour
      public AudioClip sfx3;
      public AudioClip sfx4;
 
-
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
     private void Start()
      {
          musicSource.clip = background;

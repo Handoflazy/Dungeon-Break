@@ -90,6 +90,7 @@ public class AIEnemy : MonoBehaviour
         {
             MovementInput?.Invoke(movementInput);
         }
+        
     }
 
     void PerformDetection()
@@ -155,13 +156,24 @@ public class AIEnemy : MonoBehaviour
 
     void Idle()
     {
-        if (targetPlayer != null  && Vector2.Distance(targetPlayer.position, transform.position) > attackDistance)
+        if (targetPlayer != null)
         {
-            ChangeState(EnemyState.Chasing);
-        }
-        else if(targetPlayer != null && Vector2.Distance(targetPlayer.position, transform.position) <= attackDistance)
-        {
-            ChangeState(EnemyState.Attack);
+            if (targetPlayer.position.x > transform.position.x)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else if (targetPlayer.position.x < transform.position.x)
+            {
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            if (Vector2.Distance(targetPlayer.position, transform.position) > attackDistance)
+            {
+                ChangeState(EnemyState.Chasing);
+            }
+            else
+            {
+                ChangeState(EnemyState.Attack);
+            }
         }
         else if (idleTime >= 5f)
         {
@@ -188,6 +200,7 @@ public class AIEnemy : MonoBehaviour
         if (targetPlayer != null && Vector2.Distance(transform.position, targetPlayer.position) <= attackDistance)
         {
             ChangeState(EnemyState.Attack);
+            return;
         }
         if (!aiEnemyMover.reachedEndOfPath)
         {

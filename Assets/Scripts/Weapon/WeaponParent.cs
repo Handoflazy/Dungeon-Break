@@ -144,7 +144,7 @@ public class WeaponParent : PlayerSystem
                 clip = null;
                 break;
         }
-        NguyenSingleton.Instance.AudioManager.PlayAudio(clip, 0.8F);
+        NguyenSingleton.Instance.AudioManager.PlaySFX(clip);
     }
     public void SetWeapon(EquippabeItemSO weaponItemS0, List<ItemParameter> itemState)
     {

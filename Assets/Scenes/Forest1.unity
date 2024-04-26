@@ -21776,66 +21776,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerID: {fileID: 11400000, guid: 6d07113f4167298439f9e7194fcb1dd4, type: 2}
-  UpdateHealthBar:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 375000964}
-        m_TargetAssemblyTypeName: SliderBar, Assembly-CSharp
-        m_MethodName: SetValue
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  UpdateDurationBar:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1059242906}
-        m_TargetAssemblyTypeName: SliderBar, Assembly-CSharp
-        m_MethodName: SetValue
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnInitialHealthBar:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 375000964}
-        m_TargetAssemblyTypeName: SliderBar, Assembly-CSharp
-        m_MethodName: SetMaxValue
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnInitialDurationBar:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1059242906}
-        m_TargetAssemblyTypeName: SliderBar, Assembly-CSharp
-        m_MethodName: SetMaxValue
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  healthBar: {fileID: 0}
+  durationBar: {fileID: 0}
 --- !u!114 &778940104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22290,6 +22232,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49cf17359a741a947af39cffd76c338b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnDeathEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  ignoreMask:
+    serializedVersion: 2
+    m_Bits: 0
   weapon: {fileID: 1299493439}
 --- !u!60 &1013236287
 PolygonCollider2D:
@@ -23028,7 +22976,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1851128481
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: 1
   m_Sprite: {fileID: 236746637, guid: 8bd0fc568a3f0704898566ef0c4b7fe4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -23109,15 +23057,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f14c427856a56d47967fd79c0491529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponCollider: {fileID: 1013236285}
+  itemName: 
+  description: 
   damagePoint: 3
   pushForce: 20
-  anim: {fileID: 0}
+  WeaponType: 0
+  weaponInfor: {fileID: 0}
   layerMask:
     serializedVersion: 2
     m_Bits: 0
-  slashAnimPrefab: {fileID: 232251332633318628, guid: 0533a0f46e5747d4eafb880975dda100, type: 3}
-  slashAnim: {fileID: 0}
+  weaponParent: {fileID: 0}
 --- !u!114 &1299493440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23211,7 +23160,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1851128481
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 91cd271bbbf837748a5c626da024a703, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -23352,21 +23301,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c31d3d6e2f75674e9402c7057a14df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnLeftSide:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1299493439}
-        m_TargetAssemblyTypeName: MeleeWeapon, Assembly-CSharp
-        m_MethodName: OnChangeSideEvent
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   isUsingWeapon: 0
   anim: {fileID: 1283543335}
 --- !u!114 &1464707709
@@ -23540,7 +23474,7 @@ MonoBehaviour:
   OnUsingMoveSkill:
     m_PersistentCalls:
       m_Calls: []
-  WeaponType: 0
+  weaponType: 0
 --- !u!114 &1464707717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23818,7 +23752,7 @@ TrailRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1851128481
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: -1
   m_Time: 0.15
   m_PreviewTimeScale: 1
@@ -24051,29 +23985,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a641b448f19a594a9b670e5024165ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onUseWeapon:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1982155994}
-        m_TargetAssemblyTypeName: WeaponParent, Assembly-CSharp
-        m_MethodName: Attack
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  equipmentWeapon: {fileID: 1299493439}
+  currentActiveWeapon: {fileID: 0}
   OnUsingWeapon:
     m_PersistentCalls:
       m_Calls: []
   playerRenderer: {fileID: 1283543334}
-  weaponRenderer: {fileID: 1299493442}
   attackBlocked: 0
   attackDelayTime: 0.4
+  MeleeWeaponCollider: {fileID: 0}
 --- !u!4 &1982155995
 Transform:
   m_ObjectHideFlags: 0
