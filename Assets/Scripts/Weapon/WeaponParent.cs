@@ -1,3 +1,4 @@
+using Inventory.Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,29 +12,36 @@ public class WeaponParent : PlayerSystem
     [SerializeField] private Weapon currentActiveWeapon;
     public BoolEvent OnUsingWeapon;
 
+    
+    [SerializeField] private AudioClip swingSound;
+    [SerializeField] private AudioClip shotSound;
+    [SerializeField] private AudioClip fireSound;
+
+    [SerializeField]
+    private EquippabeItemSO weapon;
+    [SerializeField]
+    private InventorySO inventoryData;
+    private List<ItemParameter> parametersToModify;
+    [field: SerializeField]
+    public List<ItemParameter> itemCurrentState;
+
     public Vector2 Pointerposition { get; set; }
     [SerializeField]
     private SpriteRenderer playerRenderer;
-    //[SerializeField]
-   // private SpriteRenderer weaponRenderer;
     [SerializeField]
     private bool attackBlocked;
     [SerializeField]
     private float attackDelayTime;
     public bool IsAttacking { get; set; }
-    [SerializeField]
-    public Transform MeleeWeaponCollider; 
 
     private void OnEnable()
     {
         player.ID.playerEvents.OnAttack += Attack;
-        player.ID.playerEvents.OnChangeWeapon += ChangeWeapon;
+
     }
     private void OnDisable()
     {
         player.ID.playerEvents.OnAttack -= Attack;
-        player.ID.playerEvents.OnChangeWeapon -= ChangeWeapon;
-
     }
     private Vector2 GetPointerPos()
     {
@@ -62,11 +70,6 @@ public class WeaponParent : PlayerSystem
                 scale.y = -1;
         }
         else if (direction.x > 0) scale.y = 1;
-        //if (currentActiveWeapon.WeaponType == WeaponType.Melee)
-        //{
-        //    scale.y = 1;
-        //    return;
-        //}
         if (direction.y > -0.9)
         {
            transform.right = direction;
@@ -92,7 +95,6 @@ public class WeaponParent : PlayerSystem
     public void ChangeWeapon(Weapon newWeapon)
     {
         
-        transform.right = Vector3.zero;
         if (currentActiveWeapon != null)
         {
             Destroy(currentActiveWeapon.gameObject);
@@ -117,12 +119,69 @@ public class WeaponParent : PlayerSystem
     {
         if (attackBlocked || !currentActiveWeapon)
             return;
+        PlayWeaponSound();
         OnUsingWeapon?.Invoke(true);
         player.ID.playerEvents.OnUsingWeapon?.Invoke(true);
         IsAttacking = true;
         AttackCooldown();
         (currentActiveWeapon as IWeapon).Attack();
     }
+    private void PlayWeaponSound()
+    {
+        AudioClip clip;
+        switch (currentActiveWeapon.WeaponType)
+        {
+            case WeaponType.Melee:
+                clip = swingSound;
+                break;
+            case WeaponType.Staff:
+                clip = fireSound;
+                break;
+            case WeaponType.Range:
+                clip = shotSound;
+                break;
+            default:
+                clip = null;
+                break;
+        }
+        NguyenSingleton.Instance.AudioManager.PlayAudio(clip, 0.8F);
+    }
+    public void SetWeapon(EquippabeItemSO weaponItemS0, List<ItemParameter> itemState)
+    {
+        if (weapon != null)
+        {
+            inventoryData.AddItem(weapon, 1, itemCurrentState);
+            Destroy(currentActiveWeapon.gameObject);
+        }
+        this.weapon = weaponItemS0;
+        itemCurrentState = new List<ItemParameter>(itemState);
+        SpawnWeapon();
+    }
 
+    private void ModifyParameters()
+    {
+        foreach (var parameter in parametersToModify)
+        {
+            if (itemCurrentState.Contains(parameter))
+            {
+                int index = itemCurrentState.IndexOf(parameter);
+                float newValue = itemCurrentState[index].value + parameter.value;
+                itemCurrentState[index] = new ItemParameter
+                {
+                    itemParameter = parameter.itemParameter,
+                    value = newValue
+                };
+            }
+        }
+    }
+    private void SpawnWeapon()
+    {
+        transform.right = Vector3.zero;
+        GameObject WeaponToSpawn = weapon.WeaponPrefap;
+        GameObject newWeapon = Instantiate(WeaponToSpawn, transform.position, Quaternion.identity);
+        newWeapon.transform.SetParent(gameObject.transform, false);
+        currentActiveWeapon = newWeapon.GetComponent<Weapon>();
+        player.ID.playerEvents.OnChangeWeapon?.Invoke(currentActiveWeapon);
+    }
 }
 

@@ -9,7 +9,6 @@ public class AnimatedCharacter : PlayerSystem
 
     public static AnimatedCharacter Instance;
     Rigidbody2D rb;
-    public event Action<bool> OnLeftSide;
     public bool isUsingWeapon;
     [SerializeField]
      Animator anim;
@@ -63,14 +62,13 @@ public class AnimatedCharacter : PlayerSystem
         if (lookDirection.x > 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
-            OnLeftSide?.Invoke(false);
+            player.ID.playerEvents.OnLeftSide?.Invoke(false);
 
         }
         else if (lookDirection.x < 0)
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
-            OnLeftSide?.Invoke(true);
-
+            player.ID.playerEvents.OnLeftSide?.Invoke(true);
         }
 
     }

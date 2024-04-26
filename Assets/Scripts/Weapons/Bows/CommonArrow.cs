@@ -15,10 +15,15 @@ public class CommonArrow : MonoBehaviour
     private void OnEnable()
     {
         flyDistance = 0;
+        GetComponent<TrailRenderer>().emitting = true;
     }
     private void Update()
     {
         MoveProjectle();
+    }
+    private void Start()
+    {
+       
     }
 
     void MoveProjectle()
@@ -27,7 +32,12 @@ public class CommonArrow : MonoBehaviour
         flyDistance += speed * Time.deltaTime;
         if (flyDistance > Distance)
         {
-            gameObject.SetActive(false);
+            Destroy();
         }
+    }
+    public void Destroy()
+    {
+        gameObject.SetActive(false);
+        GetComponent<TrailRenderer>().emitting = false;
     }
 }

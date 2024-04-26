@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: WoodBow
   m_EditorClassIdentifier: 
   weaponPrefab: {fileID: 4566332798135800866, guid: 5e82d478067fef14fb9064764465cba1, type: 3}
-  weaponCoolDown: 0.2
+  weaponCoolDown: 0.5

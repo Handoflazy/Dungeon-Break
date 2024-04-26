@@ -1,3 +1,4 @@
+using Inventory.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,10 +14,12 @@ public class NguyenSingleton : MonoBehaviour
     public GameManager GameManager { get; private set; }
     public SceneManagement SceneManagement { get; private set; }
 
-    public ActiveInventory ActiveInventory { get; private set; }    
+    public ActiveInventoryUI ActiveInventory { get; private set; }    
 
     public UIFade UIfade { get; private set; }
 
+    public UIInventoryPage UIInventoryPage { get; private set; }
+    public AudioManager AudioManager { get; private set; }
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -31,8 +34,10 @@ public class NguyenSingleton : MonoBehaviour
             GameManager = GetComponentInChildren<GameManager>();
             SceneManagement = GetComponentInChildren<SceneManagement>();
             UIfade = GetComponentInChildren<UIFade>();
-            ActiveInventory = GetComponentInChildren<ActiveInventory>();
+            ActiveInventory = GetComponentInChildren<ActiveInventoryUI>();
             DontDestroyOnLoad(gameObject);
+            UIInventoryPage = GetComponentInChildren<UIInventoryPage>();
+            AudioManager = GetComponentInChildren<AudioManager>();
         }
         
     }

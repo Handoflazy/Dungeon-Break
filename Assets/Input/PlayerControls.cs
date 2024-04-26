@@ -107,6 +107,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""9d540306-0736-4bd9-9217-b0fadccd0c0d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -351,6 +360,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""MovementSkill"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c16da323-ce4c-4a1b-88ac-e61e27577e3d"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -385,11 +405,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         {
             ""name"": ""DealthMenu"",
             ""id"": ""20e87d9f-1040-493c-842d-ffc75224ccef"",
+            ""actions"": [],
+            ""bindings"": []
+        },
+        {
+            ""name"": ""Inventory "",
+            ""id"": ""b044697c-27be-4b3d-87b4-46a4feb08592"",
             ""actions"": [
                 {
-                    ""name"": ""Click"",
+                    ""name"": ""CloseInventory"",
                     ""type"": ""Button"",
-                    ""id"": ""60672f23-eae9-4b69-b589-b5bd99d80cc9"",
+                    ""id"": ""cb00b76d-14e2-47fa-87cc-1f8a7d5f7c6d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -399,33 +425,16 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""2d55b3d8-13d5-408b-bd8a-c9e279978a4a"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""id"": ""1c8d2479-e11b-4ded-a963-04d0b3a0d8b3"",
+                    ""path"": ""<Keyboard>/i"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Click"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""395ff500-d29c-4b59-a28e-d05504c8d0c4"",
-                    ""path"": ""<Touchscreen>/touch*/Press"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Click"",
+                    ""action"": ""CloseInventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
             ]
-        },
-        {
-            ""name"": ""Inventory "",
-            ""id"": ""b044697c-27be-4b3d-87b4-46a4feb08592"",
-            ""actions"": [],
-            ""bindings"": []
         }
     ],
     ""controlSchemes"": []
@@ -441,14 +450,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerInput_SkillOne = m_PlayerInput.FindAction("SkillOne", throwIfNotFound: true);
         m_PlayerInput_SkillSecond = m_PlayerInput.FindAction("SkillSecond", throwIfNotFound: true);
         m_PlayerInput_MovementSkill = m_PlayerInput.FindAction("MovementSkill", throwIfNotFound: true);
+        m_PlayerInput_OpenInventory = m_PlayerInput.FindAction("OpenInventory", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_ExitMenu = m_Menu.FindAction("ExitMenu", throwIfNotFound: true);
         // DealthMenu
         m_DealthMenu = asset.FindActionMap("DealthMenu", throwIfNotFound: true);
-        m_DealthMenu_Click = m_DealthMenu.FindAction("Click", throwIfNotFound: true);
         // Inventory 
         m_Inventory = asset.FindActionMap("Inventory ", throwIfNotFound: true);
+        m_Inventory_CloseInventory = m_Inventory.FindAction("CloseInventory", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -519,6 +529,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerInput_SkillOne;
     private readonly InputAction m_PlayerInput_SkillSecond;
     private readonly InputAction m_PlayerInput_MovementSkill;
+    private readonly InputAction m_PlayerInput_OpenInventory;
     public struct PlayerInputActions
     {
         private @PlayerControls m_Wrapper;
@@ -532,6 +543,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @SkillOne => m_Wrapper.m_PlayerInput_SkillOne;
         public InputAction @SkillSecond => m_Wrapper.m_PlayerInput_SkillSecond;
         public InputAction @MovementSkill => m_Wrapper.m_PlayerInput_MovementSkill;
+        public InputAction @OpenInventory => m_Wrapper.m_PlayerInput_OpenInventory;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -568,6 +580,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @MovementSkill.started += instance.OnMovementSkill;
             @MovementSkill.performed += instance.OnMovementSkill;
             @MovementSkill.canceled += instance.OnMovementSkill;
+            @OpenInventory.started += instance.OnOpenInventory;
+            @OpenInventory.performed += instance.OnOpenInventory;
+            @OpenInventory.canceled += instance.OnOpenInventory;
         }
 
         private void UnregisterCallbacks(IPlayerInputActions instance)
@@ -599,6 +614,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @MovementSkill.started -= instance.OnMovementSkill;
             @MovementSkill.performed -= instance.OnMovementSkill;
             @MovementSkill.canceled -= instance.OnMovementSkill;
+            @OpenInventory.started -= instance.OnOpenInventory;
+            @OpenInventory.performed -= instance.OnOpenInventory;
+            @OpenInventory.canceled -= instance.OnOpenInventory;
         }
 
         public void RemoveCallbacks(IPlayerInputActions instance)
@@ -666,12 +684,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     // DealthMenu
     private readonly InputActionMap m_DealthMenu;
     private List<IDealthMenuActions> m_DealthMenuActionsCallbackInterfaces = new List<IDealthMenuActions>();
-    private readonly InputAction m_DealthMenu_Click;
     public struct DealthMenuActions
     {
         private @PlayerControls m_Wrapper;
         public DealthMenuActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Click => m_Wrapper.m_DealthMenu_Click;
         public InputActionMap Get() { return m_Wrapper.m_DealthMenu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -681,16 +697,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_DealthMenuActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_DealthMenuActionsCallbackInterfaces.Add(instance);
-            @Click.started += instance.OnClick;
-            @Click.performed += instance.OnClick;
-            @Click.canceled += instance.OnClick;
         }
 
         private void UnregisterCallbacks(IDealthMenuActions instance)
         {
-            @Click.started -= instance.OnClick;
-            @Click.performed -= instance.OnClick;
-            @Click.canceled -= instance.OnClick;
         }
 
         public void RemoveCallbacks(IDealthMenuActions instance)
@@ -712,10 +722,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     // Inventory 
     private readonly InputActionMap m_Inventory;
     private List<IInventoryActions> m_InventoryActionsCallbackInterfaces = new List<IInventoryActions>();
+    private readonly InputAction m_Inventory_CloseInventory;
     public struct InventoryActions
     {
         private @PlayerControls m_Wrapper;
         public InventoryActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @CloseInventory => m_Wrapper.m_Inventory_CloseInventory;
         public InputActionMap Get() { return m_Wrapper.m_Inventory; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -725,10 +737,16 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_InventoryActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_InventoryActionsCallbackInterfaces.Add(instance);
+            @CloseInventory.started += instance.OnCloseInventory;
+            @CloseInventory.performed += instance.OnCloseInventory;
+            @CloseInventory.canceled += instance.OnCloseInventory;
         }
 
         private void UnregisterCallbacks(IInventoryActions instance)
         {
+            @CloseInventory.started -= instance.OnCloseInventory;
+            @CloseInventory.performed -= instance.OnCloseInventory;
+            @CloseInventory.canceled -= instance.OnCloseInventory;
         }
 
         public void RemoveCallbacks(IInventoryActions instance)
@@ -757,6 +775,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnSkillOne(InputAction.CallbackContext context);
         void OnSkillSecond(InputAction.CallbackContext context);
         void OnMovementSkill(InputAction.CallbackContext context);
+        void OnOpenInventory(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {
@@ -764,9 +783,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     }
     public interface IDealthMenuActions
     {
-        void OnClick(InputAction.CallbackContext context);
     }
     public interface IInventoryActions
     {
+        void OnCloseInventory(InputAction.CallbackContext context);
     }
 }

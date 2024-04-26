@@ -28,9 +28,10 @@ public class RangerWeapon : Weapon
     {
         WeaponAnim.SetTrigger(FIRE_HASH);
         GameObject arrow = GetArrow();
-        arrow.SetActive(true);
+
         arrow.transform.position = arrowSpawnPoint.position;
         arrow.transform.rotation = weaponParent.transform.rotation * Quaternion.Euler(0, 0, -90);
+        arrow.SetActive(true);
         CommonArrow arrowSetting = arrow.GetComponent<CommonArrow>();
         arrowSetting.Distance = distance;
 

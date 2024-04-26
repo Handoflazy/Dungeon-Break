@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d51479ea45bae4dad7bfed4b70b8bd, type: 3}
+  m_Name: RustySword
+  m_EditorClassIdentifier: 
+  <IsStackable>k__BackingField: 0
+  <MaxStackSize>k__BackingField: 1
+  <Name>k__BackingField: Iron Sword
+  <Description>k__BackingField: Cut stuff
+  <ItemImage>k__BackingField: {fileID: 21300000, guid: 0394108fb8e65c5488df6b84e9cd1e3e, type: 3}
+  <DefautParameters>k__BackingField:
+  - itemParameter: {fileID: 11400000, guid: d347f59b69ed7da4ea64576239c54c28, type: 2}
+    applyParameter: {fileID: 11400000, guid: 9b9cc84a2a48e9c448755cd5e5fecbcc, type: 2}
+    value: 2
+  - itemParameter: {fileID: 11400000, guid: f5cfeabbe75d03c40a1d4617cd04ec4c, type: 2}
+    applyParameter: {fileID: 11400000, guid: fbf9abe54f3d98349bb8448b3304983d, type: 2}
+    value: 50
+  - itemParameter: {fileID: 11400000, guid: 906ff09458fc16b458013bb9771cb16e, type: 2}
+    applyParameter: {fileID: 0}
+    value: 100
+  <WeaponPrefap>k__BackingField: {fileID: 3367293396716096182, guid: 82fcb20fb8d6bbb44897c46fc797d9c8, type: 3}
+  <ActionSFX>k__BackingField: {fileID: 8300000, guid: 1e4d438f9d286304b918672a47cba77f, type: 3}
