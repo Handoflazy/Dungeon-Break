@@ -13,7 +13,7 @@ public struct PlayerEvents
     public  Action<Vector2> OnMousePointer;
 
     public Action<int> OnToggleActiveSlot;
-
+    public Action OnInventoryToggle;
 
 
     public Action OnZoomCamera;
@@ -21,6 +21,7 @@ public struct PlayerEvents
     //Animated Character
     
     public Action OnChangeSide;
+    public Action<bool> OnLeftSide;
 
     // UI Events
     public Action<int> OnHealthChanged;

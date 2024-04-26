@@ -6,25 +6,20 @@ using UnityEngine.Assertions.Must;
 using PlayerController;
 using SunnyValleyVersion;
 
-[RequireComponent(typeof(Health))]
-public class Damageable : MonoBehaviour
+namespace FirstVersion
 {
-    Vector2 pushDirection;
-    Health health;
-    public Vector2DEvent OnPushForce;
-    private void Awake()
+    [RequireComponent(typeof(Health))]
+    public class Damageable : MonoBehaviour
     {
-        health = GetComponent<Health>();
-    }
-    public void DealDamage(Damage dmg, GameObject sender)
-    {
-         
-        NguyenSingleton.Instance.FloatingTextManager.Show(dmg.damageAmount.ToString(), 10, Color.red, transform.position, Vector3.zero, 0.5f);
-        health.TakeDamage(dmg.damageAmount, sender);
-        if (dmg.pushForce > 0)
+        Health health;
+        private void Awake()
         {
-            pushDirection = (transform.position - dmg.origin).normalized * dmg.pushForce;
-            OnPushForce?.Invoke(pushDirection);
+            health = GetComponent<Health>();
+        }
+        public void DealDamage(int dmg)
+        {
+            NguyenSingleton.Instance.FloatingTextManager.Show(dmg.ToString(), 10, Color.red, transform.position, Vector3.zero, 0.5f);
+            health.TakeDamage(dmg);       
         }
     }
 }

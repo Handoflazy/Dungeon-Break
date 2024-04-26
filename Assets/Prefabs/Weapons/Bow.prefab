@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1272130155412195851}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.028, y: -0.011, z: 0}
+  m_LocalPosition: {x: 0.097, y: -0.024, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -80,11 +80,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: 
   description: 
-  damagePoint: 1
-  pushForce: 1
+  damagePoint: 5
+  pushForce: 5
   WeaponType: 2
   weaponInfor: {fileID: 11400000, guid: f32686c3834fd15419689f9b2c03673d, type: 2}
-  distance: 1
+  distance: 1.84
   arrowSpawnPoint: {fileID: 5648201073172420050}
   arrowPrefab: {fileID: 4126791939303898143, guid: 0d654933523f72b4f94f37555e225f1c, type: 3}
   weaponParent: {fileID: 0}
@@ -129,7 +129,7 @@ SpriteRenderer:
   m_SortingLayerID: 1332609957
   m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1245055374, guid: 6d5b035f0b6c7d34c966be52fb64e199, type: 3}
+  m_Sprite: {fileID: 1286219643, guid: 5ee47e578a7d14444929d6fe04aef631, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

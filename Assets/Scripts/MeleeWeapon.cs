@@ -8,16 +8,20 @@ public class MeleeWeapon : Weapon
 {
     [SerializeField]
     private LayerMask layerMask;
-
-    public WeaponParent weaponParent;
     private SlashAnim slashAnim;
+    private DamageSource damageSource;
     private void Start()
     {
         WeaponType = WeaponType.Melee;
         WeaponAnim = GetComponent<Animator>();
         weaponParent = transform.parent.GetComponent<WeaponParent>();
         slashAnim = transform.root.GetComponentInChildren<SlashAnim>();
+        damageSource = GetComponent<DamageSource>();
+        damageSource.OnHitEnemy += OnTriggerWeapon;
+        
     }
+
+    
     public  virtual void CompleteSwingEvent()
     {
         weaponParent.ResetIsAttacking();
@@ -43,5 +47,10 @@ public class MeleeWeapon : Weapon
         SpriteRenderer Render = other.transform.GetChild(0).GetComponent<SpriteRenderer>();
         Render.color = Color.red;
         StartCoroutine(RevertColor(Render));
+    }
+
+    private void SetDamageSource()
+    {
+
     }
 }

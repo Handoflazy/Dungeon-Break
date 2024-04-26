@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using SunnyValleyVersion;
 
-namespace SunnyValleyVersion
+namespace FirstVersion
 {
 
     public class Health : MonoBehaviour
@@ -33,24 +33,30 @@ namespace SunnyValleyVersion
             isDead = false;
         }
 
-        public void TakeDamage(int amount, GameObject sender)
+        public void TakeDamage(int amount)
         {
             if (isDead)
                 return;
-            if (sender.layer == gameObject.layer)
-                return;
-
             currentHealth -= amount;
-            if (currentHealth > 0)
-            {
-                OnHitWithReference?.Invoke(sender);
-            }
-            else
+            if(currentHealth < 0)
             {
                 currentHealth = 0;
-                OnDeathWithReference?.Invoke(sender);
                 isDead = true;
                 OnDeathEvent?.Invoke();
+            }
+            OnHealthChange?.Invoke(currentHealth);
+        }
+
+        public void AddHealth(int amount)
+        {
+            if(currentHealth >= maxHealth)
+            {
+                return;
+            }
+            currentHealth += amount;
+            if(currentHealth > maxHealth)
+            {
+                currentHealth = maxHealth;
             }
             OnHealthChange?.Invoke(currentHealth);
         }

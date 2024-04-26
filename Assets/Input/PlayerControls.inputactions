@@ -85,6 +85,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "OpenInventory",
+                    "type": "Button",
+                    "id": "9d540306-0736-4bd9-9217-b0fadccd0c0d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -329,6 +338,17 @@
                     "action": "MovementSkill",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c16da323-ce4c-4a1b-88ac-e61e27577e3d",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -363,11 +383,17 @@
         {
             "name": "DealthMenu",
             "id": "20e87d9f-1040-493c-842d-ffc75224ccef",
+            "actions": [],
+            "bindings": []
+        },
+        {
+            "name": "Inventory ",
+            "id": "b044697c-27be-4b3d-87b4-46a4feb08592",
             "actions": [
                 {
-                    "name": "Click",
+                    "name": "CloseInventory",
                     "type": "Button",
-                    "id": "60672f23-eae9-4b69-b589-b5bd99d80cc9",
+                    "id": "cb00b76d-14e2-47fa-87cc-1f8a7d5f7c6d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -377,33 +403,16 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "2d55b3d8-13d5-408b-bd8a-c9e279978a4a",
-                    "path": "<Mouse>/leftButton",
+                    "id": "1c8d2479-e11b-4ded-a963-04d0b3a0d8b3",
+                    "path": "<Keyboard>/i",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Click",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "395ff500-d29c-4b59-a28e-d05504c8d0c4",
-                    "path": "<Touchscreen>/touch*/Press",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Click",
+                    "action": "CloseInventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
             ]
-        },
-        {
-            "name": "Inventory ",
-            "id": "b044697c-27be-4b3d-87b4-46a4feb08592",
-            "actions": [],
-            "bindings": []
         }
     ],
     "controlSchemes": []

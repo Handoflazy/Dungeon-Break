@@ -23,8 +23,8 @@ TagManager:
   - Actor
   - Player
   - Enemy
-  - 
-  - 
+  - Damageable
+  - Dead
   - 
   - 
   - 
@@ -58,6 +58,9 @@ TagManager:
     locked: 0
   - name: Hub
     uniqueID: 3830766345
+    locked: 0
+  - name: Enemy
+    uniqueID: 1767921389
     locked: 0
   - name: Actor
     uniqueID: 2443838815

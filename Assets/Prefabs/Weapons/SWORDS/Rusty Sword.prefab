@@ -124,7 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: NGUYENBODOI'SWORD
   description: CAY KIEM CUA NGUYEN BODOI
-  damagePoint: 13
+  damagePoint: 7
   pushForce: 10
   WeaponType: 0
   weaponInfor: {fileID: 11400000, guid: e5e30634eba142a479652ea65d6edd16, type: 2}
