@@ -67,7 +67,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Knight1_moving
-  m_Speed: 0.48
+  m_Speed: 0.28
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 8189109515988402137}
@@ -94,7 +94,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Knight_1_idle
-  m_Speed: 0.57
+  m_Speed: 0.8
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -5112894378296053459}

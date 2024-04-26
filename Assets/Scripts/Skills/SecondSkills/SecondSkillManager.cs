@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -37,16 +37,20 @@ public class Giganize : AbstractSkill, ISecondSkill
     {
         switch (level)
         {
-            case 0: 
-                targetColor = new Color32(0xFF, 0xD8, 0x00, 0xFF); 
+            case 0:
+                targetColor = new Color32(0xFF, 0xD8, 0x00, 0xFF);
                 break;
-            case 1: targetColor = new Color32(0xFF, 0x95, 0x00, 0xFF); 
+            case 1:
+                targetColor = new Color32(0xFF, 0x95, 0x00, 0xFF);
                 break;
-            case 2: targetColor = new Color32(0xFF, 0x46, 0x00, 0xFF);
+            case 2:
+                targetColor = new Color32(0xFF, 0x46, 0x00, 0xFF);
                 break;
-            case 3: targetColor = Color.red;
+            case 3:
+                targetColor = Color.red;
                 break;
-            case 4: targetColor = Color.green;
+            case 4:
+                targetColor = Color.green;
                 break;
             default: break;
 
@@ -111,9 +115,74 @@ public class Giganize : AbstractSkill, ISecondSkill
     }
 
 }
-public class ExplosionArrow : AbstractSkill, ISecondSkill
+public class MultiArrowSkill : AbstractSkill, IMoveSkill
 {
+    /*[SerializeField]
+    private float[] dashTime = { .1f, .2f, .3f, .5f };*/
 
+    [SerializeField]
+    private float[] numberOfBullets = { 2, 3, 5, 7, 10 };
+
+    private bool isMulti = false;
+    public float distance = 2f;
+    private Animator anim;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        anim = GetComponent<SkillManager>().currentWeapon.gameObject.GetComponent<Animator>();
+    }
+    public override void OnUsed()
+    {
+        MultiArrow();
+    }
+    void MultiArrow()
+    {
+
+        isMulti = true;
+        player.ID.playerEvents.OnMoveSkillUsing?.Invoke(isMulti);
+        anim.SetTrigger("Fire");
+        // Góc tán xạ tối đa (ở hai bên của hướng nhìn)
+        float maxScatterAngle = (numberOfBullets[level] - 1) * 10;
+
+        // Tính góc giữa các viên đạn
+        float angleBetweenBullets = (2 * maxScatterAngle) / numberOfBullets[level];
+
+        // Góc tán xạ ban đầu
+        float initialScatterAngle = -maxScatterAngle;
+
+        for (int i = 0; i < numberOfBullets[level]; i++)
+        {
+            GameObject arrow = Instantiate(Resources.Load("arrow", typeof(GameObject))) as GameObject;
+            CommonArrow arrowSetting = arrow.GetComponent<CommonArrow>();
+            arrowSetting.Distance = distance;
+            Vector2 direction = (Vector2)transform.position - GetPointerPos();
+            arrow.transform.position = transform.position;
+            // Tính toán góc quay để đạn bay theo hướng đã xác định, với sự chệch góc
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + initialScatterAngle;
+
+            // Xoay đạn theo góc đã tính
+            arrow.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle)) * Quaternion.Euler(0, 0, 90);
+
+            // Tăng góc tán xạ cho viên đạn tiếp theo
+            initialScatterAngle += angleBetweenBullets;
+        }
+
+        /*Vector2 direction = (Vector2)transform.position - GetPointerPos();
+        //anim.SetTrigger("Fire");
+        GameObject arrow = Instantiate(Resources.Load("arrow", typeof(GameObject))) as GameObject;
+        CommonArrow arrowSetting = arrow.GetComponent<CommonArrow>();
+        arrowSetting.Distance = distance;
+        arrow.transform.position = transform.position;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        arrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward) * Quaternion.Euler(0, 0, 90);*/
+
+        isMulti = false;
+        player.ID.playerEvents.OnMoveSkillUsing?.Invoke(isMulti);
+
+
+    }
 }
 public class FireBall : AbstractSkill, ISecondSkill
 {

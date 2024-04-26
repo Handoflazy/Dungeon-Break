@@ -44,6 +44,7 @@ public class AIEnemy : MonoBehaviour
     public UnityEvent<Vector2> MovementInput;
     public UnityEvent OnDeathEvent;
 
+
     //Quan ly State cua enemy
     public enum EnemyState
     {
@@ -166,6 +167,7 @@ public class AIEnemy : MonoBehaviour
         {
             ChangeState(EnemyState.Wander);
         }
+
     }
     void Wander()
     {
@@ -217,6 +219,7 @@ public class AIEnemy : MonoBehaviour
 
     void Attack()
     {
+        
         anim.SetBool("isWandering", false);
         anim.SetBool("isChasing", false);
         anim.SetBool("isGoingHome", false);

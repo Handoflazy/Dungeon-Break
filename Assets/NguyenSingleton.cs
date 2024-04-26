@@ -9,6 +9,7 @@ public class NguyenSingleton : MonoBehaviour
     public GameObject HUB;
     public GameObject mainCamera;
     public GameObject astarPathfinder;
+    //public GameObject AudioManager;
     public FloatingTextManager FloatingTextManager { get; private set; }
     public GameManager GameManager { get; private set; }
     public SceneManagement SceneManagement { get; private set; }
@@ -25,7 +26,7 @@ public class NguyenSingleton : MonoBehaviour
             return;
         }
         else
-        {
+        { 
             Instance = this;
             FloatingTextManager = GetComponentInChildren<FloatingTextManager>();
             GameManager = GetComponentInChildren<GameManager>();

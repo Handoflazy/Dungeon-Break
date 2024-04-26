@@ -12,7 +12,7 @@ public class SkillManager : PlayerSystem
     private Duration duration;
 
     public WeaponType weaponType;
-        
+
     public IMoveSkill iMoveSkill;
 
     private AbstractSkill moveSkill;
@@ -63,40 +63,40 @@ public class SkillManager : PlayerSystem
         {
             Destroy(c);
         }
-        if(d != null)
+        if (d != null)
         {
             Destroy(d);
         }
-        if (e !=null)
+        if (e != null)
         {
             Destroy(e);
         }
 
 
-        switch(weaponType)
+        switch (weaponType)
         {
             case WeaponType.Melee:
                 moveSkill = gameObject.AddComponent<DashSkill>();
                 secondSkill = gameObject.AddComponent<Giganize>();
                 firstSkill = gameObject.AddComponent<Wideslash>();
-                
+
                 break;
             case WeaponType.Range:
-                moveSkill = gameObject.AddComponent<LeapSkill>();
-                secondSkill = null;
-                firstSkill = null;
+                moveSkill = gameObject.AddComponent<BackStepSkill>();
+                secondSkill = gameObject.AddComponent<MultiArrowSkill>();
+                firstSkill = gameObject.AddComponent<ExplosionArrowSkill>();
                 break;
             case WeaponType.Staff:
                 moveSkill = gameObject.AddComponent<TeleportSkill>();
                 secondSkill = null;
-                firstSkill = null;
+                firstSkill = gameObject.AddComponent<FireballSkill>();
                 break;
             default:
                 moveSkill = null;
                 secondSkill = null;
                 firstSkill = null;
                 break;
-         
+
         }
 
 
@@ -115,7 +115,7 @@ public class SkillManager : PlayerSystem
     }
     public void OnSecondSkillUse()
     {
-        
+
         if (secondSkill == null)
             return;
         int durationCost = secondSkill.GetDurationCost();
@@ -128,16 +128,16 @@ public class SkillManager : PlayerSystem
     }
     public void OnFirstSkillUse()
     {
-      
+
         if (firstSkill == null)
             return;
-        int durationCost =  firstSkill.GetDurationCost();
+        int durationCost = firstSkill.GetDurationCost();
         if (durationCost < duration.CurrentDuration && !isAttackSkillCooldown)
         {
-         
+
             firstSkill.OnUsed();
             duration.ReduceDuration(durationCost);
-            StartCoroutine(StartAttackSkillCooldown(secondSkill.GetCowndown()));
+            StartCoroutine(StartAttackSkillCooldown(firstSkill.GetCowndown()));
         }
     }
     IEnumerator StartMoveSkillCooldown(float timeCD)

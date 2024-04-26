@@ -32,25 +32,42 @@ public class SkillBoss : StateMachineBehaviour
     public float coldownSpell = 5f;
     public float coldownSummon = 7f;
     public float coldownSkull = 17f;
-
+    public Rigidbody2D rb;
+    protected DetectPlayer detectTarget;
+    public Transform player;
     //private CoroutineRunner coroutineRunner;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    /*   override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-       {
-           playerPos = GameObject.FindGameObjectWithTag("Player").transform;
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        /*playerPos = GameObject.FindGameObjectWithTag("Player").transform;
 
-           coroutineRunner = animator.GetComponent<CoroutineRunner>();
-           if (coroutineRunner == null)
-           {
-               coroutineRunner = animator.gameObject.AddComponent<CoroutineRunner>();
-           }
-       }*/
+        coroutineRunner = animator.GetComponent<CoroutineRunner>();
+        if (coroutineRunner == null)
+        {
+            coroutineRunner = animator.gameObject.AddComponent<CoroutineRunner>();
+        }*/
+        detectTarget = animator.GetComponent<DetectPlayer>();
+        rb = animator.GetComponent<Rigidbody2D>();
+    }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        player = detectTarget.DetectTarget();
+        if (player != null)
+        {
+            if (player.position.x > rb.transform.position.x)
+            {
+                rb.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else if (player.position.x < rb.transform.position.x)
+            {
+                rb.transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+        }
+
         timeSinceMultiBullet += Time.deltaTime;
         timeSinceRise += Time.deltaTime;
         timeSinceExplosion += Time.deltaTime;
@@ -80,6 +97,8 @@ public class SkillBoss : StateMachineBehaviour
             animator.SetTrigger("SkullFollow");
             timeSinceSkull = 0f;
         }
+
+        
     }
     
 /*    private void MultiBullet(Animator animator)
