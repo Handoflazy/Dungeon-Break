@@ -8,7 +8,7 @@ namespace Inventory.Model
     public class Item : MonoBehaviour
     {
         [field: SerializeField]
-        public ItemSO InventoryItem { get; private set; }
+        public ItemSO InventoryItem { get; set; }
         [field: SerializeField]
         public int Quantity { get; set; } = 1;
 

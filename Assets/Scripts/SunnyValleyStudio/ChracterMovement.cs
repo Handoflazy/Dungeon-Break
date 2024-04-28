@@ -25,6 +25,7 @@ namespace SunnyValleyVersion
         private void Start()
         {
             isUsingMoveSkill = false;
+            deacceleration = maxSpeed * 0.75f;
         }
         public void OnUsingWeaponEvent(bool isUsing)
         {

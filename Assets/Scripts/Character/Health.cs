@@ -21,6 +21,9 @@ namespace FirstVersion
         [SerializeField]
         private bool isDead = false;
 
+        public int MaxHealth { get => maxHealth; set => maxHealth = value; }
+        public int CurrentHealth { get => currentHealth; set => currentHealth = value; }
+
         private void Start()
         {
             InitializeHealth(maxHealth);
@@ -33,8 +36,12 @@ namespace FirstVersion
             isDead = false;
         }
 
-        public void TakeDamage(int amount)
-        {
+        public void TakeDamage(int amount, GameObject sender)
+        {    
+            if(sender.layer == gameObject.layer)
+            {
+                return;
+            }
             if (isDead)
                 return;
             currentHealth -= amount;
@@ -43,6 +50,7 @@ namespace FirstVersion
                 currentHealth = 0;
                 isDead = true;
                 OnDeathEvent?.Invoke();
+                OnDeathWithReference?.Invoke(sender);
             }
             OnHealthChange?.Invoke(currentHealth);
         }

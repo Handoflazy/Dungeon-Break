@@ -49,7 +49,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.37
+  m_Intensity: 0.11
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: a5036e4f
@@ -154,7 +154,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1851128481
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 1
   m_Sprite: {fileID: 236746637, guid: 8bd0fc568a3f0704898566ef0c4b7fe4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 9222311877090883417}
   - component: {fileID: 3952115973573828914}
   - component: {fileID: 8268526537615810786}
-  - component: {fileID: 2428833077754957221}
+  - component: {fileID: 3293493073362860093}
   m_Layer: 10
   m_Name: Player 2
   m_TagString: Fighter
@@ -225,7 +225,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3513002561413425104}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.327, y: -1.573, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -322,6 +322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: {fileID: 11400000, guid: 6d07113f4167298439f9e7194fcb1dd4, type: 2}
+  playerStats: {fileID: 11400000, guid: 49a80fb274fc0dc4a8d48fa6534b3de6, type: 2}
   instanceID: 1
   characterType: 0
 --- !u!114 &1181911010174570467
@@ -469,21 +470,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca314e7f16df036498cfacaeed3be8c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPushForce:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1801238737091445040}
-        m_TargetAssemblyTypeName: SunnyValleyVersion.PlayerMover, Assembly-CSharp
-        m_MethodName: set_PushForce
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &9222311877090883417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,7 +596,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2428833077754957221
+--- !u!114 &3293493073362860093
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -619,15 +605,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 3513002561413425104}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6138f0b5b9a7a5942aa909880ae49f60, type: 3}
+  m_Script: {fileID: 11500000, guid: 654742012eb082c41ac0528795cfcfb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
-  inventoryData: {fileID: 11400000, guid: 5dc21849ed43a1c4f90da2a1db6cd866, type: 2}
-  parametersToModify:
-  - itemParameter: {fileID: 11400000, guid: 906ff09458fc16b458013bb9771cb16e, type: 2}
-    value: -10
-  itemCurrentState: []
+  currentHealth: 0
+  maxHealth: 0
+  OnHitWithReference:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeathWithReference:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeathEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnInitalHealthBar:
+    m_PersistentCalls:
+      m_Calls: []
+  isDead: 0
 --- !u!1 &4919026628216238051
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,7 +698,7 @@ TrailRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1851128481
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: -1
   m_Time: 0.15
   m_PreviewTimeScale: 1
@@ -852,10 +850,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  swingSound: {fileID: 8300000, guid: ed5666dc0e3be244e848bdd4a11ee4c5, type: 3}
+  shotSound: {fileID: 8300000, guid: 5b81ab681460fba488dc1f06eb6a8029, type: 3}
+  fireSound: {fileID: 8300000, guid: 5f0b010cf800e6742b79bf4e29ce508f, type: 3}
+  weapon: {fileID: 0}
+  inventoryData: {fileID: 11400000, guid: 5dc21849ed43a1c4f90da2a1db6cd866, type: 2}
+  itemCurrentState: []
   playerRenderer: {fileID: 7334292399553984483}
   attackBlocked: 0
   attackDelayTime: 0.4
-  MeleeWeaponCollider: {fileID: 0}
 --- !u!1 &7061827972608707519
 GameObject:
   m_ObjectHideFlags: 0
@@ -901,9 +904,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c43971dea28c4b41a5839135e42fb31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onMenu:
-    m_PersistentCalls:
-      m_Calls: []
   MovementInput:
     m_PersistentCalls:
       m_Calls:
@@ -992,6 +992,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 2.93
       objectReference: {fileID: 0}
+    - target: {fileID: 7537188277746249676, guid: 0533a0f46e5747d4eafb880975dda100, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 22e4a858f48ad7d4f9b11ffda5c1efce, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

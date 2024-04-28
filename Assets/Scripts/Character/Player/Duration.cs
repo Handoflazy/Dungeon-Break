@@ -25,19 +25,19 @@ public class Duration : PlayerSystem
     {
         while (true)
         {
-            player.ID.playerEvents.OnRefillDuration?.Invoke(10);
+            player.ID.playerEvents.OnRefillDuration?.Invoke((int)(0.2f*MaxDuration));
             yield return new WaitForSeconds(4);
         }
     }
     protected override void Awake()
     {
         base.Awake();
-        MaxDuration = player.ID.maxDuration;
+        MaxDuration = player.playerStats.duration;
         CurrentDuration = MaxDuration;
     }
     public void InitialDuration()
     {
-        MaxDuration = player.ID.maxDuration;
+        MaxDuration = player.playerStats.duration;
         CurrentDuration = MaxDuration;
         player.ID.playerEvents.onInitialDuration?.Invoke(MaxDuration);
         player.ID.playerEvents.OnDurationChanged?.Invoke(CurrentDuration);

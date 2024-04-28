@@ -48,11 +48,11 @@ public class AnimatedCharacter : PlayerSystem
 
         if (rb.velocity.magnitude > 0.1)
         {
-            anim.SetBool("OnRun", true);
+            anim.SetBool(AnimConsts.PLAYER_RUN_PARAM, true);
         }
         else
         {
-            anim.SetBool("OnRun", false);
+            anim.SetBool(AnimConsts.PLAYER_RUN_PARAM, false);
         }
         if (isUsingWeapon)
         {

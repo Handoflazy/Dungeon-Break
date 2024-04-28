@@ -11,7 +11,6 @@ public class WeaponParent : PlayerSystem
 {
     [SerializeField] private Weapon currentActiveWeapon;
     public BoolEvent OnUsingWeapon;
-
     
     [SerializeField] private AudioClip swingSound;
     [SerializeField] private AudioClip shotSound;

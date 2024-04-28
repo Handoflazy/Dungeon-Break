@@ -19,7 +19,7 @@ public class DamageEnemy : PlayerSystem
 
         if (other.gameObject.TryGetComponent(out Damageable damageableObject))
         {
-            damageableObject.DealDamage(damage);
+            damageableObject.DealDamage(damage,this.gameObject);
         }
         else
         {
