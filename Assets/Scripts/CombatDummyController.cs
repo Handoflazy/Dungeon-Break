@@ -62,7 +62,6 @@ public class CombatDummyController : MonoBehaviour
         aliveGO.SetActive(false);
         brokenBotGo.SetActive(true); 
         brokenTopGo.SetActive(true);
-        print("is dummy death"); 
         brokenTopGo.transform.position = aliveGO.transform.position;
         brokenBotGo.transform.position = aliveGO.transform.position;
         rbBrokenTop.velocity = new Vector2(playerFacingDirection.x*knockbackDeathSpeedX, knockbackDeathSpeedY);

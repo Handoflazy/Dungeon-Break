@@ -18,7 +18,7 @@ public class GrantExp : MonoBehaviour
             int exp = Random.Range(enemy.statsData.minXpBonus, enemy.statsData.maxXpBonus);
             playerStatsSystem.AddXp(exp);
             NguyenSingleton.Instance.FloatingTextManager.Show("+ " + exp, 30, Color.blue, transform.position, Vector3.up, .7f);
-            print("con 30 exp");
+            
         }
 
     }
