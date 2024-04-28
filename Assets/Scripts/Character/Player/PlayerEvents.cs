@@ -51,7 +51,9 @@ public struct PlayerEvents
     public Action onOutOfDuration;
     public Action<int> OnRefillDuration;
     public Action<int> onInitialDuration;
-
+    //Stats Event;
+    public Action OnAddXp;
+    public Action OnLevelUp;
 
 
     // State Events

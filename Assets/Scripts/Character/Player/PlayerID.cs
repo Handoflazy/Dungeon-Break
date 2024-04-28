@@ -9,6 +9,4 @@ using UnityEngine;
     public SpriteRenderer sprite;
     public string playerName;
     public PlayerEvents playerEvents;
-    public int maxHealth =120;
-    public int maxDuration = 120;
 }

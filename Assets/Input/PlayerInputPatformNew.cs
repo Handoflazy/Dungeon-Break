@@ -9,8 +9,6 @@ using UnityEngine.Events;
 public class PlayerInputPatformNew : PlayerSystem, PlayerControls.IPlayerInputActions, PlayerControls.IMenuActions, PlayerControls.IDealthMenuActions, PlayerControls.IInventoryActions
 {
     PlayerControls inputActions;
-
-    public UnityEvent onMenu;
     public Vector2DEvent MovementInput;
     public Vector2 MovementVector { get; private set; }
     public Vector2 MousePos { get; private set; }
@@ -32,6 +30,7 @@ public class PlayerInputPatformNew : PlayerSystem, PlayerControls.IPlayerInputAc
     {
         inputActions.PlayerInput.Enable();
         inputActions.Menu.Disable();
+        NguyenSingleton.Instance.UISettingController.CloseMenu();
     }
 
     public void OnMovement(InputAction.CallbackContext context)
@@ -55,8 +54,7 @@ public class PlayerInputPatformNew : PlayerSystem, PlayerControls.IPlayerInputAc
         {
             inputActions.PlayerInput.Disable();
             inputActions.Menu.Enable();
-            onMenu?.Invoke();
-            print("mo menu");
+            NguyenSingleton.Instance.UISettingController.OpenMenu();
         }
     }
 
