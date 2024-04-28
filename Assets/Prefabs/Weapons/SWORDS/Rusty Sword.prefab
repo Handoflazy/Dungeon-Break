@@ -76,7 +76,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1851128481
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 91cd271bbbf837748a5c626da024a703, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -124,14 +124,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: NGUYENBODOI'SWORD
   description: CAY KIEM CUA NGUYEN BODOI
-  damagePoint: 7
-  pushForce: 10
   WeaponType: 0
-  weaponInfor: {fileID: 11400000, guid: e5e30634eba142a479652ea65d6edd16, type: 2}
+  weaponParent: {fileID: 0}
   layerMask:
     serializedVersion: 2
     m_Bits: 0
-  weaponParent: {fileID: 0}
+  slashAnim: {fileID: 0}
 --- !u!114 &3638040798146190891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,7 +235,9 @@ MonoBehaviour:
   OnDeathEvent:
     m_PersistentCalls:
       m_Calls: []
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 6144
   ignoreMask:
     serializedVersion: 2
     m_Bits: 1028
-  weapon: {fileID: 0}

@@ -19,7 +19,7 @@ public class Wideslash : AbstractSkill, IFirstSkill
 
     private void Start()
     {
-       // Anim = GetComponent<SkillManager>().currentWeapon.gameObject.GetComponent<Animator>();
+       Anim = GetComponent<SkillManager>().currentWeapon.gameObject.GetComponent<Animator>();
     }
 
     private readonly int wideSlash = Animator.StringToHash("WideSlash");

@@ -20,7 +20,9 @@ public class NguyenSingleton : MonoBehaviour
     public UIFade UIfade { get; private set; }
 
     public UIInventoryPage UIInventoryPage { get; private set; }
-    public AudioManager AudioManager { get; private set; }
+    public AudioController AudioManager { get; private set; }
+
+    public UISettingController UISettingController { get; private set; }
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -38,7 +40,8 @@ public class NguyenSingleton : MonoBehaviour
             ActiveInventory = GetComponentInChildren<ActiveInventoryUI>();
             DontDestroyOnLoad(gameObject);
             UIInventoryPage = GetComponentInChildren<UIInventoryPage>();
-            AudioManager = GetComponentInChildren<AudioManager>();
+            AudioManager = GetComponentInChildren<AudioController>();
+            UISettingController = GetComponentInChildren<UISettingController>();
         }
         
     }

@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerReform : MonoBehaviour
+public class PlayerReform : ActorReform
 {
-    public PlayerID ID; 
+    public PlayerID ID;
+    public PlayerStatsSO playerStats;
     public int instanceID;
     private static Dictionary<int,GameObject> instances = new Dictionary<int, GameObject>();
     public CharacterType characterType;
 
     private void Awake()
     {
+       
         if (characterType == CharacterType.Player)
         {
             if (instances.ContainsKey(instanceID))
@@ -26,6 +28,7 @@ public class PlayerReform : MonoBehaviour
                     return;
                 }
             }
+            playerStats.load();
             instances[instanceID] = gameObject;
             DontDestroyOnLoad(gameObject);
         }

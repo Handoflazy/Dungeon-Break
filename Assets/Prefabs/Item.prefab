@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1399794444912384551}
   - component: {fileID: 7407295092694618059}
   - component: {fileID: 5842702682728979269}
+  - component: {fileID: -7155103986722925629}
   m_Layer: 0
   m_Name: Item
   m_TagString: Untagged
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1851128481
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -880980850, guid: 6d5b035f0b6c7d34c966be52fb64e199, type: 3}
   m_Color: {r: 0.7137255, g: 0.7137255, b: 0.7137255, a: 1}
@@ -99,8 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aab48b47fdff6242aa4490c6fc2f65f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <InventoryItem>k__BackingField: {fileID: 11400000, guid: 7bc4a9b9f88b02540aec54e5d8578666, type: 2}
-  <Quantity>k__BackingField: 50
+  <InventoryItem>k__BackingField: {fileID: 11400000, guid: 80d5b53ce269b074090fdefdce768b5b, type: 2}
+  <Quantity>k__BackingField: 1
   audioSource: {fileID: 7407295092694618059}
   duration: 0.3
 --- !u!82 &7407295092694618059
@@ -234,3 +235,30 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.07
+--- !u!50 &-7155103986722925629
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6330588511145620810}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

@@ -12,7 +12,7 @@ public class ApplyDamageParameterSO : ApplyWeaponParameterSO
     {
         if (character.TryGetComponent(out Damageable damageableObject))
         {
-            damageableObject.DealDamage((int)val);
+            damageableObject.DealDamage((int)val,Sender);
         }
     }
 }

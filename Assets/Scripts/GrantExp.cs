@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class GrantExp : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private EnemyReform enemy;
+    private void Awake()
     {
-        
+        enemy = GetComponent<EnemyReform>();
     }
-
-    // Update is called once per frame
-    void Update()
+    public void GiveExp(GameObject character)
     {
-        
+       
+        if (character.TryGetComponent<StatsManagerSystem>(out StatsManagerSystem playerStatsSystem))
+        {
+            print(character.name);
+            int exp = Random.Range(enemy.statsData.minXpBonus, enemy.statsData.maxXpBonus);
+            playerStatsSystem.AddXp(exp);
+            NguyenSingleton.Instance.FloatingTextManager.Show("+ " + exp, 30, Color.blue, transform.position, Vector3.up, .7f);
+            print("con 30 exp");
+        }
+
     }
 }

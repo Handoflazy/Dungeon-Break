@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,8 +10,9 @@ public class SlashAnim : MonoBehaviour
         animator = GetComponent<Animator>();
        
     }
+    private readonly int Slash = Animator.StringToHash(AnimConsts.ENTRY_SLASH_PARAM); // MỚI 
 
-    private readonly int Slash = Animator.StringToHash("Entry_Slash");
+
     public void ActivateEffect()
     {
         gameObject.SetActive(true);
