@@ -11,6 +11,7 @@ TagManager:
   - Bow
   - Ignore
   - EnemyBullet
+  - Audio
   layers:
   - Default
   - TransparentFX
@@ -19,15 +20,15 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - Bullet
   - Blocking
   - Actor
   - Player
   - Enemy
   - Damageable
   - Dead
-  - 
-  - 
+  - PlayerMovementCollider
+  - EnemyMovementCollider
   - 
   - 
   - 
@@ -54,6 +55,9 @@ TagManager:
   - name: Collidable
     uniqueID: 2859116669
     locked: 0
+  - name: FontGround
+    uniqueID: 1173399205
+    locked: 0
   - name: New Layer 7
     uniqueID: 2170345755
     locked: 0
@@ -69,6 +73,6 @@ TagManager:
   - name: Render
     uniqueID: 103071379
     locked: 0
-  - name: Weapon
-    uniqueID: 1332609957
+  - name: Bullet
+    uniqueID: 1517872409
     locked: 0

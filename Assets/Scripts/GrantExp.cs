@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GrantExp : MonoBehaviour
 {
-    private EnemyReform enemy;
+    private EnemyAIBrain enemy;
     private void Awake()
     {
-        enemy = GetComponent<EnemyReform>();
+        enemy = GetComponent<EnemyAIBrain>();
     }
     public void GiveExp(GameObject character)
     {
