@@ -187,7 +187,10 @@ MonoBehaviour:
   bulletData: {fileID: 11400000, guid: 717323d1d3026f24fae2250bb2efa881, type: 2}
   ObstacleLayers:
     serializedVersion: 2
-    m_Bits: 2304
+    m_Bits: 256
+  DamageableLayers:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &8552050127021969824
 MonoBehaviour:
   m_ObjectHideFlags: 0

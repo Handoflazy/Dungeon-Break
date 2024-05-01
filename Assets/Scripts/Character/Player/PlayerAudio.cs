@@ -15,7 +15,7 @@ public abstract class PlayerAudio : MonoBehaviour
     }
     public void PlayClipWithVariablePitch(AudioClip clip)
     {
-        var randomPitch = Random.Range(0, pitchRandomness);
+        var randomPitch = Random.Range(1,1+ pitchRandomness);
         audioSource.pitch = randomPitch;
         PlayClip(clip);
     }

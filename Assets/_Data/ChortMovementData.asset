@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19d6748a05f7a2b4ca17f6869ae621ac, type: 3}
   m_Name: ChortMovementData
   m_EditorClassIdentifier: 
-  maxSpeed: 1
-  acceleration: 0.4
+  maxSpeed: 0.5
+  acceleration: 0.3
   deceleration: 1

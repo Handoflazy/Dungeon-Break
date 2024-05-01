@@ -91,6 +91,7 @@ public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, Play
         if (context.phase == InputActionPhase.Performed)
         {
             player.ID.playerEvents.OnZoomCamera?.Invoke();
+            
         }
     }
 

@@ -7,8 +7,12 @@ using UnityEngine;
 public class RegularBullet : Bullet
 {
     protected Rigidbody2D rb;
+
+
     [SerializeField]
-    protected LayerMask ObstacleLayers;
+    protected LayerMask ObstacleLayers,DamageableLayers;
+
+
 
     public override BulletDataSO BulletData 
     { get => base.BulletData;
@@ -30,20 +34,38 @@ public class RegularBullet : Bullet
     {
         if((ObstacleLayers & (1<<collision.gameObject.layer))!=0)
         {
-            if (collision.TryGetComponent<Damageable>(out Damageable component))
-            {
-                component.DealDamage(BulletData.Damage, gameObject);
-            }
+            HitObstacle(collision.gameObject);
+        }
+        if((DamageableLayers & (1 << collision.gameObject.layer)) != 0)
+        {
+            HitEnemy(collision.gameObject);
         }
         Destroy(gameObject);
     }
-    private void HitObstacle()
+
+    private void HitEnemy(GameObject enemy)
     {
-        
-        if(TryGetComponent<Damageable>(out Damageable component))
+        Vector2 randomOffset = Random.insideUnitCircle * 0.05f;
+       
+        if (enemy.TryGetComponent<Damageable>(out Damageable component))
         {
-            component.DealDamage(BulletData.Damage, transform.root.gameObject);
+            component.DealDamage(BulletData.Damage, gameObject);
+            Instantiate(BulletData.ImpactEnemyPrefab, enemy.transform.position+(Vector3)randomOffset, Quaternion.identity);
         }
+        else
+        {
+            Instantiate(BulletData.ImpactObstaclePrefab, enemy.transform.position + (Vector3)randomOffset, Quaternion.identity);
+        }
+    }
+    private void HitObstacle(GameObject obstacle)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right);
+
+        if(hit.collider!= null)
+        {
+            Instantiate(BulletData.ImpactObstaclePrefab, hit.point, Quaternion.identity);
+        }
+        
     }
 
 }

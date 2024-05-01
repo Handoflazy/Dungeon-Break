@@ -40,6 +40,7 @@ public class CinemaChineController : MonoBehaviour
 
         if (ZoomCamera.Priority < defaultCamera.Priority)
         {
+            
             ZoomCamera.Priority = defaultCamera.Priority + 1;
         }
         else

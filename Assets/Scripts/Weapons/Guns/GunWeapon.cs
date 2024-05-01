@@ -68,7 +68,10 @@ public class GunWeapon : PlayerSystem
             if (Ammo > 0)
             {
                 Ammo--;
-                OnShoot?.Invoke();
+                if (OnShoot!=null)
+                {
+                    OnShoot.Invoke();
+                }
                 for (int i = 0; i < weaponData.GetButtetCountToSpawn(); i++)
                 {
                     ShootBullet();

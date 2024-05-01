@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Flash : MonoBehaviour
+public class Flash : Feedback
 {
     [SerializeField] private Material whiteFlashMat;
     [SerializeField] private float restoreDefautMatTime = .2f;
@@ -25,8 +25,13 @@ public class Flash : MonoBehaviour
         yield return new WaitForSeconds(restoreDefautMatTime);
         spriteRenderer.material = defaultMat;
     }
-    public void OnTakeDamage(int currentHeal)
+    public override void CreateFeedBack()
     {
         StartCoroutine(FlashRoutine());
+    }
+
+    public override void CompletePreviousFeedBack()
+    {
+        StopAllCoroutines();
     }
 }
