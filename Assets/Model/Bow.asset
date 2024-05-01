@@ -17,6 +17,10 @@ MonoBehaviour:
   <Name>k__BackingField: 
   <Description>k__BackingField: Shot Shot
   <ItemImage>k__BackingField: {fileID: 21300000, guid: f4bf28f53ee7d694fab07ce9b975de09, type: 3}
-  <DefautParameters>k__BackingField: []
+  <DefautParameters>k__BackingField:
+  - itemParameter: {fileID: 11400000, guid: d347f59b69ed7da4ea64576239c54c28, type: 2}
+    applyParameter: {fileID: 11400000, guid: 9b9cc84a2a48e9c448755cd5e5fecbcc, type: 2}
+    value: 10
+    isHidden: 0
   <WeaponPrefap>k__BackingField: {fileID: 4566332798135800866, guid: 5e82d478067fef14fb9064764465cba1, type: 3}
   <ActionSFX>k__BackingField: {fileID: 8300000, guid: 55df8f4aedfc8f244be424be9358e811, type: 3}

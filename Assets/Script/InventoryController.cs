@@ -90,7 +90,7 @@ namespace Inventory
         private void DropItem(int itemIndex, int quanity)
         {
             inventoryData.RemoveItem(itemIndex, quanity);
-            audioSource.PlayOneShot(dropClip);
+            NguyenSingleton.Instance.AudioManager.PlaySFX(dropClip);
         }
         public void PerformAction(int itemIndex)
         {

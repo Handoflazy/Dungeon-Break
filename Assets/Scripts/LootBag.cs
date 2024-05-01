@@ -36,6 +36,7 @@ public class LootBag : MonoBehaviour
     }
     Loot GetDroppedItem()
     {
+        Random.InitState((int)Time.time);
         int randomNumber = Random.Range(1, 101);
         List<Loot> possibleItems = new List<Loot>();
         foreach (var item in lootList)

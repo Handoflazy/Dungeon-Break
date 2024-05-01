@@ -103,7 +103,10 @@ public class BackStepSkill : AbstractSkill, IMoveSkill
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         arrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward) * Quaternion.Euler(0, 0, 90);
-
+        if (arrow.gameObject.TryGetComponent<DamageSource>(out DamageSource DS))
+        {
+            DS.OnHitEnemy += OnTriggerWeapon;
+        }
 
         yield return new WaitForSeconds(dashTime[level]);
         trailRenderer.emitting = false;

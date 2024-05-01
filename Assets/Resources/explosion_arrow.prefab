@@ -13,12 +13,11 @@ GameObject:
   - component: {fileID: 4754401314258817121}
   - component: {fileID: 7912959338359013817}
   - component: {fileID: -9209588276782963336}
-  - component: {fileID: -5424758053675463994}
   - component: {fileID: 3285022815425910031}
   - component: {fileID: 7762686177855865755}
   m_Layer: 10
   m_Name: explosion_arrow
-  m_TagString: Arrow
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1332609957
+  m_SortingLayer: 8
   m_SortingOrder: 3
   m_Sprite: {fileID: -6334233623064323556, guid: 78f892559938140469b4503a7e080878, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -140,7 +139,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.071822144, y: -0.13825512}
@@ -161,23 +160,12 @@ MonoBehaviour:
   OnDeathEvent:
     m_PersistentCalls:
       m_Calls: []
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 2048
   ignoreMask:
     serializedVersion: 2
-    m_Bits: 0
-  weapon: {fileID: 0}
---- !u!114 &-5424758053675463994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4649200106287446258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65ac6df7ffcdad0438059c40759039e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
+    m_Bits: 2
 --- !u!50 &3285022815425910031
 Rigidbody2D:
   serializedVersion: 4

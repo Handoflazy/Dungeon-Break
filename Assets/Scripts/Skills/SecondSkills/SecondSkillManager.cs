@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FirstVersion;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -117,8 +118,8 @@ public class Giganize : AbstractSkill, ISecondSkill
 }
 public class MultiArrowSkill : AbstractSkill, IMoveSkill
 {
-    /*[SerializeField]
-    private float[] dashTime = { .1f, .2f, .3f, .5f };*/
+    [SerializeField]
+    private int[] damageArrow = { 5, 10, 15, 20 , 30};
 
     [SerializeField]
     private float[] numberOfBullets = { 2, 3, 5, 7, 10 };
@@ -164,8 +165,10 @@ public class MultiArrowSkill : AbstractSkill, IMoveSkill
             // Xoay đạn theo góc đã tính
             arrow.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle)) * Quaternion.Euler(0, 0, 90);
 
+            arrow.GetComponent<DamageSource>().OnHitEnemy += OnTriggerEnemy;
             // Tăng góc tán xạ cho viên đạn tiếp theo
             initialScatterAngle += angleBetweenBullets;
+            
         }
 
         /*Vector2 direction = (Vector2)transform.position - GetPointerPos();
@@ -183,15 +186,34 @@ public class MultiArrowSkill : AbstractSkill, IMoveSkill
 
 
     }
+    protected override void OnTriggerEnemy(GameObject target)
+    {
+        if (target.TryGetComponent<Damageable>(out Damageable D))
+        {
+            D.DealDamage(damageArrow[level], gameObject);
+        }
+        if (target.TryGetComponent<Rigidbody2D>(out Rigidbody2D enemyRb))
+        {
+            print(target.name);
+            // Lấy hướng knockback
+            Vector2 knockbackDirection = enemyRb.transform.position - transform.position;
+            knockbackDirection = knockbackDirection.normalized;
+
+            enemyRb.AddForce(knockbackDirection * damageArrow[level], ForceMode2D.Impulse);
+        }
+    }
 }
 public class MagicShield : AbstractSkill, ISecondSkill
 {
     //[SerializeField]
     //private float[] shieldCoolDown = { 5f, 3f, 3f, 2f };
-    
+
 
     [SerializeField]
     private float[] shieldKnockback = { 1f, 1f, 2f, 2f, 3f };
+
+    [SerializeField]
+    private int[] shieldDamage = { 5, 7, 10, 15, 20 };
 
     private bool isCasting = false;
     private Animator anim;
@@ -204,7 +226,7 @@ public class MagicShield : AbstractSkill, ISecondSkill
         anim = shieldVFX.GetComponent<Animator>();
         shieldVFX.SetActive(false);
 
-        cooldown = new[]{ 5f, 3f, 3f, 2f, 2f};
+        cooldown = new[] { 5f, 3f, 3f, 2f, 2f };
     }
 
     protected override void Awake()
@@ -241,6 +263,8 @@ public class MagicShield : AbstractSkill, ISecondSkill
         isCasting = true;
         //player.ID.playerEvents.OnMoveSkillUsing?.Invoke(isCasting);
         SetActiveAnim();
+        //Dang ki su kien khi trung enemy
+        shieldVFX.GetComponent<DamageSource>().OnHitEnemy += OnTriggerEnemy;
 
         yield return new WaitForSeconds(0.7f);
         shieldVFX.SetActive(false);
@@ -250,19 +274,36 @@ public class MagicShield : AbstractSkill, ISecondSkill
         //player.ID.playerEvents.OnMoveSkillUsing?.Invoke(isCasting);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-        {
-            Rigidbody2D enemyRigidbody = other.gameObject.GetComponent<Rigidbody2D>();
-            if (enemyRigidbody != null)
-            {
-                // Lấy hướng knockback
-                Vector2 knockbackDirection = other.transform.position - transform.position;
-                knockbackDirection = knockbackDirection.normalized;
+    //void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    if (other.gameObject.layer == LayerMask.NameToLayer(LayerConst.ENEMY_LAYER))
+    //    {
+    //        Rigidbody2D enemyRigidbody = other.gameObject.GetComponent<Rigidbody2D>();
+    //        if (enemyRigidbody != null)
+    //        {
+    //            // Lấy hướng knockback
+    //            Vector2 knockbackDirection = other.transform.position - transform.position;
+    //            knockbackDirection = knockbackDirection.normalized;
 
-                enemyRigidbody.AddForce(knockbackDirection * shieldKnockback[level], ForceMode2D.Impulse);
-            }
+    //            enemyRigidbody.AddForce(knockbackDirection * shieldKnockback[level], ForceMode2D.Impulse);
+    //        }
+    //    }
+    //}
+
+    protected override void OnTriggerEnemy(GameObject target)
+    {
+        if (target.TryGetComponent<Damageable>(out Damageable D))
+        {
+            D.DealDamage(shieldDamage[level], gameObject);
+        }
+        if (target.TryGetComponent<Rigidbody2D>(out Rigidbody2D enemyRb))
+        {
+            print(target.name);
+            // Lấy hướng knockback
+            Vector2 knockbackDirection = enemyRb.transform.position - transform.position;
+            knockbackDirection = knockbackDirection.normalized;
+
+            enemyRb.AddForce(knockbackDirection * shieldKnockback[level], ForceMode2D.Impulse);
         }
     }
 }

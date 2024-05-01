@@ -124,7 +124,7 @@ public class FireballSkill : AbstractSkill, IFirstSkill
     }
 }
 
-public class ExplosionArrowSkill : AbstractSkill, IMoveSkill
+public class ExplosionArrowSkill : AbstractSkill, IFirstSkill
 {
     /*[SerializeField]
     private float[] dashTime = { .1f, .2f, .3f, .5f };*/
@@ -135,7 +135,7 @@ public class ExplosionArrowSkill : AbstractSkill, IMoveSkill
     private bool isExplosion = false;
     public float distance = 2f;
     private Animator anim;
-
+    
     protected override void Awake()
     {
         base.Awake();
@@ -163,12 +163,26 @@ public class ExplosionArrowSkill : AbstractSkill, IMoveSkill
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         arrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward) * Quaternion.Euler(0, 0, 90);
+        if (!arrow.activeSelf) // Kiểm tra xem originalObject có được setActive(false) không
+        {
+            // Nếu originalObject không active, thì instance một đối tượng mới
+            //Instantiate(newInstance, originalObject.transform.position, originalObject.transform.rotation);
+            
+            GameObject explosion_arrow= Instantiate(Resources.Load("explosion_arrow", typeof(GameObject))) as GameObject;
+            explosion_arrow.transform.position = arrow.transform.position;
+            Destroy(explosion_arrow, 2f);
+        }
 
-
+        if (arrow.gameObject.TryGetComponent<DamageSource>(out DamageSource DS))
+        {
+            DS.OnHitEnemy += OnTriggerWeapon;
+        }
+        
         //yield return new WaitForSeconds(dashTime[level]);
         isExplosion = false;
         player.ID.playerEvents.OnMoveSkillUsing?.Invoke(isExplosion);
 
 
     }
+    
 }
