@@ -14,6 +14,8 @@ public struct PlayerEvents
 
     public Action<int> OnToggleActiveSlot;
     public Action OnInventoryToggle;
+    public Action OnPressed;
+    public Action OnRelease;
 
 
     public Action OnZoomCamera;

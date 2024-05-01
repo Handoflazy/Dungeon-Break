@@ -116,6 +116,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Press"",
+                    ""type"": ""Button"",
+                    ""id"": ""2e604c7d-9b96-4fcf-a400-72f9939ccbfc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -371,6 +380,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""OpenInventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ba94aa9a-7ff5-4e18-80a3-cca2702c764f"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Press"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -451,6 +471,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerInput_SkillSecond = m_PlayerInput.FindAction("SkillSecond", throwIfNotFound: true);
         m_PlayerInput_MovementSkill = m_PlayerInput.FindAction("MovementSkill", throwIfNotFound: true);
         m_PlayerInput_OpenInventory = m_PlayerInput.FindAction("OpenInventory", throwIfNotFound: true);
+        m_PlayerInput_Press = m_PlayerInput.FindAction("Press", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_ExitMenu = m_Menu.FindAction("ExitMenu", throwIfNotFound: true);
@@ -530,6 +551,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerInput_SkillSecond;
     private readonly InputAction m_PlayerInput_MovementSkill;
     private readonly InputAction m_PlayerInput_OpenInventory;
+    private readonly InputAction m_PlayerInput_Press;
     public struct PlayerInputActions
     {
         private @PlayerControls m_Wrapper;
@@ -544,6 +566,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @SkillSecond => m_Wrapper.m_PlayerInput_SkillSecond;
         public InputAction @MovementSkill => m_Wrapper.m_PlayerInput_MovementSkill;
         public InputAction @OpenInventory => m_Wrapper.m_PlayerInput_OpenInventory;
+        public InputAction @Press => m_Wrapper.m_PlayerInput_Press;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -583,6 +606,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @OpenInventory.started += instance.OnOpenInventory;
             @OpenInventory.performed += instance.OnOpenInventory;
             @OpenInventory.canceled += instance.OnOpenInventory;
+            @Press.started += instance.OnPress;
+            @Press.performed += instance.OnPress;
+            @Press.canceled += instance.OnPress;
         }
 
         private void UnregisterCallbacks(IPlayerInputActions instance)
@@ -617,6 +643,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @OpenInventory.started -= instance.OnOpenInventory;
             @OpenInventory.performed -= instance.OnOpenInventory;
             @OpenInventory.canceled -= instance.OnOpenInventory;
+            @Press.started -= instance.OnPress;
+            @Press.performed -= instance.OnPress;
+            @Press.canceled -= instance.OnPress;
         }
 
         public void RemoveCallbacks(IPlayerInputActions instance)
@@ -776,6 +805,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnSkillSecond(InputAction.CallbackContext context);
         void OnMovementSkill(InputAction.CallbackContext context);
         void OnOpenInventory(InputAction.CallbackContext context);
+        void OnPress(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

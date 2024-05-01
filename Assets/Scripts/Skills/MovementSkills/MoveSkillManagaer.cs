@@ -80,7 +80,7 @@ public class BackStepSkill : AbstractSkill, IMoveSkill
         trailRenderer = transform.GetComponentInChildren<TrailRenderer>();
         trailRenderer.startColor = Color.blue;
         anim = GetComponentInChildren<Animator>();
-        anim_2 = GetComponent<SkillManager>().currentWeapon.gameObject.GetComponent<Animator>();
+        anim_2 = GetComponent<SkillManager>().CurrentWeapon.gameObject.GetComponent<Animator>();
     }
     public override void OnUsed()
     {

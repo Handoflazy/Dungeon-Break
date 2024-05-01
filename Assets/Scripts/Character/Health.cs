@@ -9,26 +9,26 @@ namespace FirstVersion
 
     public class Health : MonoBehaviour
     {
-        [SerializeField]
-        private int currentHealth, maxHealth;
+        [SerializeField] private int maxHealth;
+        [SerializeField] private int currentHealth;
+        [SerializeField] private bool isDead = false;
 
-        public UnityEvent<GameObject> OnHitWithReference, OnDeathWithReference;
+        public UnityEvent<GameObject> OnHitWithReference;
+        public UnityEvent<GameObject> OnDeathWithReference;
         public UnityEvent OnDeathEvent;
+        public UnityEvent<int> OnHealthChange,OnInitalHealthBar;
+        public UnityEvent OnHit;
 
-        public UnityEvent<int> OnHealthChange;
-        public UnityEvent<int> OnInitalHealthBar;
-
-        [SerializeField]
-        private bool isDead = false;
+   
 
         public int MaxHealth { get => maxHealth; set => maxHealth = value; }
         public int CurrentHealth { get => currentHealth; set => currentHealth = value; }
 
         private void Start()
         {
-            InitializeHealth(maxHealth);
+            SetInitializeHealth(maxHealth);
         }
-        public void InitializeHealth(int healthValue)
+        public void SetInitializeHealth(int healthValue)
         {
             currentHealth = healthValue;
             maxHealth = healthValue;
@@ -37,22 +37,28 @@ namespace FirstVersion
         }
 
         public void TakeDamage(int amount, GameObject sender)
-        {    
-            if(sender.layer == gameObject.layer)
-            {
-                return;
-            }
+        {
+            if(IsFriendly(sender));
             if (isDead)
                 return;
-            currentHealth -= amount;
-            if(currentHealth < 0)
+            currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
+            OnHit?.Invoke();
+            if (currentHealth <= 0)
             {
-                currentHealth = 0;
                 isDead = true;
                 OnDeathEvent?.Invoke();
                 OnDeathWithReference?.Invoke(sender);
             }
             OnHealthChange?.Invoke(currentHealth);
+        }
+
+        private bool IsFriendly(GameObject sender)
+        {
+            if (sender.layer == gameObject.layer)
+            {
+                return true;
+            }
+            return false;
         }
 
         public void AddHealth(int amount)

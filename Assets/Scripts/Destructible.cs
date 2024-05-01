@@ -32,9 +32,8 @@ public class Destructible : MonoBehaviour
     }
     public IEnumerator DisappearAfterSeconds(float t)
     {
-
-        yield return new WaitForSeconds(t);
         if (deathParticle) Instantiate(deathParticle, transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(t);
         gameObject.SetActive(false);
     }
 }

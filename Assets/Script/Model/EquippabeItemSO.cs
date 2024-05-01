@@ -22,7 +22,7 @@ namespace Inventory.Model
 
         public bool PerformAction(GameObject character, List<ItemParameter> itemState)
         {
-            WeaponParent weapon = character.GetComponentInChildren<WeaponParent>();
+            AgentParent weapon = character.GetComponentInChildren<AgentParent>();
             if(weapon != null)
             {
                 weapon.SetWeapon(this,itemState==null?DefautParameters:itemState);

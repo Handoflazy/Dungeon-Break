@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySystem : MonoBehaviour
+public class EnemySystem : AgentSystem
 {
-    // Start is called before the first frame update
-    void Start()
+    protected EnemyAIBrain player;
+    protected BoxCollider2D boxCollider2D;
+    protected virtual void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        boxCollider2D = GetComponent<BoxCollider2D>();
+        player = transform.root.GetComponent<EnemyAIBrain>();
     }
 }
