@@ -1,14 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
 [RequireComponent(typeof(Duration))]
 public class SkillManager : PlayerSystem
 {
-
-    
-
     public BoolEvent OnUsingMoveSkill;
     [field:SerializeField]
     public Weapon CurrentWeapon { get; set; }
@@ -37,7 +35,8 @@ public class SkillManager : PlayerSystem
     private void OnEnable()
     {
         player.ID.playerEvents.OnMoveSkillUsed += OnMoveSkillUse;
-        player.ID.playerEvents.OnChangeWeapon += OnWeaponChangeEvent;
+        //player.ID.playerEvents.OnChangeWeapon += OnWeaponChangeEvent;
+        player.ID.playerEvents.OnLevelUp += OnLevelChangeEvent;
         player.ID.playerEvents.OnMoveSkillUsing += UsingSkillTrigger;
         player.ID.playerEvents.OnSkillSecondUsed += OnSecondSkillUse;
         player.ID.playerEvents.OnSkillOneUsed += OnFirstSkillUse;
@@ -46,7 +45,8 @@ public class SkillManager : PlayerSystem
     private void OnDisable()
     {
         player.ID.playerEvents.OnMoveSkillUsed -= OnMoveSkillUse;
-        player.ID.playerEvents.OnChangeWeapon -= OnWeaponChangeEvent;
+        //player.ID.playerEvents.OnChangeWeapon -= OnWeaponChangeEvent;
+        player.ID.playerEvents.OnLevelUp -= OnLevelChangeEvent;
         player.ID.playerEvents.OnMoveSkillUsing -= UsingSkillTrigger;
         player.ID.playerEvents.OnSkillSecondUsed -= OnSecondSkillUse;
         player.ID.playerEvents.OnSkillSecondUsed -= OnFirstSkillUse;
@@ -57,11 +57,10 @@ public class SkillManager : PlayerSystem
         OnUsingMoveSkill?.Invoke(isUsing);
     }
 
-
-    private void HandleWeaponType()
+    private void HandleLevelUp()
     {
-        //if (CurrentWeapon == null)
-        //    return;
+        int level = player.playerStats.level;
+        print(level);
         Component c = gameObject.GetComponent<IMoveSkill>() as Component;
         Component e = gameObject.GetComponent<IFirstSkill>() as Component;
         Component d = gameObject.GetComponent<ISecondSkill>() as Component;
@@ -78,35 +77,32 @@ public class SkillManager : PlayerSystem
             Destroy(e);
         }
 
-
-        switch (weaponType)
+        if(level >= 5 && level < 10)
         {
-            case WeaponType.Melee:
-                moveSkill = gameObject.AddComponent<DashSkill>();
-                secondSkill = gameObject.AddComponent<Giganize>();
-                firstSkill = gameObject.AddComponent<Wideslash>();
-
-                break;
-            case WeaponType.Range:
-                moveSkill = gameObject.AddComponent<BackStepSkill>();
-                secondSkill = gameObject.AddComponent<MultiArrowSkill>();
-                firstSkill = gameObject.AddComponent<ExplosionArrowSkill>();
-                break;
-            case WeaponType.Staff:
-                moveSkill = gameObject.AddComponent<TeleportSkill>();
-                secondSkill = gameObject.AddComponent<MagicShield>();
-                firstSkill = gameObject.AddComponent<FireballSkill>(); 
-                break;
-            default:
-                moveSkill = null;
-                secondSkill = null;
-                firstSkill = null;
-                break;
-
+            moveSkill = gameObject.AddComponent<DashSkill>();
+            firstSkill = null;
+            secondSkill = null;
         }
-
-
+        else if(level >= 10 && level < 15)
+        {
+            moveSkill = gameObject.AddComponent<DashSkill>();
+            firstSkill = gameObject.AddComponent<BackStepSkill>();
+            secondSkill = null;
+        }
+        else if(level >= 15 /*&& level < 20*/)
+        {
+            moveSkill = gameObject.AddComponent<DashSkill>();
+            firstSkill = gameObject.AddComponent<BackStepSkill>();
+            secondSkill = gameObject.AddComponent<TeleportSkill>();
+        }
+        else
+        {
+            moveSkill = null;
+            secondSkill = null;
+            firstSkill = null;
+        }
     }
+
     public void OnMoveSkillUse()
     {
         if (!moveSkill)
@@ -160,20 +156,81 @@ public class SkillManager : PlayerSystem
         isAttackSkillCooldown = false;
     }
 
+    public void OnLevelChangeEvent()
+    {
+        HandleLevelUp();
+    }
+
     private void Start()
     {
-        HandleWeaponType();
+        //HandleWeaponType();
+        HandleLevelUp();
         isMoveSkillCooldown = false;
     }
 
-    public void OnWeaponChangeEvent(Weapon weapon)
-    {
-        CurrentWeapon = weapon;
-        if (weapon == null)
-            return;
-        weaponType = weapon.WeaponType;
-        HandleWeaponType();
-    }
+    //private void LateUpdate()
+    //{
+    //    HandleLevelUp();
+    //}
+
+
+    //private void HandleWeaponType()
+    //{
+    //    if (CurrentWeapon == null)
+    //        return;
+    //    Component c = gameObject.GetComponent<IMoveSkill>() as Component;
+    //    Component e = gameObject.GetComponent<IFirstSkill>() as Component;
+    //    Component d = gameObject.GetComponent<ISecondSkill>() as Component;
+    //    if (c != null)
+    //    {
+    //        Destroy(c);
+    //    }
+    //    if (d != null)
+    //    {
+    //        Destroy(d);
+    //    }
+    //    if (e != null)
+    //    {
+    //        Destroy(e);
+    //    }
+
+
+    //    switch (weaponType)
+    //    {
+    //        case WeaponType.Melee:
+    //            moveSkill = gameObject.AddComponent<DashSkill>();
+    //            secondSkill = gameObject.AddComponent<Giganize>();
+    //            firstSkill = gameObject.AddComponent<Wideslash>();
+
+    //            break;
+    //        case WeaponType.Range:
+    //            moveSkill = gameObject.AddComponent<BackStepSkill>();
+    //            secondSkill = gameObject.AddComponent<MultiArrowSkill>();
+    //            firstSkill = gameObject.AddComponent<ExplosionArrowSkill>();
+    //            break;
+    //        case WeaponType.Staff:
+    //            moveSkill = gameObject.AddComponent<TeleportSkill>();
+    //            secondSkill = gameObject.AddComponent<MagicShield>();
+    //            firstSkill = gameObject.AddComponent<FireballSkill>(); 
+    //            break;
+    //        default:
+    //            moveSkill = null;
+    //            secondSkill = null;
+    //            firstSkill = null;
+    //            break;
+    //    }
+    //}
+
+    //public void OnWeaponChangeEvent(Weapon weapon)
+    //{
+    //    CurrentWeapon = weapon;
+    //    if (weapon == null)
+    //        return;
+    //    weaponType = weapon.WeaponType;
+    //    HandleWeaponType();
+    //}
+
+
 }
 
 
