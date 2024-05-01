@@ -49,7 +49,7 @@ public class RegularBullet : Bullet
        
         if (enemy.TryGetComponent<Damageable>(out Damageable component))
         {
-            component.DealDamage(BulletData.Damage, gameObject);
+            component.DealDamage(BulletData.Damage, transform.root.gameObject);
             Instantiate(BulletData.ImpactEnemyPrefab, enemy.transform.position+(Vector3)randomOffset, Quaternion.identity);
         }
         else

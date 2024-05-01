@@ -17,7 +17,7 @@ MonoBehaviour:
   damage: 0
   moveSpeed: 0
   knockForce: 0
-  minXpBonus: 0
-  maxXpBonus: 0
+  minXpBonus: 10
+  maxXpBonus: 20
   hpUp: 0
   damageUp: 0

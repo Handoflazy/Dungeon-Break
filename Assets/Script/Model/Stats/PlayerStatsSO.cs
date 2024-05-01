@@ -7,9 +7,10 @@ using UnityEngine;
 public class PlayerStatsSO : ActorStats
 {
     [Header("Level Up Base:")]
-    public int level;
-    public int Maxlevel;
 
+    public int Maxlevel;
+    [field:SerializeField]
+    public int level { get; private set; }
     public int xp;
     public int levelUpXpRequire;
 
@@ -21,6 +22,7 @@ public class PlayerStatsSO : ActorStats
     public int damageUp;
     public int moveSpeedUp;
 
+    public bool ResetStat;
 
     public override bool IsMaxLevel()
     {
@@ -29,7 +31,7 @@ public class PlayerStatsSO : ActorStats
 
     public override void load()
     {
-        if (!string.IsNullOrEmpty(Prefs.playerData))
+        if (!string.IsNullOrEmpty(Prefs.playerData)&&!ResetStat)
         {
             JsonUtility.FromJsonOverwrite(Prefs.playerData,this);
         }

@@ -6,6 +6,9 @@ using UnityEngine.UIElements;
 [RequireComponent(typeof(Duration))]
 public class SkillManager : PlayerSystem
 {
+
+    
+
     public BoolEvent OnUsingMoveSkill;
     [field:SerializeField]
     public Weapon CurrentWeapon { get; set; }
@@ -57,8 +60,8 @@ public class SkillManager : PlayerSystem
 
     private void HandleWeaponType()
     {
-        if (CurrentWeapon == null)
-            return;
+        //if (CurrentWeapon == null)
+        //    return;
         Component c = gameObject.GetComponent<IMoveSkill>() as Component;
         Component e = gameObject.GetComponent<IFirstSkill>() as Component;
         Component d = gameObject.GetComponent<ISecondSkill>() as Component;
