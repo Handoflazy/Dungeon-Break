@@ -11,7 +11,7 @@ public class StatsManagerSystem : PlayerSystem
         player.playerStats.Upgrade(OnUpgradeStats);
         player.ID.playerEvents.OnAddXp?.Invoke();
         player.playerStats.Save();
-        Debug.Log(2);
+    
     }
 
     private void OnUpgradeStats()

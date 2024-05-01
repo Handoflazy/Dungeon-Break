@@ -8,7 +8,7 @@ public class SkillManager : PlayerSystem
 {
     public BoolEvent OnUsingMoveSkill;
     [field:SerializeField]
-    public Weapon currentWeapon { get; set; }
+    public Weapon CurrentWeapon { get; set; }
 
     private Duration duration;
 
@@ -57,7 +57,7 @@ public class SkillManager : PlayerSystem
 
     private void HandleWeaponType()
     {
-        if (currentWeapon == null)
+        if (CurrentWeapon == null)
             return;
         Component c = gameObject.GetComponent<IMoveSkill>() as Component;
         Component e = gameObject.GetComponent<IFirstSkill>() as Component;
@@ -165,7 +165,7 @@ public class SkillManager : PlayerSystem
 
     public void OnWeaponChangeEvent(Weapon weapon)
     {
-        currentWeapon = weapon;
+        CurrentWeapon = weapon;
         if (weapon == null)
             return;
         weaponType = weapon.WeaponType;

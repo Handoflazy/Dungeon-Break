@@ -19,7 +19,7 @@ public class Wideslash : AbstractSkill, IFirstSkill
 
     private void Start()
     {
-       Anim = GetComponent<SkillManager>().currentWeapon.gameObject.GetComponent<Animator>();
+       Anim = GetComponent<SkillManager>().CurrentWeapon.gameObject.GetComponent<Animator>();
     }
 
     private readonly int wideSlash = Animator.StringToHash("WideSlash");
@@ -139,7 +139,7 @@ public class ExplosionArrowSkill : AbstractSkill, IFirstSkill
     protected override void Awake()
     {
         base.Awake();
-        anim = GetComponent<SkillManager>().currentWeapon.gameObject.GetComponent<Animator>();
+        anim = GetComponent<SkillManager>().CurrentWeapon.gameObject.GetComponent<Animator>();
     }
     public override void OnUsed()
     {

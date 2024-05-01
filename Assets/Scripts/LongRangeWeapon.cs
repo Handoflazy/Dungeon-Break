@@ -18,7 +18,7 @@ public class RangerWeapon : Weapon
     [SerializeField]
     private void Start()
     {
-        weaponParent = transform.parent.GetComponent<WeaponParent>();
+        weaponParent = transform.parent.GetComponent<AgentParent>();
         WeaponAnim = GetComponent<Animator>();
     }
 

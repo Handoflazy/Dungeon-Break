@@ -6,6 +6,20 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     PlayerID playerID;
+
+    [SerializeField]
+    private Texture2D cursorTexture = null;
+
+    private void Start()
+    {
+        SetCursorIcon();
+    }
+
+    private void SetCursorIcon()
+    {
+        Cursor.SetCursor(cursorTexture,new Vector2(cursorTexture.width/2f,cursorTexture.height/2f),CursorMode.Auto);
+    }
+
     private void GameOver()
     {
        Time.timeScale = 0;

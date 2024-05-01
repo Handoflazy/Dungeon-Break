@@ -131,7 +131,7 @@ public class MultiArrowSkill : AbstractSkill, IMoveSkill
     protected override void Awake()
     {
         base.Awake();
-        anim = GetComponent<SkillManager>().currentWeapon.gameObject.GetComponent<Animator>();
+        anim = GetComponent<SkillManager>().CurrentWeapon.gameObject.GetComponent<Animator>();
     }
     public override void OnUsed()
     {

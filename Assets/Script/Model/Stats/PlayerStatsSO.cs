@@ -41,7 +41,7 @@ public class PlayerStatsSO : ActorStats
     }
     public override void Upgrade(Action OnSuccess = null, Action OnFailled = null)
     {
-        Debug.Log(1);
+      
         float upgareFormular = (level / 2 - 0.5f) * 0.5f;
         while (xp >= levelUpXpRequire && !IsMaxLevel())
         {

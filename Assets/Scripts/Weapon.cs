@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : Item, IWeapon
+public class Weapon : MonoBehaviour
 {
     protected Animator WeaponAnim;
     public WeaponType WeaponType;
-    public WeaponParent weaponParent;
-    public override void Attack()
+    public AgentParent weaponParent;
+    public virtual void Attack()
     {
         throw new System.NotImplementedException();
     }

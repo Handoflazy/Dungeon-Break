@@ -10,10 +10,10 @@ namespace PlayerController
 
     public class PlayerHealth : Health
     {
-        protected PlayerReform player;
+        protected Player player;
         private void Awake()
         {
-            player = GetComponent<PlayerReform>();
+            player = GetComponent<Player>();
             MaxHealth = player.playerStats.hp;
         }
 
