@@ -8,11 +8,16 @@ public class RegularBullet : Bullet
 {
     protected Rigidbody2D rb;
 
+    private bool isDead = false;
+    private ObstacleImpactGenerator obstacleImpactGenerator;
 
     [SerializeField]
     protected LayerMask ObstacleLayers,DamageableLayers;
 
-
+    private void OnEnable()
+    {
+        isDead = false;
+    }
 
     public override BulletDataSO BulletData 
     { get => base.BulletData;
@@ -32,6 +37,8 @@ public class RegularBullet : Bullet
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(isDead&&bulletData.GoThrougHitable==false) return;
+        isDead = true;
         if((ObstacleLayers & (1<<collision.gameObject.layer))!=0)
         {
             HitObstacle(collision.gameObject);
@@ -40,7 +47,7 @@ public class RegularBullet : Bullet
         {
             HitEnemy(collision.gameObject);
         }
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     private void HitEnemy(GameObject enemy)
@@ -51,6 +58,10 @@ public class RegularBullet : Bullet
         {
             component.DealDamage(BulletData.Damage, transform.root.gameObject);
             Instantiate(BulletData.ImpactEnemyPrefab, enemy.transform.position+(Vector3)randomOffset, Quaternion.identity);
+            if(enemy.TryGetComponent<Knockable>(out Knockable knockable))
+            {
+                knockable.KnockBack(transform.right, bulletData.KnockBackPower, bulletData.KnockBackDelay);
+            }
         }
         else
         {

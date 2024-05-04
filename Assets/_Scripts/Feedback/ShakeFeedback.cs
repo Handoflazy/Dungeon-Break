@@ -16,14 +16,14 @@ public class ShakeFeedback : Feedback
     [SerializeField]
     private bool snapping = false, fadeout = true;
 
-    public override void CompletePreviousFeedBack()
+    public override void CompletePreviousFeedback()
     {
         objectToShake.transform.DOComplete();
     }
 
-    public override void CreateFeedBack()
+    public override void CreateFeedback()
     {
-        CompletePreviousFeedBack();
+        CompletePreviousFeedback();
         objectToShake.transform.DOShakePosition(duration, strength, vibrato, randomness, snapping, fadeout);
     }
 }

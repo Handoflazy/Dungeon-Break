@@ -13,7 +13,7 @@ public class FeedbackPlayer : MonoBehaviour
         FinishfeedBack();
         foreach (var feedback in feedbackToPlay)
         {
-            feedback.CreateFeedBack();
+            feedback.CreateFeedback();
         }
     }
 
@@ -21,7 +21,7 @@ public class FeedbackPlayer : MonoBehaviour
     {
         foreach (var feedback in feedbackToPlay)
         {
-            feedback.CompletePreviousFeedBack();
+            feedback.CompletePreviousFeedback();
         }
     }
 }

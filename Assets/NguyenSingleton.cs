@@ -38,7 +38,7 @@ public class NguyenSingleton : MonoBehaviour
             SceneManagement = GetComponentInChildren<SceneManagement>();
             UIfade = GetComponentInChildren<UIFade>();
             ActiveInventory = GetComponentInChildren<ActiveInventoryUI>();
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
             UIInventoryPage = GetComponentInChildren<UIInventoryPage>();
             AudioManager = GetComponentInChildren<AudioController>();
             UISettingController = GetComponentInChildren<UISettingController>();

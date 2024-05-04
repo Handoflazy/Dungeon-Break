@@ -14,13 +14,13 @@ public class FlashLightFeedback : Feedback
 
     [SerializeField]
     private bool defautState = false;
-    public override void CompletePreviousFeedBack()
+    public override void CompletePreviousFeedback()
     {
        StopAllCoroutines();
         lightTarget.enabled = false;
     }
 
-    public override void CreateFeedBack()
+    public override void CreateFeedback()
     {
         StartCoroutine(ToggleLightCoroutine(lightOnDelay, true, () => StartCoroutine(ToggleLightCoroutine(lightOffDelay, false))));
     }

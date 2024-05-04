@@ -24,7 +24,7 @@ public class Player : ActorReform
                     {
                         return;
                     }
-                   // Destroy(gameObject);
+                    //Destroy(gameObject);
                     return;
                 }
             }

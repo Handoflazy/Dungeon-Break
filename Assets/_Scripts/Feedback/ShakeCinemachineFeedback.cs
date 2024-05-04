@@ -24,13 +24,13 @@ public class ShakeCinemachineFeedback : Feedback
         noise = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
-    public override void CompletePreviousFeedBack()
+    public override void CompletePreviousFeedback()
     {
         StopAllCoroutines();
         noise.m_AmplitudeGain = 0;
     }
 
-    public override void CreateFeedBack()
+    public override void CreateFeedback()
     {
         noise.m_AmplitudeGain = amplitude;
         noise.m_FrequencyGain = intensify;

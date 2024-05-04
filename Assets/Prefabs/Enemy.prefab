@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5355f231a5c062043a5cd4436e7ea738, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Distance>k__BackingField: 0.4
+  <Distance>k__BackingField: 1.51
 --- !u!1 &4542028446811184368
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,6 +277,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2723316751616590011}
   - component: {fileID: 6719243496576731863}
+  - component: {fileID: 1894755097680727646}
+  - component: {fileID: 4203637071825413392}
   m_Layer: 11
   m_Name: FeedbackHit
   m_TagString: Untagged
@@ -312,8 +314,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 4338820485020657130}
-  flashTime: 0.1
-  flashMaterial: {fileID: -876546973899608171, guid: 6b89fcfe38a1f1c4b9cfa9fbf60c7e34, type: 3}
+  flashTime: 0.2
+  flashMaterial: {fileID: 2100000, guid: 534fc2ddc8429814a95cfadd0b8c4015, type: 2}
+--- !u!114 &1894755097680727646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4542028446811184368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3943a19d820f9f74c82566c78d688316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freezeTimeDelay: 0.001
+  unfreezeTimeDelay: 0.02
+  timeFreezeValue: 0.212
+--- !u!114 &4203637071825413392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4542028446811184368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32a5694463a6ad84f9f6608b6f453b5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  feedbackToPlay:
+  - {fileID: 6719243496576731863}
+  - {fileID: 1894755097680727646}
 --- !u!1 &4972972530110485556
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,7 +800,7 @@ MonoBehaviour:
   - {x: -0.0222193, y: -0.06617352, z: 0}
   m_ShapePathHash: 1973103157
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1650
+  m_InstanceId: 195508
   m_LocalBounds:
     m_Center: {x: 0.0035929978, y: 0.0063259304, z: 0}
     m_Extent: {x: 0.04074821, y: 0.072499454, z: 0}
@@ -830,7 +862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 4338820485020657130}
-  duration: 0.7
+  duration: 1
   <DeathCallback>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
@@ -847,6 +879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   feedbackToPlay:
+  - {fileID: 6719243496576731863}
   - {fileID: 5682725457533640770}
 --- !u!1 &6184835631616496394
 GameObject:
@@ -1060,9 +1093,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 6719243496576731863}
-        m_TargetAssemblyTypeName: FlashSpiteFeedback, Assembly-CSharp
-        m_MethodName: CreateFeedBack
+      - m_Target: {fileID: 4203637071825413392}
+        m_TargetAssemblyTypeName: FeedbackPlayer, Assembly-CSharp
+        m_MethodName: PlayFeedBack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1110,7 +1143,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MovementData>k__BackingField: {fileID: 11400000, guid: da2bac207412f8d468d4f71c8680c392, type: 2}
-  pushResist: 0
 --- !u!114 &8423250460634480414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1138,6 +1170,33 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+  OnSpawn:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6184835631616496394}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 6184835631616496394}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
   <EnemyAttack>k__BackingField: {fileID: 0}
   <CurrentState>k__BackingField: {fileID: 2862909219869834819}

@@ -60,7 +60,6 @@ public class SkillManager : PlayerSystem
     private void HandleLevelUp()
     {
         int level = player.playerStats.level;
-        print(level);
         Component c = gameObject.GetComponent<IMoveSkill>() as Component;
         Component e = gameObject.GetComponent<IFirstSkill>() as Component;
         Component d = gameObject.GetComponent<ISecondSkill>() as Component;

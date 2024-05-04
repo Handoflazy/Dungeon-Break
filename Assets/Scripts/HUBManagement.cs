@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using TMPro;
 
 public class HUBManagement : MonoBehaviour
 {
@@ -11,23 +12,28 @@ public class HUBManagement : MonoBehaviour
     [SerializeField] private SliderBar healthBar;
     [SerializeField] private SliderBar durationBar;
 
+    [SerializeField] private UIAmmo uiAmmo;
+
+    [SerializeField] GameObject deathMenu;
+
+    private void Awake()
+    {
+        uiAmmo = GetComponentInChildren<UIAmmo>();
+    }
     private void OnEnable()
     {
+        playerID.playerEvents.onRespawn += HideGameOver;
         playerID.playerEvents.OnDurationChanged += OnDurationChanged;
         playerID.playerEvents.onInitialDuration += InitialMaxValueDurationBar;
+        playerID.playerEvents.UpdateAmmo += uiAmmo.UpdateBulletsText;
     }
     private void OnDisable()    
     {
+        playerID.playerEvents.onRespawn -= HideGameOver;
         playerID.playerEvents.OnDurationChanged -= OnDurationChanged;
         playerID.playerEvents.onInitialDuration -= InitialMaxValueDurationBar;
+        playerID.playerEvents.UpdateAmmo -= uiAmmo.UpdateBulletsText;
     }
-    private void Awake()
-    {
-        healthBar = transform.GetChild(0).GetComponent<SliderBar>();
-        durationBar = transform.GetChild(1).GetComponent<SliderBar>();
-
-    }
-
     public void InitialMaxValueHealthBar(int maxHealth)
     {
        healthBar.SetMaxValue(maxHealth);
@@ -48,12 +54,12 @@ public class HUBManagement : MonoBehaviour
 
 
 
-    //public void DisplayGameOver()
-    //{
-    //    gameOverPanel.gameObject.SetActive(true);
-    //}
-    //public void HideGameOver()
-    //{
-    //    gameOverPanel.gameObject.SetActive(false);
-    //}
+    public void DisplayGameOver()
+    {
+        deathMenu.SetActive(true);
+    }
+    public void HideGameOver()
+    {
+        deathMenu.SetActive(false);
+    }
 }

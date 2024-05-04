@@ -10,6 +10,7 @@ public class EnemyAIBrain : ActorReform
     public PlayerEvents playerEvents;
 
     public UnityEvent<Vector2> OnPointerPositionChange;
+
     [field:SerializeField]
     public EnemyAttack EnemyAttack {  get; set; }
 

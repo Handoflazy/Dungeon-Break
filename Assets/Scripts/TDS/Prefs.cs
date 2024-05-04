@@ -15,19 +15,6 @@ public static class Prefs
     }
 
 
-
-    public static string enemeyData
-    {
-        set => PlayerPrefs.SetString(PrefConsts.ENEMY_DATA_KEY, value);
-        get => PlayerPrefs.GetString(PrefConsts.ENEMY_DATA_KEY, "");
-    }
-
-    public static string playerWeaponData
-    {
-        set => PlayerPrefs.SetString(PrefConsts.PLAYER_WEAPON_DATA_KEY, value);
-        get => PlayerPrefs.GetString(PrefConsts.PLAYER_WEAPON_DATA_KEY, "");
-    }
-
     public static bool IsEnoughCoins(int coinToCheck)
     {
         return coins >= coinToCheck;

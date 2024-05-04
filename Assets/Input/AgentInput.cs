@@ -8,9 +8,17 @@ using Vector2 = UnityEngine.Vector2;
 using UnityEngine.Events;
 public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, PlayerControls.IMenuActions, PlayerControls.IDealthMenuActions, PlayerControls.IInventoryActions
 {
+
+
+
     PlayerControls inputActions;
     public Vector2 MousePos { get; private set; }
 
+
+    public void OnDeathEvent()
+    {
+        inputActions.PlayerInput.Disable();
+    }
 
     protected override void Awake()
     {

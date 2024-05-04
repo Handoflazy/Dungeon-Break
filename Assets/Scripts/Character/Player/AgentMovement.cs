@@ -4,58 +4,34 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class AgentMovement : PlayerSystem
+public abstract class AgentMovement : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    protected Rigidbody2D rb;
+    protected BoxCollider2D boxCollider2D;
     [field:SerializeField]
     MovementDataS0 MovementData { get; set; }
 
 
     protected float currentSpeed = 0;
-    private Vector2 oldMovementInput = Vector2.zero;
-    private Vector2 newMovementInput = Vector2.zero;
-    private float speedLimitActor = 1f;
-
-
-    //Combat
-    Vector2 pushDirectIon;
-    [Range(0,1),SerializeField] float pushResist;
-
-
+    protected Vector2 oldMovementInput = Vector2.zero;
+    protected Vector2 newMovementInput = Vector2.zero;
+    protected float speedLimitActor = 1f;
 
 
     bool isMoveSkillUsing;
-    private void OnEnable()
-    {
-        player.ID.playerEvents.OnMove += MoveAgent;
-        player.ID.playerEvents.OnUsingWeapon += OnAttackingEvent;
-        player.ID.playerEvents.OnMoveSkillUsing += OnMoveSkillUsingEvent;
-        player.ID.playerEvents.OnBeginPush += OnBePush;
-        SceneManager.activeSceneChanged += OnActiveSceneChanged;
-    }
-    private void OnBePush(Vector2 pushDirection)
-    {
-        this.pushDirectIon = pushDirection;
-    }
-    private void OnActiveSceneChanged(Scene previousScene, Scene newScene)
+    protected bool isKnockback;
+    protected virtual void OnActiveSceneChanged(Scene previousScene, Scene newScene)
     {
         currentSpeed = 0;
     }
 
-    private void OnDisable()
-    {
-        player.ID.playerEvents.OnMove -= MoveAgent;
-        player.ID.playerEvents.OnUsingWeapon -= OnAttackingEvent;
-        player.ID.playerEvents.OnMoveSkillUsing -= OnMoveSkillUsingEvent;
-        player.ID.playerEvents.OnBeginPush -= OnBePush;
-    }
-    void OnMoveSkillUsingEvent(bool isUsed)
+    protected virtual void OnMoveSkillUsingEvent(bool isUsed)
     {
         isMoveSkillUsing = isUsed;
        
     }
 
-    void OnAttackingEvent(bool mode)
+    protected virtual void OnAttackingEvent(bool mode)
     {
         if(mode)
         {
@@ -66,7 +42,7 @@ public class AgentMovement : PlayerSystem
             speedLimitActor = 1;
         }
     }
-    public void MoveAgent(Vector2 movementInput)
+    public virtual void MoveAgent(Vector2 movementInput)
     {
         //if(Vector2.Dot(oldMovementInput,movementInput) <0) {
         //    currentSpeed = 0;
@@ -74,21 +50,22 @@ public class AgentMovement : PlayerSystem
         newMovementInput = movementInput.normalized;
 
     }
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
-        if (!isMoveSkillUsing) { 
-            UpdateMotor(newMovementInput*speedLimitActor+pushDirectIon);
+
+        if (!isMoveSkillUsing&&!isKnockback) { 
+            UpdateMotor(newMovementInput*speedLimitActor);
         }
         
     }
-    protected override void Awake()
+    protected  virtual void Awake()
     {
 
-        base.Awake();
+       boxCollider2D = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void UpdateMotor(Vector2 Input)
+    protected virtual void UpdateMotor(Vector2 Input)
     {
         
         if (Input.magnitude > 0 && currentSpeed >= 0)
@@ -106,5 +83,34 @@ public class AgentMovement : PlayerSystem
 
         rb.velocity = oldMovementInput * currentSpeed;
 
+    }
+    public virtual void Knockback(Vector2 direction,float power,float duration)
+    {
+        if (isKnockback==false)
+        {
+            isKnockback = true;
+            StartCoroutine(KnockBackCoroundtine(direction, power, duration));
+
+        }
+    }
+    public virtual void ResetKnockback()
+    {
+        
+        StopCoroutine("KnockBackCoroundtine");
+        ResetKnockBackParameters();
+    }
+
+    protected IEnumerator KnockBackCoroundtine(Vector2 direction, float power, float duration)
+    {
+        rb.AddForce(direction.normalized * power, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(duration);
+        ResetKnockBackParameters();
+    }
+
+    protected virtual void ResetKnockBackParameters()
+    {
+        currentSpeed = 0;
+        rb.velocity = Vector2.zero;
+        isKnockback = false;
     }
 }

@@ -8,11 +8,11 @@ public class Flash : Feedback
     [SerializeField] private float restoreDefautMatTime = .2f;
 
     private Material defaultMat;
+    [SerializeField]
     private SpriteRenderer spriteRenderer;
 
-    private void Awake()
+    private void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
         defaultMat = spriteRenderer.material;
     }
     public float GetRestoreMatTime()
@@ -25,12 +25,12 @@ public class Flash : Feedback
         yield return new WaitForSeconds(restoreDefautMatTime);
         spriteRenderer.material = defaultMat;
     }
-    public override void CreateFeedBack()
+    public override void CreateFeedback()
     {
         StartCoroutine(FlashRoutine());
     }
 
-    public override void CompletePreviousFeedBack()
+    public override void CompletePreviousFeedback()
     {
         StopAllCoroutines();
     }

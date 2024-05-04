@@ -28,7 +28,7 @@ public class BulletDataSO : ScriptableObject
     public GameObject ImpactObstaclePrefab { get; set; }
     [field: SerializeField]
     public GameObject ImpactEnemyPrefab { get; set; }
-    [field: SerializeField, Range(1, 20)]
+    [field: SerializeField, Range(.1f, 20)]
     public float KnockBackPower { get; set; } = 1;
     [field: SerializeField, Range(.01f, 1f)]
     public float KnockBackDelay { get; set; } = 0;

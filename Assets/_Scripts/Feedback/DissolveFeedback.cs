@@ -8,29 +8,28 @@ public class DissolveFeedback : Feedback
 {
     [SerializeField]
     private SpriteRenderer spriteRenderer = null;
-
     [SerializeField]
-    private float duration = 0.1f;
-
+    private float duration = 0.05f;
     [field: SerializeField]
     public UnityEvent DeathCallback { get; set; }
 
-
-    public override void CompletePreviousFeedBack()
+    public override void CompletePreviousFeedback()
     {
+        if (spriteRenderer == null)
+            return;
         spriteRenderer.DOComplete();
         spriteRenderer.material.DOComplete();
     }
 
-    public override void CreateFeedBack()
+    public override void CreateFeedback()
     {
+
+        CompletePreviousFeedback();
         var sequence = DOTween.Sequence();
-        sequence.Append(spriteRenderer.material.DOFloat(0, "_Dissolve", duration));
-        print(1);
+        sequence.Append(spriteRenderer.material.DOFloat(0, ShaderConst.DISSOLVE, duration));
         if (DeathCallback != null)
         {
             sequence.AppendCallback(() => DeathCallback.Invoke());
         }
-
     }
 }

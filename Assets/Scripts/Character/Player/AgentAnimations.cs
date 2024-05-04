@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,6 +14,8 @@ public class AgentAnimations : PlayerSystem
     [SerializeField]
     Animator anim;
 
+    private bool isAlive = true;
+
     public void OnUsingWeaponEvent(bool isUsingWeapon)
     {
         this.isUsingWeapon = isUsingWeapon;
@@ -27,14 +30,14 @@ public class AgentAnimations : PlayerSystem
 
     private void OnEnable()
     {
-
-
+        player.ID.playerEvents.OnDeath += PlayDeathAnimation;
         player.ID.playerEvents.OnUsingWeapon += OnUsingWeaponEvent;
 
     }
 
     private void OnDisable()
     {
+        player.ID.playerEvents.OnDeath -= PlayDeathAnimation;
         player.ID.playerEvents.OnUsingWeapon -= OnUsingWeaponEvent;
     }
     private Vector2 GetPointerPos()
@@ -43,6 +46,8 @@ public class AgentAnimations : PlayerSystem
     }
     private void Update()
     {
+        if (!isAlive)
+            return;
         float currentSpeed = rb.velocity.magnitude;
         currentSpeed = Mathf.Clamp(currentSpeed, 0, 1);
         anim.SetFloat(AnimConsts.PLAYER_WALK_SPEED_PARAM, currentSpeed);
@@ -64,5 +69,12 @@ public class AgentAnimations : PlayerSystem
             player.ID.playerEvents.OnLeftSide?.Invoke(true);
         }
 
+        
+
+    }
+    public void PlayDeathAnimation()
+    {
+        anim.SetTrigger(AnimConsts.PLAYER_DEATH_PARAM);
+        isAlive = false;
     }
 }

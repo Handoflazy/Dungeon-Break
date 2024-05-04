@@ -22,7 +22,7 @@ public class GunWeaponDataSO : ScriptableObject
     [field: SerializeField]
     [field: Range(0, 10)]
     public float SpreadAngle { get; set; } = 5;
-    public bool MultiBulletShoot { get => multiBulletShoot; }
+    public bool MultiBulletShoot { get => multiBulletShoot; set => multiBulletShoot = value; }
 
     [SerializeField]
     private bool multiBulletShoot = false;
@@ -40,25 +40,22 @@ public class GunWeaponDataSO : ScriptableObject
             return 1;
     }
 
-    [CustomEditor(typeof(GunWeaponDataSO))]
-    class MyClassEditor : Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            GunWeaponDataSO self = (GunWeaponDataSO)target;
-            serializedObject.Update();
+    //[CustomEditor(typeof(GunWeaponDataSO))]
+    //class MyClassEditor : Editor
+    //{
+    //    public override void OnInspectorGUI()
+    //    {
+    //        GunWeaponDataSO self = (GunWeaponDataSO)target;
+    //        serializedObject.Update();
+    //        EditorGUILayout.PropertyField(serializedObject.FindProperty("MultiBulletShoot"));
 
-            // Draw 'multiBulletShoot' checkbox first
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("multiBulletShoot"));
+    //        if (self.multiBulletShoot)
+    //        {
+    //            EditorGUILayout.PropertyField(serializedObject.FindProperty("bulletCount"));
+    //        }
 
-            if (self.multiBulletShoot)
-            {
-                // Now draw bullet count
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("bulletCount"));
-            }
-
-            serializedObject.ApplyModifiedProperties();
-        }
-    }
+    //        serializedObject.ApplyModifiedProperties();
+    //    }
+    //}
 
 }

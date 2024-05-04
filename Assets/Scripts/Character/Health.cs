@@ -24,7 +24,7 @@ namespace FirstVersion
         public int MaxHealth { get => maxHealth; set => maxHealth = value; }
         public int CurrentHealth { get => currentHealth; set => currentHealth = value; }
 
-        private void Start()
+        private void OnEnable()
         {
             SetInitializeHealth(maxHealth);
         }
@@ -38,7 +38,8 @@ namespace FirstVersion
 
         public void TakeDamage(int amount, GameObject sender)
         {
-            if(IsFriendly(sender));
+            if(IsFriendly(sender))
+                return;
             if (isDead)
                 return;
             currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);

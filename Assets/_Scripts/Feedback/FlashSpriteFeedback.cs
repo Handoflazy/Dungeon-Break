@@ -13,39 +13,37 @@ public class FlashSpriteFeedback : Feedback
     [SerializeField]
     private Material flashMaterial = null;
 
-    private Shader originalMetarialShader;
-
+    private Shader originalMaterialShader;
     private void Start()
     {
-        originalMetarialShader = spriteRenderer.material.shader;
+        originalMaterialShader = spriteRenderer.material.shader;
     }
 
-    public override void CompletePreviousFeedBack()
+    public override void CompletePreviousFeedback()
     {
         StopAllCoroutines();
-        spriteRenderer.material.shader = originalMetarialShader;
+        spriteRenderer.material.shader = originalMaterialShader;
     }
 
-    public override void CreateFeedBack()
+    public override void CreateFeedback()
     {
-        CompletePreviousFeedBack();
-        if (spriteRenderer.material.HasProperty("_MakeSolidColor"))
+        if (spriteRenderer.material.HasProperty(ShaderConst.MADE_SOLID_COLOR)==false)
         {
-            originalMetarialShader = flashMaterial.shader;
+            originalMaterialShader = flashMaterial.shader;
         }
-        spriteRenderer.material.SetInt("_MakeSolidColor", 1);
+        spriteRenderer.material.SetInt(ShaderConst.MADE_SOLID_COLOR, 1);
         StartCoroutine(WaitBeforeChangingBack());
     }
     IEnumerator WaitBeforeChangingBack()
     {
         yield return new WaitForSeconds(flashTime);
-        if (spriteRenderer.material.HasProperty("_MakeSolidColor"))
+        if (spriteRenderer.material.HasProperty(ShaderConst.MADE_SOLID_COLOR))
         {
-            spriteRenderer.material.SetInt("_MakeSolidColor", 0);
+            spriteRenderer.material.SetInt(ShaderConst.MADE_SOLID_COLOR, 0);
         }
         else
         {
-            originalMetarialShader = spriteRenderer.material.shader;
+            originalMaterialShader = spriteRenderer.material.shader;
         }
     }
 }

@@ -14,7 +14,7 @@ public class AgentParent : PlayerSystem
     public BoolEvent OnUsingWeapon;
 
     [SerializeField] protected WeaponRenderer weaponRenderer;
-    
+
     [SerializeField] private AudioClip swingSound;
     [SerializeField] private AudioClip shotSound;
     [SerializeField] private AudioClip fireSound;
@@ -69,29 +69,28 @@ public class AgentParent : PlayerSystem
         if (IsAttacking)
             return;
         direction = (GetPointerPos() - (Vector2)transform.position).normalized;
-        desireAngle = Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg;
+        desireAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         Vector2 scale = transform.localScale;
-        
+
         scale.x = 1;
         if (direction.x < 0)
         {
-                scale.y = -1;
+            scale.y = -1;
         }
         else if (direction.x > 0) scale.y = 1;
-        if (direction.y > -0.9)
-        {
-            AdjustWeaponRederrer();
-            transform.rotation = Quaternion.AngleAxis(desireAngle, Vector3.forward);
-            transform.localScale = scale;
-        }
+
+        AdjustWeaponRederrer();
+        transform.rotation = Quaternion.AngleAxis(desireAngle, Vector3.forward);
+        transform.localScale = scale;
+
 
     }
 
     private void AdjustWeaponRederrer()
     {
-        if(weaponRenderer)
-            weaponRenderer.RenderBehindHead(direction.x>0);    
-    }   
+        if (weaponRenderer)
+            weaponRenderer.RenderBehindHead(direction.x > 0);
+    }
 
     public void ResetIsAttacking()
     {
@@ -106,7 +105,7 @@ public class AgentParent : PlayerSystem
         attackBlocked = false;
         ResetIsAttacking();
     }
-    
+
     private void AttackCooldown()
     {
         attackBlocked = true;
@@ -184,15 +183,15 @@ public class AgentParent : PlayerSystem
 
     public void Shoot()
     {
-        if(gunWeapon)
-        gunWeapon.TryShooting();
+        if (gunWeapon)
+            gunWeapon.TryShooting();
 
     }
 
     public void StopShoot()
     {
-        if(gunWeapon)
-        gunWeapon?.StopShoot();
+        if (gunWeapon)
+            gunWeapon?.StopShoot();
     }
 }
 

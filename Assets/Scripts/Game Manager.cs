@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
-    PlayerID playerID;
+    [SerializeField]
+    private PlayerID playerID;
 
     [SerializeField]
     private Texture2D cursorTexture = null;
@@ -29,8 +32,6 @@ public class GameManager : MonoBehaviour
 
         SceneManager.sceneLoaded += LoadState;
         SceneManager.sceneLoaded += OnSceneLoaded;
-        
-       
 
     }
     public void PauseGame()
@@ -41,11 +42,22 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
     }
-
-
-    public void RestartGame()
+    public void ResetTimeScale()
     {
-        
+        if(this)
+            StopAllCoroutines();
+        Time.timeScale = 1;
+    }
+    public void  ModifyTimeScale(float endTimeValue, float timeToWait, Action OnCompleteCallBack=null)
+    {
+        StartCoroutine(TimeScaleCoroutine(endTimeValue, timeToWait, OnCompleteCallBack));
+
+    }
+    IEnumerator TimeScaleCoroutine(float endTimeValue, float timeToWait, Action OnCompleteCallBack)
+    {
+        yield return new WaitForSecondsRealtime(timeToWait);
+        Time.timeScale = endTimeValue;
+        OnCompleteCallBack?.Invoke();
     }
 
 
@@ -65,9 +77,8 @@ public class GameManager : MonoBehaviour
     }
     public void Respawn()
     {
-        print("restart");
-        SceneManager.LoadScene("Floor1");
         playerID.playerEvents.onRespawn?.Invoke();
+        SceneManager.LoadScene("Floor1");
         // player.Respawn();
 
     }

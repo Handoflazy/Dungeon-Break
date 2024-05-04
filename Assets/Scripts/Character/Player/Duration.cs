@@ -5,6 +5,8 @@ using UnityEngine;
 public class Duration : PlayerSystem
 {
     public int MaxDuration { get; private set; }
+
+    [field:SerializeField]
     public int CurrentDuration { get; private set; }
 
     private void OnEnable()

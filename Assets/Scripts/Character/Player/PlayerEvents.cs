@@ -24,6 +24,7 @@ public struct PlayerEvents
     
     public Action OnChangeSide;
     public Action<bool> OnLeftSide;
+    public Action OnDeath;
 
     // UI Events
     public Action<int> OnHealthChanged;
@@ -65,6 +66,7 @@ public struct PlayerEvents
     public Action OnUseWeapon;
     public Action<bool> OnUsingWeapon;
     public Action<Weapon> OnChangeWeapon;
+    public Action<int> UpdateAmmo;
 
     //Combat Events;
     public Action<Vector2> OnBeginPush;

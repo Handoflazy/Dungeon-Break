@@ -14,6 +14,8 @@ public class GunWeapon : PlayerSystem
     [SerializeField]
     protected GunWeaponDataSO weaponData;
 
+    [SerializeField]
+    protected BulletGenerator bulletPool;
     protected int Ammo
     {
         get => ammo; set
@@ -38,6 +40,7 @@ public class GunWeapon : PlayerSystem
     private void Start()
     {
         Ammo = weaponData.AmmoCapacity;
+        bulletPool = GetComponentInChildren<BulletGenerator>();
     }
 
     public void TryShooting()
@@ -107,11 +110,14 @@ public class GunWeapon : PlayerSystem
     private void ShootBullet()
     {
         SpawnButllet(muzzle.transform.position, CalculateAngle(muzzle));
+        player.ID.playerEvents.UpdateAmmo(ammo);
     }
 
     private void SpawnButllet(Vector3 position, Quaternion rotation)
     {
-        var bulletPrefab = Instantiate(weaponData.BulletData.bulletPrefab, position, rotation);
+        var bulletPrefab = bulletPool.GetBullet();
+        bulletPrefab.transform.position = muzzle.transform.position;
+        bulletPrefab.transform.rotation = rotation;
         bulletPrefab.GetComponent<Bullet>().BulletData = weaponData.BulletData;
     }
 
