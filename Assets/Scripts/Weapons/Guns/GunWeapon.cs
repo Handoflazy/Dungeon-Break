@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +13,8 @@ public class GunWeapon : PlayerSystem
     private int ammo = 10;
     [SerializeField]
     protected GunWeaponDataSO weaponData;
+    [SerializeField]
+    public int speedFactor = 1;  //Tốc độ bắn
 
     protected int Ammo
     {
@@ -100,7 +102,7 @@ public class GunWeapon : PlayerSystem
     protected IEnumerator DelayNextShootCoroutine()
     {
         reloadCoroutine = true;
-        yield return new WaitForSeconds(weaponData.WeaponDelay);
+        yield return new WaitForSeconds(weaponData.WeaponDelay / speedFactor); //Tốc độ bắn
         reloadCoroutine = false;
     }
 

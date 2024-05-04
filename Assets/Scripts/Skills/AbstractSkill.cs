@@ -10,9 +10,9 @@ public class AbstractSkill : PlayerSystem
 
     public bool canUse { get; protected set; }
     [SerializeField]
-    protected float[] cooldown = {1,4,3,2,1};
+    protected float[] cooldown = { 1, 4, 3, 2, 1 };
     [SerializeField]
-    protected int[] durationCost= { 20, 30, 40, 50, 60 };
+    protected int[] durationCost = { 20, 30, 40, 50, 60 };
 
 
     public virtual void OnUsed()
