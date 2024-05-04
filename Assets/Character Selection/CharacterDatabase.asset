@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c33b2ef3d549c74b8b9db7edaea4c46, type: 3}
+  m_Name: CharacterDatabase
+  m_EditorClassIdentifier: 
+  character:
+  - characterName: "Khi\xEAm"
+    characterSprite: {fileID: -1024476836, guid: 6d5b035f0b6c7d34c966be52fb64e199, type: 3}
+    characterAnimator: {fileID: 9100000, guid: 1f6428493a98402499abf2783cd099a3, type: 2}
+  - characterName: "Thi\u1EC7n"
+    characterSprite: {fileID: 74023937, guid: 6d5b035f0b6c7d34c966be52fb64e199, type: 3}
+    characterAnimator: {fileID: 0}
+  - characterName: "Nguy\xEAn"
+    characterSprite: {fileID: -7152299001105452386, guid: cd51eb7beb222fa47828f05ce60c3922, type: 3}
+    characterAnimator: {fileID: 9100000, guid: 9c224bd536e1f4f4a870668cc2d8ee06, type: 2}
+  - characterName: "Tuy\u1EC1n"
+    characterSprite: {fileID: -1013823009, guid: 6d5b035f0b6c7d34c966be52fb64e199, type: 3}
+    characterAnimator: {fileID: 0}

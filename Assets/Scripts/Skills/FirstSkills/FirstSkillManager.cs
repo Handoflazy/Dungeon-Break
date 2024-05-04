@@ -173,10 +173,7 @@ public class ExplosionArrowSkill : AbstractSkill, IFirstSkill
             Destroy(explosion_arrow, 2f);
         }
 
-        if (arrow.gameObject.TryGetComponent<DamageSource>(out DamageSource DS))
-        {
-            DS.OnHitEnemy += OnTriggerWeapon;
-        }
+       
         
         //yield return new WaitForSeconds(dashTime[level]);
         isExplosion = false;
