@@ -11,10 +11,9 @@ public class GrantExp : MonoBehaviour
     }
     public void GiveExp(GameObject character)
     {
-       
-        if (character.TryGetComponent<StatsManagerSystem>(out StatsManagerSystem playerStatsSystem))
-        {
-            print(character.name);
+        GameObject player = GameObject.Find("Player");
+        if (player.TryGetComponent<StatsManagerSystem>(out StatsManagerSystem playerStatsSystem))
+        {                  
             int exp = Random.Range(enemy.statsData.minXpBonus, enemy.statsData.maxXpBonus);
             playerStatsSystem.AddXp(exp);
             NguyenSingleton.Instance.FloatingTextManager.Show("+ " + exp, 30, Color.blue, transform.position, Vector3.up, .7f);

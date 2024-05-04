@@ -1,24 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
-public class MoveManager : MonoBehaviour
-{
-}
-public interface IMoveSkill
-{
-}
+public class Skill : MonoBehaviour{}
+public interface IMoveSkill{}
+public interface IFirstSkill{}
+public interface ISecondSkill { }
 
 public class DashSkill : AbstractSkill, IMoveSkill
 {
     [SerializeField]
-    private float[] dashTime = { .1f, .2f, .3f, .5f };
+    private float dashTime = 0.1f;
 
     [SerializeField]
-    private float[] dashingPower = { 4, 5, 6, 7, 8 };
+    private float dashingPower = 5;
 
     private Rigidbody2D rb;
     private bool isDashing = false;
@@ -33,8 +28,8 @@ public class DashSkill : AbstractSkill, IMoveSkill
         base.Awake();
         rb = GetComponent<Rigidbody2D>();
         canUse = true;
-        trailRenderer = transform.GetComponentInChildren<TrailRenderer>();
-        trailRenderer.startColor = Color.red;
+        //trailRenderer = transform.GetComponentInChildren<TrailRenderer>();
+        //trailRenderer.startColor = Color.red;
 
     }
     public override void OnUsed()
@@ -48,22 +43,23 @@ public class DashSkill : AbstractSkill, IMoveSkill
         isDashing = true;
         player.ID.playerEvents.OnMoveSkillUsing?.Invoke(isDashing);
         Vector2 direction = GetPointerPos() - (Vector2)transform.position;
-        rb.velocity = direction.normalized * dashingPower[level];
-        trailRenderer.emitting = true;
-        yield return new WaitForSeconds(dashTime[level]);
-        trailRenderer.emitting = false;
+        rb.velocity = direction.normalized * dashingPower;
+        //trailRenderer.emitting = true;
+        yield return new WaitForSeconds(dashTime);
+        //trailRenderer.emitting = false;
         isDashing = false;
         player.ID.playerEvents.OnMoveSkillUsing?.Invoke(isDashing);
     }
 
 }
-public class BackStepSkill : AbstractSkill, IMoveSkill
+
+public class BackStepSkill : AbstractSkill, IFirstSkill
 {
     [SerializeField]
-    private float[] dashTime = { .1f, .2f, .3f, .5f };
+    private float dashTime = 0.1f;
 
     [SerializeField]
-    private float[] dashingPower = { 4, 5, 6, 7, 8 };
+    private float dashingPower = 5;
 
     private Rigidbody2D rb;
     private bool isBackSteping = false;
@@ -73,14 +69,15 @@ public class BackStepSkill : AbstractSkill, IMoveSkill
     private Animator anim;
     private Animator anim_2;
 
+
     protected override void Awake()
     {
         base.Awake();
         rb = GetComponent<Rigidbody2D>();
-        trailRenderer = transform.GetComponentInChildren<TrailRenderer>();
-        trailRenderer.startColor = Color.blue;
-        anim = GetComponentInChildren<Animator>();
-        anim_2 = GetComponent<SkillManager>().CurrentWeapon.gameObject.GetComponent<Animator>();
+        //trailRenderer = transform.GetComponentInChildren<TrailRenderer>();
+        //trailRenderer.startColor = Color.blue;
+        //anim = GetComponentInChildren<Animator>();
+        //anim_2 = GetComponent<SkillManager>().CurrentWeapon.gameObject.GetComponent<Animator>();
     }
     public override void OnUsed()
     {
@@ -92,35 +89,32 @@ public class BackStepSkill : AbstractSkill, IMoveSkill
         isBackSteping = true;
         player.ID.playerEvents.OnMoveSkillUsing?.Invoke(isBackSteping);
         Vector2 direction = (Vector2)transform.position - GetPointerPos();
-        rb.velocity = direction.normalized * dashingPower[level];
-        trailRenderer.emitting = true;
+        rb.velocity = direction.normalized * dashingPower;
+        //trailRenderer.emitting = true;
 
-        anim_2.SetTrigger("Fire");
-        GameObject arrow = Instantiate(Resources.Load("arrow", typeof(GameObject))) as GameObject;
-        CommonArrow arrowSetting = arrow.GetComponent<CommonArrow>();
-        arrowSetting.Distance = distance;
-        arrow.transform.position = transform.position;
+        //anim_2.SetTrigger("Fire");
+        //GameObject arrow = Instantiate(Resources.Load("arrow", typeof(GameObject))) as GameObject;
+        //CommonArrow arrowSetting = arrow.GetComponent<CommonArrow>();
+        //arrowSetting.Distance = distance;
+        //arrow.transform.position = transform.position;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        arrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward) * Quaternion.Euler(0, 0, 90);
-        
+        //arrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward) * Quaternion.Euler(0, 0, 90);
 
-        yield return new WaitForSeconds(dashTime[level]);
-        trailRenderer.emitting = false;
+        yield return new WaitForSeconds(dashTime);
+        //trailRenderer.emitting = false;
         isBackSteping = false;
         player.ID.playerEvents.OnMoveSkillUsing?.Invoke(isBackSteping);
-
-
     }
 }
 
-public class TeleportSkill : AbstractSkill, IMoveSkill
+public class TeleportSkill : AbstractSkill, ISecondSkill
 {
     [SerializeField]
-    private float[] teleportCoolDown = { .2f, .2f, .3f, .5f };
+    private float teleportTime = 0.5f;
 
     [SerializeField]
-    private float[] teleportDistance = { .5f, .5f, 1, 1, 1.5f };
+    private float teleportDistance = 0.5f;
 
     private bool isTeleporting = false;
     private Animator anim;
@@ -133,7 +127,6 @@ public class TeleportSkill : AbstractSkill, IMoveSkill
         //teleportVFX.transform.localPosition = new Vector3(0,0.05f,0);
         anim = teleportVFX.GetComponent<Animator>();
         teleportVFX.SetActive(false);
-
     }
 
     protected override void Awake()
@@ -167,7 +160,7 @@ public class TeleportSkill : AbstractSkill, IMoveSkill
         Vector2 teleportPosition = GetTeleportPosition();
         player.transform.position = teleportPosition;
 
-        yield return new WaitForSeconds(teleportCoolDown[level]);
+        yield return new WaitForSeconds(teleportTime);
 
         isTeleporting = false;
         teleportVFX.SetActive(false);
@@ -177,7 +170,7 @@ public class TeleportSkill : AbstractSkill, IMoveSkill
     private Vector2 GetTeleportPosition()
     {
         Vector2 direction = GetPointerPos() - (Vector2)transform.position;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction.normalized, teleportDistance[level], LayerMask.GetMask("Blocking"));
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction.normalized, teleportDistance, LayerMask.GetMask("Blocking"));
 
         if (hit.collider != null)
         {
@@ -189,21 +182,8 @@ public class TeleportSkill : AbstractSkill, IMoveSkill
         else
         {
             // Nếu không có va chạm với chướng ngại vật
-            Vector2 teleportPos = (Vector2)transform.position + direction.normalized * teleportDistance[level];
+            Vector2 teleportPos = (Vector2)transform.position + direction.normalized * teleportDistance;
             return teleportPos;
         }
     }
-
-    private bool CheckObstacleCollision()
-    {
-        Vector2 direction = GetPointerPos() - (Vector2)transform.position;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction.normalized, teleportDistance[level], LayerMask.GetMask("Blocking"));
-
-        if (hit.collider != null)
-        {
-            return true;
-        }
-        return false;
-    }
 }
-

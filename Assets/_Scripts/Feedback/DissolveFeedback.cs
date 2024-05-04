@@ -25,10 +25,12 @@ public class DissolveFeedback : Feedback
     public override void CreateFeedBack()
     {
         var sequence = DOTween.Sequence();
-        sequence.Append(spriteRenderer.material.DOFloat(0, "_Disolve", duration));
+        sequence.Append(spriteRenderer.material.DOFloat(0, "_Dissolve", duration));
+        print(1);
         if (DeathCallback != null)
         {
             sequence.AppendCallback(() => DeathCallback.Invoke());
         }
+
     }
 }

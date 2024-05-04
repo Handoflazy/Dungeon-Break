@@ -17,9 +17,9 @@ MonoBehaviour:
   damage: 0
   moveSpeed: 0
   knockForce: 0
-  level: 9
+  level: 20
   Maxlevel: 100
-  xp: 48
+  xp: 138
   levelUpXpRequire: 230
   levelUpXpRequireUp: 20
   hpUp: 0
