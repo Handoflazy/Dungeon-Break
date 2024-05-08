@@ -12,27 +12,29 @@ public class HUBManagement : MonoBehaviour
     [SerializeField] private SliderBar healthBar;
     [SerializeField] private SliderBar durationBar;
 
-    [SerializeField] private UIAmmo uiAmmo;
+    [SerializeField] private ItemUI uiAmmo;
+    [SerializeField] private ItemUI uiAmmoBox;
+    [SerializeField] private ItemUI uiMedikit;
 
     [SerializeField] GameObject deathMenu;
 
-    private void Awake()
-    {
-        uiAmmo = GetComponentInChildren<UIAmmo>();
-    }
     private void OnEnable()
     {
         playerID.playerEvents.onRespawn += HideGameOver;
         playerID.playerEvents.OnDurationChanged += OnDurationChanged;
         playerID.playerEvents.onInitialDuration += InitialMaxValueDurationBar;
-        playerID.playerEvents.UpdateAmmo += uiAmmo.UpdateBulletsText;
+        playerID.playerEvents.OnUpdateAmmo += uiAmmo.UpdateNumberText;
+        playerID.playerEvents.OnUpdateMedikit += uiMedikit.UpdateNumberText;
+        playerID.playerEvents.OnUpdateAmmoBox += uiAmmoBox.UpdateNumberText;
     }
     private void OnDisable()    
     {
         playerID.playerEvents.onRespawn -= HideGameOver;
         playerID.playerEvents.OnDurationChanged -= OnDurationChanged;
         playerID.playerEvents.onInitialDuration -= InitialMaxValueDurationBar;
-        playerID.playerEvents.UpdateAmmo -= uiAmmo.UpdateBulletsText;
+        playerID.playerEvents.OnUpdateAmmo -= uiAmmo.UpdateNumberText;
+        playerID.playerEvents.OnUpdateMedikit -= uiMedikit.UpdateNumberText;
+        playerID.playerEvents.OnUpdateAmmoBox -= uiAmmoBox.UpdateNumberText;
     }
     public void InitialMaxValueHealthBar(int maxHealth)
     {

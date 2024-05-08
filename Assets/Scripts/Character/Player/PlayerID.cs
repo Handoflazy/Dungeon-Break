@@ -9,4 +9,5 @@ using UnityEngine;
     public SpriteRenderer sprite;
     public string playerName;
     public PlayerEvents playerEvents;
+
 }

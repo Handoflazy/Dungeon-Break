@@ -4,27 +4,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Shooter;
 
 public class AgentParent : PlayerSystem
 {
-    [SerializeField] private Weapon currentActiveWeapon;
-    [SerializeField] protected GunWeapon gunWeapon;
-
+    [SerializeField] protected BasicGun CurrentGun;
+    [SerializeField] protected GunEquipmentSO GunData;
 
     public BoolEvent OnUsingWeapon;
 
     [SerializeField] protected WeaponRenderer weaponRenderer;
 
-    [SerializeField] private AudioClip swingSound;
-    [SerializeField] private AudioClip shotSound;
-    [SerializeField] private AudioClip fireSound;
+    [SerializeField] private GameObject dropWeaponPrefab;
 
-    [SerializeField]
-    private EquippabeItemSO weapon;
-    [SerializeField]
-    private InventorySO inventoryData;
-    private List<ItemParameter> parametersToModify;
-    [field: SerializeField]
     public List<ItemParameter> itemCurrentState;
 
 
@@ -40,12 +32,10 @@ public class AgentParent : PlayerSystem
     {
         player.ID.playerEvents.OnPressed += Shoot;
         player.ID.playerEvents.OnRelease += StopShoot;
-        player.ID.playerEvents.OnAttack += Attack;
 
     }
     private void OnDisable()
     {
-        player.ID.playerEvents.OnAttack -= Attack;
         player.ID.playerEvents.OnPressed -= Shoot;
         player.ID.playerEvents.OnRelease -= StopShoot;
     }
@@ -59,7 +49,7 @@ public class AgentParent : PlayerSystem
     }
     private void Start()
     {
-        gunWeapon = GetComponentInChildren<GunWeapon>();
+        CurrentGun = GetComponentInChildren<BasicGun>();
         AttackCooldown();
     }
 
@@ -112,86 +102,46 @@ public class AgentParent : PlayerSystem
         StopAllCoroutines();
         StartCoroutine(AttackDelay());
     }
-    public void Attack()
+    public void SetWeapon(GunEquipmentSO newGun)
     {
-        if (attackBlocked || !currentActiveWeapon)
-            return;
-        PlayWeaponSound();
-        OnUsingWeapon?.Invoke(true);
-        player.ID.playerEvents.OnUsingWeapon?.Invoke(true);
-        IsAttacking = true;
-        AttackCooldown();
-        currentActiveWeapon.Attack();
-    }
-    private void PlayWeaponSound()
-    {
-        AudioClip clip;
-        switch (currentActiveWeapon.WeaponType)
+        if (CurrentGun)
         {
-            case WeaponType.Melee:
-                clip = swingSound;
-                break;
-            case WeaponType.Staff:
-                clip = fireSound;
-                break;
-            case WeaponType.Range:
-                clip = shotSound;
-                break;
-            default:
-                clip = null;
-                break;
+            GunData.BulletNumber = CurrentGun.Ammo;
+            dropWeaponPrefab.GetComponent<Shooter.Weapon>().Gun = GunData;
+            DropCurrentWeapon(dropWeaponPrefab);
+            Destroy(CurrentGun.gameObject);
         }
-        NguyenSingleton.Instance.AudioManager.PlaySFX(clip);
+        GunData = newGun;
+        SpawnWeapon(newGun.WeaponPrefab);
+        CurrentGun.Ammo = newGun.BulletNumber;
+        player.ID.playerEvents.OnChangeGun(CurrentGun);
+
     }
-    public void SetWeapon(EquippabeItemSO weaponItemS0, List<ItemParameter> itemState)
+    private void DropCurrentWeapon(GameObject GunToDrop)
     {
-        if (weapon != null)
-        {
-            inventoryData.AddItem(weapon, 1, itemCurrentState);
-            Destroy(currentActiveWeapon.gameObject);
-        }
-        this.weapon = weaponItemS0;
-        itemCurrentState = new List<ItemParameter>(itemState);
-        SpawnWeapon();
+        Instantiate(GunToDrop, transform.position, Quaternion.identity);
     }
 
-    private void ModifyParameters()
+    private void SpawnWeapon(GameObject gunPrefab)
     {
-        foreach (var parameter in parametersToModify)
-        {
-            if (itemCurrentState.Contains(parameter))
-            {
-                int index = itemCurrentState.IndexOf(parameter);
-                float newValue = itemCurrentState[index].value + parameter.value;
-                itemCurrentState[index] = new ItemParameter
-                {
-                    itemParameter = parameter.itemParameter,
-                    value = newValue
-                };
-            }
-        }
-    }
-    private void SpawnWeapon()
-    {
-        transform.right = Vector3.zero;
-        GameObject WeaponToSpawn = weapon.WeaponPrefap;
-        GameObject newWeapon = Instantiate(WeaponToSpawn, transform.position, Quaternion.identity);
+        GameObject newWeapon = Instantiate(gunPrefab, transform.position, Quaternion.identity);
         newWeapon.transform.SetParent(gameObject.transform, false);
-        currentActiveWeapon = newWeapon.GetComponent<Weapon>();
-        player.ID.playerEvents.OnChangeWeapon?.Invoke(currentActiveWeapon);
+        newWeapon.transform.localPosition = gunPrefab.transform.position;
+        CurrentGun = newWeapon.GetComponent<BasicGun>();
+        
     }
 
     public void Shoot()
     {
-        if (gunWeapon)
-            gunWeapon.TryShooting();
+        if (CurrentGun)
+            CurrentGun.TryShooting();
 
     }
 
     public void StopShoot()
     {
-        if (gunWeapon)
-            gunWeapon?.StopShoot();
+        if (CurrentGun)
+            CurrentGun?.StopShoot();
     }
 }
 

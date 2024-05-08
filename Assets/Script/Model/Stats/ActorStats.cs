@@ -9,8 +9,6 @@ public class ActorStats : StatsSO
     public int hp;
     public int duration;
     public int damage;
-    public float moveSpeed;
-    public float knockForce;
     public override bool IsMaxLevel()
     {
         return false;

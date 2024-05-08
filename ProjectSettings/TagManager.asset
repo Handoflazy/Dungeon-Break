@@ -29,8 +29,8 @@ TagManager:
   - Dead
   - PlayerMovementCollider
   - EnemyMovementCollider
-  - 
-  - 
+  - Resource
+  - Interactable
   - 
   - 
   - 

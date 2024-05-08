@@ -9,7 +9,7 @@ public class RegularBullet : Bullet
     protected Rigidbody2D rb;
 
     private bool isDead = false;
-    private ObstacleImpactGenerator obstacleImpactGenerator;
+    private float flyDistance = 1;
 
     [SerializeField]
     protected LayerMask ObstacleLayers,DamageableLayers;
@@ -17,6 +17,7 @@ public class RegularBullet : Bullet
     private void OnEnable()
     {
         isDead = false;
+        flyDistance = 0;
     }
 
     public override BulletDataSO BulletData 
@@ -29,9 +30,20 @@ public class RegularBullet : Bullet
     }
     private void FixedUpdate()
     {
-        if(rb != null && BulletData)
+        if (rb != null && BulletData)
         {
             rb.MovePosition(transform.position + bulletData.BulletSpeed * transform.right * Time.deltaTime);
+            flyDistance += Time.deltaTime * bulletData.BulletSpeed;
+        }
+        CheckFlyDistance();
+    }
+
+    private void CheckFlyDistance()
+    {
+        if (flyDistance >= bulletData.FlyDistance)
+        {
+            gameObject.SetActive(false);
+            Instantiate(BulletData.ImpactObstaclePrefab,transform.position, Quaternion.identity);
         }
     }
 

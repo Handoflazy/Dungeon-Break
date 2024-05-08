@@ -113,4 +113,7 @@ public abstract class AgentMovement : MonoBehaviour
         rb.velocity = Vector2.zero;
         isKnockback = false;
     }
+
+
+
 }

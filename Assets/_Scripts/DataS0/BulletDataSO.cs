@@ -16,6 +16,8 @@ public class BulletDataSO : ScriptableObject
     [field: SerializeField,Range(1,100)]
     public float BulletSpeed { get; internal set; }
     [field: SerializeField]
+    public float FlyDistance { get; internal set; }
+    [field: SerializeField]
     public bool Bounce { get; set; } = false;
 
     [field: SerializeField]

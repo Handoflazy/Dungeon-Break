@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 20
   duration: 0
-  damage: 50
+  damage: 5
   moveSpeed: 0
   knockForce: 0
   minXpBonus: 10

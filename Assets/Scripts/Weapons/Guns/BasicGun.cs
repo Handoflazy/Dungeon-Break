@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
-public class GunWeapon : PlayerSystem
+public class BasicGun : PlayerSystem
 {
     [SerializeField]
     protected GameObject muzzle;
@@ -16,12 +16,14 @@ public class GunWeapon : PlayerSystem
 
     [SerializeField]
     protected BulletGenerator bulletPool;
-    protected int Ammo
+    public int Ammo
     {
         get => ammo; set
         {
             ammo = Mathf.Clamp(value, 0, weaponData.AmmoCapacity);
+            
         }
+        
     }
 
     public bool AmmoFull { get =>Ammo>=weaponData.AmmoCapacity; }
@@ -39,8 +41,12 @@ public class GunWeapon : PlayerSystem
 
     private void Start()
     {
-        Ammo = weaponData.AmmoCapacity;
         bulletPool = GetComponentInChildren<BulletGenerator>();
+        if (!player)
+        {
+            player = transform.root.GetComponent<Player>();
+        }
+        player.ID.playerEvents.OnUpdateAmmo?.Invoke(Ammo);
     }
 
     public void TryShooting()
@@ -57,6 +63,12 @@ public class GunWeapon : PlayerSystem
     public void Reload(int ammo)
     {
         Ammo += ammo;
+        player.ID.playerEvents.OnUpdateAmmo?.Invoke(Ammo);
+    }
+    public void FullReload()
+    {
+        Ammo = weaponData.AmmoCapacity;
+        player.ID.playerEvents.OnUpdateAmmo?.Invoke(Ammo);
     }
 
     private void Update()
@@ -110,7 +122,8 @@ public class GunWeapon : PlayerSystem
     private void ShootBullet()
     {
         SpawnButllet(muzzle.transform.position, CalculateAngle(muzzle));
-        player.ID.playerEvents.UpdateAmmo(ammo);
+        player.ID.playerEvents.OnUpdateAmmo?.Invoke(Ammo);
+
     }
 
     private void SpawnButllet(Vector3 position, Quaternion rotation)

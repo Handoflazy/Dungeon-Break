@@ -125,6 +125,33 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseMedit"",
+                    ""type"": ""Button"",
+                    ""id"": ""36ebacc7-280f-4b8f-a6c2-18ac5ea1b622"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseAmmoBox"",
+                    ""type"": ""Button"",
+                    ""id"": ""aa2b336d-df50-467d-bd01-f0d446ca9c9f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""6998b8c2-6fed-47c7-83bb-99a952b7aafa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -391,6 +418,39 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Press"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""111b5c18-2b7a-4f43-8271-830e89453fda"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseMedit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3f3c1948-2b6f-4138-ba46-145b2eb7f27b"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseAmmoBox"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7eeace21-fd0e-4cc0-afee-57a68fb26e68"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -472,6 +532,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerInput_MovementSkill = m_PlayerInput.FindAction("MovementSkill", throwIfNotFound: true);
         m_PlayerInput_OpenInventory = m_PlayerInput.FindAction("OpenInventory", throwIfNotFound: true);
         m_PlayerInput_Press = m_PlayerInput.FindAction("Press", throwIfNotFound: true);
+        m_PlayerInput_UseMedit = m_PlayerInput.FindAction("UseMedit", throwIfNotFound: true);
+        m_PlayerInput_UseAmmoBox = m_PlayerInput.FindAction("UseAmmoBox", throwIfNotFound: true);
+        m_PlayerInput_Interact = m_PlayerInput.FindAction("Interact", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_ExitMenu = m_Menu.FindAction("ExitMenu", throwIfNotFound: true);
@@ -552,6 +615,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerInput_MovementSkill;
     private readonly InputAction m_PlayerInput_OpenInventory;
     private readonly InputAction m_PlayerInput_Press;
+    private readonly InputAction m_PlayerInput_UseMedit;
+    private readonly InputAction m_PlayerInput_UseAmmoBox;
+    private readonly InputAction m_PlayerInput_Interact;
     public struct PlayerInputActions
     {
         private @PlayerControls m_Wrapper;
@@ -567,6 +633,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @MovementSkill => m_Wrapper.m_PlayerInput_MovementSkill;
         public InputAction @OpenInventory => m_Wrapper.m_PlayerInput_OpenInventory;
         public InputAction @Press => m_Wrapper.m_PlayerInput_Press;
+        public InputAction @UseMedit => m_Wrapper.m_PlayerInput_UseMedit;
+        public InputAction @UseAmmoBox => m_Wrapper.m_PlayerInput_UseAmmoBox;
+        public InputAction @Interact => m_Wrapper.m_PlayerInput_Interact;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -609,6 +678,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Press.started += instance.OnPress;
             @Press.performed += instance.OnPress;
             @Press.canceled += instance.OnPress;
+            @UseMedit.started += instance.OnUseMedit;
+            @UseMedit.performed += instance.OnUseMedit;
+            @UseMedit.canceled += instance.OnUseMedit;
+            @UseAmmoBox.started += instance.OnUseAmmoBox;
+            @UseAmmoBox.performed += instance.OnUseAmmoBox;
+            @UseAmmoBox.canceled += instance.OnUseAmmoBox;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         private void UnregisterCallbacks(IPlayerInputActions instance)
@@ -646,6 +724,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Press.started -= instance.OnPress;
             @Press.performed -= instance.OnPress;
             @Press.canceled -= instance.OnPress;
+            @UseMedit.started -= instance.OnUseMedit;
+            @UseMedit.performed -= instance.OnUseMedit;
+            @UseMedit.canceled -= instance.OnUseMedit;
+            @UseAmmoBox.started -= instance.OnUseAmmoBox;
+            @UseAmmoBox.performed -= instance.OnUseAmmoBox;
+            @UseAmmoBox.canceled -= instance.OnUseAmmoBox;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         public void RemoveCallbacks(IPlayerInputActions instance)
@@ -806,6 +893,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnMovementSkill(InputAction.CallbackContext context);
         void OnOpenInventory(InputAction.CallbackContext context);
         void OnPress(InputAction.CallbackContext context);
+        void OnUseMedit(InputAction.CallbackContext context);
+        void OnUseAmmoBox(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

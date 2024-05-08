@@ -16,6 +16,8 @@ public struct PlayerEvents
     public Action OnInventoryToggle;
     public Action OnPressed;
     public Action OnRelease;
+    public Action OnUseMedit;
+    public Action OnUseAmmoBox;
 
 
     public Action OnZoomCamera;
@@ -65,8 +67,10 @@ public struct PlayerEvents
     //Weapon Events
     public Action OnUseWeapon;
     public Action<bool> OnUsingWeapon;
-    public Action<Weapon> OnChangeWeapon;
-    public Action<int> UpdateAmmo;
+    public Action<BasicGun> OnChangeGun;
+    public Action<int> OnUpdateAmmo;
+    public Action<int> OnUpdateMedikit;
+    public Action<int> OnUpdateAmmoBox;
 
     //Combat Events;
     public Action<Vector2> OnBeginPush;

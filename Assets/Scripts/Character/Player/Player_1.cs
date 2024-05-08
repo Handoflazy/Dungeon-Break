@@ -37,7 +37,7 @@ public class Player : ActorReform
     {
         ID.playerEvents.onRespawn?.Invoke();
     }
-
+    
 
 }
 public enum CharacterType

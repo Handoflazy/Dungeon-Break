@@ -15,19 +15,25 @@ public class LookDecision : AIDecision
     public override bool MakeDecision()
     {
         var direction = enemyAIBrain.Target.transform.position - transform.position;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction,raycastMask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction,distance,raycastMask);
         if( hit.collider != null)
         {
-            print(LayerMask.LayerToName(hit.collider.gameObject.layer));
-                Debug.DrawRay(transform.position, direction);
+            
             if(hit.collider&&hit.collider.gameObject.layer == LayerMask.NameToLayer("Player")){
                 OnPlayerSpotted?.Invoke();
-                print(1);
                 return true;
             }
         }
         return false;
         
     }
-   
+    private void OnDrawGizmos()
+    {
+        if (UnityEditor.Selection.activeObject==gameObject) {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position,distance);
+            Gizmos.color = Color.white;
+        }
+    }
+
 }

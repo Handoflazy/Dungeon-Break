@@ -38,7 +38,6 @@ public class LootBag : MonoBehaviour
     {
         Random.InitState((int)Time.time);
         int randomNumber = Random.Range(1, 101);
-        print(randomNumber);
         List<Loot> possibleItems = new List<Loot>();
         foreach (var item in lootList)
         {
@@ -47,7 +46,6 @@ public class LootBag : MonoBehaviour
                 possibleItems.Add(item);               
             }
         }
-        print(possibleItems.Count);
         if(possibleItems.Count > 0)
         {
             Loot droppedItem = possibleItems[Random.Range(0, possibleItems.Count)];
@@ -62,17 +60,19 @@ public class LootBag : MonoBehaviour
         
         if (droppedItem != null)
         {
-            droppedItemPrefab.GetComponent<Item>().InventoryItem = droppedItem.Item;
-            GameObject lootGameObject = Instantiate(droppedItemPrefab,spawnPosition,Quaternion.identity);
+            //droppedItemPrefab.GetComponent<Item>().InventoryItem = droppedItem.Item;
+            Vector3 offset = Random.insideUnitCircle * .08f ;
+            GameObject lootGameObject = Instantiate(droppedItem.ItemPrefab,spawnPosition+offset,Quaternion.identity);
             Vector2 dropDirection = new Vector2( Random.Range(-1f,1f),Random.Range(-1f,1f));
-            lootGameObject.GetComponent<Rigidbody2D>().AddForce(dropDirection*dropForce,ForceMode2D.Impulse);
+            //lootGameObject.GetComponent<Rigidbody2D>().AddForce(dropDirection*dropForce,ForceMode2D.Impulse);
         }
     }
-
+        
 }
 [Serializable]
 public class Loot
 {
-    public ItemSO Item;
+    public GameObject ItemPrefab;
+    [Range(0,100)]
     public float dropChance;
 }

@@ -19,13 +19,13 @@ namespace FirstVersion
         public UnityEvent<int> OnHealthChange,OnInitalHealthBar;
         public UnityEvent OnHit;
 
-   
-
         public int MaxHealth { get => maxHealth; set => maxHealth = value; }
         public int CurrentHealth { get => currentHealth; set => currentHealth = value; }
+        public  bool isFull { get; set; }
 
         private void OnEnable()
         {
+           
             SetInitializeHealth(maxHealth);
         }
         public void SetInitializeHealth(int healthValue)
@@ -34,6 +34,7 @@ namespace FirstVersion
             maxHealth = healthValue;
             OnInitalHealthBar?.Invoke(healthValue);
             isDead = false;
+            isFull = true;
         }
 
         public void TakeDamage(int amount, GameObject sender)
@@ -50,6 +51,10 @@ namespace FirstVersion
                 OnDeathEvent?.Invoke();
                 OnDeathWithReference?.Invoke(sender);
             }
+            if(amount > 0)
+            {
+                isFull = false;
+            }
             OnHealthChange?.Invoke(currentHealth);
         }
 
@@ -64,7 +69,7 @@ namespace FirstVersion
 
         public void AddHealth(int amount)
         {
-            if(currentHealth >= maxHealth)
+            if(isFull)
             {
                 return;
             }
@@ -72,6 +77,7 @@ namespace FirstVersion
             if(currentHealth > maxHealth)
             {
                 currentHealth = maxHealth;
+                isFull = true;
             }
             OnHealthChange?.Invoke(currentHealth);
         }

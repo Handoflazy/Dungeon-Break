@@ -14,6 +14,8 @@ public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, Play
     PlayerControls inputActions;
     public Vector2 MousePos { get; private set; }
 
+    public bool Interact = false;
+
 
     public void OnDeathEvent()
     {
@@ -147,6 +149,32 @@ public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, Play
             player.ID.playerEvents.OnRelease?.Invoke();
         }
     }
-}
+
+    public void OnUseMedit(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            player.ID.playerEvents.OnUseMedit?.Invoke();
+        }
+    }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            Interact = false;
+        }
+        else
+        {
+            Interact = true;
+        }
+
+    }
+
+    public void OnUseAmmoBox(InputAction.CallbackContext context)
+    {
+            player.ID.playerEvents.OnUseAmmoBox?.Invoke();
+        }
+    }
 
 

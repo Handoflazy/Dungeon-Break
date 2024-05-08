@@ -20,8 +20,6 @@ public class PlayerStatsSO : ActorStats
     public int hpUp;
     public int durationUp;
     public int damageUp;
-    public int moveSpeedUp;
-
     public bool ResetStat;
 
     public override bool IsMaxLevel()
@@ -34,6 +32,8 @@ public class PlayerStatsSO : ActorStats
         if (!string.IsNullOrEmpty(Prefs.playerData)&&!ResetStat)
         {
             JsonUtility.FromJsonOverwrite(Prefs.playerData,this);
+            
+            
         }
     }
 
@@ -54,7 +54,6 @@ public class PlayerStatsSO : ActorStats
 
             hp += (int)(hpUp*upgareFormular);
             damage += (int)(damageUp * upgareFormular);
-            moveSpeed += moveSpeedUp * (level / 2 - 0.8f) * 0.2f;
 
             duration += (int)(durationUp * upgareFormular);
             Save();

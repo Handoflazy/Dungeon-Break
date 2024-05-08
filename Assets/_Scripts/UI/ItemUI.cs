@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class UIAmmo : MonoBehaviour
+public class ItemUI : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI text = null;
 
-    public void UpdateBulletsText(int bulletCount)
+    public void UpdateNumberText(int bulletCount)
     {
         if(bulletCount == 0)
         {

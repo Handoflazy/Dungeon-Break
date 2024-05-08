@@ -216,7 +216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1337727039264462088}
   - component: {fileID: 9195204556792548474}
-  - component: {fileID: 7698650671682761464}
+  - component: {fileID: 1838956165037706259}
   m_Layer: 11
   m_Name: TransitionChase
   m_TagString: Untagged
@@ -251,10 +251,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d018ca5840c5c74499dea1b463240fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Decisions>k__BackingField: []
+  <Decisions>k__BackingField:
+  - {fileID: 1838956165037706259}
   <PositiveResult>k__BackingField: {fileID: 5173714403700937976}
   <NegativeResult>k__BackingField: {fileID: 0}
---- !u!114 &7698650671682761464
+--- !u!114 &1838956165037706259
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -263,10 +264,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3799842031998769856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5355f231a5c062043a5cd4436e7ea738, type: 3}
+  m_Script: {fileID: 11500000, guid: ccf4c8ca593d8d64bb6cbd6c842c14f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Distance>k__BackingField: 1.51
+  distance: 0.84
+  raycastMask:
+    serializedVersion: 2
+    m_Bits: 1280
+  <OnPlayerSpotted>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4542028446811184368
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,7 +463,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d018ca5840c5c74499dea1b463240fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Decisions>k__BackingField: []
+  <Decisions>k__BackingField:
+  - {fileID: 5910108333042819052}
   <PositiveResult>k__BackingField: {fileID: 7876912754919276909}
   <NegativeResult>k__BackingField: {fileID: 0}
 --- !u!114 &5910108333042819052
@@ -670,7 +678,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 69d2370c3670d84488bb4dbb1b3ecaba, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.339
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -800,7 +808,7 @@ MonoBehaviour:
   - {x: -0.0222193, y: -0.06617352, z: 0}
   m_ShapePathHash: 1973103157
   m_Mesh: {fileID: 0}
-  m_InstanceId: 195508
+  m_InstanceId: -77982
   m_LocalBounds:
     m_Center: {x: 0.0035929978, y: 0.0063259304, z: 0}
     m_Extent: {x: 0.04074821, y: 0.072499454, z: 0}
@@ -898,6 +906,8 @@ GameObject:
   - component: {fileID: 5409388301502382262}
   - component: {fileID: 8423250460634480414}
   - component: {fileID: 3682381077978609009}
+  - component: {fileID: 3649158485154287099}
+  - component: {fileID: -9036071612201600253}
   m_Layer: 11
   m_Name: Enemy
   m_TagString: Untagged
@@ -1072,6 +1082,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 3649158485154287099}
+        m_TargetAssemblyTypeName: LootBag, Assembly-CSharp
+        m_MethodName: DropLoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   OnHealthChange:
     m_PersistentCalls:
       m_Calls: []
@@ -1171,33 +1193,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnSpawn:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6184835631616496394}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 6184835631616496394}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
   <EnemyAttack>k__BackingField: {fileID: 0}
   <CurrentState>k__BackingField: {fileID: 2862909219869834819}
   Target: {fileID: 0}
@@ -1214,6 +1209,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <AttackDelay>k__BackingField: 1
+--- !u!114 &3649158485154287099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6184835631616496394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f286c2797b4e7fc49b30f998a6998333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootList:
+  - ItemPrefab: {fileID: 4846990747700766673, guid: 2cf3ad69766fd4f4f8b11fd3eb286d2c, type: 3}
+    dropChance: 75
+  - ItemPrefab: {fileID: 5770395853429655799, guid: 1f085ce4dd9bdac4a81a5ad99a0b3ba2, type: 3}
+    dropChance: 0
+  droppedItemPrefab: {fileID: 0}
+  dropForce: 0
+--- !u!114 &-9036071612201600253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6184835631616496394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03fe7123f63ea24dbe1b789ceec7f4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6635445145362296205
 GameObject:
   m_ObjectHideFlags: 0
@@ -1274,7 +1300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5355f231a5c062043a5cd4436e7ea738, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Distance>k__BackingField: 0.5
+  <Distance>k__BackingField: 0.78
 --- !u!1 &8102771515740588745
 GameObject:
   m_ObjectHideFlags: 0

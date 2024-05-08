@@ -25,7 +25,7 @@ namespace Inventory.Model
             AgentParent weapon = character.GetComponentInChildren<AgentParent>();
             if(weapon != null)
             {
-                weapon.SetWeapon(this,itemState==null?DefautParameters:itemState);
+               // weapon.SetWeapon(this,itemState==null?DefautParameters:itemState);
                 return true;
 
             }

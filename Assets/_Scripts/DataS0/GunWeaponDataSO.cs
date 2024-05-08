@@ -8,7 +8,7 @@ using UnityEngine;
 public class GunWeaponDataSO : ScriptableObject
 {
     [field: SerializeField]
-    public BulletDataSO BulletData {  get; set; }
+    public BulletDataSO BulletData { get; set; }
 
 
     [field: SerializeField]
@@ -20,7 +20,7 @@ public class GunWeaponDataSO : ScriptableObject
     [field: Range(0.1f, 2f)]
     public float WeaponDelay { get; internal set; } = .1f;
     [field: SerializeField]
-    [field: Range(0, 10)]
+    [field: Range(0, 15)]
     public float SpreadAngle { get; set; } = 5;
     public bool MultiBulletShoot { get => multiBulletShoot; set => multiBulletShoot = value; }
 
@@ -39,23 +39,26 @@ public class GunWeaponDataSO : ScriptableObject
         else
             return 1;
     }
+#if UNITY_EDITOR
+    [CustomEditor(typeof(GunWeaponDataSO))]
+    class MyClassEditor : Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            GunWeaponDataSO self = (GunWeaponDataSO)target;
+            serializedObject.Update();
 
-    //[CustomEditor(typeof(GunWeaponDataSO))]
-    //class MyClassEditor : Editor
-    //{
-    //    public override void OnInspectorGUI()
-    //    {
-    //        GunWeaponDataSO self = (GunWeaponDataSO)target;
-    //        serializedObject.Update();
-    //        EditorGUILayout.PropertyField(serializedObject.FindProperty("MultiBulletShoot"));
+            if (self.MultiBulletShoot)
+            {
+                DrawDefaultInspector();  // Show all properties
+            }
+            else
+            {
+                DrawPropertiesExcluding(serializedObject, "bulletCount"); // Hide 'otherVariable'
+            }
 
-    //        if (self.multiBulletShoot)
-    //        {
-    //            EditorGUILayout.PropertyField(serializedObject.FindProperty("bulletCount"));
-    //        }
-
-    //        serializedObject.ApplyModifiedProperties();
-    //    }
-    //}
-
+            serializedObject.ApplyModifiedProperties();
+        }
+    }
+#endif
 }

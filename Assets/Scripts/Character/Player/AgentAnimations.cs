@@ -14,6 +14,10 @@ public class AgentAnimations : PlayerSystem
     [SerializeField]
     Animator anim;
 
+
+
+    Vector2 lookDirection = Vector2.zero;
+
     private bool isAlive = true;
 
     public void OnUsingWeaponEvent(bool isUsingWeapon)
@@ -56,7 +60,7 @@ public class AgentAnimations : PlayerSystem
         {
             return;
         }
-        Vector2 lookDirection = GetPointerPos() - (Vector2)transform.position;
+        lookDirection = GetPointerPos() - (Vector2)transform.position;
         if (lookDirection.x > 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -77,4 +81,7 @@ public class AgentAnimations : PlayerSystem
         anim.SetTrigger(AnimConsts.PLAYER_DEATH_PARAM);
         isAlive = false;
     }
+   
+
+
 }
