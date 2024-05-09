@@ -1,41 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
 [RequireComponent(typeof(Duration))]
+[RequireComponent(typeof(SkillBarController))]
 public class SkillManager : PlayerSystem
 {
     public BoolEvent OnUsingMoveSkill;
-    [field:SerializeField]
-    public Weapon CurrentWeapon { get; set; }
-
     private Duration duration;
+    private SkillBarController controller;
 
-    public WeaponType weaponType;
+    public AbstractSkill moveSkill;
+    public AbstractSkill firstSkill;
+    public AbstractSkill secondSkill;
 
-    public IMoveSkill iMoveSkill;
+    public bool isMoveSkillCooldown = false;
+    public bool isFirstSkillCooldown = false;
+    public bool isSecondSkillCooldown = false;
 
-    private AbstractSkill moveSkill;
-    private AbstractSkill firstSkill;
-    private AbstractSkill secondSkill;
+    private void Start()
+    {
+        HandleLevelUp();
+    }
 
-    private bool isMoveSkillCooldown;
-    private bool isAttackSkillCooldown;
-    private bool isDefendSkillCooldown;
+    private void Update()
+    {
 
-
-
+    }
     protected override void Awake()
     {
         base.Awake();
         duration = GetComponent<Duration>();
+        controller = GetComponent<SkillBarController>();
     }
     private void OnEnable()
     {
         player.ID.playerEvents.OnMoveSkillUsed += OnMoveSkillUse;
-        //player.ID.playerEvents.OnChangeWeapon += OnWeaponChangeEvent;
         player.ID.playerEvents.OnLevelUp += OnLevelChangeEvent;
         player.ID.playerEvents.OnMoveSkillUsing += UsingSkillTrigger;
         player.ID.playerEvents.OnSkillSecondUsed += OnSecondSkillUse;
@@ -45,7 +48,6 @@ public class SkillManager : PlayerSystem
     private void OnDisable()
     {
         player.ID.playerEvents.OnMoveSkillUsed -= OnMoveSkillUse;
-        //player.ID.playerEvents.OnChangeWeapon -= OnWeaponChangeEvent;
         player.ID.playerEvents.OnLevelUp -= OnLevelChangeEvent;
         player.ID.playerEvents.OnMoveSkillUsing -= UsingSkillTrigger;
         player.ID.playerEvents.OnSkillSecondUsed -= OnSecondSkillUse;
@@ -57,55 +59,47 @@ public class SkillManager : PlayerSystem
         OnUsingMoveSkill?.Invoke(isUsing);
     }
 
+    private bool isMoveSkillAdded;
+    private bool isFirstSkillAdded;
+    private bool isSecondSkillAdded;
+
     private void HandleLevelUp()
     {
         int level = player.playerStats.level;
-        Component c = gameObject.GetComponent<IMoveSkill>() as Component;
-        Component e = gameObject.GetComponent<IFirstSkill>() as Component;
-        Component d = gameObject.GetComponent<ISecondSkill>() as Component;
-        if (c != null)
+        print(level);
+
+        if (level >= 5 && !isMoveSkillAdded)
         {
-            Destroy(c);
-        }
-        if (d != null)
-        {
-            Destroy(d);
-        }
-        if (e != null)
-        {
-            Destroy(e);
+            moveSkill = GetComponent<DashSkill>();
+            if (moveSkill == null) { print("chua lay dc"); }
+            isMoveSkillAdded = true;
+            moveSkill.canUse = true;
+            controller.skillBox1.gameObject.SetActive(true);
         }
 
-        if(level >= 5 && level < 10)
+        if (level >= 10 && !isFirstSkillAdded)
         {
-            moveSkill = gameObject.AddComponent<DashSkill>();
-            firstSkill = null;
-            secondSkill = null;
+            firstSkill = GetComponent<MineSkill>();
+            if(firstSkill == null) { print("chua lay dc"); }
+            isFirstSkillAdded = true;
+            firstSkill.canUse = true;
+            controller.skillBox2.gameObject.SetActive(true);
         }
-        else if(level >= 10 && level < 15)
+
+        if (level >= 15 && !isSecondSkillAdded)
         {
-            moveSkill = gameObject.AddComponent<DashSkill>();
-            firstSkill = gameObject.AddComponent<BackStepSkill>();
-            secondSkill = null;
-        }
-        else if(level >= 15 /*&& level < 20*/)
-        {
-            moveSkill = gameObject.AddComponent<DashSkill>();
-            firstSkill = gameObject.AddComponent<BackStepSkill>();
-            secondSkill = gameObject.AddComponent<TeleportSkill>();
-        }
-        else
-        {
-            moveSkill = null;
-            secondSkill = null;
-            firstSkill = null;
+            secondSkill = GetComponent<EnhanceSkill>();
+            if (secondSkill == null) { print("chua lay dc"); }
+            isSecondSkillAdded = true;
+            secondSkill.canUse = true;
+            controller.skillBox3.gameObject.SetActive(true);
         }
     }
 
     public void OnMoveSkillUse()
     {
-        if (!moveSkill)
-            return;
+        if (!moveSkill) return;
+
         int durationCost = moveSkill.GetDurationCost();
         if (durationCost < duration.CurrentDuration && !isMoveSkillCooldown)
         {
@@ -114,122 +108,63 @@ public class SkillManager : PlayerSystem
             StartCoroutine(StartMoveSkillCooldown(moveSkill.GetCowndown()));
         }
     }
+
+    public void OnFirstSkillUse()
+    {
+        if (firstSkill == null) return;
+
+        int durationCost = firstSkill.GetDurationCost();
+        if (durationCost < duration.CurrentDuration && !isFirstSkillCooldown)
+        {
+            firstSkill.OnUsed();
+            duration.ReduceDuration(durationCost);
+            StartCoroutine(StartFirstSkillCooldown(firstSkill.GetCowndown()));
+        }
+    }
+
     public void OnSecondSkillUse()
     {
+        if (secondSkill == null) return;
 
-        if (secondSkill == null)
-            return;
         int durationCost = secondSkill.GetDurationCost();
-        if (durationCost < duration.CurrentDuration && !isAttackSkillCooldown)
+        if (durationCost < duration.CurrentDuration && !isSecondSkillCooldown)
         {
             secondSkill.OnUsed();
             duration.ReduceDuration(durationCost);
-            StartCoroutine(StartAttackSkillCooldown(secondSkill.GetCowndown()));
-        }
-    }
-    public void OnFirstSkillUse()
-    {
-
-        if (firstSkill == null)
-            return;
-        int durationCost = firstSkill.GetDurationCost();
-        if (durationCost < duration.CurrentDuration && !isAttackSkillCooldown)
-        {
-
-            firstSkill.OnUsed();
-            duration.ReduceDuration(durationCost);
-            StartCoroutine(StartAttackSkillCooldown(firstSkill.GetCowndown()));
+            StartCoroutine(StartSecondSkillCooldown(secondSkill.GetCowndown()));
         }
     }
     IEnumerator StartMoveSkillCooldown(float timeCD)
     {
         isMoveSkillCooldown = true;
+        
+        StartCoroutine(controller.UpdateCDMoveSkill(timeCD));
         yield return new WaitForSeconds(timeCD);
-        isMoveSkillCooldown = false;
 
+        isMoveSkillCooldown = false;
     }
-    IEnumerator StartAttackSkillCooldown(float timeCD)
+    IEnumerator StartFirstSkillCooldown(float timeCD)
     {
-        isAttackSkillCooldown = true;
+        isFirstSkillCooldown = true;
+
+        StartCoroutine(controller.UpdateCDFirstSkill(timeCD));
         yield return new WaitForSeconds(timeCD);
-        isAttackSkillCooldown = false;
+
+        isFirstSkillCooldown = false;
+    }
+
+    IEnumerator StartSecondSkillCooldown(float timeCD)
+    {
+        isSecondSkillCooldown = true;
+
+        StartCoroutine(controller.UpdateCDSecondSkill(timeCD));
+        yield return new WaitForSeconds(timeCD);
+
+        isSecondSkillCooldown = false;
     }
 
     public void OnLevelChangeEvent()
     {
         HandleLevelUp();
     }
-
-    private void Start()
-    {
-        //HandleWeaponType();
-        HandleLevelUp();
-        isMoveSkillCooldown = false;
-    }
-
-    //private void LateUpdate()
-    //{
-    //    HandleLevelUp();
-    //}
-
-
-    //private void HandleWeaponType()
-    //{
-    //    if (CurrentWeapon == null)
-    //        return;
-    //    Component c = gameObject.GetComponent<IMoveSkill>() as Component;
-    //    Component e = gameObject.GetComponent<IFirstSkill>() as Component;
-    //    Component d = gameObject.GetComponent<ISecondSkill>() as Component;
-    //    if (c != null)
-    //    {
-    //        Destroy(c);
-    //    }
-    //    if (d != null)
-    //    {
-    //        Destroy(d);
-    //    }
-    //    if (e != null)
-    //    {
-    //        Destroy(e);
-    //    }
-
-
-    //    switch (weaponType)
-    //    {
-    //        case WeaponType.Melee:
-    //            moveSkill = gameObject.AddComponent<DashSkill>();
-    //            secondSkill = gameObject.AddComponent<Giganize>();
-    //            firstSkill = gameObject.AddComponent<Wideslash>();
-
-    //            break;
-    //        case WeaponType.Range:
-    //            moveSkill = gameObject.AddComponent<BackStepSkill>();
-    //            secondSkill = gameObject.AddComponent<MultiArrowSkill>();
-    //            firstSkill = gameObject.AddComponent<ExplosionArrowSkill>();
-    //            break;
-    //        case WeaponType.Staff:
-    //            moveSkill = gameObject.AddComponent<TeleportSkill>();
-    //            secondSkill = gameObject.AddComponent<MagicShield>();
-    //            firstSkill = gameObject.AddComponent<FireballSkill>(); 
-    //            break;
-    //        default:
-    //            moveSkill = null;
-    //            secondSkill = null;
-    //            firstSkill = null;
-    //            break;
-    //    }
-    //}
-
-    //public void OnWeaponChangeEvent(Weapon weapon)
-    //{
-    //    CurrentWeapon = weapon;
-    //    if (weapon == null)
-    //        return;
-    //    weaponType = weapon.WeaponType;
-    //    HandleWeaponType();
-    //}
-
-
 }
-
-
