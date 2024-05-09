@@ -17,7 +17,6 @@ public class Interactable : Collidable
     }
     protected override void OnCollide(Collider2D other)
     {
-
         if (agentInput.Interact)
         {
             OnInteract?.Invoke(other.gameObject);

@@ -13,32 +13,29 @@ public class NPC : MonoBehaviour
 
     public GameObject contButton;
     public float wordSpeed;
-    public bool playerIsClose;
 
-    // Update is called once per frame
-    /*void Update()
+
+
+    public void Talk()
     {
-        if (Input.GetKeyDown(KeyCode.E) && playerIsClose)
+
+        if (dialoguePanel.activeInHierarchy)
+
         {
-
-            if (dialoguePanel.activeInHierarchy)
-
-            {
-                zeroText();
-            }
-            else
-            {
-                dialoguePanel.SetActive(true);
-                StartCoroutine(Typing());
-            }
+            zeroText();
         }
-        Debug.Log("PlayerIsClose: " + playerIsClose); // Log giá trị của playerIsClose
+        else
+        {
+            dialoguePanel.SetActive(true);
+            dialogueText.text = "";
+            StartCoroutine(Typing());
+        }
+
         if (dialogueText.text == dialogue[index])
         {
             contButton.gameObject.SetActive(true);
-
         }
-    }*/
+    }
     public void zeroText()
     {
 
@@ -46,54 +43,43 @@ public class NPC : MonoBehaviour
         index = 0;
         dialoguePanel.SetActive(false);
     }
-    public IEnumerator Typing() {
+    public IEnumerator Typing()
+    {
 
         foreach (char letter in dialogue[index].ToCharArray())
         {
 
             dialogueText.text += letter;
             yield return new WaitForSeconds(wordSpeed);
-    
+
         }
     }
-   
+
 
     public void NextLine()
     {
+        print(1);
         contButton.SetActive(false);
-            if (index < dialogue.Length - 1)
-            {
-                index++;
-                dialogueText.text = "";
-                StartCoroutine(Typing());
-            }
-            else
-            {
-
-                zeroText();
-            }
-    
-    }
-
-
-
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-
-        if (other.CompareTag("Player"))
+        if (index < dialogue.Length - 1)
         {
-            playerIsClose = true;
-        }    
-    }
-    private void OnTriggerExit2D(Collider2D other){
+            index++;
+            dialogueText.text = "";
+            StartCoroutine(Typing());
+        }
+        else
+        {
 
-            if (other.CompareTag("Player"))
-            {
-                playerIsClose = false;
-                zeroText();
-             }
+            zeroText();
+        }
 
-                
     }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        zeroText();
+    }
+
+
+
+
+
 }

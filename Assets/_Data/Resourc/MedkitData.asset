@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: MedkitData
   m_EditorClassIdentifier: 
   <ResourceEnum>k__BackingField: 1
-  minAmount: 2
-  maxAmount: 5
+  minAmount: 1
+  maxAmount: 1

@@ -8,7 +8,6 @@ public class ActiveOuline : MonoBehaviour
     private SpriteRenderer spriteRenderer = null;
 
     private Shader originalMaterialShader;
-
     [SerializeField]
     private Material outlineMaterial = null;
     private void Start()
@@ -18,7 +17,11 @@ public class ActiveOuline : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        ActivateOuline();
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            ActivateOuline();
+
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -34,11 +37,12 @@ public class ActiveOuline : MonoBehaviour
     }
     public void DeactivateOuline()
     {
-        print(1);
+
         if (spriteRenderer.material.HasProperty(ShaderConst.OUTLINE) == false)
         {
             originalMaterialShader = outlineMaterial.shader;
         }
         spriteRenderer.material.SetInt(ShaderConst.OUTLINE, 0);
+        spriteRenderer.material.shader = originalMaterialShader;
     }
 }

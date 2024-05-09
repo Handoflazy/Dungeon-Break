@@ -102,18 +102,19 @@ public class AgentParent : PlayerSystem
         StopAllCoroutines();
         StartCoroutine(AttackDelay());
     }
-    public void SetWeapon(GunEquipmentSO newGun)
+    public void SetWeapon(GunEquipmentSO newGun, int bulletNumber)
     {
         if (CurrentGun)
         {
-            GunData.BulletNumber = CurrentGun.Ammo;
-            dropWeaponPrefab.GetComponent<Shooter.Weapon>().Gun = GunData;
+            
+            dropWeaponPrefab.GetComponent<Shooter.DropWeapon>().Gun = GunData;
+            dropWeaponPrefab.GetComponent<Shooter.DropWeapon>().BulletNumber = CurrentGun.Ammo;
             DropCurrentWeapon(dropWeaponPrefab);
             Destroy(CurrentGun.gameObject);
         }
         GunData = newGun;
         SpawnWeapon(newGun.WeaponPrefab);
-        CurrentGun.Ammo = newGun.BulletNumber;
+        CurrentGun.Ammo = bulletNumber;
         player.ID.playerEvents.OnChangeGun(CurrentGun);
 
     }
