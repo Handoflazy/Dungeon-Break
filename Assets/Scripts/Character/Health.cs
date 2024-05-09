@@ -27,11 +27,15 @@ namespace FirstVersion
         private void Start()
         {
             SetInitializeHealth(maxHealth);
+            //LoadHP();
+            //OnHealthChange?.Invoke(currentHealth);
+            print(currentHealth);
+            OnHealthChange?.Invoke(currentHealth);
         }
         public void SetInitializeHealth(int healthValue)
         {
-            currentHealth = healthValue;
-            maxHealth = healthValue;
+            //currentHealth = healthValue;
+            //maxHealth = healthValue;
             OnInitalHealthBar?.Invoke(healthValue);
             isDead = false;
         }
@@ -49,7 +53,9 @@ namespace FirstVersion
                 OnDeathEvent?.Invoke();
                 OnDeathWithReference?.Invoke(sender);
             }
+            SaveHP();
             OnHealthChange?.Invoke(currentHealth);
+            
         }
 
         private bool IsFriendly(GameObject sender)
@@ -72,7 +78,22 @@ namespace FirstVersion
             {
                 currentHealth = maxHealth;
             }
+            SaveHP();
             OnHealthChange?.Invoke(currentHealth);
+            
+            
         }
+        public void SaveHP()
+        {
+            PlayerPrefs.SetInt("currentHealth", currentHealth);
+            PlayerPrefs.SetInt("maxHealth", maxHealth);
+            PlayerPrefs.Save();
+        }
+        public void LoadHP()
+        {
+            PlayerPrefs.GetInt("currentHealth", currentHealth);
+            PlayerPrefs.GetInt("maxHealth", maxHealth);
+        }
+        
     }
 }

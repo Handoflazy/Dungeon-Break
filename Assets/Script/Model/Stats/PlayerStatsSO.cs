@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
 
 using UnityEngine;
-using GreenLeaf;
 
 [CreateAssetMenu(fileName = "Player Stats", menuName = "Data/Create Player Stats")]
 public class PlayerStatsSO : ActorStats
@@ -34,7 +33,7 @@ public class PlayerStatsSO : ActorStats
 
     /*public override void load()
     {
-        if (!string.IsNullOrEmpty(Prefs.playerData))
+        if (!string.IsNullOrEmpty(Prefs.playerData)&&!ResetStat)
         {
             JsonUtility.FromJsonOverwrite(Prefs.playerData,this);
         }
@@ -44,34 +43,7 @@ public class PlayerStatsSO : ActorStats
     {
         Prefs.playerData = JsonUtility.ToJson(this);
     }*/
-    public void NewGame()
-    {
-        if (!PlayerPrefs.HasKey("lv")) { level = 1; level++; };
-        if (!PlayerPrefs.HasKey("xp")) { xp = 0; };
-        if (!PlayerPrefs.HasKey("hp")) { hp = 500; };
-    }
-    public override void Save()
-    {
-        AdvancedPlayerPrefs.SetInt("hP", hp);
-        AdvancedPlayerPrefs.SetInt("duration", duration);
-        AdvancedPlayerPrefs.SetInt("damage", damage);
-        AdvancedPlayerPrefs.SetFloat("moveSpeed", moveSpeed);
-        AdvancedPlayerPrefs.SetFloat("knockForce", knockForce);
-        AdvancedPlayerPrefs.SetInt("lv", level);
-        AdvancedPlayerPrefs.SetInt("xp", xp);
-        //AdvancedPlayerPrefs.SetTransform("transformPlayer", transformPlayer);
-    }
-    public override void load()
-    {
-        AdvancedPlayerPrefs.GetInt("hP", hp);
-        AdvancedPlayerPrefs.GetInt("duration", duration);
-        AdvancedPlayerPrefs.GetInt("damage", damage);
-        AdvancedPlayerPrefs.GetFloat("moveSpeed", moveSpeed);
-        AdvancedPlayerPrefs.GetFloat("knockForce", knockForce);
-        AdvancedPlayerPrefs.GetInt("lv", level);
-        AdvancedPlayerPrefs.GetInt("xp", xp);
-
-    }
+ 
 
     public override void Upgrade(Action OnSuccess = null, Action OnFailled = null)
     {
@@ -96,5 +68,9 @@ public class PlayerStatsSO : ActorStats
         {
             OnFailled?.Invoke();
         }
+    }
+    public override void Save()
+    {
+
     }
 }

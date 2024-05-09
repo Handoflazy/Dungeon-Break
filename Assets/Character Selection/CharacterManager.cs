@@ -63,8 +63,5 @@ public class CharacterManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("selectedOption", selectedOption);
     }
-    public void ChangeScene(string str)
-    {
-        SceneManager.LoadScene(str);
-    }
+    
 }

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 343541425018506803}
   - component: {fileID: -848044546085063320}
   - component: {fileID: 8424070085227141078}
-  - component: {fileID: 5878653419911988623}
-  m_Layer: 0
+  - component: {fileID: -3778495919810068895}
+  m_Layer: 11
   m_Name: BulletBossForest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1851128481
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: -1526469441, guid: 6f47643006a6caf4f8e0b1b33528894c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -181,7 +181,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.35, y: 0.14}
   m_EdgeRadius: 0
---- !u!114 &5878653419911988623
+--- !u!114 &-3778495919810068895
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,14 +190,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8054958553120026111}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f710b0a0345df2429b815bde62b57c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 36556dd96ab7a474585161e63901fcac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnDeathEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  ignoreMask:
-    serializedVersion: 2
-    m_Bits: 0
-  damage: 10
-  pushForce: 20
+  <AttackDelay>k__BackingField: 0

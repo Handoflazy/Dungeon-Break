@@ -15,6 +15,19 @@ namespace PlayerController
         {
             player = GetComponent<Player>();
             MaxHealth = player.playerStats.hp;
+            LoadHP();
+            if (!PlayerPrefs.HasKey("currentHealth"))
+            {
+                CurrentHealth = MaxHealth;
+                SaveHP();
+                print(CurrentHealth);
+            }
+            else 
+            { 
+                
+                CurrentHealth = PlayerPrefs.GetInt("currentHealth");
+            }
+            
         }
 
     }
