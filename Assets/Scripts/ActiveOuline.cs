@@ -34,7 +34,6 @@ public class ActiveOuline : MonoBehaviour
     }
     public void DeactivateOuline()
     {
-        print(1);
         if (spriteRenderer.material.HasProperty(ShaderConst.OUTLINE) == false)
         {
             originalMaterialShader = outlineMaterial.shader;
