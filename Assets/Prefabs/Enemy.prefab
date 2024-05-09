@@ -908,6 +908,7 @@ GameObject:
   - component: {fileID: 3682381077978609009}
   - component: {fileID: 3649158485154287099}
   - component: {fileID: -9036071612201600253}
+  - component: {fileID: 1107210120053144036}
   m_Layer: 11
   m_Name: Enemy
   m_TagString: Untagged
@@ -1018,7 +1019,19 @@ MonoBehaviour:
       m_Calls: []
   OnDeathWithReference:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1107210120053144036}
+        m_TargetAssemblyTypeName: GrantExp, Assembly-CSharp
+        m_MethodName: GiveExp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDeathEvent:
     m_PersistentCalls:
       m_Calls:
@@ -1238,6 +1251,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c03fe7123f63ea24dbe1b789ceec7f4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1107210120053144036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6184835631616496394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe90765e3c318fb42831c66311a4e7a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6635445145362296205
