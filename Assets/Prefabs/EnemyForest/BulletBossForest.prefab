@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 343541425018506803}
   - component: {fileID: -848044546085063320}
   - component: {fileID: 8424070085227141078}
-  - component: {fileID: -3778495919810068895}
+  - component: {fileID: 7024885087010646307}
   m_Layer: 11
   m_Name: BulletBossForest
   m_TagString: Untagged
@@ -181,7 +181,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.35, y: 0.14}
   m_EdgeRadius: 0
---- !u!114 &-3778495919810068895
+--- !u!114 &7024885087010646307
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,7 +190,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8054958553120026111}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36556dd96ab7a474585161e63901fcac, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f710b0a0345df2429b815bde62b57c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <AttackDelay>k__BackingField: 0
+  OnDeathEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  ignoreMask:
+    serializedVersion: 2
+    m_Bits: 34816
+  damage: 50

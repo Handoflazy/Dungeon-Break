@@ -6,16 +6,16 @@ using FirstVersion;
 
 public class DamageEnemy : PlayerSystem
 {
-    public UnityEvent OnDeathEvent;
+    //public UnityEvent OnDeathEvent;
     [SerializeField] private LayerMask ignoreMask;
 
     public int damage;
-    public float pushForce;
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if ((ignoreMask & (1 << other.gameObject.layer)) != 0) { return; }
-        Damage dmg = new() { damageAmount = damage, origin = transform.position, pushForce = pushForce };
+        Damage dmg = new() { damageAmount = damage, origin = transform.position};
 
         if (other.gameObject.TryGetComponent(out Damageable damageableObject))
         {
@@ -26,7 +26,7 @@ public class DamageEnemy : PlayerSystem
             Debug.Log("That object cannot be damaged.");
         }
 
-        OnDeathEvent?.Invoke();
+        //OnDeathEvent?.Invoke();
         
     }
 }

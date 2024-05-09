@@ -160,6 +160,5 @@ MonoBehaviour:
       m_Calls: []
   ignoreMask:
     serializedVersion: 2
-    m_Bits: 0
-  damage: 40
-  pushForce: 30
+    m_Bits: 34816
+  damage: 60
