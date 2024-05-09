@@ -595,6 +595,7 @@ MonoBehaviour:
   muzzle: {fileID: 3561910491535984135}
   ammo: 10
   weaponData: {fileID: 11400000, guid: ec65cfba1ce7a6444bc416a247c3ee0a, type: 2}
+  speedFactor: 1
   reloadCoroutine: 0
   <OnShoot>k__BackingField:
     m_PersistentCalls:
@@ -800,7 +801,7 @@ GameObject:
   - component: {fileID: 4213457382231512974}
   - component: {fileID: 5266323310824495257}
   - component: {fileID: 6137888524229853275}
-  - component: {fileID: 2392160469859247274}
+  - component: {fileID: 4040734878789776617}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -1016,7 +1017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012ad170f1595a64c8ac6d07d94ff8c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2392160469859247274
+--- !u!114 &4040734878789776617
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1025,14 +1026,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6384787539367641855}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96da6aae48520d34282ea5ef59a138b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a39214f161518a4b9c5989db8abf7a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnUsingMoveSkill:
-    m_PersistentCalls:
-      m_Calls: []
-  <CurrentWeapon>k__BackingField: {fileID: 0}
-  weaponType: 0
+  skillBox1: {fileID: 0}
+  skillBox2: {fileID: 0}
+  skillBox3: {fileID: 0}
+  imageCooldownMoveskill: {fileID: 0}
+  imageCooldownFirstskill: {fileID: 0}
+  imageCooldownSecondskill: {fileID: 0}
 --- !u!1 &6475855918917186041
 GameObject:
   m_ObjectHideFlags: 0
@@ -1356,7 +1358,7 @@ MonoBehaviour:
   - {x: -0.049461752, y: -0.0792025, z: 0}
   m_ShapePathHash: -432894513
   m_Mesh: {fileID: 0}
-  m_InstanceId: 40992
+  m_InstanceId: 56756
   m_LocalBounds:
     m_Center: {x: -0.003920257, y: 0.008456126, z: 0}
     m_Extent: {x: 0.053762138, y: 0.0879945, z: 0}
