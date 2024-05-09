@@ -14,8 +14,7 @@ GameObject:
   - component: {fileID: 8081622793692393771}
   - component: {fileID: 294586095726454940}
   - component: {fileID: 750304674173666095}
-  - component: {fileID: 7318204930427381310}
-  - component: {fileID: 5710939069177098833}
+  - component: {fileID: 6864072591367100940}
   m_Layer: 17
   m_Name: DropGun
   m_TagString: Untagged
@@ -216,7 +215,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Gun>k__BackingField: {fileID: 11400000, guid: c9915c2582a127e42b38c7765c18b418, type: 2}
-  <BulletNumber>k__BackingField: 18
 --- !u!82 &750304674173666095
 AudioSource:
   m_ObjectHideFlags: 0
@@ -313,7 +311,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7318204930427381310
+--- !u!114 &6864072591367100940
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -327,30 +325,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 0}
   outlineMaterial: {fileID: 2100000, guid: cd78bb355a2f3034aace9f082f4bd42e, type: 2}
---- !u!50 &5710939069177098833
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3967431417106308425}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 4.78
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0

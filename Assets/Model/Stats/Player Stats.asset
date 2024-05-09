@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 100
   duration: 100
-  damage: 10
+  damage: 5
   Maxlevel: 100
-  <level>k__BackingField: 0
-  xp: 0
-  levelUpXpRequire: 30
+  <level>k__BackingField: 38
+  xp: 649
+  levelUpXpRequire: 1900
   levelUpXpRequireUp: 50
   hpUp: 10
   durationUp: 10

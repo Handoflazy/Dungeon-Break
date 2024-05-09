@@ -43,6 +43,5 @@ public class ActiveOuline : MonoBehaviour
             originalMaterialShader = outlineMaterial.shader;
         }
         spriteRenderer.material.SetInt(ShaderConst.OUTLINE, 0);
-        spriteRenderer.material.shader = originalMaterialShader;
     }
 }
