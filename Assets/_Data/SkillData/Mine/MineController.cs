@@ -57,13 +57,13 @@ public class MineController : MonoBehaviour
                 i++;
             }
 
-            Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
-            if (enemyRb != null)
+            Knockable enemyKnockback = enemy.GetComponent<Knockable>();
+            if (enemyKnockback != null)
             {
-                Vector2 knockbackDirection = enemyRb.transform.position - transform.position;
+                Vector2 knockbackDirection = enemy.transform.position - transform.position;
                 knockbackDirection = knockbackDirection.normalized;
 
-                enemyRb.AddForce(knockbackDirection * MineData.Knockback, ForceMode2D.Impulse);
+                enemyKnockback.KnockBack(knockbackDirection,mineData.Knockback,0.1f);
             }
         }
     }
