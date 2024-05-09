@@ -15,16 +15,16 @@ public class EnhanceSkill : AbstractSkill
 
     GameObject enhance = null;
 
-    private BasicGun currentGun;
+    private GunWeapon gunWeapon;
 
     private void Start()
     {
-
+        gunWeapon = GetComponentInChildren<GunWeapon>(); //ko co scripts GunWapon de lay
+        if (!gunWeapon) { print("gun wp null roi"); }
     }
 
     private void Update()
     {
-        currentGun = GetComponentInChildren<BasicGun>();
         if (enhance != null)
         {
             Vector3 position = transform.position - new Vector3(0, 0.1f, 0);
@@ -40,26 +40,30 @@ public class EnhanceSkill : AbstractSkill
 
     public override void OnUsed()
     {
+        canUse = false;
+
         Vector3 position = transform.position - new Vector3(0,0.1f,0);
         enhance = Instantiate(enhance_Prefab, position, Quaternion.identity);
 
         StartCoroutine(Enhance());
+
+        canUse = true;
     }
 
     private IEnumerator Enhance()
     {
 
-        print("speedFactor old: "+ currentGun.speedFactor);
+        print("speedFactor old: "+ gunWeapon.speedFactor);
 
-        currentGun.speedFactor *= enhanceDatas[0].speedFactor;
+        gunWeapon.speedFactor *= enhanceDatas[0].speedFactor;
 
-        print("speedFactor new: "+currentGun.speedFactor);
+        print("speedFactor new: "+gunWeapon.speedFactor);
 
         yield return new WaitForSeconds(enhanceDatas[0].enhanceTime - 0.5f);
 
-        currentGun.speedFactor /= enhanceDatas[0].speedFactor;
+        gunWeapon.speedFactor /= enhanceDatas[0].speedFactor;
 
-        print("speedFactor current: "+currentGun.speedFactor);
+        print("speedFactor current: "+gunWeapon.speedFactor);
 
         Destroy(enhance);
     }

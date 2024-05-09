@@ -9,10 +9,10 @@ public class DashSkill : AbstractSkill
     protected AudioClip activeSkill;
 
     [SerializeField]
-    protected float dashTime = 0.2f;
+    protected float dashTime = 0.5f;
 
     [SerializeField]
-    protected float dashingPower = 5;
+    protected float dashingPower = 10;
 
     [SerializeField]
     protected TrailRenderer trailRenderer;
@@ -32,10 +32,13 @@ public class DashSkill : AbstractSkill
     }
     public override void OnUsed()
     {
+        canUse = false;
+
         audioSource.PlayOneShot(activeSkill);
 
         StartCoroutine(Dash());
         
+        canUse = true;
     }
     private IEnumerator Dash()
     {

@@ -12,7 +12,6 @@ public class SkillManager : PlayerSystem
     public BoolEvent OnUsingMoveSkill;
     private Duration duration;
     private SkillBarController controller;
-    private BasicGun currentGun;
 
     public AbstractSkill moveSkill;
     public AbstractSkill firstSkill;
@@ -24,7 +23,6 @@ public class SkillManager : PlayerSystem
 
     private void Start()
     {
-        currentGun = GetComponent<BasicGun>();
         HandleLevelUp();
     }
 
@@ -45,7 +43,6 @@ public class SkillManager : PlayerSystem
         player.ID.playerEvents.OnMoveSkillUsing += UsingSkillTrigger;
         player.ID.playerEvents.OnSkillSecondUsed += OnSecondSkillUse;
         player.ID.playerEvents.OnSkillOneUsed += OnFirstSkillUse;
-        player.ID.playerEvents.OnChangeGun += OnChangeGun;
     }
 
     private void OnDisable()
@@ -55,7 +52,6 @@ public class SkillManager : PlayerSystem
         player.ID.playerEvents.OnMoveSkillUsing -= UsingSkillTrigger;
         player.ID.playerEvents.OnSkillSecondUsed -= OnSecondSkillUse;
         player.ID.playerEvents.OnSkillSecondUsed -= OnFirstSkillUse;
-        player.ID.playerEvents.OnChangeGun -= OnChangeGun;
     }
 
     void UsingSkillTrigger(bool isUsing)
@@ -105,15 +101,11 @@ public class SkillManager : PlayerSystem
         if (!moveSkill) return;
 
         int durationCost = moveSkill.GetDurationCost();
-        if (durationCost <= duration.CurrentDuration && !isMoveSkillCooldown)
+        if (durationCost < duration.CurrentDuration && !isMoveSkillCooldown)
         {
             moveSkill.OnUsed();
             duration.ReduceDuration(durationCost);
             StartCoroutine(StartMoveSkillCooldown(moveSkill.GetCowndown()));
-        }
-        if (durationCost > duration.CurrentDuration)
-        {
-            OnNotEnoughDuration();
         }
     }
 
@@ -122,32 +114,24 @@ public class SkillManager : PlayerSystem
         if (firstSkill == null) return;
 
         int durationCost = firstSkill.GetDurationCost();
-        if (durationCost <= duration.CurrentDuration && !isFirstSkillCooldown)
+        if (durationCost < duration.CurrentDuration && !isFirstSkillCooldown)
         {
             firstSkill.OnUsed();
             duration.ReduceDuration(durationCost);
             StartCoroutine(StartFirstSkillCooldown(firstSkill.GetCowndown()));
         }
-        if (durationCost > duration.CurrentDuration)
-        {
-            OnNotEnoughDuration();
-        }
     }
 
     public void OnSecondSkillUse()
     {
-        if (secondSkill == null || !currentGun) return;
+        if (secondSkill == null) return;
 
         int durationCost = secondSkill.GetDurationCost();
-        if (durationCost <= duration.CurrentDuration && !isSecondSkillCooldown)
+        if (durationCost < duration.CurrentDuration && !isSecondSkillCooldown)
         {
             secondSkill.OnUsed();
             duration.ReduceDuration(durationCost);
             StartCoroutine(StartSecondSkillCooldown(secondSkill.GetCowndown()));
-        }
-        if(durationCost > duration.CurrentDuration)
-        {
-            OnNotEnoughDuration();
         }
     }
     IEnumerator StartMoveSkillCooldown(float timeCD)
@@ -182,15 +166,5 @@ public class SkillManager : PlayerSystem
     public void OnLevelChangeEvent()
     {
         HandleLevelUp();
-    }
-
-    public void OnChangeGun(BasicGun newGun)
-    {
-        currentGun = newGun;
-    }
-
-    private void OnNotEnoughDuration()
-    {
-        NguyenSingleton.Instance.FloatingTextManager.Show("Out of Duration", 20, Color.blue, transform.position, Vector3.up, 0.2f);
     }
 }
