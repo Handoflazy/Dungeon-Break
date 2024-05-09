@@ -5,12 +5,14 @@ using UnityEngine.InputSystem;
 
 public class AbstractSkill : PlayerSystem
 {
-    public bool canUse { get; set; }
+    public int maxLevel { get; set; }
+    public int level;
 
+    public bool canUse { get; protected set; }
     [SerializeField]
-    protected float cooldown = 5;
+    protected float[] cooldown = { 1, 4, 3, 2, 1 };
     [SerializeField]
-    protected int durationCost = 20;
+    protected int[] durationCost = { 20, 30, 40, 50, 60 };
 
 
     public virtual void OnUsed()
@@ -19,11 +21,11 @@ public class AbstractSkill : PlayerSystem
     }
     public int GetDurationCost()
     {
-        return durationCost;
+        return durationCost[level];
     }
     public float GetCowndown()
     {
-        return cooldown;
+        return cooldown[level];
     }
     protected virtual Vector2 GetPointerPos()
     {
