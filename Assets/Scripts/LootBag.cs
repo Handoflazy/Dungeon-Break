@@ -26,7 +26,9 @@ public class LootBag : MonoBehaviour
     }
     List<Loot> GetDroppedItems()
     {
-        int randomNumber =Random.Range(1, 101);
+        Random.InitState((int)Time.time);
+        int randomNumber = Random.Range(1, 101);
+        print(randomNumber);
         List<Loot> possibleItems = new List<Loot>();
         foreach (var item in lootList)
         {
@@ -90,7 +92,9 @@ public class LootBag : MonoBehaviour
             GameObject lootGameObject = null;
             if (loot.ItemPrefab.GetComponent<BasicGun>())
             {
-                lootGameObject = Instantiate(GunToSpawn(loot.ItemPrefab), transform.position+offset, Quaternion.identity);
+
+                lootGameObject = GunToSpawn(loot.ItemPrefab);
+                print(lootGameObject.name);
             }
             if (loot.ItemPrefab.GetComponent<Resource>())
             {
@@ -106,9 +110,10 @@ public class LootBag : MonoBehaviour
 
     private GameObject GunToSpawn(GameObject gunToSpawn)
     {
-        droppedWeaponPrefab.GetComponent<DropWeapon>().Gun.WeaponPrefab = gunToSpawn;
-        droppedWeaponPrefab.GetComponent<DropWeapon>().BulletNumber = Random.Range(1, gunToSpawn.GetComponent<BasicGun>().Ammo);
-        return droppedWeaponPrefab;
+        GameObject droppedGun = Instantiate(droppedWeaponPrefab, transform.position, Quaternion.identity);
+        droppedGun.GetComponent<DropWeapon>().Gun.WeaponPrefab = gunToSpawn;
+        droppedGun.GetComponent<DropWeapon>().BulletNumber = Random.Range(1, gunToSpawn.GetComponent<BasicGun>().Ammo);
+        return droppedGun;
 
 
     }

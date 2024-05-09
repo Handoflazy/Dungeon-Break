@@ -70,7 +70,6 @@ public class SkillManager : PlayerSystem
     private void HandleLevelUp()
     {
         int level = player.playerStats.level;
-        print(level);
 
         if (level >= 5 && !isMoveSkillAdded)
         {
