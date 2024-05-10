@@ -11,7 +11,8 @@ public class LootBag : MonoBehaviour
     [SerializeField]
     private List<Loot> lootList;
     [SerializeField]
-    private GameObject droppedWeaponPrefab;
+    private GameObject droppedWeaponPrefab, droppedResoucePrefabs;
+    
     [SerializeField]
     private float dropForce;
 
@@ -63,22 +64,17 @@ public class LootBag : MonoBehaviour
     public void InstantiateLoot(Vector3 spawnPosition)
     {
         Loot loot = GetDroppedItem();
-        Vector3 offset = Random.insideUnitCircle * .08f;
 
         if (loot != null)
         {
-            GameObject lootGameObject = null;
-            if (loot.ItemPrefab.GetComponent<Shooter.DropWeapon>())
+            if (loot.ItemPrefab.GetComponent<DropWeapon>())
             {
-                lootGameObject = Instantiate(GunToSpawn(loot.ItemPrefab), transform.position + offset, Quaternion.identity);
+                SpawnGun(loot.ItemPrefab);
             }
             if (loot.ItemPrefab.GetComponent<Resource>())
             {
-                lootGameObject = Instantiate(loot.ItemPrefab, transform.position + offset, Quaternion.identity);
+                SpawnResource(loot.ItemPrefab);
             }
-            Vector2 dropDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-            if (lootGameObject.GetComponent<Rigidbody2D>())
-                lootGameObject.GetComponent<Rigidbody2D>().AddForce(dropDirection * dropForce, ForceMode2D.Impulse);
         }
     }
     public void InstantiateLoots(Vector3 spawnPosition)
@@ -88,34 +84,42 @@ public class LootBag : MonoBehaviour
             return;
         foreach (var loot in droppedItems)
         {
-            Vector3 offset = Random.insideUnitCircle * .08f;
-            GameObject lootGameObject = null;
             if (loot.ItemPrefab.GetComponent<BasicGun>())
             {
 
-                lootGameObject = GunToSpawn(loot.ItemPrefab);
-                print(lootGameObject.name);
+               SpawnGun(loot.ItemPrefab);
             }
             if (loot.ItemPrefab.GetComponent<Resource>())
             {
-                print(1);
-                lootGameObject = Instantiate(loot.ItemPrefab,transform.position+offset,Quaternion.identity);
+               SpawnResource(loot.ItemPrefab);
             }
-            Vector2 dropDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-            if(lootGameObject.GetComponent<Rigidbody2D>())
-                lootGameObject.GetComponent<Rigidbody2D>().AddForce(dropDirection*dropForce,ForceMode2D.Impulse);
+           
         }
     }
     
-
-    private GameObject GunToSpawn(GameObject gunToSpawn)
+    private void SpawnResource(GameObject resource)
     {
-        GameObject droppedGun = Instantiate(droppedWeaponPrefab, transform.position, Quaternion.identity);
-        droppedGun.GetComponent<DropWeapon>().Gun.WeaponPrefab = gunToSpawn;
+        Vector3 offset = Random.insideUnitCircle * .08f;
+        Instantiate(resource, transform.position + offset, Quaternion.identity);
+        DropFeedback(resource);
+    }
+
+    private void SpawnGun(GameObject gunToSpawn)
+    {
+        Vector3 offset = Random.insideUnitCircle * .08f;
+        GameObject droppedGun = droppedWeaponPrefab;
+        droppedGun.GetComponent<DropWeapon>().GunPrefab = gunToSpawn;
         droppedGun.GetComponent<DropWeapon>().BulletNumber = Random.Range(1, gunToSpawn.GetComponent<BasicGun>().Ammo);
-        return droppedGun;
+        droppedGun = Instantiate(droppedGun, transform.position+offset, Quaternion.identity);
+        DropFeedback(droppedGun);
 
+    }
 
+    private void DropFeedback(GameObject Drop)
+    {
+        Vector2 dropDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+        if (Drop.GetComponent<Rigidbody2D>())
+            Drop.GetComponent<Rigidbody2D>().AddForce(dropDirection * dropForce, ForceMode2D.Impulse);
     }
 }
 [Serializable]

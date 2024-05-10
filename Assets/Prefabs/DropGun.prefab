@@ -214,7 +214,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ff78393291270248a1f5ab9b4ebd9c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Gun>k__BackingField: {fileID: 11400000, guid: c9915c2582a127e42b38c7765c18b418, type: 2}
+  <GunPrefab>k__BackingField: {fileID: 4465499201024666103, guid: c69a572e1409e4e44907e77f88eda3f7, type: 3}
+  <BulletNumber>k__BackingField: 12
 --- !u!82 &750304674173666095
 AudioSource:
   m_ObjectHideFlags: 0
@@ -225,8 +226,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 1adb6ab7f57563a4a952d8d20f2e415c, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

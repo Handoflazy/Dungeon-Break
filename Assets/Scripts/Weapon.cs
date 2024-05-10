@@ -7,7 +7,7 @@ public class Weapon : MonoBehaviour
 {
     protected Animator WeaponAnim;
     public WeaponType WeaponType;
-    public AgentParent weaponParent;
+    public WeaponParent weaponParent;
     public virtual void Attack()
     {
         throw new System.NotImplementedException();

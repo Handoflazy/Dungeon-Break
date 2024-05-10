@@ -4,12 +4,10 @@ using UnityEngine;
 
 namespace Shooter
 {
-    [CreateAssetMenu(fileName = "Data/Gun")]
-
     public class DropWeapon : MonoBehaviour
     {
         [field: SerializeField]
-        public GunEquipmentSO Gun { get; set; }
+        public  GameObject GunPrefab { get; set; }
         private AudioSource audioSource;
         private bool interacted = false;
         private SpriteRenderer spriteRenderer;
@@ -18,20 +16,20 @@ namespace Shooter
         private void Awake()
         {
             audioSource = GetComponent<AudioSource>();
-            gameObject.name = Gun.WeaponPrefab.name;
+            gameObject.name = GunPrefab.name;
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         private void Start()
         {
-            gameObject.name = Gun.WeaponPrefab.name;
-            spriteRenderer.sprite = Gun.WeaponPrefab.GetComponent<SpriteRenderer>().sprite;
+            gameObject.name = GunPrefab.name + "Dropped";
+            spriteRenderer.sprite = GunPrefab.GetComponent<SpriteRenderer>().sprite;
         }
         public void OnEquip()
         {
             if (!interacted)
             {
-                FindObjectOfType<PlayerWeapon>().SetWeapon(Gun,BulletNumber);
+                FindObjectOfType<WeaponParent>().SetWeapon(GunPrefab, BulletNumber);
                 interacted = true;
                 StartCoroutine(PlaySFX());
                 
@@ -39,9 +37,8 @@ namespace Shooter
         }
         IEnumerator PlaySFX()
         {
-            audioSource.clip = Gun.actionSFX;
             audioSource.Play();
-            yield return new WaitForSeconds(Gun.actionSFX.length);
+            yield return new WaitForSeconds(audioSource.clip.length);
             Destroy(gameObject);
         }
 

@@ -15,7 +15,7 @@ public class MagicWeapon : Weapon
     private float laserWitdh;
     private void Start()
     {
-        weaponParent = transform.parent.GetComponent<AgentParent>();
+        weaponParent = transform.parent.GetComponent<WeaponParent>();
         WeaponAnim = GetComponent<Animator>();
         laserWitdh = spawnLaserPos.gameObject.GetComponent<SpriteRenderer>().size.x;
     }

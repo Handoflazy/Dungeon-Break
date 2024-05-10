@@ -15,7 +15,7 @@ public class MeleeWeapon : Weapon
     {
         WeaponType = WeaponType.Melee;
         WeaponAnim = GetComponent<Animator>();
-        weaponParent = transform.parent.GetComponent<AgentParent>();
+        weaponParent = transform.parent.GetComponent<WeaponParent>();
         slashAnim = transform.root.GetComponentInChildren<SlashAnim>();
         damageSource = GetComponent<DamageSource>();
         damageSource.OnHitEnemy += OnTriggerWeapon;
