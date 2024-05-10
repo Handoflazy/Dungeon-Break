@@ -4,31 +4,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using TMPro;
 
 public class HUBManagement : MonoBehaviour
 {
     public PlayerID playerID;
     [SerializeField] private SliderBar healthBar;
     [SerializeField] private SliderBar durationBar;
-    //public int currentHealth;
+    [SerializeField] private ItemUI uiAmmo;
+    [SerializeField] private ItemUI uiAmmoBox;
+    [SerializeField] private ItemUI uiMedikit;
+
+    [SerializeField] GameObject deathMenu;
     private void OnEnable()
     {
+        playerID.playerEvents.onRespawn += HideGameOver;
         playerID.playerEvents.OnDurationChanged += OnDurationChanged;
         playerID.playerEvents.onInitialDuration += InitialMaxValueDurationBar;
-        
-        
+        playerID.playerEvents.OnUpdateAmmo += uiAmmo.UpdateNumberText;
+        playerID.playerEvents.OnUpdateMedikit += uiMedikit.UpdateNumberText;
+        playerID.playerEvents.OnUpdateAmmoBox += uiAmmoBox.UpdateNumberText;
     }
-    private void OnDisable()    
+    private void OnDisable()
     {
+        playerID.playerEvents.onRespawn -= HideGameOver;
         playerID.playerEvents.OnDurationChanged -= OnDurationChanged;
         playerID.playerEvents.onInitialDuration -= InitialMaxValueDurationBar;
-    }
-    private void Awake()
-    {
-        
-        healthBar = transform.GetChild(0).GetComponent<SliderBar>();
-        durationBar = transform.GetChild(1).GetComponent<SliderBar>();
-        
+        playerID.playerEvents.OnUpdateAmmo -= uiAmmo.UpdateNumberText;
+        playerID.playerEvents.OnUpdateMedikit -= uiMedikit.UpdateNumberText;
+        playerID.playerEvents.OnUpdateAmmoBox -= uiAmmoBox.UpdateNumberText;
     }
 
     public void InitialMaxValueHealthBar(int maxHealth)
@@ -42,40 +46,20 @@ public class HUBManagement : MonoBehaviour
 
     public void OnHealthChanged(int currentHealth)
     {
-        /*if (PlayerPrefs.HasKey("currentHealth"))
-        {
-            currentHealth = PlayerPrefs.GetInt("currentHealth");
-            print(currentHealth);
-        }
-        else
-        {
-            print(currentHealth);
-            currentHealth = 200;
-            
-        }*/
-
         currentHealth = PlayerPrefs.GetInt("currentHealth");
 
         healthBar.SetValue(currentHealth);
-        
-        
-        //currentHealth = 100;
-        //OnHealthChanged(currentHealth);
-        
     }
     public void OnDurationChanged(int currentDuration)
     {
         durationBar.SetValue(currentDuration);
     }
-
-
-
-    //public void DisplayGameOver()
-    //{
-    //    gameOverPanel.gameObject.SetActive(true);
-    //}
-    //public void HideGameOver()
-    //{
-    //    gameOverPanel.gameObject.SetActive(false);
-    //}
+    public void DisplayGameOver()
+    {
+        deathMenu.SetActive(true);
+    }
+    public void HideGameOver()
+    {
+        deathMenu.SetActive(false);
+    }
 }

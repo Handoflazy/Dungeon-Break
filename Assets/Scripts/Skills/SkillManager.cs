@@ -14,13 +14,13 @@ public class SkillManager : PlayerSystem
     private SkillBarController controller;
     private BasicGun currentGun;
 
-    public AbstractSkill moveSkill;
-    public AbstractSkill firstSkill;
-    public AbstractSkill secondSkill;
+    protected AbstractSkill moveSkill;
+    protected AbstractSkill firstSkill;
+    protected AbstractSkill secondSkill;
 
-    public bool isMoveSkillCooldown = false;
-    public bool isFirstSkillCooldown = false;
-    public bool isSecondSkillCooldown = false;
+    protected bool isMoveSkillCooldown = false;
+    protected bool isFirstSkillCooldown = false;
+    protected bool isSecondSkillCooldown = false;
 
     private void Start()
     {

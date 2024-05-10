@@ -47,7 +47,7 @@ public class PlayerStatsSO : ActorStats
     public override void Upgrade(Action OnSuccess = null, Action OnFailled = null)
     {
       
-        float upgareFormular = (level / 2 - 0.5f) * 0.5f;
+        float upgareFormular = (level / 2 - 0.3f) * 0.3f; 
         while (xp >= levelUpXpRequire && !IsMaxLevel())
         {
             Debug.Log("da nang cap");
@@ -62,7 +62,7 @@ public class PlayerStatsSO : ActorStats
             Save();
             OnSuccess?.Invoke();
         }
-        if(xp  <= levelUpXpRequire && IsMaxLevel())
+        if (xp  <= levelUpXpRequire && IsMaxLevel())
         {
             OnFailled?.Invoke();
         }

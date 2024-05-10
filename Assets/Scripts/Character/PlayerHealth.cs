@@ -11,6 +11,15 @@ namespace PlayerController
     public class PlayerHealth : Health
     {
         protected Player player;
+
+        private void OnEnable()
+        {
+            player.ID.playerEvents.OnLevelUp += SetMaxHealth;
+        }
+        private void OnDisable()
+        {
+            player.ID.playerEvents.OnLevelUp -= SetMaxHealth;
+        }
         private void Awake()
         {
             player = GetComponent<Player>();
@@ -24,10 +33,20 @@ namespace PlayerController
             }
             else 
             { 
-                
                 CurrentHealth = PlayerPrefs.GetInt("currentHealth");
             }
             
+        }
+
+        public override void SetMaxHealth()
+        {
+            int temp = player.playerStats.hp - MaxHealth;
+
+            MaxHealth = player.playerStats.hp;
+            AddHealth(temp);
+
+            SetMaxHealthBar?.Invoke(MaxHealth);
+            SaveHP();
         }
 
     }

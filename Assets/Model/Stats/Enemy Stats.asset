@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2b55bf2f5439224fa1b4ecc3fb97eaf, type: 3}
   m_Name: Enemy Stats
   m_EditorClassIdentifier: 
-  hp: 500
+  hp: 20
   duration: 0
   damage: 5
-  minXpBonus: 10
-  maxXpBonus: 20
+  minXpBonus: 50
+  maxXpBonus: 50
   hpUp: 30
   damageUp: 0
