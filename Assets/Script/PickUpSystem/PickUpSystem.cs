@@ -63,6 +63,13 @@ public class PickUpSystem : PlayerSystem
                            resource.PickUpResource();
                         }
                         break;
+                    case ResourceType.Duration:
+                        Duration duration = GetComponent<Duration>();
+                        if(duration == null) { print(1); }
+                        if (!duration || duration.CurrentDuration == duration.MaxDuration) return;
+                        duration.RefillDuration(resource.ResourceData.GetAmount());
+                        resource.PickUpResource();
+                        break;
                     default:
                         break;
                 }

@@ -20,5 +20,6 @@ public class ResourceDataSO : ScriptableObject
 public enum ResourceType{
     None,
     Health,
-    Ammo
+    Ammo,
+    Duration
 }
