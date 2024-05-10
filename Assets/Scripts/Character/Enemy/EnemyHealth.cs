@@ -10,5 +10,6 @@ public class EnemyHealth : Health
     {
         enemyController = GetComponent<EnemyAIBrain>();
         MaxHealth = enemyController.statsData.hp;
+        CurrentHealth = enemyController.statsData.hp;
     }
 }

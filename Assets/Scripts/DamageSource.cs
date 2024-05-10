@@ -20,7 +20,6 @@ public class DamageSource : PlayerSystem
 
         if ((ignoreMask & (1 << other.gameObject.layer)) != 0)
         {
-            OnDeathEvent?.Invoke();
             return;
 
         }

@@ -2,45 +2,49 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
+
 using UnityEngine;
+
 [CreateAssetMenu(fileName = "Player Stats", menuName = "Data/Create Player Stats")]
 public class PlayerStatsSO : ActorStats
 {
     [Header("Level Up Base:")]
+    public int level = 1;
+    public int Maxlevel = 100;
 
-    public int Maxlevel;
-    [field:SerializeField]
-    public int level { get; private set; }
-    public int xp;
+    public int xp =0;
     public int levelUpXpRequire;
 
     [Header("Level Up:")]
 
-    public int levelUpXpRequireUp;
+    public int levelUpXpRequireUp = 20;
     public int hpUp;
     public int durationUp;
     public int damageUp;
-    public bool ResetStat;
+    public int moveSpeedUp;
 
+    //public Transform transformPlayer;
+    
     public override bool IsMaxLevel()
     {
         return level >= Maxlevel;
     }
 
-    public override void load()
+
+    /*public override void load()
     {
         if (!string.IsNullOrEmpty(Prefs.playerData)&&!ResetStat)
         {
             JsonUtility.FromJsonOverwrite(Prefs.playerData,this);
-            
-            
         }
     }
 
     public override void Save()
     {
         Prefs.playerData = JsonUtility.ToJson(this);
-    }
+    }*/
+ 
+
     public override void Upgrade(Action OnSuccess = null, Action OnFailled = null)
     {
       
@@ -54,6 +58,7 @@ public class PlayerStatsSO : ActorStats
 
             hp += (int)(hpUp*upgareFormular);
             damage += (int)(damageUp * upgareFormular);
+            moveSpeed += moveSpeedUp * (level / 2 - 0.8f) * 0.2f;
 
             duration += (int)(durationUp * upgareFormular);
             Save();
@@ -63,5 +68,9 @@ public class PlayerStatsSO : ActorStats
         {
             OnFailled?.Invoke();
         }
+    }
+    public override void Save()
+    {
+
     }
 }

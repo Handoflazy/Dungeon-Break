@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 7266675536326551025}
   m_Layer: 10
   m_Name: arrowExplosion
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1332609957
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: -2038657390, guid: 6d5b035f0b6c7d34c966be52fb64e199, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -188,7 +188,7 @@ TrailRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1332609957
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: -1
   m_Time: 0.12
   m_PreviewTimeScale: 1
@@ -270,7 +270,7 @@ SortingGroup:
   m_GameObject: {fileID: 4126791939303898143}
   m_Enabled: 1
   m_SortingLayerID: 1332609957
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!114 &1262895018804431954
@@ -326,10 +326,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 6144
   ignoreMask:
     serializedVersion: 2
-    m_Bits: 1028
-  weapon: {fileID: 0}
+    m_Bits: 5124
 --- !u!50 &7266675536326551025
 Rigidbody2D:
   serializedVersion: 4

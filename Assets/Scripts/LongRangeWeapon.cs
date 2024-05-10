@@ -33,7 +33,10 @@ public class RangerWeapon : Weapon
         arrow.SetActive(true);
         CommonArrow arrowSetting = arrow.GetComponent<CommonArrow>();
         arrowSetting.Distance = distance;
-
+        if (arrow.gameObject.TryGetComponent<DamageSource>(out DamageSource DS))
+        {
+            DS.OnHitEnemy += OnTriggerWeapon;
+        }
     }
 
 

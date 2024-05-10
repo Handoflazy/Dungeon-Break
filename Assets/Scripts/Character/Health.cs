@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using SunnyValleyVersion;
-using PlayerController;
-using System.IO;
 
 namespace FirstVersion
 {
@@ -21,29 +19,30 @@ namespace FirstVersion
         public UnityEvent<int> OnHealthChange,OnInitalHealthBar;
         public UnityEvent OnHit;
 
+   
+
         public int MaxHealth { get => maxHealth; set => maxHealth = value; }
         public int CurrentHealth { get => currentHealth; set => currentHealth = value; }
-        public  bool isFull { get; set; }
-    
 
-        private void OnEnable()
+        private void Start()
         {
-           
             SetInitializeHealth(maxHealth);
+            //LoadHP();
+            //OnHealthChange?.Invoke(currentHealth);
+            print(currentHealth);
+            OnHealthChange?.Invoke(currentHealth);
         }
         public void SetInitializeHealth(int healthValue)
         {
-            currentHealth = healthValue;
-            maxHealth = healthValue;
+            //currentHealth = healthValue;
+            //maxHealth = healthValue;
             OnInitalHealthBar?.Invoke(healthValue);
             isDead = false;
-            isFull = true;
         }
 
         public void TakeDamage(int amount, GameObject sender)
         {
-            if(IsFriendly(sender))
-                return;
+            if(IsFriendly(sender));
             if (isDead)
                 return;
             currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
@@ -54,11 +53,9 @@ namespace FirstVersion
                 OnDeathEvent?.Invoke();
                 OnDeathWithReference?.Invoke(sender);
             }
-            if(amount > 0)
-            {
-                isFull = false;
-            }
+            SaveHP();
             OnHealthChange?.Invoke(currentHealth);
+            
         }
 
         private bool IsFriendly(GameObject sender)
@@ -72,7 +69,7 @@ namespace FirstVersion
 
         public void AddHealth(int amount)
         {
-            if(isFull)
+            if(currentHealth >= maxHealth)
             {
                 return;
             }
@@ -80,9 +77,23 @@ namespace FirstVersion
             if(currentHealth > maxHealth)
             {
                 currentHealth = maxHealth;
-                isFull = true;
             }
+            SaveHP();
             OnHealthChange?.Invoke(currentHealth);
+            
+            
         }
+        public void SaveHP()
+        {
+            PlayerPrefs.SetInt("currentHealth", currentHealth);
+            PlayerPrefs.SetInt("maxHealth", maxHealth);
+            PlayerPrefs.Save();
+        }
+        public void LoadHP()
+        {
+            PlayerPrefs.GetInt("currentHealth", currentHealth);
+            PlayerPrefs.GetInt("maxHealth", maxHealth);
+        }
+        
     }
 }
