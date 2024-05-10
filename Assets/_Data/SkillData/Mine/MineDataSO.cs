@@ -17,7 +17,7 @@ public class MineDataSO : ScriptableObject
     [field: SerializeField, Range(10,50)]
     public int ExplosionPower { get; set; }
 
-    [field: SerializeField, Range(1,5)]
+    [field: SerializeField, Range(2,10)]
     public float Knockback { get ; set ; }
 
     [field: SerializeField, Range(0.16f, 1.28f)]
