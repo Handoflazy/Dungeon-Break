@@ -21,7 +21,6 @@ public class PlayerStatsSO : ActorStats
     public int hpUp;
     public int durationUp;
     public int damageUp;
-    public int moveSpeedUp;
 
     //public Transform transformPlayer;
     
@@ -58,7 +57,6 @@ public class PlayerStatsSO : ActorStats
 
             hp += (int)(hpUp*upgareFormular);
             damage += (int)(damageUp * upgareFormular);
-            moveSpeed += moveSpeedUp * (level / 2 - 0.8f) * 0.2f;
 
             duration += (int)(durationUp * upgareFormular);
             Save();
