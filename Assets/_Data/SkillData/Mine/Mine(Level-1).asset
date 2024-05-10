@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MineImage: {fileID: -777414059, guid: d2f76b5c0dd0a0447a44239ea9f83e68, type: 3}
   <ExplosionPrefab>k__BackingField: {fileID: 8790504900627256676, guid: 4fb125071af1dce4fa493e7ede6502b0, type: 3}
-  <WaitTime>k__BackingField: 2
-  <ExplosionPower>k__BackingField: 50
-  <Knockback>k__BackingField: 0
-  <ExplosionRadius>k__BackingField: 0.16
+  <WaitTime>k__BackingField: 1
+  <ExplosionPower>k__BackingField: 10
+  <Knockback>k__BackingField: 5
+  <ExplosionRadius>k__BackingField: 0.32

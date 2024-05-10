@@ -63,7 +63,7 @@ public class MineController : MonoBehaviour
                 Vector2 knockbackDirection = enemy.transform.position - transform.position;
                 knockbackDirection = knockbackDirection.normalized;
 
-                enemyKnockback.KnockBack(knockbackDirection,mineData.Knockback,0.1f);
+                enemyKnockback.KnockBack(knockbackDirection, mineData.Knockback, 0.1f);
             }
         }
     }

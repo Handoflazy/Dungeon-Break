@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb1792dc86f3041488e8501ba9429074, type: 3}
   m_Name: Player Stats
   m_EditorClassIdentifier: 
-  hp: 100
-  duration: 100
-  damage: 0
+  hp: 300
+  duration: 200
+  damage: 5
   Maxlevel: 100
-  <level>k__BackingField: 17
-  xp: 118
-  levelUpXpRequire: 190
-  levelUpXpRequireUp: 10
-  hpUp: 0
-  durationUp: 0
-  damageUp: 0
-  ResetStat: 1
+  <level>k__BackingField: 38
+  xp: 1030
+  levelUpXpRequire: 1900
+  levelUpXpRequireUp: 50
+  hpUp: 10
+  durationUp: 10
+  damageUp: 1
+  ResetStat: 0
