@@ -15,7 +15,7 @@ MonoBehaviour:
   hp: 20
   duration: 0
   damage: 5
-  minXpBonus: 50
-  maxXpBonus: 50
+  minXpBonus: 300
+  maxXpBonus: 500
   hpUp: 30
   damageUp: 0

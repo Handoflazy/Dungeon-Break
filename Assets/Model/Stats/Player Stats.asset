@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 200
   duration: 100
-  damage: 165
-  level: 1
+  damage: 5
+  level: 4
   Maxlevel: 100
-  xp: 0
-  levelUpXpRequire: 50
+  xp: 39
+  levelUpXpRequire: 110
   levelUpXpRequireUp: 20
   hpUp: 10
   durationUp: 5

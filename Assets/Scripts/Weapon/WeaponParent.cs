@@ -47,9 +47,10 @@ public class WeaponParent : PlayerSystem
         mousePos.z = Camera.main.nearClipPlane;
         return Camera.main.ScreenToWorldPoint(mousePos);
     }
-    private void Start()
+
+    protected override void Awake()
     {
-        
+        base.Awake();
         if (PlayerPrefs.HasKey(PrefConsts.CURRENT_GUN_KEY))
         {
             int indexCurrenGun = PlayerPrefs.GetInt(PrefConsts.CURRENT_GUN_KEY);
@@ -88,6 +89,7 @@ public class WeaponParent : PlayerSystem
         transform.rotation = Quaternion.AngleAxis(desireAngle, Vector3.forward);
         transform.localScale = scale;
 
+        if (!CurrentGun) return;
         PlayerPrefs.SetInt(PrefConsts.CURRENT_BULLET_COUNT_KEY, CurrentGun.Ammo);
     }
 

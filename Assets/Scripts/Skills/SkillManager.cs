@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 [RequireComponent(typeof(Duration))]
 [RequireComponent(typeof(SkillBarController))]
@@ -13,6 +14,8 @@ public class SkillManager : PlayerSystem
     private Duration duration;
     private SkillBarController controller;
     private BasicGun currentGun;
+    public AudioClip levelUpSound;
+    private AudioSource audioSource;
 
     protected AbstractSkill moveSkill;
     protected AbstractSkill firstSkill;
@@ -24,13 +27,14 @@ public class SkillManager : PlayerSystem
 
     private void Start()
     {
-        currentGun = GetComponent<BasicGun>();
+        currentGun = GetComponentInChildren<BasicGun>();
+        audioSource = GetComponent<AudioSource>();
         HandleLevelUp();
     }
 
     private void Update()
     {
-
+        controller.UpdateExp();
     }
     protected override void Awake()
     {
@@ -41,20 +45,20 @@ public class SkillManager : PlayerSystem
     private void OnEnable()
     {
         player.ID.playerEvents.OnMoveSkillUsed += OnMoveSkillUse;
+        player.ID.playerEvents.OnSkillSecondUsed += OnSecondSkillUse;
+        player.ID.playerEvents.OnFirstSkillUsed += OnFirstSkillUse;
         player.ID.playerEvents.OnLevelUp += OnLevelChangeEvent;
         player.ID.playerEvents.OnMoveSkillUsing += UsingSkillTrigger;
-        player.ID.playerEvents.OnSkillSecondUsed += OnSecondSkillUse;
-        player.ID.playerEvents.OnSkillOneUsed += OnFirstSkillUse;
         player.ID.playerEvents.OnChangeGun += OnChangeGun;
     }
 
     private void OnDisable()
     {
         player.ID.playerEvents.OnMoveSkillUsed -= OnMoveSkillUse;
+        player.ID.playerEvents.OnSkillSecondUsed -= OnSecondSkillUse;
+        player.ID.playerEvents.OnFirstSkillUsed -= OnFirstSkillUse;
         player.ID.playerEvents.OnLevelUp -= OnLevelChangeEvent;
         player.ID.playerEvents.OnMoveSkillUsing -= UsingSkillTrigger;
-        player.ID.playerEvents.OnSkillSecondUsed -= OnSecondSkillUse;
-        player.ID.playerEvents.OnSkillSecondUsed -= OnFirstSkillUse;
         player.ID.playerEvents.OnChangeGun -= OnChangeGun;
     }
 
@@ -67,41 +71,53 @@ public class SkillManager : PlayerSystem
     private bool isFirstSkillAdded;
     private bool isSecondSkillAdded;
 
+    private int levelMoveSkillRequired = 5;
+    private int levelFirstSkillRequired = 10;
+    private int levelSecondSkillRequired = 15;
+
     private void HandleLevelUp()
     {
         int level = player.playerStats.level;
 
-        if (level >= 5 && !isMoveSkillAdded)
+        controller.SetLevel(level, controller.textLevel);
+
+        audioSource.PlayOneShot(levelUpSound, 0.8f);
+
+        if (level >= levelMoveSkillRequired && !isMoveSkillAdded)
         {
             moveSkill = GetComponent<DashSkill>();
             if (moveSkill == null) { print("chua lay dc"); }
             isMoveSkillAdded = true;
             moveSkill.canUse = true;
-            controller.skillBox1.gameObject.SetActive(true);
+            controller.inactiveBox1.gameObject.SetActive(false);
         }
 
-        if (level >= 10 && !isFirstSkillAdded)
+        if (level >= levelFirstSkillRequired && !isFirstSkillAdded)
         {
             firstSkill = GetComponent<MineSkill>();
             if(firstSkill == null) { print("chua lay dc"); }
             isFirstSkillAdded = true;
             firstSkill.canUse = true;
-            controller.skillBox2.gameObject.SetActive(true);
+            controller.inactiveBox2.gameObject.SetActive(false);
         }
 
-        if (level >= 15 && !isSecondSkillAdded)
+        if (level >= levelSecondSkillRequired && !isSecondSkillAdded)
         {
             secondSkill = GetComponent<EnhanceSkill>();
             if (secondSkill == null) { print("chua lay dc"); }
             isSecondSkillAdded = true;
             secondSkill.canUse = true;
-            controller.skillBox3.gameObject.SetActive(true);
+            controller.inactiveBox3.gameObject.SetActive(false);
         }
     }
 
     public void OnMoveSkillUse()
     {
-        if (!moveSkill) return;
+        if (moveSkill == null)
+        {
+            OnNotEnoughLevel(levelMoveSkillRequired);
+            return;
+        }
 
         int durationCost = moveSkill.GetDurationCost();
         if (durationCost <= duration.CurrentDuration && !isMoveSkillCooldown)
@@ -118,7 +134,11 @@ public class SkillManager : PlayerSystem
 
     public void OnFirstSkillUse()
     {
-        if (firstSkill == null) return;
+        if (firstSkill == null) 
+        {
+            OnNotEnoughLevel(levelFirstSkillRequired);
+            return; 
+        }
 
         int durationCost = firstSkill.GetDurationCost();
         if (durationCost <= duration.CurrentDuration && !isFirstSkillCooldown)
@@ -135,7 +155,13 @@ public class SkillManager : PlayerSystem
 
     public void OnSecondSkillUse()
     {
-        if (secondSkill == null || !currentGun) return;
+        if(secondSkill == null) { print("sck null"); }
+        if (currentGun == null) { print("crg null"); }
+        if (secondSkill == null || !currentGun) 
+        {
+            OnNotEnoughLevel(levelSecondSkillRequired);
+            return; 
+        }
 
         int durationCost = secondSkill.GetDurationCost();
         if (durationCost <= duration.CurrentDuration && !isSecondSkillCooldown)
@@ -190,6 +216,11 @@ public class SkillManager : PlayerSystem
 
     private void OnNotEnoughDuration()
     {
-        NguyenSingleton.Instance.FloatingTextManager.Show("Out of Duration", 20, Color.blue, transform.position, Vector3.up, 0.2f);
+        NguyenSingleton.Instance.FloatingTextManager.Show("Out of Duration", 24, Color.blue, transform.position, Vector3.up, 0.2f);
+    }
+    private void OnNotEnoughLevel(int level)
+    {
+        print("Level :"+player.playerStats.level);
+        NguyenSingleton.Instance.FloatingTextManager.Show("Required level " + level + " !", 24, Color.yellow, transform.position, Vector3.down, 0.2f);
     }
 }

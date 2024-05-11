@@ -43,7 +43,7 @@ public struct PlayerEvents
 
     // Skill Events
     public Action OnMoveSkillUsed;
-    public Action OnSkillOneUsed;
+    public Action OnFirstSkillUsed;
     public Action OnSkillSecondUsed;
 
     // Collison Events

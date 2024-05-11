@@ -34,8 +34,6 @@ namespace FirstVersion
         public virtual void SetMaxHealth()
         {
             SetMaxHealthBar?.Invoke(maxHealth);
-            //isDead = false;
-            //isFull = true;
         }
 
         public void TakeDamage(int amount, GameObject sender)
