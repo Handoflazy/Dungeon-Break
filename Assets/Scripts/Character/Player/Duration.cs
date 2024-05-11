@@ -12,15 +12,25 @@ public class Duration : PlayerSystem
     private void OnEnable()
     {
         player.ID.playerEvents.OnRefillDuration += RefillDuration;
+        player.ID.playerEvents.OnLevelUp += SetMaxDuration;
     }
 
     private void OnDisable()
     {
         player.ID.playerEvents.OnRefillDuration -= RefillDuration;
+        player.ID.playerEvents.OnLevelUp -= SetMaxDuration;
     }
     private void Start()
     {
+
+        //MaxDuration = PlayerPrefs.GetInt(PrefConsts.MAX_DURATION_KEY);
+        CurrentDuration = PlayerPrefs.GetInt(PrefConsts.CURRENT_DURATION_KEY);
         player.ID.playerEvents.onInitialDuration?.Invoke(MaxDuration);
+        player.ID.playerEvents.OnDurationChanged?.Invoke(CurrentDuration);
+    }
+    public void Update()
+    {
+        //SaveDuration();
     }
     IEnumerator RegeDuration()
     {
@@ -34,12 +44,32 @@ public class Duration : PlayerSystem
     {
         base.Awake();
         MaxDuration = player.playerStats.duration;
-        CurrentDuration = MaxDuration;
+        if (!PlayerPrefs.HasKey(PrefConsts.CURRENT_DURATION_KEY))
+        {
+            CurrentDuration = MaxDuration;
+            SaveDuration();
+        }
+        else
+        {
+            CurrentDuration = PlayerPrefs.GetInt(PrefConsts.CURRENT_DURATION_KEY);
+        }
+        
+    }
+    public void SetMaxDuration()
+    {
+        int temp = player.playerStats.duration - MaxDuration;
+
+        MaxDuration = player.playerStats.duration;
+        RefillDuration(temp);
+        player.ID.playerEvents.onInitialDuration?.Invoke(MaxDuration);
+        //SetMaxHealthBar?.Invoke(MaxHealth);
+        SaveDuration();
     }
     public void InitialDuration()
     {
         MaxDuration = player.playerStats.duration;
-        CurrentDuration = MaxDuration;
+        //CurrentDuration = MaxDuration;
+        //CurrentDuration = PlayerPrefs.GetInt(PrefConsts.CURRENT_DURATION_KEY);
         player.ID.playerEvents.onInitialDuration?.Invoke(MaxDuration);
         player.ID.playerEvents.OnDurationChanged?.Invoke(CurrentDuration);
     }
@@ -52,6 +82,7 @@ public class Duration : PlayerSystem
          
             CurrentDuration = 0;
         }
+        SaveDuration();
         player.ID.playerEvents.OnDurationChanged?.Invoke(CurrentDuration);
 
     }
@@ -63,6 +94,13 @@ public class Duration : PlayerSystem
         {
             CurrentDuration = MaxDuration;
         }
+        SaveDuration();
         player.ID.playerEvents.OnDurationChanged?.Invoke(CurrentDuration);
+    }
+    public void SaveDuration()
+    {
+        PlayerPrefs.SetInt(PrefConsts.CURRENT_DURATION_KEY, CurrentDuration);
+        PlayerPrefs.SetInt(PrefConsts.MAX_DURATION_KEY, MaxDuration);
+        PlayerPrefs.Save();
     }
 }

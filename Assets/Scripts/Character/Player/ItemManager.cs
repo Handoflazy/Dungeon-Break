@@ -40,9 +40,20 @@ public class ItemManager : PlayerSystem
     }
     private void Start()
     {
+        if (PlayerPrefs.HasKey(PrefConsts.MEDIKIT_COUNT_KEY))
+        {
+            MedikitCount = PlayerPrefs.GetInt(PrefConsts.MEDIKIT_COUNT_KEY);
+
+        }
+        if (PlayerPrefs.HasKey(PrefConsts.AMMOBOX_COUNT_KEY))
+        {
+            AmmoBoxCount = PlayerPrefs.GetInt(PrefConsts.AMMOBOX_COUNT_KEY);
+        }
         player.ID.playerEvents.OnUpdateMedikit?.Invoke(MedikitCount);
         player.ID.playerEvents.OnUpdateAmmoBox?.Invoke(AmmoBoxCount);
         currentGun = GetComponentInChildren<BasicGun>();
+
+
     }
 
     private void OnchangeGun(BasicGun gun)
@@ -53,12 +64,15 @@ public class ItemManager : PlayerSystem
     public void AddMedikit(int number)
     {
         MedikitCount += number;
+        PlayerPrefs.SetInt(PrefConsts.MEDIKIT_COUNT_KEY, MedikitCount);
         MedikitCount = Mathf.Clamp(MedikitCount, 0, medikitCapacity);
         player.ID.playerEvents.OnUpdateMedikit?.Invoke(MedikitCount);
+
     }
     public void AddAmmoBox(int number)
     {
         AmmoBoxCount += number;
+        PlayerPrefs.SetInt(PrefConsts.AMMOBOX_COUNT_KEY, AmmoBoxCount);
         AmmoBoxCount = Mathf.Clamp(AmmoBoxCount, 0, ammoBoxCapacity);
         player.ID.playerEvents.OnUpdateAmmoBox?.Invoke(AmmoBoxCount);
     }
@@ -71,8 +85,10 @@ public class ItemManager : PlayerSystem
                 if (health.isFull) { return; }
                 health.AddHealth(medikitHealAmount);
                 MedikitCount--;
+                PlayerPrefs.SetInt(PrefConsts.MEDIKIT_COUNT_KEY, MedikitCount);
                 player.ID.playerEvents.OnUpdateMedikit?.Invoke(MedikitCount);
                 useMedikit?.Invoke();
+
             }
         }
     }
@@ -89,6 +105,7 @@ public class ItemManager : PlayerSystem
                 }
                 currentGun.FullReload();
                 AmmoBoxCount--;
+                PlayerPrefs.SetInt(PrefConsts.AMMOBOX_COUNT_KEY, AmmoBoxCount);
                 player.ID.playerEvents.OnUpdateAmmoBox?.Invoke(AmmoBoxCount);
                 useAmmoBox?.Invoke();
             }
