@@ -32,7 +32,14 @@ namespace Shooter
                 FindObjectOfType<WeaponParent>().SetWeapon(GunPrefab, BulletNumber);
                 interacted = true;
                 StartCoroutine(PlaySFX());
-                
+                if (GunPrefab.name == "assault_rifle")
+                {
+                    PlayerPrefs.SetInt(PrefConsts.CURRENT_GUN_KEY, 0);
+                }
+                else if(GunPrefab.name == "ShortGun")
+                {
+                    PlayerPrefs.SetInt(PrefConsts.CURRENT_GUN_KEY, 1);
+                }
             }
         }
         IEnumerator PlaySFX()

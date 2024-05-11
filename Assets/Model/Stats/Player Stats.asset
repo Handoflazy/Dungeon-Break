@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb1792dc86f3041488e8501ba9429074, type: 3}
   m_Name: Player Stats
   m_EditorClassIdentifier: 
-  hp: 100
+  hp: 200
   duration: 100
-  damage: 9
+  damage: 165
   level: 1
   Maxlevel: 100
   xp: 0

@@ -1896,8 +1896,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerStatsSO: {fileID: 11400000, guid: 49a80fb274fc0dc4a8d48fa6534b3de6, type: 2}
-  baseHP: 100
+  baseHP: 200
   baseLUXR: 50
+  baseDuration: 100
 --- !u!1 &1898000608
 GameObject:
   m_ObjectHideFlags: 0

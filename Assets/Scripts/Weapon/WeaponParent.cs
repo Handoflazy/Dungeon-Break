@@ -18,7 +18,7 @@ public class WeaponParent : PlayerSystem
     private GameObject currentItemPrefab;
 
     public List<ItemParameter> itemCurrentState;
-
+    public List<GameObject> weapons;
 
     protected float desireAngle;
     public Vector2 Pointerposition { get; set; }
@@ -49,7 +49,22 @@ public class WeaponParent : PlayerSystem
     }
     private void Start()
     {
-        CurrentGun = GetComponentInChildren<BasicGun>();
+        
+        if (PlayerPrefs.HasKey(PrefConsts.CURRENT_GUN_KEY))
+        {
+            int indexCurrenGun = PlayerPrefs.GetInt(PrefConsts.CURRENT_GUN_KEY);
+            CurrentGun = weapons[indexCurrenGun].GetComponent<BasicGun>();
+            SpawnWeapon(weapons[indexCurrenGun]);
+
+            if (PlayerPrefs.HasKey(PrefConsts.CURRENT_BULLET_COUNT_KEY))
+            {
+                CurrentGun.Ammo = PlayerPrefs.GetInt(PrefConsts.CURRENT_BULLET_COUNT_KEY);
+            }
+        }
+        else 
+        {
+            CurrentGun = GetComponentInChildren<BasicGun>();
+        }
         AttackCooldown();
     }
 
@@ -73,7 +88,7 @@ public class WeaponParent : PlayerSystem
         transform.rotation = Quaternion.AngleAxis(desireAngle, Vector3.forward);
         transform.localScale = scale;
 
-
+        PlayerPrefs.SetInt(PrefConsts.CURRENT_BULLET_COUNT_KEY, CurrentGun.Ammo);
     }
 
     private void AdjustWeaponRederrer()
@@ -107,7 +122,6 @@ public class WeaponParent : PlayerSystem
         if (CurrentGun)
         {      
             DropCurrentWeapon();
-           
         }
         SpawnWeapon(newGun);
         currentItemPrefab = newGun;
@@ -145,6 +159,7 @@ public class WeaponParent : PlayerSystem
     {
         if (CurrentGun)
             CurrentGun?.StopShoot();
+        
     }
 }
 

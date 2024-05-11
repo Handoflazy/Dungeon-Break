@@ -46,12 +46,13 @@ public class HUBManagement : MonoBehaviour
 
     public void OnHealthChanged(int currentHealth)
     {
-        currentHealth = PlayerPrefs.GetInt("currentHealth");
+        currentHealth = PlayerPrefs.GetInt(PrefConsts.CURRENT_HEALTH_KEY);
 
         healthBar.SetValue(currentHealth);
     }
     public void OnDurationChanged(int currentDuration)
     {
+        currentDuration = PlayerPrefs.GetInt(PrefConsts.CURRENT_DURATION_KEY);
         durationBar.SetValue(currentDuration);
     }
     public void DisplayGameOver()

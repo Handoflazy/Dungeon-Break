@@ -25,7 +25,7 @@ namespace PlayerController
             player = GetComponent<Player>();
             MaxHealth = player.playerStats.hp;
             LoadHP();
-            if (!PlayerPrefs.HasKey("currentHealth"))
+            if (!PlayerPrefs.HasKey(PrefConsts.CURRENT_HEALTH_KEY))
             {
                 CurrentHealth = MaxHealth;
                 SaveHP();
@@ -33,7 +33,7 @@ namespace PlayerController
             }
             else 
             { 
-                CurrentHealth = PlayerPrefs.GetInt("currentHealth");
+                CurrentHealth = PlayerPrefs.GetInt(PrefConsts.CURRENT_HEALTH_KEY);
             }
             
         }
@@ -46,6 +46,10 @@ namespace PlayerController
             AddHealth(temp);
 
             SetMaxHealthBar?.Invoke(MaxHealth);
+            SaveHP();
+        }
+        public void LateUpdate()
+        {
             SaveHP();
         }
 
