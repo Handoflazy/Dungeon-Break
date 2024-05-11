@@ -17,11 +17,11 @@ MonoBehaviour:
     characterSprite: {fileID: -1024476836, guid: 6d5b035f0b6c7d34c966be52fb64e199, type: 3}
     characterAnimator: {fileID: 9100000, guid: 1f6428493a98402499abf2783cd099a3, type: 2}
   - characterName: "Thi\u1EC7n"
-    characterSprite: {fileID: 74023937, guid: 6d5b035f0b6c7d34c966be52fb64e199, type: 3}
-    characterAnimator: {fileID: 0}
+    characterSprite: {fileID: 1363914312, guid: 6d5b035f0b6c7d34c966be52fb64e199, type: 3}
+    characterAnimator: {fileID: 9100000, guid: 9c232f245e0ac444f9dd1d6b815e7bdc, type: 2}
   - characterName: "Nguy\xEAn"
     characterSprite: {fileID: -7152299001105452386, guid: cd51eb7beb222fa47828f05ce60c3922, type: 3}
     characterAnimator: {fileID: 9100000, guid: 9c224bd536e1f4f4a870668cc2d8ee06, type: 2}
   - characterName: "Tuy\u1EC1n"
-    characterSprite: {fileID: -1013823009, guid: 6d5b035f0b6c7d34c966be52fb64e199, type: 3}
-    characterAnimator: {fileID: 0}
+    characterSprite: {fileID: -182359689, guid: 6d5b035f0b6c7d34c966be52fb64e199, type: 3}
+    characterAnimator: {fileID: 9100000, guid: e9e2325a1b8c94041884be2ec15e10e1, type: 2}
