@@ -27,7 +27,7 @@ public class SkillManager : PlayerSystem
 
     private void Start()
     {
-        currentGun = GetComponent<BasicGun>();
+        currentGun = GetComponentInChildren<BasicGun>();
         audioSource = GetComponent<AudioSource>();
         HandleLevelUp();
     }
@@ -155,6 +155,8 @@ public class SkillManager : PlayerSystem
 
     public void OnSecondSkillUse()
     {
+        if(secondSkill == null) { print("sck null"); }
+        if (currentGun == null) { print("crg null"); }
         if (secondSkill == null || !currentGun) 
         {
             OnNotEnoughLevel(levelSecondSkillRequired);
@@ -218,6 +220,7 @@ public class SkillManager : PlayerSystem
     }
     private void OnNotEnoughLevel(int level)
     {
+        print("Level :"+player.playerStats.level);
         NguyenSingleton.Instance.FloatingTextManager.Show("Required level " + level + " !", 24, Color.yellow, transform.position, Vector3.down, 0.2f);
     }
 }
