@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ad7efae695b5d458b2b3a2dddb65fb, type: 3}
+  m_Name: Mine(Level-2)
+  m_EditorClassIdentifier: 
+  MineImage: {fileID: -777414059, guid: d2f76b5c0dd0a0447a44239ea9f83e68, type: 3}
+  <ExplosionPrefab>k__BackingField: {fileID: 8790504900627256676, guid: 4fb125071af1dce4fa493e7ede6502b0, type: 3}
+  <WaitTime>k__BackingField: 1
+  <ExplosionPower>k__BackingField: 20
+  <Knockback>k__BackingField: 5
+  <ExplosionRadius>k__BackingField: 0.16
