@@ -3,12 +3,15 @@ using PlayerController;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.XPath;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using static Cinemachine.DocumentationSortingAttribute;
 
 public class Load : MonoBehaviour
 {
+    public Image img_Play;
     //public Save_Load Save_Load;
     public PlayerStatsSO PlayerStatsSO;
     //public PlayerHealth PlayerHealth;
@@ -47,6 +50,16 @@ public class Load : MonoBehaviour
     }
     public void ChangeScene(string str)
     {
+        int currentHP = PlayerPrefs.GetInt(PrefConsts.CURRENT_HEALTH_KEY);
+        if(currentHP <= 0)
+        {
+            img_Play.gameObject.SetActive(true);
+            return;
+        }
+        else
+        {
+            img_Play.gameObject.SetActive(false);
+        }
         // lam truoc cai LoadScene chu chua co SaveScene do chua co 2 map
         if (PlayerPrefs.HasKey("currentScene"))
         {
@@ -58,6 +71,20 @@ public class Load : MonoBehaviour
             SceneManager.LoadScene(str);
         }
         
+    }
+    public void ChangeSceneNewGame(string str)
+    {
+        // lam truoc cai LoadScene chu chua co SaveScene do chua co 2 map
+        if (PlayerPrefs.HasKey("currentScene"))
+        {
+            string currentScene = PlayerPrefs.GetString("currentScene");
+            SceneManager.LoadScene(currentScene);
+        }
+        else
+        {
+            SceneManager.LoadScene(str);
+        }
+
     }
     public void Quit()
     {

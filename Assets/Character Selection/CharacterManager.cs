@@ -12,6 +12,7 @@ public class CharacterManager : MonoBehaviour
     public SpriteRenderer spriteCharacter;
     public AnimatorController controllerCharacter;
     private int selectedOption =0;
+    public Image image;
 
     private void Start()
     {
@@ -51,9 +52,12 @@ public class CharacterManager : MonoBehaviour
     void UpdateCharacter(int selectOption)
     {
         Character character = characterDB.GetCharacter(selectOption);
-        spriteCharacter.sprite = character.characterSprite;
+        //spriteCharacter.sprite = character.characterSprite;
         controllerCharacter = character.characterAnimator;
         nameText.text = character.characterName;
+        image.sprite = character.characterSprite;
+
+        print(selectOption);
     }
     void Load()
     {

@@ -20,7 +20,7 @@ MonoBehaviour:
     characterSprite: {fileID: 1363914312, guid: 6d5b035f0b6c7d34c966be52fb64e199, type: 3}
     characterAnimator: {fileID: 9100000, guid: 9c232f245e0ac444f9dd1d6b815e7bdc, type: 2}
   - characterName: "Nguy\xEAn"
-    characterSprite: {fileID: -7152299001105452386, guid: cd51eb7beb222fa47828f05ce60c3922, type: 3}
+    characterSprite: {fileID: 1388317612, guid: 6d5b035f0b6c7d34c966be52fb64e199, type: 3}
     characterAnimator: {fileID: 9100000, guid: 9c224bd536e1f4f4a870668cc2d8ee06, type: 2}
   - characterName: "Tuy\u1EC1n"
     characterSprite: {fileID: -182359689, guid: 6d5b035f0b6c7d34c966be52fb64e199, type: 3}
