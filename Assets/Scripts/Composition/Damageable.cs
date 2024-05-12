@@ -22,7 +22,7 @@ namespace FirstVersion
             {
                 return;
             }
-            DGSingleton.Instance.FloatingTextManager.Show(dmg.ToString(), 10, Color.red, transform.position, Vector3.zero, 0.5f);
+            NguyenSingleton.Instance.FloatingTextManager.Show(dmg.ToString(), 10, Color.red, transform.position, Vector3.zero, 0.5f);
             health.TakeDamage(dmg,sender.transform.root.gameObject);       
         }
     }

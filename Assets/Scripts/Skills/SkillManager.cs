@@ -190,6 +190,6 @@ public class SkillManager : PlayerSystem
 
     private void OnNotEnoughDuration()
     {
-        DGSingleton.Instance.FloatingTextManager.Show("Out of Duration", 20, Color.blue, transform.position, Vector3.up, 0.2f);
+        NguyenSingleton.Instance.FloatingTextManager.Show("Out of Duration", 20, Color.blue, transform.position, Vector3.up, 0.2f);
     }
 }

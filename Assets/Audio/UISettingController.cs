@@ -16,19 +16,19 @@ public class UISettingController : MonoBehaviour
     }
     public void TogglerMusic()
     {
-        DGSingleton.Instance.AudioManager.ToggleMusic();
+        NguyenSingleton.Instance.AudioManager.ToggleMusic();
     }
     public void TogglerSFX()
     {
-        DGSingleton.Instance.AudioManager.ToggleSFX();
+        NguyenSingleton.Instance.AudioManager.ToggleSFX();
     }
     public void MusicVolume()
     {
-        DGSingleton.Instance.AudioManager.MusicVolume(_musicSlider.value);
+        NguyenSingleton.Instance.AudioManager.MusicVolume(_musicSlider.value);
     }
     public void SFXVolume()
     {
-        DGSingleton.Instance.AudioManager.SFXVolume(_sfxSlider.value);
+        NguyenSingleton.Instance.AudioManager.SFXVolume(_sfxSlider.value);
     }
 
     public void OpenMenu()

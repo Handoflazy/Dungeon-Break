@@ -24,15 +24,15 @@ public class NPC : MonoBehaviour
 
     private void OnEnable()
     {
-        DGSingleton.Instance.DialogueController.OnDialogueStarted += JoinConversation;
-        DGSingleton.Instance.DialogueController.OnDialogueEnded += LeaveConversation;
+        NguyenSingleton.Instance.DialogueController.OnDialogueStarted += JoinConversation;
+        NguyenSingleton.Instance.DialogueController.OnDialogueEnded += LeaveConversation;
 
     }
 
     private void OnDisable()
     {
-        DGSingleton.Instance.DialogueController.OnDialogueStarted -= JoinConversation;
-        DGSingleton.Instance.DialogueController.OnDialogueEnded -= LeaveConversation;
+        NguyenSingleton.Instance.DialogueController.OnDialogueStarted -= JoinConversation;
+        NguyenSingleton.Instance.DialogueController.OnDialogueEnded -= LeaveConversation;
     }
 
     [HideInInspector]
@@ -59,11 +59,11 @@ public class NPC : MonoBehaviour
 
         if(InConversation)
         {
-            DGSingleton.Instance.DialogueController.SkipLine();
+            NguyenSingleton.Instance.DialogueController.SkipLine();
         }
         else
         {
-            DGSingleton.Instance.DialogueController.StartDialogueTree(dialogueTree, repeatStartPosition, npcName);
+            NguyenSingleton.Instance.DialogueController.StartDialogueTree(dialogueTree, repeatStartPosition, npcName);
         }
 
     }

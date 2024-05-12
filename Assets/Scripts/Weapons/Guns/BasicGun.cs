@@ -98,7 +98,7 @@ public class BasicGun : PlayerSystem
             {
                 isShooting=false;
                 OnShootNoAmmo?.Invoke();
-                DGSingleton.Instance.FloatingTextManager.Show("Out of Ammor", 20, Color.red, transform.position, Vector3.up, weaponData.WeaponDelay);
+                NguyenSingleton.Instance.FloatingTextManager.Show("Out of Ammor", 20, Color.red, transform.position, Vector3.up, weaponData.WeaponDelay);
                 return;
             }
             FinishShoot();

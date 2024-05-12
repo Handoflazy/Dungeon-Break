@@ -8,11 +8,11 @@ public class JointTransition : PlayerSystem
     private void Start()
     {
      
-        if (TransitionName==DGSingleton.Instance.SceneManagement.SceneTransitionName)
+        if (TransitionName==NguyenSingleton.Instance.SceneManagement.SceneTransitionName)
         {
             GameObject player = GameObject.Find("Player");
             player.transform.position = gameObject.transform.position;
-            DGSingleton.Instance.UIfade.FadeToClear();
+            NguyenSingleton.Instance.UIfade.FadeToClear();
      
         }
     }

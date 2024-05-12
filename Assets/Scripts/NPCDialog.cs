@@ -9,7 +9,7 @@ public class NPCDialog : Collidable
     private float lastTime;
     protected override void Start()
     {
-        DGSingleton.Instance.FloatingTextManager.Show("Welcome", 50, Color.white, transform.position + new Vector3(0, 0.16f, 0), Vector3.zero, 1);
+        NguyenSingleton.Instance.FloatingTextManager.Show("Welcome", 50, Color.white, transform.position + new Vector3(0, 0.16f, 0), Vector3.zero, 1);
         base.Start();
         lastTime = -cooldown;
     }
@@ -20,7 +20,7 @@ public class NPCDialog : Collidable
             if (Time.time - lastTime > cooldown)
             {
                 lastTime = Time.time;
-                DGSingleton.Instance.FloatingTextManager.Show(message, 50, Color.white, transform.position + new Vector3(0, 0.16f, 0), Vector3.zero, cooldown);
+                NguyenSingleton.Instance.FloatingTextManager.Show(message, 50, Color.white, transform.position + new Vector3(0, 0.16f, 0), Vector3.zero, cooldown);
             }
         }
     }

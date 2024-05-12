@@ -17,8 +17,8 @@ public class ExitPortal : MonoBehaviour
     {
         if ((layerMask & (1 << collision.gameObject.layer)) != 0)
         {
-            DGSingleton.Instance.SceneManagement.SetTransitionName(SceneTransitionName);
-            DGSingleton.Instance.UIfade.FadeToBlack();
+            NguyenSingleton.Instance.SceneManagement.SetTransitionName(SceneTransitionName);
+            NguyenSingleton.Instance.UIfade.FadeToBlack();
             StartCoroutine(LoadSceneRoutine());
             
         }

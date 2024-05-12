@@ -9,7 +9,7 @@ public class SingletonStrapper : MonoBehaviour
 
     private void Awake()
     {
-        if(DGSingleton.Instance !=null)
+        if(NguyenSingleton.Instance !=null)
         {
             Destroy(this.gameObject);
             return;

@@ -7,6 +7,6 @@ public class Crate : Fighter
 {
     public override void Death()
     {
-        DGSingleton.Instance.FloatingTextManager.Show("Bro is dead", 30, UnityEngine.Color.red, transform.position, Vector3.zero, 0.5f);
+        NguyenSingleton.Instance.FloatingTextManager.Show("Bro is dead", 30, UnityEngine.Color.red, transform.position, Vector3.zero, 0.5f);
     }
 }

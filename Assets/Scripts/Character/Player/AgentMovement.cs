@@ -12,14 +12,14 @@ public abstract class AgentMovement : MonoBehaviour
     MovementDataS0 MovementData { get; set; }
     protected virtual void OnDisable()
     {
-        DGSingleton.Instance.DialogueController.OnDialogueStarted -= StopMoving;
-        DGSingleton.Instance.DialogueController.OnDialogueEnded -= ContinueMoving;
+        NguyenSingleton.Instance.DialogueController.OnDialogueStarted -= StopMoving;
+        NguyenSingleton.Instance.DialogueController.OnDialogueEnded -= ContinueMoving;
 
     }
     private void Start()
     {
-        DGSingleton.Instance.DialogueController.OnDialogueStarted += StopMoving;
-        DGSingleton.Instance.DialogueController.OnDialogueEnded += ContinueMoving;
+        NguyenSingleton.Instance.DialogueController.OnDialogueStarted += StopMoving;
+        NguyenSingleton.Instance.DialogueController.OnDialogueEnded += ContinueMoving;
     }
 
 

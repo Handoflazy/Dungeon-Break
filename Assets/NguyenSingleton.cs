@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DGSingleton : MonoBehaviour
+public class NguyenSingleton : MonoBehaviour
 {
-    public static DGSingleton Instance { get; private set; }
+    public static NguyenSingleton Instance { get; private set; }
     public GameObject inputPlayer;
     public GameObject HUB;
     public GameObject mainCamera;
