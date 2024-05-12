@@ -11,17 +11,17 @@ public class PlayerMovement : AgentMovement
         base.Awake();
         player = transform.root.GetComponent<Player>();
     }
-    private void OnEnable()
+    protected  void OnEnable()
     {
         player.ID.playerEvents.OnMove += MoveAgent;
-        player.ID.playerEvents.OnUsingWeapon += OnAttackingEvent;
         player.ID.playerEvents.OnMoveSkillUsing += OnMoveSkillUsingEvent;
-        SceneManager.activeSceneChanged += OnActiveSceneChanged;
+        SceneManager.activeSceneChanged += OnActiveSceneChanged; 
     }
-    protected void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
         player.ID.playerEvents.OnMove -= MoveAgent;
-        player.ID.playerEvents.OnUsingWeapon -= OnAttackingEvent;
         player.ID.playerEvents.OnMoveSkillUsing -= OnMoveSkillUsingEvent;
+        SceneManager.activeSceneChanged -= OnActiveSceneChanged;
     }
 }

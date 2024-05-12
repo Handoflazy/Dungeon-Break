@@ -11,7 +11,7 @@ public class LootBag : MonoBehaviour
     [SerializeField]
     private List<Loot> lootList;
     [SerializeField]
-    private GameObject droppedWeaponPrefab, droppedResoucePrefabs;
+    private GameObject droppedWeaponPrefab;
     
     [SerializeField]
     private float dropForce;

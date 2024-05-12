@@ -28,7 +28,7 @@ public class Fighter : MonoBehaviour
     {
        
         pushDirection = (transform.position - dmg.origin).normalized * dmg.pushForce;
-        NguyenSingleton.Instance.FloatingTextManager.Show(dmg.damageAmount.ToString(), 30, UnityEngine.Color.red, transform.position, Vector3.zero, 0.5f);
+        DGSingleton.Instance.FloatingTextManager.Show(dmg.damageAmount.ToString(), 30, UnityEngine.Color.red, transform.position, Vector3.zero, 0.5f);
     }
 
     public virtual void Death()

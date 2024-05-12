@@ -38,7 +38,6 @@ public class AgentAnimations : PlayerSystem
         player.ID.playerEvents.OnUsingWeapon += OnUsingWeaponEvent;
 
     }
-
     private void OnDisable()
     {
         player.ID.playerEvents.OnDeath -= PlayDeathAnimation;

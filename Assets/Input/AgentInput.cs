@@ -38,7 +38,7 @@ public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, Play
     {
         inputActions.PlayerInput.Enable();
         inputActions.Menu.Disable();
-        NguyenSingleton.Instance.UISettingController.CloseMenu();
+        DGSingleton.Instance.UISettingController.CloseMenu();
     }
 
     public void OnMovement(InputAction.CallbackContext context)
@@ -57,7 +57,7 @@ public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, Play
         {
             inputActions.PlayerInput.Disable();
             inputActions.Menu.Enable();
-            NguyenSingleton.Instance.UISettingController.OpenMenu();
+            DGSingleton.Instance.UISettingController.OpenMenu();
         }
     }
 

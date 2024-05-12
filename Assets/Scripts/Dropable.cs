@@ -6,6 +6,6 @@ public class Dropable : MonoBehaviour
 {
     public void DropItem()
     {
-        NguyenSingleton.Instance.FloatingTextManager.Show("Chua biet viet gi nhung cu khen nguyen dep trai cai da!!", 20, Color.green, transform.position, Vector3.up, 3);
+        DGSingleton.Instance.FloatingTextManager.Show("Chua biet viet gi nhung cu khen nguyen dep trai cai da!!", 20, Color.green, transform.position, Vector3.up, 3);
     }
 }

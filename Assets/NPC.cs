@@ -3,80 +3,87 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class NPC : MonoBehaviour
 {
-    public GameObject dialoguePanel;
-    public TMP_Text dialogueText;
-    public string[] dialogue;
-    private int index;
+    [SerializeField] bool firstInteraction = true;
+    [SerializeField] int repeatStartPosition;
 
-    public GameObject contButton;
-    public float wordSpeed;
+    public string npcName;
+    public DialogueAsset dialogueAsset;
+    public DialogueTree dialogueTree;
+    bool inConversation=false;
+
+    public UnityEvent DialogStarted;
+    public UnityEvent DialogEnded;
+
+    [SerializeField]
+    private bool GrantLoot;
 
 
+    private void OnEnable()
+    {
+        DGSingleton.Instance.DialogueController.OnDialogueStarted += JoinConversation;
+        DGSingleton.Instance.DialogueController.OnDialogueEnded += LeaveConversation;
 
-    public void Talk()
+    }
+
+    private void OnDisable()
+    {
+        DGSingleton.Instance.DialogueController.OnDialogueStarted -= JoinConversation;
+        DGSingleton.Instance.DialogueController.OnDialogueEnded -= LeaveConversation;
+    }
+
+    [HideInInspector]
+    public int StartPosition
+    {
+        get
+        {
+            if (firstInteraction)
+            {
+                firstInteraction = false;
+                return 0;
+            }
+            else
+            {
+                return repeatStartPosition;
+            }
+        }
+    }
+
+    public bool InConversation { get => inConversation; set => inConversation = value; }
+
+    public void ReponseInteract()
     {
 
-        if (dialoguePanel.activeInHierarchy)
-
+        if(InConversation)
         {
-            zeroText();
+            DGSingleton.Instance.DialogueController.SkipLine();
         }
         else
         {
-            dialoguePanel.SetActive(true);
-            dialogueText.text = "";
-            StartCoroutine(Typing());
+            DGSingleton.Instance.DialogueController.StartDialogueTree(dialogueTree, repeatStartPosition, npcName);
         }
 
-        if (dialogueText.text == dialogue[index])
-        {
-            contButton.gameObject.SetActive(true);
-        }
     }
-    public void zeroText()
+    void JoinConversation()
     {
-
-        dialogueText.text = "";
-        index = 0;
-        dialoguePanel.SetActive(false);
-    }
-    public IEnumerator Typing()
-    {
-
-        foreach (char letter in dialogue[index].ToCharArray())
-        {
-
-            dialogueText.text += letter;
-            yield return new WaitForSeconds(wordSpeed);
-
-        }
+        inConversation = true;
+        DialogStarted?.Invoke();
     }
 
-
-    public void NextLine()
+    void LeaveConversation()
     {
-        print(1);
-        contButton.SetActive(false);
-        if (index < dialogue.Length - 1)
+        inConversation = false;
+        if (GrantLoot)
         {
-            index++;
-            dialogueText.text = "";
-            StartCoroutine(Typing());
-        }
-        else
-        {
-
-            zeroText();
+            DialogEnded?.Invoke();
+            GrantLoot = false;
         }
 
     }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        zeroText();
-    }
+
 
 
 

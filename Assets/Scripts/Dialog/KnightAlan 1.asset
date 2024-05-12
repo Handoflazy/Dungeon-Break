@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 258b6777496ff324796fcffaf33b93c1, type: 3}
+  m_Name: KnightAlan 1
+  m_EditorClassIdentifier: 
+  sections:
+  - dialogue:
+    - Xin Chao
+    - Chao mung den voi tro choi
+    endAfterDialogue: 0
+    branchPoint:
+      question: AI la nguoi gay nhat trong cac lua chon sau
+      answers:
+      - answerLabel: Nguyen
+        nextElement: 1
+      - answerLabel: Khiem
+        nextElement: 2
+      - answerLabel: Thien
+        nextElement: 3
+  - dialogue:
+    - Dap an sai
+    endAfterDialogue: 1
+    branchPoint:
+      question: AI la nguoi gay nhat trong cac lua chon sau
+      answers:
+      - answerLabel: Nguyen
+        nextElement: 1
+      - answerLabel: Khiem
+        nextElement: 2
+  - dialogue:
+    - Chua han la gay
+    endAfterDialogue: 1
+    branchPoint:
+      question: AI la nguoi gay nhat trong cac lua chon sau
+      answers:
+      - answerLabel: Nguyen
+        nextElement: 1
+      - answerLabel: Khiem
+        nextElement: 2
+  - dialogue:
+    - Cau tra loi chinh xac
+    endAfterDialogue: 1
+    branchPoint:
+      question: AI la nguoi gay nhat trong cac lua chon sau
+      answers:
+      - answerLabel: Nguyen
+        nextElement: 1
+      - answerLabel: Khiem
+        nextElement: 2

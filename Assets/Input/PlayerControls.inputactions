@@ -24,7 +24,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Attack",
+                    "name": "Press",
                     "type": "Button",
                     "id": "399ee80b-ead3-42a2-9ce8-4208e665e48c",
                     "expectedControlType": "Button",
@@ -49,15 +49,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "KeyBoard",
-                    "type": "Value",
-                    "id": "2bd503a4-c627-478b-a281-8d9bfdc9281d",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 },
                 {
                     "name": "SkillOne",
@@ -90,15 +81,6 @@
                     "name": "OpenInventory",
                     "type": "Button",
                     "id": "9d540306-0736-4bd9-9217-b0fadccd0c0d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Press",
-                    "type": "Button",
-                    "id": "2e604c7d-9b96-4fcf-a400-72f9939ccbfc",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -258,10 +240,10 @@
                     "name": "",
                     "id": "fcd53f1e-a273-4c02-8e7f-f600a1d7b176",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "Attack",
+                    "action": "Press",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -284,61 +266,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "ZoomMap",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "629a9c2c-6a99-4ade-8146-b25bc8c7e800",
-                    "path": "<Keyboard>/1",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "KeyBoard",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ec8fb9f4-824a-48c5-88b9-c784f8179f0c",
-                    "path": "<Keyboard>/2",
-                    "interactions": "",
-                    "processors": "Scale(factor=2)",
-                    "groups": "",
-                    "action": "KeyBoard",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f92da47a-334b-43ae-af67-ec3e124b7c85",
-                    "path": "<Keyboard>/3",
-                    "interactions": "",
-                    "processors": "Scale(factor=3)",
-                    "groups": "",
-                    "action": "KeyBoard",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "80adc363-9c6c-4d9a-9b7d-fc2c6e5ad65f",
-                    "path": "<Keyboard>/4",
-                    "interactions": "",
-                    "processors": "Scale(factor=4)",
-                    "groups": "",
-                    "action": "KeyBoard",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b62243a1-24fa-4eb6-9dd1-4afb7c337b3d",
-                    "path": "<Keyboard>/5",
-                    "interactions": "",
-                    "processors": "Scale(factor=5)",
-                    "groups": "",
-                    "action": "KeyBoard",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -383,17 +310,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "OpenInventory",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ba94aa9a-7ff5-4e18-80a3-cca2702c764f",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Press",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

@@ -11,12 +11,12 @@ public class TimeFreezeFeedback : Feedback
     private float timeFreezeValue = .2f;
     public override void CompletePreviousFeedback()
     {
-        NguyenSingleton.Instance.GameManager.ResetTimeScale();
+        DGSingleton.Instance.GameManager.ResetTimeScale();
     }
 
     public override void CreateFeedback()
     {
-        if(NguyenSingleton.Instance.GameManager)
-            NguyenSingleton.Instance.GameManager.ModifyTimeScale(timeFreezeValue, freezeTimeDelay, () => NguyenSingleton.Instance.GameManager.ModifyTimeScale(1, unfreezeTimeDelay));
+        if(DGSingleton.Instance.GameManager)
+            DGSingleton.Instance.GameManager.ModifyTimeScale(timeFreezeValue, freezeTimeDelay, () => DGSingleton.Instance.GameManager.ModifyTimeScale(1, unfreezeTimeDelay));
     }
 }

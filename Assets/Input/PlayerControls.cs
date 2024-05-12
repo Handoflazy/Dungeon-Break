@@ -46,7 +46,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Attack"",
+                    ""name"": ""Press"",
                     ""type"": ""Button"",
                     ""id"": ""399ee80b-ead3-42a2-9ce8-4208e665e48c"",
                     ""expectedControlType"": ""Button"",
@@ -71,15 +71,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""KeyBoard"",
-                    ""type"": ""Value"",
-                    ""id"": ""2bd503a4-c627-478b-a281-8d9bfdc9281d"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""SkillOne"",
@@ -112,15 +103,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""OpenInventory"",
                     ""type"": ""Button"",
                     ""id"": ""9d540306-0736-4bd9-9217-b0fadccd0c0d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Press"",
-                    ""type"": ""Button"",
-                    ""id"": ""2e604c7d-9b96-4fcf-a400-72f9939ccbfc"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -280,10 +262,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""fcd53f1e-a273-4c02-8e7f-f600a1d7b176"",
                     ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Attack"",
+                    ""action"": ""Press"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -306,61 +288,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ZoomMap"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""629a9c2c-6a99-4ade-8146-b25bc8c7e800"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""KeyBoard"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ec8fb9f4-824a-48c5-88b9-c784f8179f0c"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": ""Scale(factor=2)"",
-                    ""groups"": """",
-                    ""action"": ""KeyBoard"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f92da47a-334b-43ae-af67-ec3e124b7c85"",
-                    ""path"": ""<Keyboard>/3"",
-                    ""interactions"": """",
-                    ""processors"": ""Scale(factor=3)"",
-                    ""groups"": """",
-                    ""action"": ""KeyBoard"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""80adc363-9c6c-4d9a-9b7d-fc2c6e5ad65f"",
-                    ""path"": ""<Keyboard>/4"",
-                    ""interactions"": """",
-                    ""processors"": ""Scale(factor=4)"",
-                    ""groups"": """",
-                    ""action"": ""KeyBoard"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b62243a1-24fa-4eb6-9dd1-4afb7c337b3d"",
-                    ""path"": ""<Keyboard>/5"",
-                    ""interactions"": """",
-                    ""processors"": ""Scale(factor=5)"",
-                    ""groups"": """",
-                    ""action"": ""KeyBoard"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -405,17 +332,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""OpenInventory"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ba94aa9a-7ff5-4e18-80a3-cca2702c764f"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": ""Press"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Press"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -523,15 +439,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerInput = asset.FindActionMap("PlayerInput", throwIfNotFound: true);
         m_PlayerInput_Movement = m_PlayerInput.FindAction("Movement", throwIfNotFound: true);
         m_PlayerInput_PointerPosition = m_PlayerInput.FindAction("PointerPosition", throwIfNotFound: true);
-        m_PlayerInput_Attack = m_PlayerInput.FindAction("Attack", throwIfNotFound: true);
+        m_PlayerInput_Press = m_PlayerInput.FindAction("Press", throwIfNotFound: true);
         m_PlayerInput_OpenMenu = m_PlayerInput.FindAction("OpenMenu", throwIfNotFound: true);
         m_PlayerInput_ZoomMap = m_PlayerInput.FindAction("ZoomMap", throwIfNotFound: true);
-        m_PlayerInput_KeyBoard = m_PlayerInput.FindAction("KeyBoard", throwIfNotFound: true);
         m_PlayerInput_SkillOne = m_PlayerInput.FindAction("SkillOne", throwIfNotFound: true);
         m_PlayerInput_SkillSecond = m_PlayerInput.FindAction("SkillSecond", throwIfNotFound: true);
         m_PlayerInput_MovementSkill = m_PlayerInput.FindAction("MovementSkill", throwIfNotFound: true);
         m_PlayerInput_OpenInventory = m_PlayerInput.FindAction("OpenInventory", throwIfNotFound: true);
-        m_PlayerInput_Press = m_PlayerInput.FindAction("Press", throwIfNotFound: true);
         m_PlayerInput_UseMedit = m_PlayerInput.FindAction("UseMedit", throwIfNotFound: true);
         m_PlayerInput_UseAmmoBox = m_PlayerInput.FindAction("UseAmmoBox", throwIfNotFound: true);
         m_PlayerInput_Interact = m_PlayerInput.FindAction("Interact", throwIfNotFound: true);
@@ -606,15 +520,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IPlayerInputActions> m_PlayerInputActionsCallbackInterfaces = new List<IPlayerInputActions>();
     private readonly InputAction m_PlayerInput_Movement;
     private readonly InputAction m_PlayerInput_PointerPosition;
-    private readonly InputAction m_PlayerInput_Attack;
+    private readonly InputAction m_PlayerInput_Press;
     private readonly InputAction m_PlayerInput_OpenMenu;
     private readonly InputAction m_PlayerInput_ZoomMap;
-    private readonly InputAction m_PlayerInput_KeyBoard;
     private readonly InputAction m_PlayerInput_SkillOne;
     private readonly InputAction m_PlayerInput_SkillSecond;
     private readonly InputAction m_PlayerInput_MovementSkill;
     private readonly InputAction m_PlayerInput_OpenInventory;
-    private readonly InputAction m_PlayerInput_Press;
     private readonly InputAction m_PlayerInput_UseMedit;
     private readonly InputAction m_PlayerInput_UseAmmoBox;
     private readonly InputAction m_PlayerInput_Interact;
@@ -624,15 +536,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public PlayerInputActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_PlayerInput_Movement;
         public InputAction @PointerPosition => m_Wrapper.m_PlayerInput_PointerPosition;
-        public InputAction @Attack => m_Wrapper.m_PlayerInput_Attack;
+        public InputAction @Press => m_Wrapper.m_PlayerInput_Press;
         public InputAction @OpenMenu => m_Wrapper.m_PlayerInput_OpenMenu;
         public InputAction @ZoomMap => m_Wrapper.m_PlayerInput_ZoomMap;
-        public InputAction @KeyBoard => m_Wrapper.m_PlayerInput_KeyBoard;
         public InputAction @SkillOne => m_Wrapper.m_PlayerInput_SkillOne;
         public InputAction @SkillSecond => m_Wrapper.m_PlayerInput_SkillSecond;
         public InputAction @MovementSkill => m_Wrapper.m_PlayerInput_MovementSkill;
         public InputAction @OpenInventory => m_Wrapper.m_PlayerInput_OpenInventory;
-        public InputAction @Press => m_Wrapper.m_PlayerInput_Press;
         public InputAction @UseMedit => m_Wrapper.m_PlayerInput_UseMedit;
         public InputAction @UseAmmoBox => m_Wrapper.m_PlayerInput_UseAmmoBox;
         public InputAction @Interact => m_Wrapper.m_PlayerInput_Interact;
@@ -651,18 +561,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @PointerPosition.started += instance.OnPointerPosition;
             @PointerPosition.performed += instance.OnPointerPosition;
             @PointerPosition.canceled += instance.OnPointerPosition;
-            @Attack.started += instance.OnAttack;
-            @Attack.performed += instance.OnAttack;
-            @Attack.canceled += instance.OnAttack;
+            @Press.started += instance.OnPress;
+            @Press.performed += instance.OnPress;
+            @Press.canceled += instance.OnPress;
             @OpenMenu.started += instance.OnOpenMenu;
             @OpenMenu.performed += instance.OnOpenMenu;
             @OpenMenu.canceled += instance.OnOpenMenu;
             @ZoomMap.started += instance.OnZoomMap;
             @ZoomMap.performed += instance.OnZoomMap;
             @ZoomMap.canceled += instance.OnZoomMap;
-            @KeyBoard.started += instance.OnKeyBoard;
-            @KeyBoard.performed += instance.OnKeyBoard;
-            @KeyBoard.canceled += instance.OnKeyBoard;
             @SkillOne.started += instance.OnSkillOne;
             @SkillOne.performed += instance.OnSkillOne;
             @SkillOne.canceled += instance.OnSkillOne;
@@ -675,9 +582,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @OpenInventory.started += instance.OnOpenInventory;
             @OpenInventory.performed += instance.OnOpenInventory;
             @OpenInventory.canceled += instance.OnOpenInventory;
-            @Press.started += instance.OnPress;
-            @Press.performed += instance.OnPress;
-            @Press.canceled += instance.OnPress;
             @UseMedit.started += instance.OnUseMedit;
             @UseMedit.performed += instance.OnUseMedit;
             @UseMedit.canceled += instance.OnUseMedit;
@@ -697,18 +601,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @PointerPosition.started -= instance.OnPointerPosition;
             @PointerPosition.performed -= instance.OnPointerPosition;
             @PointerPosition.canceled -= instance.OnPointerPosition;
-            @Attack.started -= instance.OnAttack;
-            @Attack.performed -= instance.OnAttack;
-            @Attack.canceled -= instance.OnAttack;
+            @Press.started -= instance.OnPress;
+            @Press.performed -= instance.OnPress;
+            @Press.canceled -= instance.OnPress;
             @OpenMenu.started -= instance.OnOpenMenu;
             @OpenMenu.performed -= instance.OnOpenMenu;
             @OpenMenu.canceled -= instance.OnOpenMenu;
             @ZoomMap.started -= instance.OnZoomMap;
             @ZoomMap.performed -= instance.OnZoomMap;
             @ZoomMap.canceled -= instance.OnZoomMap;
-            @KeyBoard.started -= instance.OnKeyBoard;
-            @KeyBoard.performed -= instance.OnKeyBoard;
-            @KeyBoard.canceled -= instance.OnKeyBoard;
             @SkillOne.started -= instance.OnSkillOne;
             @SkillOne.performed -= instance.OnSkillOne;
             @SkillOne.canceled -= instance.OnSkillOne;
@@ -721,9 +622,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @OpenInventory.started -= instance.OnOpenInventory;
             @OpenInventory.performed -= instance.OnOpenInventory;
             @OpenInventory.canceled -= instance.OnOpenInventory;
-            @Press.started -= instance.OnPress;
-            @Press.performed -= instance.OnPress;
-            @Press.canceled -= instance.OnPress;
             @UseMedit.started -= instance.OnUseMedit;
             @UseMedit.performed -= instance.OnUseMedit;
             @UseMedit.canceled -= instance.OnUseMedit;
@@ -884,15 +782,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnPointerPosition(InputAction.CallbackContext context);
-        void OnAttack(InputAction.CallbackContext context);
+        void OnPress(InputAction.CallbackContext context);
         void OnOpenMenu(InputAction.CallbackContext context);
         void OnZoomMap(InputAction.CallbackContext context);
-        void OnKeyBoard(InputAction.CallbackContext context);
         void OnSkillOne(InputAction.CallbackContext context);
         void OnSkillSecond(InputAction.CallbackContext context);
         void OnMovementSkill(InputAction.CallbackContext context);
         void OnOpenInventory(InputAction.CallbackContext context);
-        void OnPress(InputAction.CallbackContext context);
         void OnUseMedit(InputAction.CallbackContext context);
         void OnUseAmmoBox(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);

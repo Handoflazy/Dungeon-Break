@@ -10,6 +10,17 @@ public abstract class AgentMovement : MonoBehaviour
     protected BoxCollider2D boxCollider2D;
     [field:SerializeField]
     MovementDataS0 MovementData { get; set; }
+    protected virtual void OnDisable()
+    {
+        DGSingleton.Instance.DialogueController.OnDialogueStarted -= StopMoving;
+        DGSingleton.Instance.DialogueController.OnDialogueEnded -= ContinueMoving;
+
+    }
+    private void Start()
+    {
+        DGSingleton.Instance.DialogueController.OnDialogueStarted += StopMoving;
+        DGSingleton.Instance.DialogueController.OnDialogueEnded += ContinueMoving;
+    }
 
 
     protected float currentSpeed = 0;
@@ -20,6 +31,10 @@ public abstract class AgentMovement : MonoBehaviour
 
     bool isMoveSkillUsing;
     protected bool isKnockback;
+
+
+
+
     protected virtual void OnActiveSceneChanged(Scene previousScene, Scene newScene)
     {
         currentSpeed = 0;
@@ -30,17 +45,15 @@ public abstract class AgentMovement : MonoBehaviour
         isMoveSkillUsing = isUsed;
        
     }
-
-    protected virtual void OnAttackingEvent(bool mode)
+    protected virtual void ContinueMoving()
     {
-        if(mode)
-        {
-            speedLimitActor = 0.3f;
-        }
-        else
-        {
-            speedLimitActor = 1;
-        }
+        speedLimitActor = 1;
+    }
+    protected virtual void StopMoving()
+    {
+
+        speedLimitActor = 0;
+        currentSpeed = 0;
     }
     public virtual void MoveAgent(Vector2 movementInput)
     {
