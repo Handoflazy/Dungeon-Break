@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7715072632859851441}
   - component: {fileID: 4561365838774621945}
   - component: {fileID: 5638452368451211914}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Gate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8795153971199647481}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Destination
   m_TagString: Untagged
   m_Icon: {fileID: 0}

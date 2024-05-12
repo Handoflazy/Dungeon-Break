@@ -57,7 +57,8 @@ public class EnemySpawner : ObjectPool
         newEnemy.SetActive(true);
         newEnemy.transform.position = spawnPoint;
         newEnemy.transform.rotation = enemyPrefab.transform.rotation;
-        newEnemy.GetComponent<CapsuleCollider2D>().enabled = true;
-        newEnemy.GetComponentInChildren<SpriteRenderer>().material = enemyPrefab.GetComponentInChildren<SpriteRenderer>().sharedMaterial;
+        newEnemy.GetComponent<BoxCollider2D>().enabled = true;
+        //newEnemy.GetComponentInChildren<SpriteRenderer>().material = enemyPrefab.GetComponentInChildren<SpriteRenderer>().sharedMaterial;
+        newEnemy.GetComponent<SpriteRenderer>().material = enemyPrefab.GetComponent<SpriteRenderer>().sharedMaterial;
     }
 }
