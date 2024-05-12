@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2121549985077725057}
   - component: {fileID: 4812092455879219498}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AreaSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1767921389
+  m_SortingLayer: 6
   m_SortingOrder: 8
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.43368998, g: 0.013567397, b: 0.61635214, a: 0.21176471}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 5909230217576191221}
   - component: {fileID: 2785845647090309166}
   - component: {fileID: 9066842075685212711}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AreaSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,8 +156,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1767921389
+  m_SortingLayer: 6
   m_SortingOrder: 8
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.6373851, g: 0.06728361, b: 0.7924528, a: 0.07450981}

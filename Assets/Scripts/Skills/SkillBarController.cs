@@ -4,12 +4,21 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+[RequireComponent(typeof(Player))]
 
 public class SkillBarController : MonoBehaviour
 {
     public Image skillBox1;
     public Image skillBox2;
     public Image skillBox3;
+
+    public Image inactiveBox1;
+    public Image inactiveBox2;
+    public Image inactiveBox3;
+
+    //public TextMeshProUGUI levelSkill1;
+    //public TextMeshProUGUI levelSkill2;
+    //public TextMeshProUGUI levelSkill3;
 
     public Image imageCooldownMoveskill;
     public Image imageCooldownFirstskill;
@@ -19,10 +28,46 @@ public class SkillBarController : MonoBehaviour
     public TextMeshProUGUI cooldownTimer2;
     public TextMeshProUGUI cooldownTimer3;
 
+    public Image expImage;
+    public TextMeshProUGUI textLevel;
+
+    protected Player player;
+
+    private void Start()
+    {
+        player = GetComponent<Player>();
+    }
+
     private void Update()
     {
         
     }
+
+    public void UpdateExp()
+    {
+        if(expImage != null)
+        {
+            if (!Mathf.Approximately(expImage.fillAmount, 1))
+            {
+                expImage.fillAmount = (float) player.playerStats.xp / player.playerStats.levelUpXpRequire;
+            }
+            else
+            {
+                expImage.fillAmount = 0;
+            }
+        }
+    }
+
+    public void SetLevel(float level, TextMeshProUGUI textMesh)
+    {
+        textMesh.text = level.ToString();
+    }
+
+    //public void SetLevelSkill(float level, TextMeshProUGUI textMesh)
+    //{
+    //    textMesh.text = (level+1).ToString();
+    //    print(level);
+    //}
 
     public IEnumerator UpdateCDMoveSkill( float CD)
     {

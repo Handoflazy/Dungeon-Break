@@ -18,6 +18,7 @@ public class MineController : MonoBehaviour
 
     private void Start()
     {
+        print("damage: "+MineData.ExplosionPower);
         GetComponent<SpriteRenderer>().sprite = MineData.MineImage;
         StartCoroutine(WaitForExplosion());
     }

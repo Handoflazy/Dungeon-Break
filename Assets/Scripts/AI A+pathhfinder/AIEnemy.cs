@@ -43,7 +43,8 @@ public class AIEnemy : MonoBehaviour
     [SerializeField]
     public UnityEvent<Vector2> MovementInput;
     public UnityEvent OnDeathEvent;
-
+    
+    //Animator anim;
 
     //Quan ly State cua enemy
     public enum EnemyState
@@ -175,7 +176,7 @@ public class AIEnemy : MonoBehaviour
                 ChangeState(EnemyState.Attack);
             }
         }
-        else if (idleTime >= 5f)
+        else if (idleTime >= 3f)
         {
             ChangeState(EnemyState.Wander);
         }
@@ -243,6 +244,10 @@ public class AIEnemy : MonoBehaviour
         //{
         //    ChangeState(EnemyState.Chasing);
         //}
+    }
+    public void PlayDeathAnimation()
+    {
+        anim.SetTrigger(AnimConsts.PLAYER_DEATH_PARAM);
     }
 }
 

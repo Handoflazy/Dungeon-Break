@@ -75,10 +75,10 @@ public class GameManager : MonoBehaviour
 
 
     }
-    public void Respawn()
+    public void Respawn(string str)
     {
         playerID.playerEvents.onRespawn?.Invoke();
-        SceneManager.LoadScene("Floor1");
+        SceneManager.LoadScene(str);
         // player.Respawn();
 
     }

@@ -17,4 +17,4 @@ MonoBehaviour:
   <WaitTime>k__BackingField: 1
   <ExplosionPower>k__BackingField: 10
   <Knockback>k__BackingField: 5
-  <ExplosionRadius>k__BackingField: 0.32
+  <ExplosionRadius>k__BackingField: 0.16

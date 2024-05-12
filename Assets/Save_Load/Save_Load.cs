@@ -21,11 +21,11 @@ public class Save_Load : MonoBehaviour
         float pX = playerTransform.position.x;
         float pY = playerTransform.position.y;
         float pZ = playerTransform.position.z;
-        pX = PlayerPrefs.GetFloat("p_x");
-        pY = PlayerPrefs.GetFloat("p_y");
-        pZ = PlayerPrefs.GetFloat("p_z");
+        pX = PlayerPrefs.GetFloat(PrefConsts.PLAYER_POSITION_X);
+        pY = PlayerPrefs.GetFloat(PrefConsts.PLAYER_POSITION_Y);
+        pZ = PlayerPrefs.GetFloat(PrefConsts.PLAYER_POSITION_Z);
         playerTransform.transform.position = new Vector3(pX, pY, pZ);
-        sceneName = PlayerPrefs.GetString("saveScene");
+        sceneName = PlayerPrefs.GetString(PrefConsts.CURRENT_SCENE_KEY);
         //SceneManager.LoadScene(sceneName);
     }
 
@@ -46,9 +46,9 @@ public class Save_Load : MonoBehaviour
         AdvancedPlayerPrefs.SetFloat("knockForce", knockForce);
         AdvancedPlayerPrefs.SetInt("lv", level);
         AdvancedPlayerPrefs.SetInt("xp", xp);*/
-        PlayerPrefs.SetFloat("p_x", playerTransform.transform.position.x);
-        PlayerPrefs.SetFloat("p_y", playerTransform.transform.position.y);
-        PlayerPrefs.SetFloat("p_z", playerTransform.transform.position.z);
+        PlayerPrefs.SetFloat(PrefConsts.PLAYER_POSITION_X, playerTransform.transform.position.x);
+        PlayerPrefs.SetFloat(PrefConsts.PLAYER_POSITION_Y, playerTransform.transform.position.y);
+        PlayerPrefs.SetFloat(PrefConsts.PLAYER_POSITION_Z, playerTransform.transform.position.z);
         //PlayerPrefs.SetString("saveScene", sceneName);
         PlayerPrefs.Save();
     }

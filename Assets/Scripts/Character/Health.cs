@@ -34,8 +34,6 @@ namespace FirstVersion
         public virtual void SetMaxHealth()
         {
             SetMaxHealthBar?.Invoke(maxHealth);
-            //isDead = false;
-            //isFull = true;
         }
 
         public void TakeDamage(int amount, GameObject sender)
@@ -87,16 +85,16 @@ namespace FirstVersion
         }
         public void SaveHP()
         {
-            PlayerPrefs.SetInt("currentHealth", currentHealth);
-            PlayerPrefs.SetInt("maxHealth", maxHealth);
+            PlayerPrefs.SetInt(PrefConsts.CURRENT_HEALTH_KEY, currentHealth);
+            PlayerPrefs.SetInt(PrefConsts.MAX_HEALTH_KEY, maxHealth);
             PlayerPrefs.Save();
         }
         public void LoadHP()
         {
-            PlayerPrefs.GetInt("currentHealth", currentHealth);
-            PlayerPrefs.GetInt("maxHealth", maxHealth);
+            PlayerPrefs.GetInt(PrefConsts.CURRENT_HEALTH_KEY, currentHealth);
+            PlayerPrefs.GetInt(PrefConsts.MAX_HEALTH_KEY, maxHealth);
 
-            currentHealth = PlayerPrefs.GetInt("currentHealth");
+            currentHealth = PlayerPrefs.GetInt(PrefConsts.CURRENT_HEALTH_KEY);
             if(currentHealth >= maxHealth) isFull = true;
             if(currentHealth > 0) isDead = false;
         }

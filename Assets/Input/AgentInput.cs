@@ -77,7 +77,7 @@ public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, Play
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            player.ID.playerEvents.OnSkillOneUsed?.Invoke();
+            player.ID.playerEvents.OnFirstSkillUsed?.Invoke();
         }
     }
     public void OnSkillSecond(InputAction.CallbackContext context)
