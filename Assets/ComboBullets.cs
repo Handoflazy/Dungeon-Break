@@ -55,6 +55,7 @@ public class ComboBullets : StateMachineBehaviour
             rb.velocity = bullet.transform.right * 0.7f;
 
             bullet.transform.position += bullet.transform.right*bulletSpacing ;
+        Destroy(bullet,5f);
         //}
         /*else if (timesinceFire>= 1f)
         {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7233561500409547330}
   - component: {fileID: 3559702300577167478}
   - component: {fileID: 1006519849800621845}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Spell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,8 +92,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1767921389
+  m_SortingLayer: 6
   m_SortingOrder: 15
   m_Sprite: {fileID: 29702762353113097, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

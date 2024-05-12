@@ -12,11 +12,10 @@ GameObject:
   - component: {fileID: 6656117616663081009}
   - component: {fileID: 4754401314258817121}
   - component: {fileID: 7912959338359013817}
-  - component: {fileID: 576097267297528390}
   - component: {fileID: 6609778531764238495}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Boom_explosion
-  m_TagString: Arrow
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,22 +143,6 @@ CircleCollider2D:
   m_Offset: {x: -0.07226784, y: -0.09918353}
   serializedVersion: 2
   m_Radius: 1.3822267
---- !u!114 &576097267297528390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4649200106287446258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57775c79083fb7a49a387c5568b63c7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 0
-  pushRecoverySpeed: 0
-  damage: 10
-  push: 3
 --- !u!114 &6609778531764238495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,11 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f710b0a0345df2429b815bde62b57c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnDeathEvent:
-    m_PersistentCalls:
-      m_Calls: []
   ignoreMask:
     serializedVersion: 2
-    m_Bits: 0
-  damage: 10
-  pushForce: 10
+    m_Bits: 34816
+  damage: 200
