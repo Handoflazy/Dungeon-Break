@@ -34,14 +34,14 @@ public class AttackRangeEnemy : StateMachineBehaviour
             float bulletSpacing = 0f;
             for (int i = 0; i < numberOfBullets; i++)
             {
-
-                GameObject bullet = ObjectPoolEnemy.SharedInstance.GetPooledBulletEnemy();
+                GameObject bullet = Instantiate(bulletPrefab, animator.transform.position, animator.transform.rotation);
+                /*GameObject bullet = ObjectPoolEnemy.SharedInstance.GetPooledBulletEnemy();
                 if (bullet != null)
                 {
                     bullet.transform.position = animator.transform.position;
                     bullet.transform.rotation = animator.transform.rotation;
                     bullet.SetActive(true);
-                }
+                }*/
 
                 Vector3 lookDirection = (player.position - animator.transform.position).normalized;
                 float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg + initialScatterAngle;
@@ -51,7 +51,7 @@ public class AttackRangeEnemy : StateMachineBehaviour
                 initialScatterAngle += angleBetweenBullets;
                 bullet.transform.position += bullet.transform.right * (bulletSpacing);
                 //Destroy(bullet, 3f);
-
+                Destroy(bullet, 3f);
             }
 
         }

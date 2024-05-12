@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b55bf2f5439224fa1b4ecc3fb97eaf, type: 3}
+  m_Name: Boss Stats
+  m_EditorClassIdentifier: 
+  hp: 200
+  duration: 0
+  damage: 100
+  minXpBonus: 300
+  maxXpBonus: 500
+  hpUp: 30
+  damageUp: 0

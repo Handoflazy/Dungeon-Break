@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -848044546085063320}
   - component: {fileID: 8424070085227141078}
   - component: {fileID: 7024885087010646307}
+  - component: {fileID: 4684126097151516388}
   m_Layer: 11
   m_Name: BulletBossForest
   m_TagString: Untagged
@@ -193,10 +194,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f710b0a0345df2429b815bde62b57c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnDeathEvent:
-    m_PersistentCalls:
-      m_Calls: []
   ignoreMask:
     serializedVersion: 2
     m_Bits: 34816
-  damage: 50
+  damage: 100
+--- !u!114 &4684126097151516388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8054958553120026111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7078a4e4f854a7c468a7377ba116c671, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

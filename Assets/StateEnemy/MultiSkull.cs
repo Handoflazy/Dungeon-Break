@@ -37,15 +37,15 @@ public class MultiSkull : StateMachineBehaviour
         float bulletSpacing = 0f;
         for (int j = 0; j < numberOfBullets; j++)
         {
-            //GameObject bullet = Instantiate(bulletPrefab, animator.transform.position, Quaternion.identity);
+            GameObject bullet = Instantiate(bulletPrefab, animator.transform.position, Quaternion.identity);
 
-            GameObject bullet = ObjectPoolEnemy.SharedInstance.GetPooledBulletBoss();
+            /*GameObject bullet = ObjectPoolEnemy.SharedInstance.GetPooledBulletBoss();
             if (bullet != null)
             {
                 bullet.transform.position = animator.transform.position;
                 bullet.transform.rotation = animator.transform.rotation;
                 bullet.SetActive(true);
-            }
+            }*/
 
             Vector3 lookDirection = (playerPos.position - animator.transform.position).normalized;
             float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg + initialScatterAngle;
@@ -54,7 +54,7 @@ public class MultiSkull : StateMachineBehaviour
             rb.velocity = bullet.transform.right * 0.7f;
             initialScatterAngle += angleBetweenBullets;
             bullet.transform.position += bullet.transform.right * (bulletSpacing);
-            //Destroy(bullet, 5f);
+            Destroy(bullet, 5f);
             //bullet.SetActive(false);
         }
     }

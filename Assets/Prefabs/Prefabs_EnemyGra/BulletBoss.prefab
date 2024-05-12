@@ -11,11 +11,10 @@ GameObject:
   - component: {fileID: 4694214719757982073}
   - component: {fileID: 500786978344189320}
   - component: {fileID: 9047241291624023233}
-  - component: {fileID: 3314389186985125995}
   - component: {fileID: 2574756622341220326}
-  - component: {fileID: -2007861084695505934}
   - component: {fileID: 4348085102327627696}
-  m_Layer: 0
+  - component: {fileID: 3667354054616074771}
+  m_Layer: 11
   m_Name: BulletBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1332609957
-  m_SortingLayer: 7
+  m_SortingLayerID: 1767921389
+  m_SortingLayer: 6
   m_SortingOrder: 5
   m_Sprite: {fileID: 1506796747, guid: 132c320e80fb242449c2534e6c0af302, type: 3}
   m_Color: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
@@ -117,22 +116,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3314389186985125995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2657269865228955643}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57775c79083fb7a49a387c5568b63c7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 0
-  pushRecoverySpeed: 5
-  damage: 1
-  push: 5
 --- !u!61 &2574756622341220326
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -178,25 +161,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.06488598, y: 0.061356675}
   m_EdgeRadius: 0
---- !u!114 &-2007861084695505934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2657269865228955643}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49cf17359a741a947af39cffd76c338b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnDeathEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  ignoreMask:
-    serializedVersion: 2
-    m_Bits: 0
-  weapon: {fileID: 0}
 --- !u!114 &4348085102327627696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,14 +173,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f710b0a0345df2429b815bde62b57c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnDeathEvent:
-    m_PersistentCalls:
-      m_Calls: []
   ignoreMask:
     serializedVersion: 2
-    m_Bits: 0
-  damage: 5
-  pushForce: 20
+    m_Bits: 34816
+  damage: 50
+--- !u!114 &3667354054616074771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2657269865228955643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7078a4e4f854a7c468a7377ba116c671, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4563999762405353896
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1585374767757592077}
   - component: {fileID: 1440146325439666341}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +261,7 @@ TrailRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1332609957
-  m_SortingLayer: 7
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Time: 0.2
   m_PreviewTimeScale: 1

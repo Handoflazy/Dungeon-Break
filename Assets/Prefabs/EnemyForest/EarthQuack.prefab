@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3661475929189927720}
   - component: {fileID: 1038916768748738866}
   - component: {fileID: 186150697342840060}
-  m_Layer: 15
+  m_Layer: 11
   m_Name: EarthQuack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,10 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f710b0a0345df2429b815bde62b57c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnDeathEvent:
-    m_PersistentCalls:
-      m_Calls: []
   ignoreMask:
     serializedVersion: 2
-    m_Bits: 0
-  damage: 60
+    m_Bits: 34816
+  damage: 150

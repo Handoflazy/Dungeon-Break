@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1431078415991735919}
   - component: {fileID: 4809871696643888756}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ TrailRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1332609957
-  m_SortingLayer: 7
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Time: 1
   m_PreviewTimeScale: 1
@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 490445872514959470}
   - component: {fileID: 2859215423916435721}
   - component: {fileID: 1071338097126332567}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Skull_Follow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,8 +236,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1332609957
-  m_SortingLayer: 7
+  m_SortingLayerID: 1767921389
+  m_SortingLayer: 6
   m_SortingOrder: 10
   m_Sprite: {fileID: 1506796747, guid: 132c320e80fb242449c2534e6c0af302, type: 3}
   m_Color: {r: 0.08448122, g: 0.5597484, b: 0.061607465, a: 1}
@@ -328,11 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f710b0a0345df2429b815bde62b57c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnDeathEvent:
-    m_PersistentCalls:
-      m_Calls: []
   ignoreMask:
     serializedVersion: 2
-    m_Bits: 0
-  damage: 10
-  pushForce: 50
+    m_Bits: 34816
+  damage: 200
