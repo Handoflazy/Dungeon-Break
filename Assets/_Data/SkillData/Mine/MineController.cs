@@ -18,7 +18,6 @@ public class MineController : MonoBehaviour
 
     private void Start()
     {
-        print("damage: "+MineData.ExplosionPower);
         GetComponent<SpriteRenderer>().sprite = MineData.MineImage;
         StartCoroutine(WaitForExplosion());
     }
@@ -36,7 +35,9 @@ public class MineController : MonoBehaviour
 
         OnTriggerEnemy();
 
-        Destroy(gameObject);
+        DestroyImmediate(gameObject);
+
+        if (gameObject) { print("chua xoa dc!"); }
     }
 
     protected void OnTriggerEnemy()
