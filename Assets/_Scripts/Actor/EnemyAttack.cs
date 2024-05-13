@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -17,6 +17,8 @@ public abstract class EnemyAttack : MonoBehaviour
         enemyAIBrain = GetComponent<EnemyAIBrain>();
     }
     public abstract void Attack(int damage);
+    public abstract void RangeAttack(GameObject bulletPrefab, int numberOfBullets);
+
 
     protected IEnumerator WaitBeforeAttackCoroutine()
     {

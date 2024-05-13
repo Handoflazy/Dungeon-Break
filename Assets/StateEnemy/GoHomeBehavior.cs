@@ -40,7 +40,7 @@ public class GoHomeBehavior : StateMachineBehaviour
         aiEnemyMover.UpdatePath();
         Vector2 movementInput = aiEnemyMover.GetDirectionToMove();
         //Ham di chuyen
-        rb.velocity = movementInput * 0.2f;
+        rb.velocity = movementInput * 0.3f;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

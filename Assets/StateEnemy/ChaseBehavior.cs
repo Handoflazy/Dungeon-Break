@@ -100,7 +100,7 @@ public class ChaseBehavior : StateMachineBehaviour
             }
         }
         //Ham di chuyen
-        rb.velocity = Input * 0.2f;
+        rb.velocity = Input * 0.3f;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

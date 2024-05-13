@@ -7,15 +7,17 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 [RequireComponent(typeof(Duration))]
-[RequireComponent(typeof(SkillBarController))]
+
 public class SkillManager : PlayerSystem
 {
     public BoolEvent OnUsingMoveSkill;
     private Duration duration;
-    private SkillBarController controller;
     private BasicGun currentGun;
     public AudioClip levelUpSound;
     private AudioSource audioSource;
+
+    [SerializeField]
+    private UISKillController skillUI;
 
     protected AbstractSkill moveSkill;
     protected AbstractSkill firstSkill;
@@ -29,18 +31,19 @@ public class SkillManager : PlayerSystem
     {
         currentGun = GetComponentInChildren<BasicGun>();
         audioSource = GetComponent<AudioSource>();
+
         HandleLevelUp();
+        OnUpdateExp();
     }
 
-    private void Update()
+    private void OnUpdateExp()
     {
-        controller.UpdateExp();
+        skillUI.UpdateExp(player.playerStats.xp, player.playerStats.levelUpXpRequire);
     }
     protected override void Awake()
     {
         base.Awake();
         duration = GetComponent<Duration>();
-        controller = GetComponent<SkillBarController>();
     }
     private void OnEnable()
     {
@@ -50,6 +53,7 @@ public class SkillManager : PlayerSystem
         player.ID.playerEvents.OnLevelUp += OnLevelChangeEvent;
         player.ID.playerEvents.OnMoveSkillUsing += UsingSkillTrigger;
         player.ID.playerEvents.OnChangeGun += OnChangeGun;
+        player.ID.playerEvents.OnAddXp += OnUpdateExp;
     }
 
     private void OnDisable()
@@ -60,6 +64,7 @@ public class SkillManager : PlayerSystem
         player.ID.playerEvents.OnLevelUp -= OnLevelChangeEvent;
         player.ID.playerEvents.OnMoveSkillUsing -= UsingSkillTrigger;
         player.ID.playerEvents.OnChangeGun -= OnChangeGun;
+        player.ID.playerEvents.OnAddXp -= OnUpdateExp;
     }
 
     void UsingSkillTrigger(bool isUsing)
@@ -79,7 +84,7 @@ public class SkillManager : PlayerSystem
     {
         int level = player.playerStats.level;
 
-        controller.SetLevel(level, controller.textLevel);
+        skillUI.SetLevel(level);
 
         audioSource.PlayOneShot(levelUpSound, 0.8f);
 
@@ -89,7 +94,7 @@ public class SkillManager : PlayerSystem
             if (moveSkill == null) { print("chua lay dc"); }
             isMoveSkillAdded = true;
             moveSkill.canUse = true;
-            controller.inactiveBox1.gameObject.SetActive(false);
+            skillUI.skillBox1.gameObject.SetActive(true);
         }
 
         if (level >= levelFirstSkillRequired && !isFirstSkillAdded)
@@ -98,7 +103,7 @@ public class SkillManager : PlayerSystem
             if(firstSkill == null) { print("chua lay dc"); }
             isFirstSkillAdded = true;
             firstSkill.canUse = true;
-            controller.inactiveBox2.gameObject.SetActive(false);
+            skillUI.skillBox2.gameObject.SetActive(true);
         }
 
         if (level >= levelSecondSkillRequired && !isSecondSkillAdded)
@@ -107,7 +112,7 @@ public class SkillManager : PlayerSystem
             if (secondSkill == null) { print("chua lay dc"); }
             isSecondSkillAdded = true;
             secondSkill.canUse = true;
-            controller.inactiveBox3.gameObject.SetActive(false);
+            skillUI.skillBox3.gameObject.SetActive(true);
         }
     }
 
@@ -179,7 +184,7 @@ public class SkillManager : PlayerSystem
     {
         isMoveSkillCooldown = true;
         
-        StartCoroutine(controller.UpdateCDMoveSkill(timeCD));
+        StartCoroutine(skillUI.skillBox1.UpdateCDSkill(timeCD));
         yield return new WaitForSeconds(timeCD);
 
         isMoveSkillCooldown = false;
@@ -188,7 +193,7 @@ public class SkillManager : PlayerSystem
     {
         isFirstSkillCooldown = true;
 
-        StartCoroutine(controller.UpdateCDFirstSkill(timeCD));
+        StartCoroutine(skillUI.skillBox2.UpdateCDSkill(timeCD));
         yield return new WaitForSeconds(timeCD);
 
         isFirstSkillCooldown = false;
@@ -198,7 +203,7 @@ public class SkillManager : PlayerSystem
     {
         isSecondSkillCooldown = true;
 
-        StartCoroutine(controller.UpdateCDSecondSkill(timeCD));
+        StartCoroutine(skillUI.skillBox3.UpdateCDSkill(timeCD));
         yield return new WaitForSeconds(timeCD);
 
         isSecondSkillCooldown = false;

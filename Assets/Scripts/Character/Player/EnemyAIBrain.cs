@@ -50,7 +50,15 @@ public class EnemyAIBrain : ActorReform
             playerEvents.OnPressed?.Invoke();
             EnemyAttack.Attack(statsData.damage);
         }
-        
+    }
+
+    public void RangeAttack(GameObject bulletPrefab, int numberOfBullets)
+    {
+        if (Dead == false&&EnemyAttack)
+        {
+            playerEvents.OnPressed?.Invoke();
+            EnemyAttack.RangeAttack(bulletPrefab, numberOfBullets);
+        }
     }
 
     public void Move(Vector2 movementDirection, Vector2 targetPosition)

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Player Stats
   m_EditorClassIdentifier: 
   hp: 200
-  duration: 200
-  damage: 5
-  level: 1
+  duration: 100
+  damage: 10
+  level: 30
   Maxlevel: 100
-  xp: 0
+  xp: 39
   levelUpXpRequire: 50
   levelUpXpRequireUp: 20
   hpUp: 10

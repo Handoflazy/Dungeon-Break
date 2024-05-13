@@ -175,7 +175,7 @@ MonoBehaviour:
   ignoreMask:
     serializedVersion: 2
     m_Bits: 34816
-  damage: 20
+  damage: 0
 --- !u!114 &-1484678546944606862
 MonoBehaviour:
   m_ObjectHideFlags: 0
