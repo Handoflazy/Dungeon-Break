@@ -1,5 +1,6 @@
 using System.Collections;
 using Unity.VisualScripting;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 
@@ -13,6 +14,18 @@ public class WanderBehavior : StateMachineBehaviour
     private CoroutineRunner coroutineRunner;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+
+    private CoroutineRunner GetCoroutineRunner(Animator animator)
+    {
+        CoroutineRunner runner = CoroutineRunner.instance;
+
+        if (runner == null)
+        {
+            runner = animator.gameObject.AddComponent<CoroutineRunner>();
+        }
+
+        return runner;
+    }
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         rb = animator.GetComponent<Rigidbody2D>();
@@ -20,11 +33,16 @@ public class WanderBehavior : StateMachineBehaviour
         Debug.Log(currentPos);
         CreateRandomPos();
 
-        coroutineRunner = animator.GetComponent<CoroutineRunner>();
-        if (coroutineRunner == null)
+        coroutineRunner = GetCoroutineRunner(animator);
+
+        if (!coroutineRunner)
         {
-            coroutineRunner = animator.gameObject.AddComponent<CoroutineRunner>();
+            Debug.Log("noooo");
         }
+        //if (coroutineRunner == null)
+        //{
+        //    coroutineRunner = animator.gameObject.AddComponent<CoroutineRunner>();
+        //}
     }
 
     private Vector2 CreateRandomPos()
