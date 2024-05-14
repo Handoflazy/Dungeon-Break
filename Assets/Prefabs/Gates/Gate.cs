@@ -4,6 +4,7 @@ using System.Collections;
 
 public class Gate : MonoBehaviour
 {
+    public EnemySpawnerRandom enemySpawn;
     public List<Transform> gateDestinations;
     public Transform player;
     public float lockTime = 2f;
@@ -20,7 +21,9 @@ public class Gate : MonoBehaviour
         int randomIndex = Random.Range(0, gateDestinations.Count);
         Transform destination = gateDestinations[randomIndex];
         player.transform.position = destination.position;
-        StartCoroutine(LockGate(destination));
+        //StartCoroutine(LockGate(destination));
+        enemySpawn.gateToFalse.SetActive(false);
+        enemySpawn.randomOpenGate = 0;
     }
     IEnumerator LockGate(Transform destination)
     {

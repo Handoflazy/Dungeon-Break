@@ -7627,6 +7627,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: fence
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 240
+        width: 64
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c0385aed75f18c43b16de30751791f1
+      internalID: -386250557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -7638,7 +7659,6 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      0x72_DungeonTilesetII_v1.7_0: -386250557
       0x72_DungeonTilesetII_v1.7_1: -2008326857
       0x72_DungeonTilesetII_v1.7_10: 128325569
       0x72_DungeonTilesetII_v1.7_100: 84890661
@@ -8261,6 +8281,7 @@ TextureImporter:
       enemyGra3_1: 2065700624
       enemyGra3_2: -617959163
       enemyGra3_3: 1371076883
+      fence: -386250557
       knight1_0: 834420755
       knight1_1: -248176190
       knight1_2: -1177672594

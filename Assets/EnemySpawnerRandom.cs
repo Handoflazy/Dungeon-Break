@@ -18,12 +18,13 @@ public class EnemySpawnerRandom : ObjectPool
     //public GameObject fence;
     public List<GameObject> listEnemyPrefab;
     public List <GameObject> listEnemySpawned;
-    public List<GameObject> listEnemyDie;
     [SerializeField]
     private float minDelay = .8f, maxDelay = 1.5f;
     private int indexRandomEnemy;
     public GameObject fenceToFalse;
+    public GameObject gateToFalse;
     public int numberEnemyDie;
+    public int randomOpenGate;
     private void OnEnable()
     {
         count = saveCount;
@@ -37,29 +38,18 @@ public class EnemySpawnerRandom : ObjectPool
         StartCoroutine(SpawnCoroutine());
         
     }
-    /*private void Awake()
-    {
-        int temp = count;
-        saveCount = temp;
-    }*/
-    /*private void Start()
-    {
 
-        if (spawnPoints.Count > 0)
-        {
-            foreach (var spawnPoint in spawnPoints)
-            {
-                SpawnEnemy(spawnPoint.transform.position);
-            }
-        }
-        StartCoroutine(SpawnCoroutine());
-    }*/
+    private void OnDisable()
+    {
+        randomOpenGate = 0;
+        listEnemySpawned.Clear();
+    }
     IEnumerator SpawnCoroutine()
     {
         while (count > 0)
         {
             count--;
-            var randomIndex = Random.Range(0, spawnPoints.Count);
+            var randomIndex = Random.Range(0, spawnPoints.Count - 1);
             var randomOffset = Random.insideUnitCircle * 0.16f;
             
 
@@ -78,16 +68,14 @@ public class EnemySpawnerRandom : ObjectPool
 
     private void GetEnemy(Vector3 spawnPoint)
     {
-        indexRandomEnemy = Random.Range(0, listEnemyPrefab.Count);
+        indexRandomEnemy = Random.Range(0, listEnemyPrefab.Count - 1);
         GameObject newEnemy = SpawnObject(listEnemyPrefab[indexRandomEnemy]);
         newEnemy.SetActive(true);
         newEnemy.transform.position = spawnPoint;
         newEnemy.transform.rotation = listEnemyPrefab[indexRandomEnemy].transform.rotation;
-        newEnemy.GetComponent<BoxCollider2D>().enabled = true;
+        newEnemy.GetComponent<CapsuleCollider2D>().enabled = true;
         newEnemy.GetComponentInChildren<SpriteRenderer>().material = listEnemyPrefab[indexRandomEnemy].GetComponentInChildren<SpriteRenderer>().sharedMaterial;
         listEnemySpawned.Add(newEnemy);
-
-        
     }
     private void LateUpdate()
     {
@@ -113,6 +101,11 @@ public class EnemySpawnerRandom : ObjectPool
         //if (destroyedObjects.Count == listEnemySpawned.Count)
         if (numberEnemyDie == listEnemySpawned.Count)
         {
+            randomOpenGate = Random.Range(0,2);
+            if (randomOpenGate == 1)
+            {
+                gateToFalse.SetActive(true);
+            }
             fenceToFalse.SetActive(false) ;
         }
         else

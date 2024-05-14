@@ -441,7 +441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5355f231a5c062043a5cd4436e7ea738, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Distance>k__BackingField: 0.64
+  <Distance>k__BackingField: 1.28
 --- !u!1 &982721656499840682
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,7 +708,7 @@ MonoBehaviour:
   - {x: -0.0222193, y: -0.06617352, z: 0}
   m_ShapePathHash: 1973103157
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1942910
+  m_InstanceId: -399218
   m_LocalBounds:
     m_Center: {x: 0.0035929978, y: 0.0063259304, z: 0}
     m_Extent: {x: 0.04074821, y: 0.072499454, z: 0}
@@ -976,7 +976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccf4c8ca593d8d64bb6cbd6c842c14f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 0.64
+  distance: 3
   raycastMask:
     serializedVersion: 2
     m_Bits: 1280
@@ -1188,7 +1188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5355f231a5c062043a5cd4436e7ea738, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Distance>k__BackingField: 1.28
+  <Distance>k__BackingField: 5
 --- !u!1 &5297811660349117575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,7 +1461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5355f231a5c062043a5cd4436e7ea738, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Distance>k__BackingField: 0.64
+  <Distance>k__BackingField: 1.28
 --- !u!1 &8221325713799954597
 GameObject:
   m_ObjectHideFlags: 0
