@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class Gate : MonoBehaviour
 {
-    public List<Transform> gateDestinations; // Danh sách các vị trí đích của các cánh cổng
+    public List<Transform> gateDestinations;
     public Transform player;
-
+    public float lockTime = 2f;
     void OnTriggerEnter2D(Collider2D collision)
     {
-        //MovePlayerToRandomDestination();
-        Debug.Log("ma cha may co dung dc ko");
         if (collision.CompareTag("Player") || collision.gameObject.layer == LayerMask.NameToLayer("Player") ||collision.gameObject.layer == LayerMask.NameToLayer("PlayerMovermentCollider"))
         {
             MovePlayerToRandomDestination();
@@ -18,13 +17,15 @@ public class Gate : MonoBehaviour
 
     private void MovePlayerToRandomDestination()
     {
-        Debug.LogWarning("Không có đích nào được cấu hình cho cánh cổng này.");
         int randomIndex = Random.Range(0, gateDestinations.Count);
         Transform destination = gateDestinations[randomIndex];
-        // Di chuyển player đến vị trí đích ngẫu nhiên
         player.transform.position = destination.position;
-        
-            
-        
+        StartCoroutine(LockGate(destination));
+    }
+    IEnumerator LockGate(Transform destination)
+    {
+        destination.gameObject.SetActive(false); 
+        yield return new WaitForSeconds(lockTime);
+        destination.gameObject.SetActive(true); 
     }
 }

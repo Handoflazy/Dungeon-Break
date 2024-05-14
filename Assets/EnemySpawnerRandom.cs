@@ -13,14 +13,20 @@ public class EnemySpawnerRandom : ObjectPool
     private List<GameObject> spawnPoints;
     [SerializeField]
     private int count = 20;
+    [SerializeField]
+    private int saveCount;
     //public GameObject fence;
     public List<GameObject> listEnemyPrefab;
+    public List <GameObject> listEnemySpawned;
+    public List<GameObject> listEnemyDie;
     [SerializeField]
     private float minDelay = .8f, maxDelay = 1.5f;
     private int indexRandomEnemy;
-
-    private void Start()
+    public GameObject fenceToFalse;
+    public int numberEnemyDie;
+    private void OnEnable()
     {
+        count = saveCount;
         if (spawnPoints.Count > 0)
         {
             foreach (var spawnPoint in spawnPoints)
@@ -29,7 +35,25 @@ public class EnemySpawnerRandom : ObjectPool
             }
         }
         StartCoroutine(SpawnCoroutine());
+        
     }
+    /*private void Awake()
+    {
+        int temp = count;
+        saveCount = temp;
+    }*/
+    /*private void Start()
+    {
+
+        if (spawnPoints.Count > 0)
+        {
+            foreach (var spawnPoint in spawnPoints)
+            {
+                SpawnEnemy(spawnPoint.transform.position);
+            }
+        }
+        StartCoroutine(SpawnCoroutine());
+    }*/
     IEnumerator SpawnCoroutine()
     {
         while (count > 0)
@@ -37,7 +61,7 @@ public class EnemySpawnerRandom : ObjectPool
             count--;
             var randomIndex = Random.Range(0, spawnPoints.Count);
             var randomOffset = Random.insideUnitCircle * 0.16f;
-            indexRandomEnemy = Random.Range(0, listEnemyPrefab.Count);
+            
 
             var spawnPoint = spawnPoints[randomIndex].transform.position + (Vector3)randomOffset;
             SpawnEnemy(spawnPoint);
@@ -54,12 +78,46 @@ public class EnemySpawnerRandom : ObjectPool
 
     private void GetEnemy(Vector3 spawnPoint)
     {
-
+        indexRandomEnemy = Random.Range(0, listEnemyPrefab.Count);
         GameObject newEnemy = SpawnObject(listEnemyPrefab[indexRandomEnemy]);
         newEnemy.SetActive(true);
         newEnemy.transform.position = spawnPoint;
         newEnemy.transform.rotation = listEnemyPrefab[indexRandomEnemy].transform.rotation;
-        newEnemy.GetComponent<CapsuleCollider2D>().enabled = true;
+        newEnemy.GetComponent<BoxCollider2D>().enabled = true;
         newEnemy.GetComponentInChildren<SpriteRenderer>().material = listEnemyPrefab[indexRandomEnemy].GetComponentInChildren<SpriteRenderer>().sharedMaterial;
+        listEnemySpawned.Add(newEnemy);
+
+        
+    }
+    private void LateUpdate()
+    {
+        if (count == 0)
+        {
+            CheckDestroyedObjects();
+        }
+    }
+    void CheckDestroyedObjects()
+    {
+        //List<GameObject> destroyedObjects = new List<GameObject>();
+
+        for (int i = 0; i < listEnemySpawned.Count; i++)
+        {
+            //if (listEnemySpawned[i] != null) // nay la dung de khi kiem tra Enemy da bi Destroy chua
+            if (listEnemySpawned[i].activeSelf == false)
+            {
+                //listEnemyDie.Add(listEnemySpawned[i]);
+                numberEnemyDie++;
+            }
+        }
+
+        //if (destroyedObjects.Count == listEnemySpawned.Count)
+        if (numberEnemyDie == listEnemySpawned.Count)
+        {
+            fenceToFalse.SetActive(false) ;
+        }
+        else
+        {
+            numberEnemyDie = 0;
+        }
     }
 }
