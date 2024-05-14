@@ -37,6 +37,12 @@ public struct PlayerEvents
     public Action OnMenuOpen;
     public Action OnMenuClose;
 
+    // Dialogue Events;
+    public Action OnDialogueStart;
+    public Action OnDialogueEnd;
+
+    
+
     //Movement Events;
     public Action<bool> OnMoveSkillUsing;
 

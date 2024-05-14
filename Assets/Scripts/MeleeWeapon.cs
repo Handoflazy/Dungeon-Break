@@ -23,12 +23,6 @@ public class MeleeWeapon : Weapon
     }
 
     
-    public  virtual void CompleteSwingEvent()
-    {
-        weaponParent.ResetIsAttacking();
-        slashAnim.DeactivateEffect();
-
-    }
     public  void ActivateSlashEffect()
     {
         slashAnim.ActivateEffect();

@@ -11,7 +11,6 @@ public class NPC : MonoBehaviour
     [SerializeField] int repeatStartPosition;
 
     public string npcName;
-    public DialogueAsset dialogueAsset;
     public DialogueTree dialogueTree;
     bool inConversation=false;
 
@@ -24,15 +23,14 @@ public class NPC : MonoBehaviour
 
     private void OnEnable()
     {
-        NguyenSingleton.Instance.DialogueController.OnDialogueStarted += JoinConversation;
-        NguyenSingleton.Instance.DialogueController.OnDialogueEnded += LeaveConversation;
-
+        NguyenSingleton.Instance.playerID.playerEvents.OnDialogueStart += JoinConversation;
+        NguyenSingleton.Instance.playerID.playerEvents.OnDialogueEnd += LeaveConversation;
     }
 
     private void OnDisable()
     {
-        NguyenSingleton.Instance.DialogueController.OnDialogueStarted -= JoinConversation;
-        NguyenSingleton.Instance.DialogueController.OnDialogueEnded -= LeaveConversation;
+        NguyenSingleton.Instance.playerID.playerEvents.OnDialogueStart -= JoinConversation;
+        NguyenSingleton.Instance.playerID.playerEvents.OnDialogueEnd -= LeaveConversation;
     }
 
     [HideInInspector]
@@ -63,7 +61,7 @@ public class NPC : MonoBehaviour
         }
         else
         {
-            NguyenSingleton.Instance.DialogueController.StartDialogueTree(dialogueTree, repeatStartPosition, npcName);
+            NguyenSingleton.Instance.DialogueController.StartDialogueTree(dialogueTree, repeatStartPosition, npcName,GetComponent<Animator>());
         }
 
     }
@@ -78,9 +76,9 @@ public class NPC : MonoBehaviour
         inConversation = false;
         if (GrantLoot)
         {
-            DialogEnded?.Invoke();
             GrantLoot = false;
         }
+        DialogEnded?.Invoke();
 
     }
 

@@ -12,14 +12,16 @@ public abstract class AgentMovement : MonoBehaviour
     MovementDataS0 MovementData { get; set; }
     protected virtual void OnDisable()
     {
-        NguyenSingleton.Instance.DialogueController.OnDialogueStarted -= StopMoving;
-        NguyenSingleton.Instance.DialogueController.OnDialogueEnded -= ContinueMoving;
+        NguyenSingleton.Instance.playerID.playerEvents.OnDialogueStart -= StopMoving;
+
+        NguyenSingleton.Instance.playerID.playerEvents.OnDialogueEnd -= ContinueMoving;
 
     }
     private void Start()
     {
-        NguyenSingleton.Instance.DialogueController.OnDialogueStarted += StopMoving;
-        NguyenSingleton.Instance.DialogueController.OnDialogueEnded += ContinueMoving;
+        NguyenSingleton.Instance.playerID.playerEvents.OnDialogueStart += StopMoving;
+
+        NguyenSingleton.Instance.playerID.playerEvents.OnDialogueEnd += ContinueMoving;
     }
 
 
@@ -51,7 +53,7 @@ public abstract class AgentMovement : MonoBehaviour
     }
     protected virtual void StopMoving()
     {
-
+        print(11);
         speedLimitActor = 0;
         currentSpeed = 0;
     }

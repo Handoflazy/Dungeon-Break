@@ -13,7 +13,10 @@ public struct DialogueSection
     [TextArea]
     public string[] dialogue;
     public bool endAfterDialogue;
+    public bool grantLoot;
+    public List<Loot> lootGrant;
     public BranchPoint branchPoint;
+    
 }
 [Serializable]
 public struct BranchPoint

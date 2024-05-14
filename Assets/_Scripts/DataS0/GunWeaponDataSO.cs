@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEditor;
 using UnityEngine;
 
@@ -48,7 +49,7 @@ public class GunWeaponDataSO : ScriptableObject
             GunWeaponDataSO self = (GunWeaponDataSO)target;
             serializedObject.Update();
 
-            if (self.MultiBulletShoot)
+            if (self.multiBulletShoot)
             {
                 DrawDefaultInspector();  // Show all properties
             }

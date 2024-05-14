@@ -338,7 +338,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""111b5c18-2b7a-4f43-8271-830e89453fda"",
-                    ""path"": ""<Keyboard>/2"",
+                    ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -349,7 +349,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3f3c1948-2b6f-4138-ba46-145b2eb7f27b"",
-                    ""path"": ""<Keyboard>/1"",
+                    ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -360,7 +360,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""7eeace21-fd0e-4cc0-afee-57a68fb26e68"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -431,6 +431,34 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Dialogue"",
+            ""id"": ""3c64369f-5a90-4d61-a0d9-c51001ad58a7"",
+            ""actions"": [
+                {
+                    ""name"": ""Skipline"",
+                    ""type"": ""Button"",
+                    ""id"": ""4e62de73-f715-4f2c-ab44-5631949d65bc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""eb5cd883-67b3-4290-ab5c-7f08304f6c68"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skipline"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -457,6 +485,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // Inventory 
         m_Inventory = asset.FindActionMap("Inventory ", throwIfNotFound: true);
         m_Inventory_CloseInventory = m_Inventory.FindAction("CloseInventory", throwIfNotFound: true);
+        // Dialogue
+        m_Dialogue = asset.FindActionMap("Dialogue", throwIfNotFound: true);
+        m_Dialogue_Skipline = m_Dialogue.FindAction("Skipline", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -778,6 +809,52 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public InventoryActions @Inventory => new InventoryActions(this);
+
+    // Dialogue
+    private readonly InputActionMap m_Dialogue;
+    private List<IDialogueActions> m_DialogueActionsCallbackInterfaces = new List<IDialogueActions>();
+    private readonly InputAction m_Dialogue_Skipline;
+    public struct DialogueActions
+    {
+        private @PlayerControls m_Wrapper;
+        public DialogueActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Skipline => m_Wrapper.m_Dialogue_Skipline;
+        public InputActionMap Get() { return m_Wrapper.m_Dialogue; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DialogueActions set) { return set.Get(); }
+        public void AddCallbacks(IDialogueActions instance)
+        {
+            if (instance == null || m_Wrapper.m_DialogueActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_DialogueActionsCallbackInterfaces.Add(instance);
+            @Skipline.started += instance.OnSkipline;
+            @Skipline.performed += instance.OnSkipline;
+            @Skipline.canceled += instance.OnSkipline;
+        }
+
+        private void UnregisterCallbacks(IDialogueActions instance)
+        {
+            @Skipline.started -= instance.OnSkipline;
+            @Skipline.performed -= instance.OnSkipline;
+            @Skipline.canceled -= instance.OnSkipline;
+        }
+
+        public void RemoveCallbacks(IDialogueActions instance)
+        {
+            if (m_Wrapper.m_DialogueActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IDialogueActions instance)
+        {
+            foreach (var item in m_Wrapper.m_DialogueActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_DialogueActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public DialogueActions @Dialogue => new DialogueActions(this);
     public interface IPlayerInputActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -803,5 +880,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public interface IInventoryActions
     {
         void OnCloseInventory(InputAction.CallbackContext context);
+    }
+    public interface IDialogueActions
+    {
+        void OnSkipline(InputAction.CallbackContext context);
     }
 }

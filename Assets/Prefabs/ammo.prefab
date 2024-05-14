@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ResourceData>k__BackingField: {fileID: 11400000, guid: 023e80e0c0004f64cb2e52d33a7829e3, type: 2}
+  timeSpawn: 0.5
 --- !u!82 &1216932938033913897
 AudioSource:
   m_ObjectHideFlags: 0
@@ -154,7 +155,7 @@ AudioSource:
   m_GameObject: {fileID: 4846990747700766673}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -9145463190550745253, guid: ad256c5cfd1ae0c44a430e7a9a076ccf, type: 2}
   m_audioClip: {fileID: 8300000, guid: 7ab1d9ce243bb564d9ec01dbea57b31b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.338

@@ -10,11 +10,11 @@ public class WeaponParent : PlayerSystem
 {
     [SerializeField] protected BasicGun CurrentGun;
 
-    public BoolEvent OnUsingWeapon;
 
     [SerializeField] protected WeaponRenderer weaponRenderer;
 
     [SerializeField] private GameObject dropWeaponPrefab;
+    [SerializeField]
     private GameObject currentItemPrefab;
 
     public List<ItemParameter> itemCurrentState;
@@ -54,19 +54,14 @@ public class WeaponParent : PlayerSystem
         if (PlayerPrefs.HasKey(PrefConsts.CURRENT_GUN_KEY))
         {
             int indexCurrenGun = PlayerPrefs.GetInt(PrefConsts.CURRENT_GUN_KEY);
-            CurrentGun = weapons[indexCurrenGun].GetComponent<BasicGun>();
-            SpawnWeapon(weapons[indexCurrenGun]);
+            int bullet = 0;
 
             if (PlayerPrefs.HasKey(PrefConsts.CURRENT_BULLET_COUNT_KEY))
             {
-                CurrentGun.Ammo = PlayerPrefs.GetInt(PrefConsts.CURRENT_BULLET_COUNT_KEY);
+                bullet = PlayerPrefs.GetInt(PrefConsts.CURRENT_BULLET_COUNT_KEY);
             }
+            SetWeapon(weapons[indexCurrenGun], bullet);
         }
-        else 
-        {
-            CurrentGun = GetComponentInChildren<BasicGun>();
-        }
-        AttackCooldown();
     }
 
     Vector2 direction;
@@ -99,26 +94,8 @@ public class WeaponParent : PlayerSystem
             weaponRenderer.RenderBehindHead(direction.x > 0);
     }
 
-    public void ResetIsAttacking()
-    {
-        OnUsingWeapon?.Invoke(false);
-        IsAttacking = false;
-        player.ID.playerEvents.OnUsingWeapon?.Invoke(false);
-    }
 
-    IEnumerator AttackDelay()
-    {
-        yield return new WaitForSeconds(attackDelayTime);
-        attackBlocked = false;
-        ResetIsAttacking();
-    }
 
-    private void AttackCooldown()
-    {
-        attackBlocked = true;
-        StopAllCoroutines();
-        StartCoroutine(AttackDelay());
-    }
     public void SetWeapon(GameObject newGun, int bulletNumber)
     {
         if (CurrentGun)
@@ -128,7 +105,8 @@ public class WeaponParent : PlayerSystem
         SpawnWeapon(newGun);
         currentItemPrefab = newGun;
         CurrentGun.Ammo = bulletNumber;
-        player.ID.playerEvents.OnChangeGun(CurrentGun);
+        player.ID.playerEvents.OnChangeGun?.Invoke(CurrentGun);
+      
 
     }
     private void DropCurrentWeapon()

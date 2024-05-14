@@ -114,9 +114,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 496
-        width: 32
-        height: 16
+        y: 480
+        width: 44
+        height: 29
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -126,27 +126,6 @@ TextureImporter:
       bones: []
       spriteID: 9c455d85df7774b4db0b2412a5a7b246
       internalID: -320772661
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Free verBase 1 Hex Buttons & Text 1_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 496
-        width: 32
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 71f6cc67a2daeca47b8496b9b6bfd9d6
-      internalID: -1825708007
       vertices: []
       indices: 
       edges: []
@@ -210,48 +189,6 @@ TextureImporter:
       bones: []
       spriteID: d3604206485e93b43bd0656216a6aee9
       internalID: 397706403
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Free verBase 1 Hex Buttons & Text 1_5
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 480
-        width: 32
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d02ba8428c2d86942b6fe37e6abe61a3
-      internalID: 1122263797
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Free verBase 1 Hex Buttons & Text 1_6
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 480
-        width: 32
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b1322c56b3ab97e4dbcbf08d23fb687d
-      internalID: 464973223
       vertices: []
       indices: 
       edges: []
@@ -1625,10 +1562,10 @@ TextureImporter:
       name: Free verBase 1 Hex Buttons & Text 1_72
       rect:
         serializedVersion: 2
-        x: 0
-        y: 224
-        width: 32
-        height: 16
+        x: 17
+        y: 225
+        width: 14
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

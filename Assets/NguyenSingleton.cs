@@ -6,6 +6,8 @@ using UnityEngine;
 public class NguyenSingleton : MonoBehaviour
 {
     public static NguyenSingleton Instance { get; private set; }
+
+    public PlayerID playerID;
     public GameObject inputPlayer;
     public GameObject HUB;
     public GameObject mainCamera;
@@ -22,10 +24,11 @@ public class NguyenSingleton : MonoBehaviour
     public UIInventoryPage UIInventoryPage { get; private set; }
     public AudioController AudioManager { get; private set; }
 
-    public UISettingController UISettingController { get; private set; }
 
-    [field:SerializeField]
     public DialogueController DialogueController { get; private set; }
+    public HUBController HUBController { get; private set; }
+
+    public MenuController MenuController { get; private set; }
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -45,7 +48,8 @@ public class NguyenSingleton : MonoBehaviour
             //DontDestroyOnLoad(gameObject);
             UIInventoryPage = GetComponentInChildren<UIInventoryPage>();
             AudioManager = GetComponentInChildren<AudioController>();
-            UISettingController = GetComponentInChildren<UISettingController>();
+            HUBController = GetComponentInChildren<HUBController>();
+            MenuController = GetComponentInChildren<MenuController>();
         }
         
     }

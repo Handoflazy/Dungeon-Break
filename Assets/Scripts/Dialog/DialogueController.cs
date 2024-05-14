@@ -17,12 +17,18 @@ public class DialogueController : MonoBehaviour
     [SerializeField] GameObject answerBox;
     [SerializeField] Button[] answerObjects;
 
-    public event Action OnDialogueStarted;
-    public event Action OnDialogueEnded;
+    [Header("Image Dialogue")]
+    [SerializeField] Animator characterAnim;
+    [SerializeField] SpriteRenderer characterSprite;
+    [SerializeField] Image image;
+
     bool skipLineTriggered;
     private IEnumerator currentCoroutine;
     bool answerTriggered;
     int answerIndex;
+
+
+
 
 
     void ResetBox()
@@ -33,20 +39,25 @@ public class DialogueController : MonoBehaviour
         skipLineTriggered = false;
         answerTriggered = false;
     }
-    public void StartDialogue(string[] dialogue, int startPosition, string name) =>
-       StartConversation(RunDialogue(dialogue, startPosition), name);
+    public void StartDialogue(string[] dialogue, int startPosition, string name,Animator anim) =>
+       StartConversation(RunDialogue(dialogue, startPosition), name,anim);
 
-    public void StartDialogueTree(DialogueTree dialogueTree, int startSection, string name) =>
-        StartConversation(RunDialogueTree(dialogueTree, startSection), name);
+    public void StartDialogueTree(DialogueTree dialogueTree, int startSection, string name, Animator anim) =>
+        StartConversation(RunDialogueTree(dialogueTree, startSection), name, anim);
 
 
-    private void StartConversation(IEnumerator dialogueCoroutine, string name)
+    private void StartConversation(IEnumerator dialogueCoroutine, string name, Animator anim)
     {
         ResetBox();
         nameText.text = name + "...";
         dialogueBox.gameObject.SetActive(true);
-        OnDialogueStarted?.Invoke();
+        NguyenSingleton.Instance.playerID.playerEvents.OnDialogueStart?.Invoke();
+        characterAnim.runtimeAnimatorController = anim.runtimeAnimatorController;
         StartCoroutine(dialogueCoroutine);
+    }
+    private void Update()
+    {
+        image.sprite = characterSprite.sprite;
     }
     private IEnumerator ShowText(string line)
     {
@@ -86,7 +97,7 @@ public class DialogueController : MonoBehaviour
             }
         }
 
-        OnDialogueEnded?.Invoke();
+        NguyenSingleton.Instance.playerID.playerEvents.OnDialogueEnd?.Invoke();
         dialogueBox.gameObject.SetActive(false);
     }
     public void SkipLine()
@@ -146,7 +157,7 @@ public class DialogueController : MonoBehaviour
 
         if (dialogueTree.sections[section].endAfterDialogue)
         {
-            OnDialogueEnded?.Invoke();
+            NguyenSingleton.Instance.playerID.playerEvents.OnDialogueEnd?.Invoke();
             dialogueBox.gameObject.SetActive(false);
             yield break;
         }
