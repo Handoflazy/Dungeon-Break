@@ -319,7 +319,7 @@ GameObject:
   - component: {fileID: 3363046406444272116}
   m_Layer: 11
   m_Name: BOSS_FOREST
-  m_TagString: Untagged
+  m_TagString: BossForest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -645,7 +645,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 91454276704741028}
         m_TargetAssemblyTypeName: AIEnemy, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: PlayDeathAnimation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -657,7 +657,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 5255102743309967160}
         m_TargetAssemblyTypeName: AgentAudio, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: PlayDeathSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -790,7 +790,6 @@ MonoBehaviour:
   - ItemPrefab: {fileID: 4465499201024666103, guid: c69a572e1409e4e44907e77f88eda3f7, type: 3}
     dropChance: 83.5
   droppedWeaponPrefab: {fileID: 3967431417106308425, guid: 814c9458c75e8354d95845da34943f73, type: 3}
-  droppedResoucePrefabs: {fileID: 0}
   dropForce: 1
 --- !u!114 &3363046406444272116
 MonoBehaviour:

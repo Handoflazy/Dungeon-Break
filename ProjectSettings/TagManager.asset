@@ -12,6 +12,8 @@ TagManager:
   - Ignore
   - EnemyBullet
   - Audio
+  - BossGra
+  - BossForest
   layers:
   - Default
   - TransparentFX

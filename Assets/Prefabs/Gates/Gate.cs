@@ -22,7 +22,7 @@ public class Gate : MonoBehaviour
         Transform destination = gateDestinations[randomIndex];
         player.transform.position = destination.position;
         //StartCoroutine(LockGate(destination));
-        enemySpawn.gateToFalse.SetActive(false);
+        enemySpawn.gateToTrue.SetActive(false);
         enemySpawn.randomOpenGate = 0;
     }
     IEnumerator LockGate(Transform destination)

@@ -783,7 +783,7 @@ GameObject:
   - component: {fileID: 1901665696499723891}
   m_Layer: 11
   m_Name: BOSS_GRA
-  m_TagString: Fighter
+  m_TagString: BossGra
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1095,21 +1095,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1031862901327325456}
-        m_TargetAssemblyTypeName: LootBag, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0.2
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 5189921112613913983}
         m_TargetAssemblyTypeName: AIEnemy, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: PlayDeathAnimation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1188,7 +1176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723a18758aab74746b23090cb952ff79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statsData: {fileID: 11400000, guid: 9df3e69649daa7344aaaf30f2aa8616c, type: 2}
+  statsData: {fileID: 11400000, guid: 0352c724b679b22499fc306707c2caca, type: 2}
   OnPointerPositionChange:
     m_PersistentCalls:
       m_Calls: []
@@ -1254,7 +1242,6 @@ MonoBehaviour:
   - ItemPrefab: {fileID: 4465499201024666103, guid: c69a572e1409e4e44907e77f88eda3f7, type: 3}
     dropChance: 83.5
   droppedWeaponPrefab: {fileID: 3967431417106308425, guid: 814c9458c75e8354d95845da34943f73, type: 3}
-  droppedResoucePrefabs: {fileID: 0}
   dropForce: 1
 --- !u!82 &1901665696499723891
 AudioSource:

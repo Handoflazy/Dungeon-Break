@@ -9,8 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Demo_Thien.unity
     guid: a069490698df6b24cb43e13a62282930
   - enabled: 1
+    path: Assets/Scenes/Congratulation.unity
+    guid: 5800e92b76b5e5a4b8be84cb9c6806ab
+  - enabled: 1
     path: Assets/Scenes/Demo_Khim.unity
     guid: 5d095c751dde5d744a75a70781c03a2d
+  - enabled: 1
+    path: Assets/Scenes/Demo.unity
+    guid: 63736de28de9bdf46a0fc5340c1daf1d
   - enabled: 1
     path: Assets/Scenes/Characters_Select.unity
     guid: 32d42412cfe209644858b4c6ca4640af

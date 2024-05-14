@@ -22,7 +22,7 @@ public class EnemySpawnerRandom : ObjectPool
     private float minDelay = .8f, maxDelay = 1.5f;
     private int indexRandomEnemy;
     public GameObject fenceToFalse;
-    public GameObject gateToFalse;
+    public GameObject gateToTrue;
     public int numberEnemyDie;
     public int randomOpenGate;
     private void OnEnable()
@@ -104,7 +104,7 @@ public class EnemySpawnerRandom : ObjectPool
             randomOpenGate = Random.Range(0,2);
             if (randomOpenGate == 1)
             {
-                gateToFalse.SetActive(true);
+                gateToTrue.SetActive(true);
             }
             fenceToFalse.SetActive(false) ;
         }
