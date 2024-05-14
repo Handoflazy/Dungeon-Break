@@ -9,9 +9,58 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ecdef75f860756489c3e200a57491f7, type: 3}
+  m_Script: {fileID: 11500000, guid: 258b6777496ff324796fcffaf33b93c1, type: 3}
   m_Name: KnightAlan
   m_EditorClassIdentifier: 
-  dialogue:
-  - Chao nguyen dep trai
-  - Chao Khiem Bodoi
+  sections:
+  - dialogue:
+    - Hello Warrior
+    - Welcome to dungeon
+    - Ready to your tutorial
+    endAfterDialogue: 1
+    grantLoot: 0
+    lootGrant: []
+    branchPoint:
+      question: Ban da sang sang chua?
+      answers:
+      - answerLabel: Co
+        nextElement: 1
+      - answerLabel: "Kh\xF4ng"
+        nextElement: 2
+  - dialogue:
+    - "Kh\xF4ng th\xEC c\u0169ng ph\u1EA3i s\u1EB5n s\xE0ng v\xEC b\u1EA1n kh\xF4ng
+      c\xF3 l\u1EE5a ch\u1ECDn."
+    endAfterDialogue: 1
+    grantLoot: 0
+    lootGrant: []
+    branchPoint:
+      question: AI la nguoi gay nhat trong cac lua chon sau
+      answers:
+      - answerLabel: Nguyen
+        nextElement: 1
+      - answerLabel: Khiem
+        nextElement: 2
+  - dialogue:
+    - "OK l\u01B0\u01A1m v\u0169 kh\xED l\xEAn n\xE0o"
+    endAfterDialogue: 1
+    grantLoot: 0
+    lootGrant: []
+    branchPoint:
+      question: AI la nguoi gay nhat trong cac lua chon sau
+      answers:
+      - answerLabel: Nguyen
+        nextElement: 1
+      - answerLabel: Khiem
+        nextElement: 2
+  - dialogue:
+    - Cau tra loi chinh xac
+    endAfterDialogue: 1
+    grantLoot: 0
+    lootGrant: []
+    branchPoint:
+      question: AI la nguoi gay nhat trong cac lua chon sau
+      answers:
+      - answerLabel: Nguyen
+        nextElement: 1
+      - answerLabel: Khiem
+        nextElement: 2

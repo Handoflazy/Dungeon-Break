@@ -11,7 +11,6 @@ public class NPC : MonoBehaviour
     [SerializeField] int repeatStartPosition;
 
     public string npcName;
-    public DialogueAsset dialogueAsset;
     public DialogueTree dialogueTree;
     bool inConversation=false;
 
@@ -26,7 +25,6 @@ public class NPC : MonoBehaviour
     {
         NguyenSingleton.Instance.playerID.playerEvents.OnDialogueStart += JoinConversation;
         NguyenSingleton.Instance.playerID.playerEvents.OnDialogueEnd += LeaveConversation;
-
     }
 
     private void OnDisable()
@@ -71,7 +69,6 @@ public class NPC : MonoBehaviour
     {
         inConversation = true;
         DialogStarted?.Invoke();
-        print(1);
     }
 
     void LeaveConversation()
