@@ -31,7 +31,7 @@ TagManager:
   - EnemyMovementCollider
   - Resource
   - Interactable
-  - 
+  - ActiveArea
   - 
   - 
   - 
