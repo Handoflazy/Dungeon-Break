@@ -16,18 +16,18 @@ MonoBehaviour:
   - dialogue:
     - Xin Chao
     - Chao mung den voi tro choi
+    - Hay bat dau tutorial
     endAfterDialogue: 0
     branchPoint:
-      question: AI la nguoi gay nhat trong cac lua chon sau
+      question: Ban da sang sang chua?
       answers:
-      - answerLabel: Nguyen
+      - answerLabel: Co
         nextElement: 1
-      - answerLabel: Khiem
+      - answerLabel: "Kh\xF4ng"
         nextElement: 2
-      - answerLabel: Thien
-        nextElement: 3
   - dialogue:
-    - Dap an sai
+    - "Kh\xF4ng th\xEC c\u0169ng ph\u1EA3i s\u1EB5n s\xE0ng v\xEC b\u1EA1n kh\xF4ng
+      c\xF3 l\u1EE5a ch\u1ECDn."
     endAfterDialogue: 1
     branchPoint:
       question: AI la nguoi gay nhat trong cac lua chon sau
@@ -37,7 +37,7 @@ MonoBehaviour:
       - answerLabel: Khiem
         nextElement: 2
   - dialogue:
-    - Chua han la gay
+    - "OK l\u01B0\u01A1m v\u0169 kh\xED l\xEAn n\xE0o"
     endAfterDialogue: 1
     branchPoint:
       question: AI la nguoi gay nhat trong cac lua chon sau

@@ -63,7 +63,7 @@ public class NPC : MonoBehaviour
         }
         else
         {
-            NguyenSingleton.Instance.DialogueController.StartDialogueTree(dialogueTree, repeatStartPosition, npcName);
+            NguyenSingleton.Instance.DialogueController.StartDialogueTree(dialogueTree, repeatStartPosition, npcName,GetComponent<Animator>());
         }
 
     }
@@ -78,9 +78,9 @@ public class NPC : MonoBehaviour
         inConversation = false;
         if (GrantLoot)
         {
-            DialogEnded?.Invoke();
             GrantLoot = false;
         }
+        DialogEnded?.Invoke();
 
     }
 

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using System.Numerics;
 using Vector2 = UnityEngine.Vector2;
 using UnityEngine.Events;
+using Unity.VisualScripting;
 public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, PlayerControls.IMenuActions, PlayerControls.IDealthMenuActions, PlayerControls.IInventoryActions
 {
 
@@ -15,6 +16,23 @@ public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, Play
     public Vector2 MousePos { get; private set; }
 
     public bool Interact = false;
+
+
+    private void OnEnable()
+    {
+        player.ID.playerEvents.OnMenuOpen += OnMenuOpen;
+        player.ID.playerEvents.OnMenuClose+= OnMenuClose;
+    }
+
+    public void OnMenuOpen()
+    {
+        SwitchActionMap(inputActions.Menu);
+    }
+    public void OnMenuClose()
+    {
+        SwitchActionMap(inputActions.PlayerInput);
+    }
+    
 
 
     public void OnDeathEvent()
@@ -36,9 +54,23 @@ public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, Play
 
     public void OnExitMenu(InputAction.CallbackContext context)
     {
-        inputActions.PlayerInput.Enable();
-        inputActions.Menu.Disable();
-        NguyenSingleton.Instance.UISettingController.CloseMenu();
+        if (context.phase == InputActionPhase.Performed)
+        {
+            OnMenuClose();
+            NguyenSingleton.Instance.MenuController.ToggleMenu();
+        }
+    }
+
+    private void SwitchActionMap(InputActionMap targetMap)
+    {
+        // Tắt tất cả các action map hiện đang được kích hoạt
+        foreach (var actionMap in inputActions.asset.actionMaps)
+        {
+            actionMap.Disable();
+        }
+        // Kích hoạt action map mong muốn
+        targetMap.Enable();
+        
     }
 
     public void OnMovement(InputAction.CallbackContext context)
@@ -55,9 +87,8 @@ public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, Play
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            inputActions.PlayerInput.Disable();
-            inputActions.Menu.Enable();
-            NguyenSingleton.Instance.UISettingController.OpenMenu();
+            OnMenuOpen();
+            NguyenSingleton.Instance.MenuController.ToggleMenu();
         }
     }
 

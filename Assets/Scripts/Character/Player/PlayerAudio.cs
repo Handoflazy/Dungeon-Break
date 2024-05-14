@@ -9,9 +9,14 @@ public abstract class PlayerAudio : MonoBehaviour
     protected float pitchRandomness = .05f;
     protected float basePitch;
 
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+    }
+    private void OnEnable()
+    {
+        
     }
     public void PlayClipWithVariablePitch(AudioClip clip)
     {

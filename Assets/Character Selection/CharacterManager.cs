@@ -9,11 +9,20 @@ public class CharacterManager : MonoBehaviour
 {
     public CharacterDatabase characterDB;
     public Text nameText;
-    public SpriteRenderer spriteCharacter;
     public AnimatorController controllerCharacter;
     private int selectedOption =0;
     public Image image;
 
+    [SerializeField]
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        
+       
+    }
     private void Start()
     {
         if (!PlayerPrefs.HasKey("selectedOption"))
@@ -25,6 +34,11 @@ public class CharacterManager : MonoBehaviour
             Load();
         }
         UpdateCharacter(selectedOption);
+
+    }
+    private void Update()
+    {
+        image.sprite = spriteRenderer.sprite;
     }
 
     public void NextOption()
@@ -56,7 +70,7 @@ public class CharacterManager : MonoBehaviour
         controllerCharacter = character.characterAnimator;
         nameText.text = character.characterName;
         image.sprite = character.characterSprite;
-
+        animator.runtimeAnimatorController = controllerCharacter;
         print(selectOption);
     }
     void Load()
