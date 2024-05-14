@@ -7,7 +7,8 @@ using System.Numerics;
 using Vector2 = UnityEngine.Vector2;
 using UnityEngine.Events;
 using Unity.VisualScripting;
-public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, PlayerControls.IMenuActions, PlayerControls.IDealthMenuActions, PlayerControls.IInventoryActions
+using static UnityEditor.Experimental.GraphView.GraphView;
+public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, PlayerControls.IMenuActions, PlayerControls.IDealthMenuActions, PlayerControls.IInventoryActions, PlayerControls.IDialogueActions
 {
 
 
@@ -21,23 +22,27 @@ public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, Play
     private void OnEnable()
     {
         player.ID.playerEvents.OnMenuOpen += OnMenuOpen;
-        player.ID.playerEvents.OnMenuClose+= OnMenuClose;
-    }
+        player.ID.playerEvents.OnMenuClose+= BackToDefaultInput;
+        player.ID.playerEvents.OnDialogueStart += OnInDialogue;
+        player.ID.playerEvents.OnDialogueEnd += BackToDefaultInput;
 
+    }
     public void OnMenuOpen()
     {
         SwitchActionMap(inputActions.Menu);
     }
-    public void OnMenuClose()
+    public void BackToDefaultInput()
     {
         SwitchActionMap(inputActions.PlayerInput);
     }
-    
-
-
     public void OnDeathEvent()
     {
         inputActions.PlayerInput.Disable();
+    }
+
+    public void OnInDialogue()
+    {
+        SwitchActionMap(inputActions.Dialogue);
     }
 
     protected override void Awake()
@@ -47,6 +52,7 @@ public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, Play
         inputActions.Menu.SetCallbacks(this);
         inputActions.PlayerInput.SetCallbacks(this);
         inputActions.Inventory.SetCallbacks(this);
+        inputActions.Dialogue.SetCallbacks(this);
         inputActions.PlayerInput.Enable();
     }
 
@@ -56,12 +62,12 @@ public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, Play
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            OnMenuClose();
+            BackToDefaultInput();
             NguyenSingleton.Instance.MenuController.ToggleMenu();
         }
     }
 
-    private void SwitchActionMap(InputActionMap targetMap)
+    public void SwitchActionMap(InputActionMap targetMap)
     {
         // Tắt tất cả các action map hiện đang được kích hoạt
         foreach (var actionMap in inputActions.asset.actionMaps)
@@ -149,7 +155,6 @@ public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, Play
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            print("Open");
             inputActions.Inventory.Enable();
             inputActions.PlayerInput.Disable();
             player.ID.playerEvents.OnInventoryToggle?.Invoke();
@@ -161,7 +166,6 @@ public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, Play
         
         if (context.phase == InputActionPhase.Performed)
         {
-            print("Close");
             player.ID.playerEvents.OnInventoryToggle?.Invoke();
             inputActions.PlayerInput.Enable();
             inputActions.Inventory.Disable();
@@ -206,6 +210,18 @@ public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, Play
     {
             player.ID.playerEvents.OnUseAmmoBox?.Invoke();
         }
+
+    public void OnSkipline(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            Interact = false;
+        }
+        else
+        {
+            Interact = true;
+        }
     }
+}
 
 

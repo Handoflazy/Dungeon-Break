@@ -8,7 +8,7 @@ using TMPro;
 
 public class HUBController : MonoBehaviour
 {
-    public PlayerID playerID;
+    private PlayerID playerID;
     [SerializeField] private SliderBar healthBar;
     [SerializeField] private SliderBar durationBar;
     [SerializeField] private ItemUI uiAmmo;
@@ -18,8 +18,14 @@ public class HUBController : MonoBehaviour
     [SerializeField] GameObject deathMenu;
 
     [SerializeField] private GameObject HUB;
+    private void Awake()
+    {
+        playerID = NguyenSingleton.Instance.playerID;
+    }
     private void OnEnable()
     {
+        playerID.playerEvents.OnDialogueStart += HideHUB;
+        playerID.playerEvents.OnDialogueEnd += DisplayHUB;
         playerID.playerEvents.onRespawn += HideGameOver;
         playerID.playerEvents.OnDurationChanged += OnDurationChanged;
         playerID.playerEvents.onInitialDuration += InitialMaxValueDurationBar;
@@ -29,6 +35,8 @@ public class HUBController : MonoBehaviour
     }
     private void OnDisable()
     {
+        playerID.playerEvents.OnDialogueStart -= HideHUB;
+        playerID.playerEvents.OnDialogueEnd -= DisplayHUB;
         playerID.playerEvents.onRespawn -= HideGameOver;
         playerID.playerEvents.OnDurationChanged -= OnDurationChanged;
         playerID.playerEvents.onInitialDuration -= InitialMaxValueDurationBar;
@@ -71,7 +79,6 @@ public class HUBController : MonoBehaviour
     }
     public void DisplayHUB()
     {
-        print(1);
         HUB.SetActive(true );
     }
     

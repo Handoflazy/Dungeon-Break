@@ -22,8 +22,6 @@ public class DialogueController : MonoBehaviour
     [SerializeField] SpriteRenderer characterSprite;
     [SerializeField] Image image;
 
-    public event Action OnDialogueStarted;
-    public event Action OnDialogueEnded;
     bool skipLineTriggered;
     private IEnumerator currentCoroutine;
     bool answerTriggered;
@@ -53,8 +51,7 @@ public class DialogueController : MonoBehaviour
         ResetBox();
         nameText.text = name + "...";
         dialogueBox.gameObject.SetActive(true);
-        OnDialogueStarted?.Invoke();
-        NguyenSingleton.Instance.HUBController.HideHUB();
+        NguyenSingleton.Instance.playerID.playerEvents.OnDialogueStart?.Invoke();
         characterAnim.runtimeAnimatorController = anim.runtimeAnimatorController;
         StartCoroutine(dialogueCoroutine);
     }
@@ -100,7 +97,7 @@ public class DialogueController : MonoBehaviour
             }
         }
 
-        OnDialogueEnded?.Invoke();
+        NguyenSingleton.Instance.playerID.playerEvents.OnDialogueEnd?.Invoke();
         dialogueBox.gameObject.SetActive(false);
     }
     public void SkipLine()
@@ -160,8 +157,7 @@ public class DialogueController : MonoBehaviour
 
         if (dialogueTree.sections[section].endAfterDialogue)
         {
-            OnDialogueEnded?.Invoke();
-            NguyenSingleton.Instance.HUBController.DisplayHUB();
+            NguyenSingleton.Instance.playerID.playerEvents.OnDialogueEnd?.Invoke();
             dialogueBox.gameObject.SetActive(false);
             yield break;
         }

@@ -316,7 +316,7 @@
                 {
                     "name": "",
                     "id": "111b5c18-2b7a-4f43-8271-830e89453fda",
-                    "path": "<Keyboard>/2",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -327,7 +327,7 @@
                 {
                     "name": "",
                     "id": "3f3c1948-2b6f-4138-ba46-145b2eb7f27b",
-                    "path": "<Keyboard>/1",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -338,7 +338,7 @@
                 {
                     "name": "",
                     "id": "7eeace21-fd0e-4cc0-afee-57a68fb26e68",
-                    "path": "<Keyboard>/r",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -405,6 +405,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "CloseInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Dialogue",
+            "id": "3c64369f-5a90-4d61-a0d9-c51001ad58a7",
+            "actions": [
+                {
+                    "name": "Skipline",
+                    "type": "Button",
+                    "id": "4e62de73-f715-4f2c-ab44-5631949d65bc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "eb5cd883-67b3-4290-ab5c-7f08304f6c68",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skipline",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

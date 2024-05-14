@@ -24,15 +24,15 @@ public class NPC : MonoBehaviour
 
     private void OnEnable()
     {
-        NguyenSingleton.Instance.DialogueController.OnDialogueStarted += JoinConversation;
-        NguyenSingleton.Instance.DialogueController.OnDialogueEnded += LeaveConversation;
+        NguyenSingleton.Instance.playerID.playerEvents.OnDialogueStart += JoinConversation;
+        NguyenSingleton.Instance.playerID.playerEvents.OnDialogueEnd += LeaveConversation;
 
     }
 
     private void OnDisable()
     {
-        NguyenSingleton.Instance.DialogueController.OnDialogueStarted -= JoinConversation;
-        NguyenSingleton.Instance.DialogueController.OnDialogueEnded -= LeaveConversation;
+        NguyenSingleton.Instance.playerID.playerEvents.OnDialogueStart -= JoinConversation;
+        NguyenSingleton.Instance.playerID.playerEvents.OnDialogueEnd -= LeaveConversation;
     }
 
     [HideInInspector]
@@ -71,6 +71,7 @@ public class NPC : MonoBehaviour
     {
         inConversation = true;
         DialogStarted?.Invoke();
+        print(1);
     }
 
     void LeaveConversation()
