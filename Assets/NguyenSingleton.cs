@@ -12,6 +12,7 @@ public class NguyenSingleton : MonoBehaviour
     public GameObject HUB;
     public GameObject mainCamera;
     public GameObject astarPathfinder;
+
     //public GameObject AudioManager;
     public FloatingTextManager FloatingTextManager { get; private set; }
     public GameManager GameManager { get; private set; }
@@ -29,6 +30,8 @@ public class NguyenSingleton : MonoBehaviour
     public HUBController HUBController { get; private set; }
 
     public MenuController MenuController { get; private set; }
+
+    public BossHealthBArController BossHealthBArController { get; private set; }
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -50,6 +53,7 @@ public class NguyenSingleton : MonoBehaviour
             AudioManager = GetComponentInChildren<AudioController>();
             HUBController = GetComponentInChildren<HUBController>();
             MenuController = GetComponentInChildren<MenuController>();
+            BossHealthBArController = GetComponentInChildren<BossHealthBArController>();
         }
         
     }
