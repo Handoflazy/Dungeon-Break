@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2b55bf2f5439224fa1b4ecc3fb97eaf, type: 3}
   m_Name: Boss Grave Stats
   m_EditorClassIdentifier: 
-  hp: 10
+  hp: 5000
   duration: 0
-  damage: 100
+  damage: 50
   minXpBonus: 300
   maxXpBonus: 500
   hpUp: 30

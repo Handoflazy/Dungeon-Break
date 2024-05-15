@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98eea4f1f3559147b5e173667ed8536, type: 3}
   m_Name: MP5_Gun
   m_EditorClassIdentifier: 
-  <BulletData>k__BackingField: {fileID: 11400000, guid: 38047704ced0e724cbbb0bc49fd1cf5e, type: 2}
-  <AmmoCapacity>k__BackingField: 90
+  <BulletData>k__BackingField: {fileID: 11400000, guid: 326d04d7a47c8fe428195019a2639cac, type: 2}
+  <AmmoCapacity>k__BackingField: 50
   <AutomaticFire>k__BackingField: 1
   <WeaponDelay>k__BackingField: 0.1
-  <SpreadAngle>k__BackingField: 15
+  <SpreadAngle>k__BackingField: 2
   multiBulletShoot: 1
   bulletCount: 3

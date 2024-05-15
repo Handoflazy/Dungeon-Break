@@ -34,11 +34,6 @@ public class WanderBehavior : StateMachineBehaviour
         CreateRandomPos();
 
         coroutineRunner = GetCoroutineRunner(animator);
-
-        if (!coroutineRunner)
-        {
-            Debug.Log("noooo");
-        }
         //if (coroutineRunner == null)
         //{
         //    coroutineRunner = animator.gameObject.AddComponent<CoroutineRunner>();

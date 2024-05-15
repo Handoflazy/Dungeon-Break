@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: MP5_Bullet
   m_EditorClassIdentifier: 
   <bulletPrefab>k__BackingField: {fileID: 3345224553741461971, guid: 194fb2569ea70674da5b13a1bb27478b, type: 3}
-  <Damage>k__BackingField: 4
+  <Damage>k__BackingField: 8
   <Friction>k__BackingField: 3
-  <BulletSpeed>k__BackingField: 3
+  <BulletSpeed>k__BackingField: 5
   <FlyDistance>k__BackingField: 3
   <Bounce>k__BackingField: 0
   <GoThrougHitable>k__BackingField: 1
   <IsRaycast>k__BackingField: 0
   <ImpactObstaclePrefab>k__BackingField: {fileID: 737018255036195549, guid: a6066cf5408570548908e2155ee1c657, type: 3}
   <ImpactEnemyPrefab>k__BackingField: {fileID: 2143305333851338501, guid: 0f2df85a595f8214fad52f87c97ef007, type: 3}
-  <KnockBackPower>k__BackingField: 0.1
-  <KnockBackDelay>k__BackingField: 0
+  <KnockBackPower>k__BackingField: 5
+  <KnockBackDelay>k__BackingField: 0.125

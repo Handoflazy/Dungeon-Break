@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sections:
   - dialogue:
-    - Greetings, savior of the village.
+    - Greetings, savior of the village
     - 'In the peaceful village, fear had taken hold. A long-sealed dungeon had reopened,
-      and dark creatures began to emerge, threatening the villagers.
+      and dark creatures began to emerge, threatening the villagers
 
 '
     endAfterDialogue: 0
@@ -25,9 +25,9 @@ MonoBehaviour:
     branchPoint:
       question: Please, help us. Clear the dungeon and save our village
       answers:
-      - answerLabel: 'Okay, I will do that., No, I don''t want to do it. '
+      - answerLabel: Okay, I will do that
         nextElement: 1
-      - answerLabel: No, I don't want to do it.
+      - answerLabel: No, I don't want to do it
         nextElement: 2
   - dialogue:
     - May the light guide you
@@ -35,12 +35,8 @@ MonoBehaviour:
     grantLoot: 0
     lootGrant: []
     branchPoint:
-      question: AI la nguoi gay nhat trong cac lua chon sau
-      answers:
-      - answerLabel: Nguyen
-        nextElement: 1
-      - answerLabel: Khiem
-        nextElement: 2
+      question: 
+      answers: []
   - dialogue: []
     endAfterDialogue: 0
     grantLoot: 0

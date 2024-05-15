@@ -71,7 +71,6 @@ public class CharacterManager : MonoBehaviour
         nameText.text = character.characterName;
         image.sprite = character.characterSprite;
         animator.runtimeAnimatorController = controllerCharacter;
-        print(selectOption);
     }
     void Load()
     {
