@@ -14,22 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sections:
   - dialogue:
-    - Hello Warrior
-    - Welcome to dungeon
-    - Ready to your tutorial
-    endAfterDialogue: 1
-    grantLoot: 0
+    - Greetings, savior of the village.
+    - 'In the peaceful village, fear had taken hold. A long-sealed dungeon had reopened,
+      and dark creatures began to emerge, threatening the villagers.
+
+'
+    endAfterDialogue: 0
+    grantLoot: 1
     lootGrant: []
     branchPoint:
-      question: Ban da sang sang chua?
+      question: Please, help us. Clear the dungeon and save our village
       answers:
-      - answerLabel: Co
+      - answerLabel: 'Okay, I will do that., No, I don''t want to do it. '
         nextElement: 1
-      - answerLabel: "Kh\xF4ng"
+      - answerLabel: No, I don't want to do it.
         nextElement: 2
   - dialogue:
-    - "Kh\xF4ng th\xEC c\u0169ng ph\u1EA3i s\u1EB5n s\xE0ng v\xEC b\u1EA1n kh\xF4ng
-      c\xF3 l\u1EE5a ch\u1ECDn."
+    - May the light guide you
     endAfterDialogue: 1
     grantLoot: 0
     lootGrant: []
@@ -40,27 +41,12 @@ MonoBehaviour:
         nextElement: 1
       - answerLabel: Khiem
         nextElement: 2
-  - dialogue:
-    - "OK l\u01B0\u01A1m v\u0169 kh\xED l\xEAn n\xE0o"
-    endAfterDialogue: 1
+  - dialogue: []
+    endAfterDialogue: 0
     grantLoot: 0
     lootGrant: []
     branchPoint:
-      question: AI la nguoi gay nhat trong cac lua chon sau
+      question: Please help us, only you can do this.
       answers:
-      - answerLabel: Nguyen
+      - answerLabel: Ok fine
         nextElement: 1
-      - answerLabel: Khiem
-        nextElement: 2
-  - dialogue:
-    - Cau tra loi chinh xac
-    endAfterDialogue: 1
-    grantLoot: 0
-    lootGrant: []
-    branchPoint:
-      question: AI la nguoi gay nhat trong cac lua chon sau
-      answers:
-      - answerLabel: Nguyen
-        nextElement: 1
-      - answerLabel: Khiem
-        nextElement: 2

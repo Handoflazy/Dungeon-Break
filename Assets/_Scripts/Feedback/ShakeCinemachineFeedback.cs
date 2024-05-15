@@ -19,7 +19,7 @@ public class ShakeCinemachineFeedback : Feedback
     {
         if (!cinemachineVirtualCamera)
         {
-            cinemachineVirtualCamera = FindAnyObjectByType<CinemachineVirtualCamera>();
+            cinemachineVirtualCamera = GameObject.Find("VIrtual Main Camera").GetComponent<CinemachineVirtualCamera>();
         }
         noise = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }

@@ -40,6 +40,10 @@ namespace EnemyAl
                 for (int i = 0; i < numberOfBullets; i++)
                 {
                     GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+                    if(bullet.TryGetComponent<EnemyBullet>(out EnemyBullet bulletBullet))
+                    {
+                        bulletBullet.Damage = enemyAIBrain.statsData.damage;
+                    }
 
                     Vector3 lookDirection = (enemyAIBrain.Target.transform.position - transform.position).normalized;
                     float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg + initialScatterAngle;

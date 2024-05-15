@@ -99,14 +99,14 @@ public class LootBag : MonoBehaviour
     
     private void SpawnResource(GameObject resource)
     {
-        Vector3 offset = Random.insideUnitCircle * .08f;
+        Vector3 offset = Random.insideUnitCircle * .16f;
         Instantiate(resource, transform.position + offset, Quaternion.identity);
         DropFeedback(resource);
     }
 
     private void SpawnGun(GameObject gunToSpawn)
     {
-        Vector3 offset = Random.insideUnitCircle * .08f;
+        Vector3 offset = Random.insideUnitCircle * .16f;
         GameObject droppedGun = droppedWeaponPrefab;
         droppedGun.GetComponent<DropWeapon>().GunPrefab = gunToSpawn;
         droppedGun.GetComponent<DropWeapon>().BulletNumber = Random.Range(1, gunToSpawn.GetComponent<BasicGun>().Ammo);

@@ -12,7 +12,7 @@ public class AgentRenderer : AgentSystem
     public void FaceDirection(Vector2 pointerPosition)
     {
         Vector2 faceDirection = pointerPosition - (Vector2)transform.position;
-
+        print(1);
         if(faceDirection.x > 0)
         {
             spriteRenderer.flipX = false;
