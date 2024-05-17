@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.TerrainTools;
+//using UnityEditor.TerrainTools;
 using UnityEngine;
 [CanEditMultipleObjects]
 [CustomEditor(typeof(GunWeaponDataSO))]
