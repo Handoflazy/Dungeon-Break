@@ -27,6 +27,11 @@ public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, Play
         player.ID.playerEvents.OnDialogueEnd += BackToDefaultInput;
 
     }
+
+    public void TurnOffInput() 
+    {
+        inputActions.PlayerInput.Disable();
+    }
     public void OnMenuOpen()
     {
         SwitchActionMap(inputActions.Menu);

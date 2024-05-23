@@ -18,9 +18,11 @@ public class SkillManager : PlayerSystem
 
     [SerializeField]
     private UISKillController skillUI;
-
+    [SerializeField]
     protected AbstractSkill moveSkill;
+    [SerializeField]
     protected AbstractSkill firstSkill;
+    [SerializeField]
     protected AbstractSkill secondSkill;
 
     protected bool isMoveSkillCooldown = false;
@@ -90,7 +92,15 @@ public class SkillManager : PlayerSystem
 
         if (level >= levelMoveSkillRequired && !isMoveSkillAdded)
         {
-            moveSkill = GetComponent<DashSkill>();
+            if(PlayerPrefs.GetInt("selectedOption") == 3 || PlayerPrefs.GetInt("selectedOption") == 1)
+            {
+                moveSkill = GetComponent<DashSkill>();
+            }
+            else
+            {
+                moveSkill = GetComponent<TeleportSkill>();
+            }
+            
             if (moveSkill == null) { print("chua lay dc"); }
             isMoveSkillAdded = true;
             moveSkill.canUse = true;
@@ -99,7 +109,15 @@ public class SkillManager : PlayerSystem
 
         if (level >= levelFirstSkillRequired && !isFirstSkillAdded)
         {
-            firstSkill = GetComponent<MineSkill>();
+            if (PlayerPrefs.GetInt("selectedOption") == 3 || PlayerPrefs.GetInt("selectedOption") == 1)
+            {
+                firstSkill = GetComponent<MineSkill>();
+            }
+            else
+            {
+                firstSkill = GetComponent<HealthSkill>();
+            }
+            
             if(firstSkill == null) { print("chua lay dc"); }
             isFirstSkillAdded = true;
             firstSkill.canUse = true;
@@ -108,7 +126,15 @@ public class SkillManager : PlayerSystem
 
         if (level >= levelSecondSkillRequired && !isSecondSkillAdded)
         {
-            secondSkill = GetComponent<EnhanceSkill>();
+            if (PlayerPrefs.GetInt("selectedOption") == 3 || PlayerPrefs.GetInt("selectedOption") == 1)
+            {
+                secondSkill = GetComponent<EnhanceSkill>();
+            }
+            else
+            {
+                secondSkill = GetComponent<WallSkill>();
+            }
+            
             if (secondSkill == null) { print("chua lay dc"); }
             isSecondSkillAdded = true;
             secondSkill.canUse = true;

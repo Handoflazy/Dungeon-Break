@@ -121,9 +121,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3558342b977b2694bb7757dbe3cca300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySpawn: {fileID: 0}
   gateDestinations:
   - {fileID: 0}
   player: {fileID: 0}
+  lockTime: 2
 --- !u!70 &5638452368451211914
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ using UnityEngine;
 public class BulletDameEnemy : Fighter
 {
     public int damage = 1;
-    public float push = 3f;
+    //public float push = 3f;
     protected override void Start()
     {
 
@@ -15,15 +15,15 @@ public class BulletDameEnemy : Fighter
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Damage dmg = new() { damageAmount = damage , origin = transform.position, pushForce = push };
+            Damage dmg = new() { damageAmount = damage};
             collision.SendMessage("ReceivedDamage", dmg);
-            gameObject.SetActive(false);
-            //Destroy(gameObject);
+            //gameObject.SetActive(false);
+            Destroy(gameObject);
         }
         else if(collision.gameObject.layer == LayerMask.NameToLayer("Blocking"))
         {
-            gameObject.SetActive(false) ;
-            //Destroy(gameObject);
+            //gameObject.SetActive(false) ;
+            Destroy(gameObject);
         }
     }
 }

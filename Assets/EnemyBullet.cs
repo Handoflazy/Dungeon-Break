@@ -8,7 +8,7 @@ public class EnemyBullet : MonoBehaviour
 {
     //public UnityEvent OnDeathEvent;
     [SerializeField] private LayerMask ignoreMask;
-
+    [SerializeField]
     private int damage;
 
     public int Damage { get => damage; set => damage = value; }

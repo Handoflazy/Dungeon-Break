@@ -14,7 +14,8 @@ public class BosGate : MonoBehaviour
         {
             OnPlayerEnter?.Invoke();
             HPBarToTrue.gameObject.SetActive(true);
-           // HPBarToFalse.gameObject.SetActive(false);
+            // HPBarToFalse.gameObject.SetActive(false);
+            Destroy(gameObject,1);
         }
     }
 
