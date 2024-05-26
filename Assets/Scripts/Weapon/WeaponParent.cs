@@ -9,13 +9,13 @@ using Shooter;
 public class WeaponParent : PlayerSystem
 {
     [SerializeField] protected BasicGun CurrentGun;
-
+    [SerializeField]
+    private InventorySO inventoryData;
 
     [SerializeField] protected WeaponRenderer weaponRenderer;
 
-    [SerializeField] private GameObject dropWeaponPrefab;
     [SerializeField]
-    private GameObject currentItemPrefab;
+    private EquippabeItemSO WeaponSO;
 
     public List<ItemParameter> itemCurrentState;
     public List<GameObject> weapons;
@@ -60,7 +60,7 @@ public class WeaponParent : PlayerSystem
             {
                 bullet = PlayerPrefs.GetInt(PrefConsts.CURRENT_BULLET_COUNT_KEY);
             }
-            SetWeapon(weapons[indexCurrenGun], bullet);
+            //SetWeapon(weapons[indexCurrenGun], bullet);
         }
     }
 
@@ -96,28 +96,36 @@ public class WeaponParent : PlayerSystem
 
 
 
-    public void SetWeapon(GameObject newGun, int bulletNumber)
+    public void SetWeapon(EquippabeItemSO weaponItemS0, int bulletNumber)
     {
         if (CurrentGun)
-        {      
-            DropCurrentWeapon();
+        {
+            if (inventoryData.AddItem(WeaponSO, 1)==1)
+            {
+                player.ID.playerEvents.OnDropItem(WeaponSO, 1);
+            }
+            Destroy(CurrentGun.gameObject);
         }
-        SpawnWeapon(newGun);
-        currentItemPrefab = newGun;
+        SpawnWeapon(weaponItemS0.WeaponPrefap);
+        this.WeaponSO = weaponItemS0;
         CurrentGun.Ammo = bulletNumber;
         player.ID.playerEvents.OnChangeGun?.Invoke(CurrentGun);
       
 
     }
-    private void DropCurrentWeapon()
-    {
-        GameObject GunToDrop = dropWeaponPrefab;
-        GunToDrop.GetComponent<DropWeapon>().GunPrefab = currentItemPrefab;
-        GunToDrop.GetComponent<DropWeapon>().BulletNumber = CurrentGun.Ammo;
-        Instantiate(GunToDrop, transform.position, Quaternion.identity);
-        CurrentGun.gameObject.transform.parent = null;
-        Destroy(CurrentGun.gameObject);
-    }
+
+
+
+
+    //private void DropCurrentWeapon()
+    //{
+    //    GameObject GunToDrop = dropWeaponPrefab;
+    //    GunToDrop.GetComponent<DropWeapon>().GunPrefab = currentItemPrefab;
+    //    GunToDrop.GetComponent<DropWeapon>().BulletNumber = CurrentGun.Ammo;
+    //    Instantiate(GunToDrop, transform.position, Quaternion.identity);
+    //    CurrentGun.gameObject.transform.parent = null;
+    //    Destroy(CurrentGun.gameObject);
+    //}
 
     private void SpawnWeapon(GameObject gunPrefab)
     {

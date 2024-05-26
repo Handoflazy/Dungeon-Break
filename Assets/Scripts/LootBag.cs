@@ -10,8 +10,9 @@ public class LootBag : MonoBehaviour
 {
     [SerializeField]
     private List<Loot> lootList;
+
     [SerializeField]
-    private GameObject droppedWeaponPrefab;
+    private GameObject dropItemSO;
     
     [SerializeField]
     private float dropForce;
@@ -67,14 +68,10 @@ public class LootBag : MonoBehaviour
 
         if (loot != null)
         {
-            if (loot.ItemPrefab.GetComponent<DropWeapon>())
-            {
-                SpawnGun(loot.ItemPrefab);
-            }
-            if (loot.ItemPrefab.GetComponent<Resource>())
-            {
-                SpawnResource(loot.ItemPrefab);
-            }
+            Item dropItem = dropItemSO.GetComponent<Item>();
+            dropItem.InventoryItem = loot.itemData;
+            dropItem.Quantity = 1;
+            SpawnItem(dropItemSO);
         }
     }
     public void InstantiateLoots(Vector3 spawnPosition)
@@ -84,34 +81,20 @@ public class LootBag : MonoBehaviour
             return;
         foreach (var loot in droppedItems)
         {
-            if (loot.ItemPrefab.GetComponent<BasicGun>())
-            {
-
-               SpawnGun(loot.ItemPrefab);
-            }
-            if (loot.ItemPrefab.GetComponent<Resource>())
-            {
-               SpawnResource(loot.ItemPrefab);
-            }
-           
+            Item dropItem = dropItemSO.GetComponent<Item>();
+            dropItem.InventoryItem = loot.itemData;
+            dropItem.Quantity = 1;
+            SpawnItem(dropItemSO);
         }
     }
     
-    private void SpawnResource(GameObject resource)
-    {
-        Vector3 offset = Random.insideUnitCircle * .16f;
-        Instantiate(resource, transform.position + offset, Quaternion.identity);
-        DropFeedback(resource);
-    }
 
-    private void SpawnGun(GameObject gunToSpawn)
+
+    private void SpawnItem(GameObject itemToSpawn)
     {
         Vector3 offset = Random.insideUnitCircle * .16f;
-        GameObject droppedGun = droppedWeaponPrefab;
-        droppedGun.GetComponent<DropWeapon>().GunPrefab = gunToSpawn;
-        droppedGun.GetComponent<DropWeapon>().BulletNumber = Random.Range(1, gunToSpawn.GetComponent<BasicGun>().Ammo);
-        droppedGun = Instantiate(droppedGun, transform.position+offset, Quaternion.identity);
-        DropFeedback(droppedGun);
+        Instantiate(itemToSpawn, transform.position+offset, Quaternion.identity);
+       // DropFeedback(droppedGun);
 
     }
 
@@ -125,7 +108,7 @@ public class LootBag : MonoBehaviour
 [Serializable]
 public class Loot
 {
-    public GameObject ItemPrefab;
+    public ItemSO itemData;
     [Range(0,100)]
     public float dropChance;
 }

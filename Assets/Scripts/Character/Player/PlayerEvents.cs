@@ -1,3 +1,4 @@
+using Inventory.Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -86,6 +87,10 @@ public struct PlayerEvents
     // Scene Event
 
     public Action OnSceneLoad;
+
+    // Inventory Event
+
+    public Action<ItemSO,int> OnDropItem;
    
 
 
