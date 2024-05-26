@@ -273,7 +273,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50cc7991dac7b614d9bc60c1c3f715f5, type: 3}
   m_Name: 
@@ -463,8 +463,8 @@ AnimatorStateTransition:
   m_IsExit: 0
   serializedVersion: 3
   m_TransitionDuration: 0
-  m_TransitionOffset: 0
-  m_ExitTime: 0.44444448
+  m_TransitionOffset: 0.057516165
+  m_ExitTime: 0.03154127
   m_HasExitTime: 0
   m_HasFixedDuration: 0
   m_InterruptionSource: 0

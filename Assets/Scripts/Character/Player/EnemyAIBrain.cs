@@ -60,6 +60,14 @@ public class EnemyAIBrain : ActorReform
             EnemyAttack.RangeAttack(bulletPrefab, numberOfBullets);
         }
     }
+    public void RangeAttackV2(GameObject bulletPrefab, int numberOfBullets)
+    {
+        if (Dead == false && EnemyAttack)
+        {
+            playerEvents.OnPressed?.Invoke();
+            EnemyAttack.RangeAttackV2(bulletPrefab, numberOfBullets);
+        }
+    }
 
     public void Move(Vector2 movementDirection, Vector2 targetPosition)
     {

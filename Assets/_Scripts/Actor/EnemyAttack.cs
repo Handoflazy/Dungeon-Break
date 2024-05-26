@@ -18,6 +18,7 @@ public abstract class EnemyAttack : MonoBehaviour
     }
     public abstract void Attack(int damage);
     public abstract void RangeAttack(GameObject bulletPrefab, int numberOfBullets);
+    public abstract void RangeAttackV2(GameObject bulletPrefab, int numberOfBullets);
 
 
     protected IEnumerator WaitBeforeAttackCoroutine()
