@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Characters_Select.unity
     guid: 32d42412cfe209644858b4c6ca4640af
   - enabled: 1
+    path: Assets/Scenes/Dungeon_Demo.unity
+    guid: d0ccfb1dc00ad964aa14b6c2701e5233
+  - enabled: 1
     path: Assets/Scenes/Demo_Khim.unity
     guid: 5d095c751dde5d744a75a70781c03a2d
   - enabled: 1
