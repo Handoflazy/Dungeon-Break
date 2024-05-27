@@ -29,13 +29,6 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGenerator
         for (int i = 0; i < randomWalkParameters.iteration; i++)
         {
             var path = ProceduralGenerationAlgorithm.SimpleRandomWalk(currentPosition, randomWalkParameters.walkLength);
-            if(position.x==0&& position.y == 0)
-            {
-                foreach (var item in path)
-                {
-                    print(item);
-                }
-            }
             floorPosition.UnionWith(path);
             if (randomWalkParameters.startRandomlyEachIteration)
             {
