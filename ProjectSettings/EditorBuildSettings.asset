@@ -6,15 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/NguyenDev/Home Page.unity
+    path: Assets/Scenes/Home Page.unity
     guid: e071c70f5fb7a7c44b9140ff086824e7
   - enabled: 1
-    path: Assets/Scenes/NguyenDev/Characters_Select.unity
+    path: Assets/Scenes/Characters_Select.unity
     guid: 32d42412cfe209644858b4c6ca4640af
   - enabled: 1
-    path: Assets/Scenes/NguyenDev/Congratulation.unity
-    guid: 5800e92b76b5e5a4b8be84cb9c6806ab
+    path: Assets/Scenes/Dungeon_Demo.unity
+    guid: d0ccfb1dc00ad964aa14b6c2701e5233
   - enabled: 1
-    path: Assets/Scenes/NguyenDev/Demo_Khim.unity
-    guid: 47926e679b8fb544ba794686f34300d0
+    path: Assets/Scenes/Demo_Khim.unity
+    guid: 5d095c751dde5d744a75a70781c03a2d
+  - enabled: 1
+    path: Assets/Scenes/Congratulation.unity
+    guid: 5800e92b76b5e5a4b8be84cb9c6806ab
   m_configObjects: {}
