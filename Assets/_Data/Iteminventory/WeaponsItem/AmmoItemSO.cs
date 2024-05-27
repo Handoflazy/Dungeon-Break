@@ -11,9 +11,10 @@ namespace Inventory.Model
         public string ActionName => "Reload";
         [SerializeField]
         private int BulletReload;
+        [field: SerializeField]
         public AudioClip ActionSFX { get; private set; }
 
-        public AudioClip DropSFX => throw new NotImplementedException();
+        public AudioClip DropSFX { get; private set; }
 
 
 

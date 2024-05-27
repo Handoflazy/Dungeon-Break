@@ -23,7 +23,6 @@ namespace Inventory
         private AudioClip dropClip;
         [SerializeField]
         private AudioSource audioSource;
-        public List<InventoryItem> inventoryItems = new List<InventoryItem>();
         private void OnEnable()
         {
             player.ID.playerEvents.OnInventoryToggle += OnInventoryToggle;

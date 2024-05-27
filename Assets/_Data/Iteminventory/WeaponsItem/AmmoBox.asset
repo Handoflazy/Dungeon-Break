@@ -19,3 +19,4 @@ MonoBehaviour:
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 441211d5cab46f741beebf018b465ad3, type: 3}
   <DefautParameters>k__BackingField: []
   BulletReload: 30
+  <ActionSFX>k__BackingField: {fileID: 8300000, guid: 1adb6ab7f57563a4a952d8d20f2e415c, type: 3}
