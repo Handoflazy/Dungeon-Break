@@ -43,7 +43,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Ouline: 0
-    - _Outline: 0
+    - _Outline: 1
     - _outline: 1
     m_Colors:
     - _SolidColor: {r: 0.990566, g: 0.990566, b: 0.990566, a: 0}

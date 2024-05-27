@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/_Data/Iteminventory.meta
 guid: dc776b3badc27224daa2586057622e53
+========
+guid: cd706e573a5a2f64e9a33cf6490578d2
+>>>>>>>> origin/Khim_27/5:Assets/_Sprites/PanelBoss.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
