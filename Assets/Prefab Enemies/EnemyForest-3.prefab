@@ -328,7 +328,7 @@ MonoBehaviour:
   - {x: -0.0222193, y: -0.06617352, z: 0}
   m_ShapePathHash: 1973103157
   m_Mesh: {fileID: 0}
-  m_InstanceId: 113062
+  m_InstanceId: -679640
   m_LocalBounds:
     m_Center: {x: 0.0035929978, y: 0.0063259304, z: 0}
     m_Extent: {x: 0.04074821, y: 0.072499454, z: 0}
@@ -923,7 +923,7 @@ Transform:
   m_GameObject: {fileID: 4714774602406766223}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.775, y: 0.093, z: 0.0847495}
+  m_LocalPosition: {x: -1.106, y: 0.022, z: 0.0847495}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1220,6 +1220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <AttackDelay>k__BackingField: 3
+  animator: {fileID: 2199749303173963749}
+  timeBetweenShots: 0.1
 --- !u!114 &7079658397153076242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1233,15 +1235,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lootList:
-  - ItemPrefab: {fileID: 4846990747700766673, guid: 2cf3ad69766fd4f4f8b11fd3eb286d2c, type: 3}
+  - itemData: {fileID: 11400000, guid: 81b6889d18e69ef41bf420fd326d787a, type: 2}
     dropChance: 70
-  - ItemPrefab: {fileID: 5770395853429655799, guid: 1f085ce4dd9bdac4a81a5ad99a0b3ba2, type: 3}
+  - itemData: {fileID: 11400000, guid: f977a2c3b0d31cf4d8002d0cd95c334d, type: 2}
     dropChance: 60
-  - ItemPrefab: {fileID: 4913447812730545798, guid: 5d60fabe48a0ce843a769acf8ecb6627, type: 3}
+  - itemData: {fileID: 11400000, guid: 7bc4a9b9f88b02540aec54e5d8578666, type: 2}
     dropChance: 50
-  - ItemPrefab: {fileID: 4465499201024666103, guid: c69a572e1409e4e44907e77f88eda3f7, type: 3}
+  - itemData: {fileID: 11400000, guid: e0c474a29f6674b4cb55297f0e1957ba, type: 2}
     dropChance: 20
-  droppedWeaponPrefab: {fileID: 3967431417106308425, guid: 814c9458c75e8354d95845da34943f73, type: 3}
+  dropItemSO: {fileID: 6330588511145620810, guid: 3936a804c4d68e7439b39745f0d1feac, type: 3}
   dropForce: 0
 --- !u!114 &5123591091421623255
 MonoBehaviour:
@@ -1459,7 +1461,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 2657269865228955643, guid: 0e6cd515d3cc0604080b614b9aa068e5, type: 3}
-  numberOfBullets: 2
+  numberOfBullets: 5
+  scattering: 0
+  radiation: 1
 --- !u!1 &7766028125299841322
 GameObject:
   m_ObjectHideFlags: 0

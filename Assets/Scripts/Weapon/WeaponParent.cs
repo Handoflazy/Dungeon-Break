@@ -18,7 +18,7 @@ public class WeaponParent : PlayerSystem
     private EquippabeItemSO WeaponSO;
 
     public List<ItemParameter> itemCurrentState;
-    public List<GameObject> weapons;
+    public List<EquippabeItemSO> weapons;
 
     protected float desireAngle;
     public Vector2 Pointerposition { get; set; }
@@ -38,6 +38,23 @@ public class WeaponParent : PlayerSystem
     {
         player.ID.playerEvents.OnPressed -= Shoot;
         player.ID.playerEvents.OnRelease -= StopShoot;
+        if (WeaponSO.name == "Assaut Riffle")
+        {
+            PlayerPrefs.SetInt(PrefConsts.CURRENT_GUN_KEY, 0);
+        }
+        else if (WeaponSO.name == "ShortGun")
+        {
+            PlayerPrefs.SetInt(PrefConsts.CURRENT_GUN_KEY, 1);
+        }
+        else if (WeaponSO.name == "PistolGun")
+        {
+            PlayerPrefs.SetInt(PrefConsts.CURRENT_GUN_KEY, 2);
+        }
+        else if (WeaponSO.name == "MP5")
+        {
+            PlayerPrefs.SetInt(PrefConsts.CURRENT_GUN_KEY, 3);
+        }
+        PlayerPrefs.SetInt(PrefConsts.CURRENT_BULLET_COUNT_KEY, CurrentGun.Ammo);
     }
     private Vector2 GetPointerPos()
     {
@@ -60,7 +77,7 @@ public class WeaponParent : PlayerSystem
             {
                 bullet = PlayerPrefs.GetInt(PrefConsts.CURRENT_BULLET_COUNT_KEY);
             }
-            //SetWeapon(weapons[indexCurrenGun], bullet);
+            SetWeapon(weapons[indexCurrenGun], bullet);
         }
     }
 
@@ -110,8 +127,7 @@ public class WeaponParent : PlayerSystem
         this.WeaponSO = weaponItemS0;
         CurrentGun.Ammo = bulletNumber;
         player.ID.playerEvents.OnChangeGun?.Invoke(CurrentGun);
-      
-
+        
     }
 
 

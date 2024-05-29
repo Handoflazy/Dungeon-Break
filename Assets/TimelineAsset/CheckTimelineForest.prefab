@@ -249,7 +249,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8683828841384581914}
-  - component: {fileID: 4517513285101430393}
   m_Layer: 18
   m_Name: TimelineBossForest
   m_TagString: Untagged
@@ -272,31 +271,3 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2418732099015660857}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!320 &4517513285101430393
-PlayableDirector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7861810184560727676}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 060d5f5a7efe7194b970766f24e5670f, type: 2}
-  m_InitialState: 1
-  m_WrapMode: 2
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 0
-  m_SceneBindings:
-  - key: {fileID: -703205627734346384, guid: 8d20d755548dc0547ad06fff98990d54, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: -507482391377010112, guid: 8d20d755548dc0547ad06fff98990d54, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: -703205627734346384, guid: 060d5f5a7efe7194b970766f24e5670f, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: -507482391377010112, guid: 060d5f5a7efe7194b970766f24e5670f, type: 2}
-    value: {fileID: 0}
-  m_ExposedReferences:
-    m_References:
-    - 66667d0984754d94ab7e379164d555e0: {fileID: 0}
-    - e4001274b37758f46bd70028065a3228: {fileID: 0}
-    - db41e2ba1b0b5004fa1d291bd27cf7ac: {fileID: 0}

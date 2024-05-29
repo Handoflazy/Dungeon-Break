@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/NguyenDev/New Scene.unity.meta
 guid: 3e2300a5d0be69743b419936c3d0c49a
+========
+guid: c2204883f564854439a05fecb9a3042a
 folderAsset: yes
+>>>>>>>> 8b0aa428612cea45e398ac6b82d4dca2c3a5ea06:Assets/Scenes/ThienDev.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
