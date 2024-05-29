@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5355f231a5c062043a5cd4436e7ea738, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Distance>k__BackingField: 0.14
+  <Distance>k__BackingField: 5
 --- !u!1 &2800785178827647572
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,7 +385,7 @@ Transform:
   m_GameObject: {fileID: 2800785178827647572}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.439, y: 0.294, z: 0.0847495}
+  m_LocalPosition: {x: -0.775, y: 0.093, z: 0.0847495}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -682,8 +682,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <AttackDelay>k__BackingField: 1
-  animator: {fileID: 1338382310790329308}
-  timeBetweenShots: 0.1
 --- !u!114 &6745994402643974892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -830,7 +828,7 @@ Animator:
   m_GameObject: {fileID: 3448615361594980147}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ac297cc45ea18c043bfb7ca2ab58a5f8, type: 2}
+  m_Controller: {fileID: 9100000, guid: 511ef75c8e1be6348b7cd1d6e8f2fe22, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -997,7 +995,7 @@ MonoBehaviour:
   - {x: -0.0222193, y: -0.06617352, z: 0}
   m_ShapePathHash: 1973103157
   m_Mesh: {fileID: 0}
-  m_InstanceId: -749590
+  m_InstanceId: -399638
   m_LocalBounds:
     m_Center: {x: 0.0035929978, y: 0.0063259304, z: 0}
     m_Extent: {x: 0.04074821, y: 0.072499454, z: 0}

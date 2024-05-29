@@ -45,7 +45,7 @@ public class TeleportSkill : AbstractSkill
         RaycastHit2D hit = Physics2D.Raycast(currentPosition, direction, distance, wallLayerMask);
         if (hit.collider != null)
         {
-            distance = hit.distance - 0.2f;
+            distance = hit.distance;
         }
 
         Vector2 finalPosition = currentPosition + direction * distance;

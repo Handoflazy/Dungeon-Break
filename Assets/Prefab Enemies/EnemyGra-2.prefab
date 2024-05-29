@@ -36,7 +36,7 @@ Transform:
   m_GameObject: {fileID: 505610022221737795}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.784, y: -0.092, z: 0.0847495}
+  m_LocalPosition: {x: -0.775, y: 0.093, z: 0.0847495}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -333,8 +333,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <AttackDelay>k__BackingField: 3
-  animator: {fileID: 832568940638954021}
-  timeBetweenShots: 0.1
 --- !u!114 &495121007652168595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -710,7 +708,7 @@ MonoBehaviour:
   - {x: -0.0222193, y: -0.06617352, z: 0}
   m_ShapePathHash: 1973103157
   m_Mesh: {fileID: 0}
-  m_InstanceId: 348574
+  m_InstanceId: -399218
   m_LocalBounds:
     m_Center: {x: 0.0035929978, y: 0.0063259304, z: 0}
     m_Extent: {x: 0.04074821, y: 0.072499454, z: 0}
@@ -790,8 +788,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 2657269865228955643, guid: 30e6118cc874cf349bcab25ec7266f1f, type: 3}
   numberOfBullets: 5
-  scattering: 0
-  radiation: 1
 --- !u!1 &2459227772716406967
 GameObject:
   m_ObjectHideFlags: 0

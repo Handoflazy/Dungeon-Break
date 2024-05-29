@@ -87,7 +87,7 @@ namespace Inventory
             if (destroyableItem != null)
             {
                 inventoryUI.ShowItemAction(itemIndex);
-                inventoryUI.AddAction("Drop", () => DropItem(itemIndex, inventoryItem.quantity));
+                inventoryUI.AddAction("Drop", () => DropItem(itemIndex, 1));
             }
         }
         private void DropItem(int itemIndex, int quanity)
@@ -107,6 +107,7 @@ namespace Inventory
             Item item = dropItemPrefab.GetComponent<Item>();
             item.InventoryItem = dropItem;
             item.Quantity = quantity;
+         
             SpawnItem(dropItemPrefab);
 
 
@@ -115,8 +116,9 @@ namespace Inventory
         private void SpawnItem(GameObject itemToSpawn)
         {
             Vector3 offset = Random.insideUnitCircle * .16f;
-            Instantiate(itemToSpawn, transform.position + offset, Quaternion.identity);
+            Item item = Instantiate(itemToSpawn, transform.position + Vector3.one*0.08f + offset, Quaternion.identity).GetComponent<Item>();
             // DropFeedback(droppedGun);
+            item.DelayPick();
 
         }
         public void PerformAction(int itemIndex)

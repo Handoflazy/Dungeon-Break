@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Inventory.Model
@@ -23,6 +24,15 @@ namespace Inventory.Model
         private void Start()
         {
             GetComponent<SpriteRenderer>().sprite = InventoryItem.ItemImage;
+        }
+        public async void DelayPick()
+        {
+            GetComponent<CircleCollider2D>().enabled = false;
+            print(1);
+            await Task.Delay(3000);
+            print(2);
+            GetComponent<CircleCollider2D>().enabled = true;
+
         }
         public void DestroyItem()
         {
