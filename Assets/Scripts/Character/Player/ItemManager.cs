@@ -27,14 +27,14 @@ public class ItemManager : PlayerSystem
     private void OnEnable()
     {
         player.ID.playerEvents.OnUseMedit += UseMedit;
-        player.ID.playerEvents.OnUseAmmoBox += UseAmmoBox;
+        player.ID.playerEvents.OnReloadBullet += UseAmmoBox;
         player.ID.playerEvents.OnChangeGun += OnchangeGun;
 
     }
     private void OnDisable()
     {
         player.ID.playerEvents.OnUseMedit -= UseMedit;
-        player.ID.playerEvents.OnUseAmmoBox -= UseAmmoBox;
+        player.ID.playerEvents.OnReloadBullet -= UseAmmoBox;
         player.ID.playerEvents.OnChangeGun -= OnchangeGun;
 
     }

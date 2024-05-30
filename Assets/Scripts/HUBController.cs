@@ -12,8 +12,6 @@ public class HUBController : MonoBehaviour
     [SerializeField] private SliderBar healthBar;
     [SerializeField] private SliderBar durationBar;
     [SerializeField] private ItemUI uiAmmo;
-    [SerializeField] private ItemUI uiAmmoBox;
-    [SerializeField] private ItemUI uiMedikit;
 
     [SerializeField] GameObject deathMenu;
 
@@ -74,8 +72,13 @@ public class HUBController : MonoBehaviour
         HUB.SetActive(false);
     }
     public void DisplayHUB()
-    {
+    {   
         HUB.SetActive(true );
+    }
+
+    public void ToggleInventoryUI()
+    {
+        NguyenSingleton.Instance.playerID.playerEvents.OnInventoryButtonToggle?.Invoke();
     }
     
 }

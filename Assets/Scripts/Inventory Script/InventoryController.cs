@@ -27,11 +27,19 @@ namespace Inventory
         {
             player.ID.playerEvents.OnInventoryToggle += OnInventoryToggle;
             player.ID.playerEvents.OnDropItem += DropItem;
-        }
-        private void Start()
-        {
             PrepareUIInventory();
             PrepareInventoryData();
+        }
+
+        private void OnDisable()
+        {
+            player.ID.playerEvents.OnInventoryToggle -= OnInventoryToggle;
+            player.ID.playerEvents.OnDropItem -= DropItem;
+            inventoryData.OnInventoryUpdated -= UpdateInventoryUI;
+        }
+
+        private void Start()
+        {
             if (inventoryUI.isActiveAndEnabled)
             {
                 OnInventoryToggle();
@@ -87,7 +95,7 @@ namespace Inventory
             if (destroyableItem != null)
             {
                 inventoryUI.ShowItemAction(itemIndex);
-                inventoryUI.AddAction("Drop", () => DropItem(itemIndex, 1));
+                inventoryUI.AddAction("Drop", () => DropItem(itemIndex, inventoryItem.quantity));
             }
         }
         private void DropItem(int itemIndex, int quanity)
@@ -127,18 +135,17 @@ namespace Inventory
             if (inventoryItem.IsEmpty) return;
             IItemAction itemAction = inventoryItem.item as IItemAction;
             IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
-            if (destroyableItem != null)
-            {
-                inventoryData.RemoveItem(itemIndex, 1);
-                inventoryUI.ResetSelection();
-            }
-            audioSource.PlayOneShot(itemAction.ActionSFX);
+        
             if (itemAction != null)
             {
-                if (!itemAction.PerformAction(gameObject, inventoryItem.itemState))
+                if (itemAction.PerformAction(gameObject, inventoryItem.itemState))
                 {
-                    inventoryData.AddItem(inventoryItem);
-                    return;
+                    audioSource.PlayOneShot(itemAction.ActionSFX);
+                    if (destroyableItem != null)
+                    {
+                        inventoryData.RemoveItem(itemIndex, 1);
+                        inventoryUI.ResetSelection();
+                    }
                 }
                 if (inventoryData.GetItemAt(itemIndex).IsEmpty)
                 {

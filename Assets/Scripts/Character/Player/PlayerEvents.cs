@@ -14,11 +14,12 @@ public struct PlayerEvents
     public  Action<Vector2> OnMousePointer;
 
     public Action<int> OnToggleActiveSlot;
+    public Action OnInventoryButtonToggle;
     public Action OnInventoryToggle;
     public Action OnPressed;
     public Action OnRelease;
     public Action OnUseMedit;
-    public Action OnUseAmmoBox;
+    public Action OnReloadBullet;
 
 
     public Action OnZoomCamera;
@@ -37,6 +38,8 @@ public struct PlayerEvents
     //Menu Events
     public Action OnMenuOpen;
     public Action OnMenuClose;
+
+    public Action OnNewGame;
 
     // Dialogue Events;
     public Action OnDialogueStart;

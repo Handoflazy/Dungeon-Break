@@ -327,6 +327,7 @@ MonoBehaviour:
   pitchRandomness: 0.5
   shootBulletClip: {fileID: 8300000, guid: 35588da59e8c48a43a9dcaf03ba36410, type: 3}
   outOfBulletsClip: {fileID: 8300000, guid: 56c260531cb172d40b5f6ed2f0f3a601, type: 3}
+  loadBulletClip: {fileID: 8300000, guid: 1adb6ab7f57563a4a952d8d20f2e415c, type: 3}
 --- !u!82 &1418432062162279575
 AudioSource:
   m_ObjectHideFlags: 0
@@ -602,6 +603,21 @@ MonoBehaviour:
       - m_Target: {fileID: 5225665666921059460}
         m_TargetAssemblyTypeName: WeaponAudio, Assembly-CSharp
         m_MethodName: PlayerNoBulletSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  <OnLoadAmmo>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5225665666921059460}
+        m_TargetAssemblyTypeName: WeaponAudio, Assembly-CSharp
+        m_MethodName: PlayerLoadBulletSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

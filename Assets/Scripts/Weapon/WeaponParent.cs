@@ -5,20 +5,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Shooter;
+using Unity.VisualScripting;
+using Inventory.UI;
 
 public class WeaponParent : PlayerSystem
 {
-    [SerializeField] protected BasicGun CurrentGun;
+    [field: SerializeField] public BasicGun CurrentGun { get; set; }
     [SerializeField]
     private InventorySO inventoryData;
 
     [SerializeField] protected WeaponRenderer weaponRenderer;
 
     [SerializeField]
-    private EquippabeItemSO WeaponSO;
+    private EquipableItemSO WeaponSO;
 
     public List<ItemParameter> itemCurrentState;
+<<<<<<< Updated upstream
     public List<GameObject> weapons;
+=======
+    public List<EquipableItemSO> weapons;
+>>>>>>> Stashed changes
 
     protected float desireAngle;
     public Vector2 Pointerposition { get; set; }
@@ -32,12 +38,66 @@ public class WeaponParent : PlayerSystem
     {
         player.ID.playerEvents.OnPressed += Shoot;
         player.ID.playerEvents.OnRelease += StopShoot;
+        player.ID.playerEvents.OnReloadBullet += QuickReloadBullet;
 
     }
+    
+
+    private void QuickReloadBullet()
+    {
+        if (inventoryData&& CurrentGun)
+        {
+            if (CurrentGun.AmmoFull)
+            {
+                NguyenSingleton.Instance.FloatingTextManager.Show("Full Ammo", 40, Color.white, transform.position, Vector3.up, 0.3f);
+                return;
+            }
+            int bulletIndex = inventoryData.SearchItemIndex(WeaponSO.BulletItemSO);
+            if (bulletIndex != -1)
+            {
+                InventoryItem inventoryItem = inventoryData.GetItemAt(bulletIndex);
+                if (inventoryItem.IsEmpty) return;
+                IItemAction itemAction = inventoryItem.item as IItemAction;
+                if (itemAction != null)
+                {
+                    if(itemAction.PerformAction(gameObject, inventoryItem.itemState))
+                        inventoryData.RemoveItem(bulletIndex, 1);
+
+                }
+            }
+            else
+            {
+                NguyenSingleton.Instance.FloatingTextManager.Show("No suitable Ammo in inventory", 40, Color.red, transform.position, Vector3.up, 0.3f);
+            }
+        }
+    }
+
     private void OnDisable()
     {
         player.ID.playerEvents.OnPressed -= Shoot;
         player.ID.playerEvents.OnRelease -= StopShoot;
+<<<<<<< Updated upstream
+=======
+        player.ID.playerEvents.OnReloadBullet -= QuickReloadBullet;
+        if (WeaponSO == null) return;
+        if (WeaponSO.name == "Assaut Riffle")
+        {
+            PlayerPrefs.SetInt(PrefConsts.CURRENT_GUN_KEY, 0);
+        }
+        else if (WeaponSO.name == "ShortGun")
+        {
+            PlayerPrefs.SetInt(PrefConsts.CURRENT_GUN_KEY, 1);
+        }
+        else if (WeaponSO.name == "PistolGun")
+        {
+            PlayerPrefs.SetInt(PrefConsts.CURRENT_GUN_KEY, 2);
+        }
+        else if (WeaponSO.name == "MP5")
+        {
+            PlayerPrefs.SetInt(PrefConsts.CURRENT_GUN_KEY, 3);
+        }
+        PlayerPrefs.SetInt(PrefConsts.CURRENT_BULLET_COUNT_KEY, CurrentGun.Ammo);
+>>>>>>> Stashed changes
     }
     private Vector2 GetPointerPos()
     {
@@ -96,8 +156,10 @@ public class WeaponParent : PlayerSystem
 
 
 
-    public void SetWeapon(EquippabeItemSO weaponItemS0, int bulletNumber)
+    public void SetWeapon(EquipableItemSO weaponItemS0, int bulletNumber)
     {
+        if (weaponItemS0 == null)
+            return;
         if (CurrentGun)
         {
             if (inventoryData.AddItem(WeaponSO, 1)==1)
@@ -139,7 +201,7 @@ public class WeaponParent : PlayerSystem
     public void Shoot()
     {
         if (CurrentGun)
-            CurrentGun.TryShooting();
+            CurrentGun?.TryShooting();
 
     }
 
@@ -148,6 +210,15 @@ public class WeaponParent : PlayerSystem
         if (CurrentGun)
             CurrentGun?.StopShoot();
         
+    }
+    public BulletDataSO GetCurrentUsingBullet()
+    {
+        if (CurrentGun)
+        {
+            return CurrentGun.GetBulletData();
+            
+        }
+        return null;
     }
 }
 

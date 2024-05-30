@@ -1,3 +1,4 @@
+using Inventory.Model;
 using PlayerController;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,6 +19,9 @@ public class Load : MonoBehaviour
     public int baseHP = 200;
     public int baseLUXR = 10;
     public int baseDuration = 100;
+
+    [SerializeField]
+    private InventorySO InventoryData;
     private void Start()
     {
         
@@ -39,6 +43,8 @@ public class Load : MonoBehaviour
         PlayerPrefs.DeleteKey("MedikitCount_data");
         PlayerPrefs.DeleteKey("AmmoBoxCount_data");
         PlayerPrefs.DeleteKey("currentDuration_data");
+
+        InventoryData.ResetInventoryData();
 
         PlayerStatsSO.level = 1;
         PlayerStatsSO.duration = baseDuration;

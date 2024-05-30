@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEngine.Rendering.DebugUI;
 using Random = UnityEngine.Random;
 
 public class BasicGun : PlayerSystem
@@ -37,9 +38,14 @@ public class BasicGun : PlayerSystem
     [field: SerializeField]
     public UnityEvent OnShoot { get; set; }
 
+    public bool IsReloading { get; set; } = false;
+
     [field:SerializeField]
 
     public UnityEvent OnShootNoAmmo { get; set; }
+
+    [field: SerializeField]
+    public UnityEvent OnLoadAmmo {  get; set; }
 
     private void Start()
     {
@@ -69,10 +75,22 @@ public class BasicGun : PlayerSystem
     }
     public void FullReload()
     {
-        Ammo = weaponData.AmmoCapacity;
-        player.ID.playerEvents.OnUpdateAmmo?.Invoke(Ammo);
+        StartCoroutine(StartReload(weaponData.AmmoCapacity-Ammo));
     }
-
+    public IEnumerator StartReload(int ammo)    
+    {
+        IsReloading = true;
+        while (ammo>0&&!AmmoFull)
+        {
+            yield return new WaitForSeconds(0.5f);
+            int ammoToload = Mathf.Clamp(ammo, 0, 10);
+            ammo -= ammoToload;
+            Reload(Mathf.Clamp(ammoToload, 0, 10));
+            OnLoadAmmo?.Invoke();
+            player.ID.playerEvents.OnUpdateAmmo?.Invoke(Ammo);
+        }
+        IsReloading = false;
+    }
     private void Update()
     {
         UseWeapon();
@@ -80,7 +98,7 @@ public class BasicGun : PlayerSystem
 
     private void UseWeapon()
     {
-        if(isShooting&&reloadCoroutine == false)
+        if(isShooting&&reloadCoroutine == false&&!IsReloading)
         {
             if (Ammo > 0)
             {
@@ -141,5 +159,10 @@ public class BasicGun : PlayerSystem
         float spread = Random.Range(-weaponData.SpreadAngle, weaponData.SpreadAngle);
         Quaternion bulletSpreadRotaion = Quaternion.Euler(new Vector3(0,0,spread));
         return muzzle.transform.rotation * bulletSpreadRotaion;
+    }
+
+    internal BulletDataSO GetBulletData()
+    {
+        return weaponData.BulletData;
     }
 }

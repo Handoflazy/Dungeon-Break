@@ -19,6 +19,16 @@ namespace Inventory.Model
 
         public event Action<Dictionary<int, InventoryItem>> OnInventoryUpdated;
 
+
+        public void ResetInventoryData()
+        {
+            inventoryItems = new List<InventoryItem>();
+            for (int i = 0; i < Size; i++)
+            {
+                inventoryItems.Add(InventoryItem.GetEmptyItem());
+            }
+            InformAboutChange();
+        }
         public void Initialize()
         {
             if (inventoryItems == null || inventoryItems.Count == 0)
@@ -145,13 +155,24 @@ namespace Inventory.Model
         {
             OnInventoryUpdated?.Invoke(GetCurrentInventoryState());
         }
+        public int SearchItemIndex(ItemSO item)
+        {
+           for (int i = 0;i < inventoryItems.Count;i++)
+            {
+                if (inventoryItems[i].item == item)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
 
         internal void RemoveItem(int itemIndex, int v)
         {
             if (inventoryItems.Count > itemIndex)
             {
                 if (inventoryItems[itemIndex].IsEmpty) { return; }
-                int reminder = inventoryItems[itemIndex].quantity - 1;
+                int reminder = inventoryItems[itemIndex].quantity - v;
                 if (reminder <= 0)
                 {
                     inventoryItems[itemIndex] = InventoryItem.GetEmptyItem();

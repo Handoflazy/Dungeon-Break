@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9d965a84ff057c4dafc3f1cd35c3564, type: 3}
+  m_Name: ThomsonItemData
+  m_EditorClassIdentifier: 
+  <IsStackable>k__BackingField: 0
+  <MaxStackSize>k__BackingField: 1
+  <Name>k__BackingField: 
+  <Description>k__BackingField: chung sinh binh dang
+  <ItemImage>k__BackingField: {fileID: 1100358898, guid: fc0a2be7a6f21d6489f33446ee3187c7, type: 3}
+  <DefautParameters>k__BackingField: []
+  <WeaponPrefap>k__BackingField: {fileID: 4465499201024666103, guid: 77d1cfa57ea604b4783a484f148bffb8, type: 3}
+  <BulletItemSO>k__BackingField: {fileID: 11400000, guid: df1cc01db0b41234fb31e0db94f80568, type: 2}
+  <ActionSFX>k__BackingField: {fileID: 8300000, guid: 1e4d438f9d286304b918672a47cba77f, type: 3}

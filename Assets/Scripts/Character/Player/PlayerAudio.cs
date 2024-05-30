@@ -2,21 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
-public abstract class PlayerAudio : MonoBehaviour
+public abstract class PlayerAudio : PlayerSystem
 {
     protected AudioSource audioSource;
     [SerializeField]
     protected float pitchRandomness = .05f;
     protected float basePitch;
 
-
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         audioSource = GetComponent<AudioSource>();
-    }
-    private void OnEnable()
-    {
-        
     }
     public void PlayClipWithVariablePitch(AudioClip clip)
     {

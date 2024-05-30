@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00700bf59b3b1df44b1ad7e008caf77f, type: 3}
+  m_Name: 9 mm Ammo
+  m_EditorClassIdentifier: 
+  <bulletPrefab>k__BackingField: {fileID: 3345224553741461971, guid: 194fb2569ea70674da5b13a1bb27478b, type: 3}
+  <Damage>k__BackingField: 7
+  <Friction>k__BackingField: 3.52
+  <BulletSpeed>k__BackingField: 3.5
+  <FlyDistance>k__BackingField: 3
+  <Bounce>k__BackingField: 0
+  <GoThrougHitable>k__BackingField: 0
+  <IsRaycast>k__BackingField: 0
+  <ImpactObstaclePrefab>k__BackingField: {fileID: 737018255036195549, guid: a6066cf5408570548908e2155ee1c657, type: 3}
+  <ImpactEnemyPrefab>k__BackingField: {fileID: 2143305333851338501, guid: 0f2df85a595f8214fad52f87c97ef007, type: 3}
+  <KnockBackPower>k__BackingField: 0.1
+  <KnockBackDelay>k__BackingField: 0
