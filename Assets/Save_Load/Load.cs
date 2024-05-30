@@ -1,3 +1,4 @@
+using Inventory.Model;
 using PlayerController;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ public class Load : MonoBehaviour
     public PlayerStatsSO PlayerStatsSO;
     public EnemyStatsSO enemyMeleeStatSO;
     public EnemyStatsSO enemyRangerStatSO;
+    public InventorySO inventorySO;
     //public PlayerHealth PlayerHealth;
     //public Transform playerTransform;
     public int baseHP = 200;
@@ -36,6 +38,7 @@ public class Load : MonoBehaviour
     }
     public void NewGame()
     {
+        inventorySO.ResetInventoryData();
         //PlayerPrefs.DeleteAll();
         PlayerPrefs.DeleteKey("p_x");
         PlayerPrefs.DeleteKey("p_y");

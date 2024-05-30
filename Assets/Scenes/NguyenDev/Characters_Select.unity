@@ -3431,6 +3431,7 @@ MonoBehaviour:
   PlayerStatsSO: {fileID: 11400000, guid: 49a80fb274fc0dc4a8d48fa6534b3de6, type: 2}
   enemyMeleeStatSO: {fileID: 11400000, guid: 16218f7990727c9489a3ba8ef66d6422, type: 2}
   enemyRangerStatSO: {fileID: 11400000, guid: 4551d9643344fa244bda86e96e158bcf, type: 2}
+  inventorySO: {fileID: 11400000, guid: 5dc21849ed43a1c4f90da2a1db6cd866, type: 2}
   baseHP: 200
   baseLUXR: 10
   baseDuration: 100

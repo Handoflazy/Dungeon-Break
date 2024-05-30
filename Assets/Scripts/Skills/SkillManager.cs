@@ -175,7 +175,6 @@ public class SkillManager : PlayerSystem
         int durationCost = firstSkill.GetDurationCost();
         if (PlayerPrefs.GetInt("selectedOption") == 3 || PlayerPrefs.GetInt("selectedOption") == 1)
         {
-            print("player: "+PlayerPrefs.GetInt("selectedOption"));
             if (durationCost <= duration.CurrentDuration && !isFirstSkillCooldown)
             {
                 firstSkill.OnUsed();
