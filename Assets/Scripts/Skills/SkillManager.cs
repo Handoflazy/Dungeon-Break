@@ -1,3 +1,4 @@
+using PlayerController;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -12,6 +13,7 @@ public class SkillManager : PlayerSystem
 {
     public BoolEvent OnUsingMoveSkill;
     private Duration duration;
+    private PlayerHealth health;
     private BasicGun currentGun;
     public AudioClip levelUpSound;
     private AudioSource audioSource;
@@ -46,6 +48,7 @@ public class SkillManager : PlayerSystem
     {
         base.Awake();
         duration = GetComponent<Duration>();
+        health = GetComponent<PlayerHealth>();
     }
     private void OnEnable()
     {
@@ -146,7 +149,6 @@ public class SkillManager : PlayerSystem
     {
         if (moveSkill == null)
         {
-            OnNotEnoughLevel(levelMoveSkillRequired);
             return;
         }
 
@@ -167,17 +169,31 @@ public class SkillManager : PlayerSystem
     {
         if (firstSkill == null) 
         {
-            OnNotEnoughLevel(levelFirstSkillRequired);
             return; 
         }
 
         int durationCost = firstSkill.GetDurationCost();
-        if (durationCost <= duration.CurrentDuration && !isFirstSkillCooldown)
+        if (PlayerPrefs.GetInt("selectedOption") == 3 || PlayerPrefs.GetInt("selectedOption") == 1)
         {
-            firstSkill.OnUsed();
-            duration.ReduceDuration(durationCost);
-            StartCoroutine(StartFirstSkillCooldown(firstSkill.GetCowndown()));
+            print("player: "+PlayerPrefs.GetInt("selectedOption"));
+            if (durationCost <= duration.CurrentDuration && !isFirstSkillCooldown)
+            {
+                firstSkill.OnUsed();
+                duration.ReduceDuration(durationCost);
+                StartCoroutine(StartFirstSkillCooldown(firstSkill.GetCowndown()));
+            }
         }
+        else
+        {
+            if (durationCost <= duration.CurrentDuration && !isFirstSkillCooldown && !health.isFull)
+            {
+                firstSkill.OnUsed();
+                duration.ReduceDuration(durationCost);
+                StartCoroutine(StartFirstSkillCooldown(firstSkill.GetCowndown()));
+            }
+        }
+
+        
         if (durationCost > duration.CurrentDuration)
         {
             OnNotEnoughDuration();
@@ -188,19 +204,39 @@ public class SkillManager : PlayerSystem
     {
         if(secondSkill == null) { print("sck null"); }
         if (currentGun == null) { print("crg null"); }
-        if (secondSkill == null || !currentGun) 
-        {
-            OnNotEnoughLevel(levelSecondSkillRequired);
-            return; 
-        }
+
 
         int durationCost = secondSkill.GetDurationCost();
-        if (durationCost <= duration.CurrentDuration && !isSecondSkillCooldown)
+        if (PlayerPrefs.GetInt("selectedOption") == 3 || PlayerPrefs.GetInt("selectedOption") == 1) 
         {
-            secondSkill.OnUsed();
-            duration.ReduceDuration(durationCost);
-            StartCoroutine(StartSecondSkillCooldown(secondSkill.GetCowndown()));
+            if (secondSkill == null || !currentGun)
+            {
+                return;
+            }
+            
+            if (durationCost <= duration.CurrentDuration && !isSecondSkillCooldown)
+            {
+                secondSkill.OnUsed();
+                duration.ReduceDuration(durationCost);
+                StartCoroutine(StartSecondSkillCooldown(secondSkill.GetCowndown()));
+            }
         }
+        else
+        {
+            if (secondSkill == null)
+            {
+                return;
+            }
+
+            if (durationCost <= duration.CurrentDuration && !isSecondSkillCooldown)
+            {
+                secondSkill.OnUsed();
+                duration.ReduceDuration(durationCost);
+                StartCoroutine(StartSecondSkillCooldown(secondSkill.GetCowndown()));
+            }
+        }
+
+        
         if(durationCost > duration.CurrentDuration)
         {
             OnNotEnoughDuration();
@@ -248,10 +284,5 @@ public class SkillManager : PlayerSystem
     private void OnNotEnoughDuration()
     {
         NguyenSingleton.Instance.FloatingTextManager.Show("Out of Duration", 24, Color.blue, transform.position, Vector3.up, 0.2f);
-    }
-    private void OnNotEnoughLevel(int level)
-    {
-        print("Level :"+player.playerStats.level);
-        NguyenSingleton.Instance.FloatingTextManager.Show("Required level " + level + " !", 24, Color.yellow, transform.position, Vector3.down, 0.2f);
     }
 }
