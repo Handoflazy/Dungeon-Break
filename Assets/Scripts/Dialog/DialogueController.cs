@@ -51,7 +51,7 @@ public class DialogueController : MonoBehaviour
         ResetBox();
         nameText.text = name + "...";
         dialogueBox.gameObject.SetActive(true);
-        NguyenSingleton.Instance.playerID.playerEvents.OnDialogueStart?.Invoke();
+        NguyenSingleton.Instance.PlayerID.playerEvents.OnDialogueStart?.Invoke();
         characterAnim.runtimeAnimatorController = anim.runtimeAnimatorController;
         StartCoroutine(dialogueCoroutine);
     }
@@ -97,7 +97,7 @@ public class DialogueController : MonoBehaviour
             }
         }
 
-        NguyenSingleton.Instance.playerID.playerEvents.OnDialogueEnd?.Invoke();
+        NguyenSingleton.Instance.PlayerID.playerEvents.OnDialogueEnd?.Invoke();
         dialogueBox.gameObject.SetActive(false);
     }
     public void SkipLine()
@@ -157,7 +157,7 @@ public class DialogueController : MonoBehaviour
 
         if (dialogueTree.sections[section].endAfterDialogue)
         {
-            NguyenSingleton.Instance.playerID.playerEvents.OnDialogueEnd?.Invoke();
+            NguyenSingleton.Instance.PlayerID.playerEvents.OnDialogueEnd?.Invoke();
             dialogueBox.gameObject.SetActive(false);
             yield break;
         }

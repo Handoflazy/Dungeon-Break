@@ -37,7 +37,6 @@ public class PickUpSystem : PlayerSystem
             if (reminder == 0)
             {
                 item.DestroyItem();
-                print("destroy");
             }
             else
                 item.Quantity = reminder;
@@ -45,5 +44,5 @@ public class PickUpSystem : PlayerSystem
     }
    
 
-
+        
 }

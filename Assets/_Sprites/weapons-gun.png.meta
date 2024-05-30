@@ -1391,7 +1391,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapons-gun_61
+      name: Thomson
       rect:
         serializedVersion: 2
         x: 6
@@ -1822,6 +1822,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       LaserGun: 1962301482
+      Thomson: 1100358898
       weapons-gun_0: -1947002640
       weapons-gun_1: 1168847831
       weapons-gun_10: -1711133236
@@ -1879,7 +1880,6 @@ TextureImporter:
       weapons-gun_59: 1510516975
       weapons-gun_6: -1369016969
       weapons-gun_60: -1108877265
-      weapons-gun_61: 1100358898
       weapons-gun_62: 1860529883
       weapons-gun_63: 1993448605
       weapons-gun_64: 1227775390

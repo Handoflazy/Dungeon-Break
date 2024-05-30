@@ -22,10 +22,37 @@ public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, Play
     private void OnEnable()
     {
         player.ID.playerEvents.OnMenuOpen += OnMenuOpen;
-        player.ID.playerEvents.OnMenuClose+= BackToDefaultInput;
+        player.ID.playerEvents.OnMenuClose += BackToDefaultInput;
         player.ID.playerEvents.OnDialogueStart += OnInDialogue;
         player.ID.playerEvents.OnDialogueEnd += BackToDefaultInput;
+        player.ID.playerEvents.OnInventoryButtonToggle += ToggleInventoryAction;
 
+    }
+
+    private void OnDisable()
+    {
+        BackToDefaultInput();
+        player.ID.playerEvents.OnMenuOpen -= OnMenuOpen;
+        player.ID.playerEvents.OnMenuClose -= BackToDefaultInput;
+        player.ID.playerEvents.OnDialogueStart -= OnInDialogue;
+        player.ID.playerEvents.OnDialogueEnd -= BackToDefaultInput;
+        player.ID.playerEvents.OnInventoryButtonToggle -= ToggleInventoryAction;
+        TurnOffInput();
+
+    }
+    protected override void Awake()
+    {
+        base.Awake();
+        inputActions = new PlayerControls();
+    }
+
+    void Start()
+    {
+        inputActions.Menu.SetCallbacks(this);
+        inputActions.PlayerInput.SetCallbacks(this);
+        inputActions.Inventory.SetCallbacks(this);
+        inputActions.Dialogue.SetCallbacks(this);
+        inputActions.PlayerInput.Enable();
     }
 
     public void TurnOffInput() 
@@ -50,16 +77,6 @@ public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, Play
         SwitchActionMap(inputActions.Dialogue);
     }
 
-    protected override void Awake()
-    {
-        base.Awake();
-        inputActions = new PlayerControls();
-        inputActions.Menu.SetCallbacks(this);
-        inputActions.PlayerInput.SetCallbacks(this);
-        inputActions.Inventory.SetCallbacks(this);
-        inputActions.Dialogue.SetCallbacks(this);
-        inputActions.PlayerInput.Enable();
-    }
 
 
 
@@ -68,7 +85,7 @@ public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, Play
         if (context.phase == InputActionPhase.Performed)
         {
             BackToDefaultInput();
-            NguyenSingleton.Instance.MenuController.ToggleMenu();
+            NguyenSingleton.Instance.MenuController.CloseMenu(); 
         }
     }
 
@@ -99,7 +116,7 @@ public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, Play
         if (context.phase == InputActionPhase.Performed)
         {
             OnMenuOpen();
-            NguyenSingleton.Instance.MenuController.ToggleMenu();
+            NguyenSingleton.Instance.MenuController.OpenMenu();
         }
     }
 
@@ -158,12 +175,24 @@ public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, Play
 
     public void OnOpenInventory(InputAction.CallbackContext context)
     {
+        
         if (context.phase == InputActionPhase.Performed)
         {
-            inputActions.Inventory.Enable();
-            inputActions.PlayerInput.Disable();
-            player.ID.playerEvents.OnInventoryToggle?.Invoke();
+            ToggleInventoryAction();
         }
+    }
+
+    private void ToggleInventoryAction()
+    {
+        if (inputActions.PlayerInput.enabled)
+        {
+            SwitchActionMap(inputActions.Inventory);
+        }
+        else
+        {
+            BackToDefaultInput();
+        }
+        player.ID.playerEvents.OnInventoryToggle?.Invoke();
     }
 
     public void OnCloseInventory(InputAction.CallbackContext context)
@@ -171,11 +200,11 @@ public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, Play
         
         if (context.phase == InputActionPhase.Performed)
         {
-            player.ID.playerEvents.OnInventoryToggle?.Invoke();
-            inputActions.PlayerInput.Enable();
-            inputActions.Inventory.Disable();
+            ToggleInventoryAction();
+
         }
     }
+
 
 
     public void OnPress(InputAction.CallbackContext context)
@@ -213,8 +242,12 @@ public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, Play
 
     public void OnUseAmmoBox(InputAction.CallbackContext context)
     {
-            player.ID.playerEvents.OnUseAmmoBox?.Invoke();
+
+        if (context.phase == InputActionPhase.Performed)
+        {
+            player.ID.playerEvents.OnReloadBullet?.Invoke();
         }
+    }
 
     public void OnSkipline(InputAction.CallbackContext context)
     {

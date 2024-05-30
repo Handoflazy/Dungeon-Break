@@ -123,7 +123,6 @@ namespace Inventory.UI
 
         public void Show()
         {
-            print("open inventory" + gameObject.name);
             gameObject.SetActive(true);
             UIDescription.ResetDescription();
             mouseFollower.Toggle(false);
@@ -170,9 +169,8 @@ namespace Inventory.UI
             listOfUIItems[itemIndex].Select();
         }
 
-        internal void ResetAllItems()
+        public void ResetAllItems()
         {
-            print("reset ui");
             foreach(var item in listOfUIItems)
             {
                 item.ResetData();

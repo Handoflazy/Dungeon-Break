@@ -5,12 +5,16 @@ using UnityEngine;
 namespace Inventory.Model
 {
     [CreateAssetMenu(menuName = "Item/Equipment")]
-    public class EquippabeItemSO : ItemSO, IDestroyableItem, IItemAction
+    public class EquipableItemSO : ItemSO, IDestroyableItem, IItemAction
     {
         public string ActionName => "Equip";
 
         [field: SerializeField]
         public GameObject WeaponPrefap { get; private set; }
+        [field: SerializeField]
+        public BulletItemSO BulletItemSO { get; private set; }
+
+        
 
 
         [field: SerializeField]
@@ -25,7 +29,7 @@ namespace Inventory.Model
             WeaponParent weapon = character.GetComponentInChildren<WeaponParent>();
             if(weapon != null)
             {
-                weapon.SetWeapon(this, 10);
+                weapon.SetWeapon(this, 0);
                 return true;
 
             }

@@ -9,14 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93d51479ea45bae4dad7bfed4b70b8bd, type: 3}
-  m_Name: Assaut Riffle
+  m_Script: {fileID: 11500000, guid: c9d965a84ff057c4dafc3f1cd35c3564, type: 3}
+  m_Name: Assaut Riffle Item
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
-  <Name>k__BackingField: Assault Rifle
-  <Description>k__BackingField: aka 47
-  <ItemImage>k__BackingField: {fileID: 21300000, guid: dec948719747f2846ba3f6a0151a9eb2, type: 3}
+  <Name>k__BackingField: 
+  <Description>k__BackingField: 
+  <ItemImage>k__BackingField: {fileID: 1748412923, guid: 3a9831b904b5e9f42bea2ca1a641909f, type: 3}
   <DefautParameters>k__BackingField: []
   <WeaponPrefap>k__BackingField: {fileID: 4465499201024666103, guid: c69a572e1409e4e44907e77f88eda3f7, type: 3}
-  <ActionSFX>k__BackingField: {fileID: 8300000, guid: 1adb6ab7f57563a4a952d8d20f2e415c, type: 3}
+  <BulletItemSO>k__BackingField: {fileID: 11400000, guid: df1cc01db0b41234fb31e0db94f80568, type: 2}
+  <ActionSFX>k__BackingField: {fileID: 8300000, guid: 1e4d438f9d286304b918672a47cba77f, type: 3}

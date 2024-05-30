@@ -35,7 +35,6 @@ namespace Inventory.UI
         }
         public void Toggle(bool val)
         {
-            print($"Item toggled{val}");
             gameObject.SetActive(val);
         }
     }

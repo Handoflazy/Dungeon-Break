@@ -56,7 +56,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: b1facf07ce47634478e25e349be30c4b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -75,9 +75,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1851128481
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: -880980850, guid: 6d5b035f0b6c7d34c966be52fb64e199, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3d72893c5deca474eb1f931effe87efd, type: 3}
   m_Color: {r: 0.7137255, g: 0.7137255, b: 0.7137255, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aab48b47fdff6242aa4490c6fc2f65f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <InventoryItem>k__BackingField: {fileID: 11400000, guid: 3ba1aefe01fd4b04abcc2ba56d91ac71, type: 2}
-  <Quantity>k__BackingField: 1
+  <InventoryItem>k__BackingField: {fileID: 11400000, guid: de8498e3817809b45b1fdd54206ecf53, type: 2}
+  <Quantity>k__BackingField: 5
   audioSource: {fileID: 7407295092694618059}
   duration: 0.3
 --- !u!82 &7407295092694618059

@@ -610,7 +610,7 @@ PlayerSettings:
     Stadia: DOTWEEN
     Standalone: DOTWEEN;YNL_UTILITIES;YNL_EDITOR
     VisionOS: DOTWEEN
-    WebGL: DOTWEEN
+    WebGL: DOTWEEN;DISABLE_INPUT_SYSTEM_GET_CURRENT_CALLBACK_WARNING
     Windows Store Apps: DOTWEEN
     XboxOne: DOTWEEN
     iPhone: DOTWEEN

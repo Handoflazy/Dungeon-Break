@@ -7,13 +7,6 @@ public class NguyenSingleton : MonoBehaviour
 {
     public static NguyenSingleton Instance { get; private set; }
 
-    public PlayerID playerID;
-    public GameObject inputPlayer;
-    public GameObject HUB;
-    public GameObject mainCamera;
-    public GameObject astarPathfinder;
-
-    //public GameObject AudioManager;
     public FloatingTextManager FloatingTextManager { get; private set; }
     public GameManager GameManager { get; private set; }
     public SceneManagement SceneManagement { get; private set; }
@@ -32,6 +25,9 @@ public class NguyenSingleton : MonoBehaviour
     public MenuController MenuController { get; private set; }
 
     public BossHealthBArController BossHealthBArController { get; private set; }
+    [field: SerializeField]
+    public PlayerID PlayerID { get; internal set; }
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -40,7 +36,11 @@ public class NguyenSingleton : MonoBehaviour
             return;
         }
         else
-        { 
+        {
+            if (PlayerID == null)
+            {
+                PlayerID = new PlayerID();
+            }
             Instance = this;
             DialogueController = GetComponentInChildren<DialogueController>();
             FloatingTextManager = GetComponentInChildren<FloatingTextManager>();
