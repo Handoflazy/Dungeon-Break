@@ -22,13 +22,13 @@ public class NPC : MonoBehaviour
 
     private void Start()
     {
-        NguyenSingleton.Instance.playerID.playerEvents.OnDialogueStart += JoinConversation;
-        NguyenSingleton.Instance.playerID.playerEvents.OnDialogueEnd += LeaveConversation;
+        NguyenSingleton.Instance.PlayerID.playerEvents.OnDialogueStart += JoinConversation;
+        NguyenSingleton.Instance.PlayerID.playerEvents.OnDialogueEnd += LeaveConversation;
     }
     private void OnDisable()
     {
-        NguyenSingleton.Instance.playerID.playerEvents.OnDialogueStart -= JoinConversation;
-        NguyenSingleton.Instance.playerID.playerEvents.OnDialogueEnd -= LeaveConversation;
+        NguyenSingleton.Instance.PlayerID.playerEvents.OnDialogueStart -= JoinConversation;
+        NguyenSingleton.Instance.PlayerID.playerEvents.OnDialogueEnd -= LeaveConversation;
     }
 
     [HideInInspector]

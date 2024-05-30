@@ -16,12 +16,9 @@ public class HUBController : MonoBehaviour
     [SerializeField] GameObject deathMenu;
 
     [SerializeField] private GameObject HUB;
-    private void Awake()
+    private void Start()
     {
-        playerID = NguyenSingleton.Instance.playerID;
-    }
-    private void OnEnable()
-    {
+        playerID = NguyenSingleton.Instance.PlayerID;
         playerID.playerEvents.OnDialogueStart += HideHUB;
         playerID.playerEvents.OnDialogueEnd += DisplayHUB;
         playerID.playerEvents.onRespawn += HideGameOver;
@@ -78,7 +75,7 @@ public class HUBController : MonoBehaviour
 
     public void ToggleInventoryUI()
     {
-        NguyenSingleton.Instance.playerID.playerEvents.OnInventoryButtonToggle?.Invoke();
+        NguyenSingleton.Instance.PlayerID.playerEvents.OnInventoryButtonToggle?.Invoke();
     }
     
 }

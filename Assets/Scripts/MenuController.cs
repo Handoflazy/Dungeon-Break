@@ -20,26 +20,26 @@ public class MenuController : MonoBehaviour
     {
         if (SettingPanel.activeSelf)
         {
-            NguyenSingleton.Instance.playerID.playerEvents.OnMenuClose?.Invoke();
+            NguyenSingleton.Instance.PlayerID.playerEvents.OnMenuClose?.Invoke();
             SettingPanel.SetActive(false);
             ExitBackground.SetActive(false);
         }
         else
         {
-            NguyenSingleton.Instance.playerID.playerEvents.OnMenuOpen?.Invoke();
+            NguyenSingleton.Instance.PlayerID.playerEvents.OnMenuOpen?.Invoke();
             ExitBackground.SetActive(true);
             SettingPanel.SetActive(true);
         }
     }
     public void CloseMenu()
     {
-        NguyenSingleton.Instance.playerID.playerEvents.OnMenuClose?.Invoke();
+        NguyenSingleton.Instance.PlayerID.playerEvents.OnMenuClose?.Invoke();
         SettingPanel.SetActive(false);
         ExitBackground.SetActive(false);
     }
     public void OpenMenu() 
     {
-        NguyenSingleton.Instance.playerID.playerEvents.OnMenuOpen?.Invoke();
+        NguyenSingleton.Instance.PlayerID.playerEvents.OnMenuOpen?.Invoke();
         ExitBackground.SetActive(true);
         SettingPanel.SetActive(true);
     }

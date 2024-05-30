@@ -20,11 +20,8 @@ public class WeaponParent : PlayerSystem
     private EquipableItemSO WeaponSO;
 
     public List<ItemParameter> itemCurrentState;
-<<<<<<< Updated upstream
-    public List<GameObject> weapons;
-=======
+
     public List<EquipableItemSO> weapons;
->>>>>>> Stashed changes
 
     protected float desireAngle;
     public Vector2 Pointerposition { get; set; }
@@ -76,8 +73,6 @@ public class WeaponParent : PlayerSystem
     {
         player.ID.playerEvents.OnPressed -= Shoot;
         player.ID.playerEvents.OnRelease -= StopShoot;
-<<<<<<< Updated upstream
-=======
         player.ID.playerEvents.OnReloadBullet -= QuickReloadBullet;
         if (WeaponSO == null) return;
         if (WeaponSO.name == "Assaut Riffle")
@@ -97,7 +92,6 @@ public class WeaponParent : PlayerSystem
             PlayerPrefs.SetInt(PrefConsts.CURRENT_GUN_KEY, 3);
         }
         PlayerPrefs.SetInt(PrefConsts.CURRENT_BULLET_COUNT_KEY, CurrentGun.Ammo);
->>>>>>> Stashed changes
     }
     private Vector2 GetPointerPos()
     {
