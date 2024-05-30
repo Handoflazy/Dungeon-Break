@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723a18758aab74746b23090cb952ff79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statsData: {fileID: 11400000, guid: 704e6c01104554c4fb24de8bac60addb, type: 2}
+  statsData: {fileID: 11400000, guid: 4551d9643344fa244bda86e96e158bcf, type: 2}
   OnPointerPositionChange:
     m_PersistentCalls:
       m_Calls:
@@ -459,6 +459,7 @@ GameObject:
   - component: {fileID: 2652726562669818292}
   - component: {fileID: 3939008012830818943}
   - component: {fileID: 6576209077054871901}
+  - component: {fileID: 6875376029944380521}
   m_Layer: 0
   m_Name: PlayerGFX
   m_TagString: Untagged
@@ -710,7 +711,7 @@ MonoBehaviour:
   - {x: -0.0222193, y: -0.06617352, z: 0}
   m_ShapePathHash: 1973103157
   m_Mesh: {fileID: 0}
-  m_InstanceId: 348574
+  m_InstanceId: -273088
   m_LocalBounds:
     m_Center: {x: 0.0035929978, y: 0.0063259304, z: 0}
     m_Extent: {x: 0.04074821, y: 0.072499454, z: 0}
@@ -726,6 +727,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8890b1287fea54ba96b3ddaed21631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6875376029944380521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982721656499840682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10d2b7bb1c9042f4bae796ca31e22717, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnEffect: {fileID: 1774106816898035848, guid: f779b6ecbc922374289c427461c7c3b7, type: 3}
+  Y: 0.3
 --- !u!1 &1829716902636826525
 GameObject:
   m_ObjectHideFlags: 0

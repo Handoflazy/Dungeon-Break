@@ -12,11 +12,19 @@ public class Load : MonoBehaviour
 {
     //public Save_Load Save_Load;
     public PlayerStatsSO PlayerStatsSO;
+    public EnemyStatsSO enemyMeleeStatSO;
+    public EnemyStatsSO enemyRangerStatSO;
     //public PlayerHealth PlayerHealth;
     //public Transform playerTransform;
     public int baseHP = 200;
     public int baseLUXR = 10;
     public int baseDuration = 100;
+    public int baseHpMelee = 70;
+    public int baseHpRanger = 35;
+    public int basedmgMelee = 5;
+    public int basedmgRanger = 10;
+    public int baseMinXp = 10;
+    public int baseMaxXp = 50;
     private void Start()
     {
         
@@ -39,12 +47,25 @@ public class Load : MonoBehaviour
         PlayerPrefs.DeleteKey("AmmoBoxCount_data");
         PlayerPrefs.DeleteKey("currentDuration_data");
 
+
         PlayerStatsSO.level = 1;
         PlayerStatsSO.duration = baseDuration;
         PlayerStatsSO.hp = baseHP;
         PlayerStatsSO.levelUpXpRequire = baseLUXR;
         PlayerStatsSO.xp = 0;
-        
+
+        enemyMeleeStatSO.hp = baseHpMelee;
+        enemyMeleeStatSO.damage = basedmgMelee;
+        enemyMeleeStatSO.minXpBonus = baseMinXp;
+        enemyMeleeStatSO.maxXpBonus = baseMaxXp;
+        enemyRangerStatSO.hp = baseHpRanger;
+        enemyRangerStatSO.damage = basedmgRanger;
+        enemyRangerStatSO.minXpBonus = baseMinXp;
+        enemyRangerStatSO.maxXpBonus = baseMaxXp;
+
+
+
+
     }
     public void ChangeScene(string str)
     {

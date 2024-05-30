@@ -1008,6 +1008,7 @@ GameObject:
   - component: {fileID: 5959309949098199727}
   - component: {fileID: 3045991784689006974}
   - component: {fileID: 297015376121655735}
+  - component: {fileID: 3481482976422034642}
   m_Layer: 0
   m_Name: PlayerGFX
   m_TagString: Untagged
@@ -1259,7 +1260,7 @@ MonoBehaviour:
   - {x: -0.0222193, y: -0.06617352, z: 0}
   m_ShapePathHash: 1973103157
   m_Mesh: {fileID: 0}
-  m_InstanceId: 348858
+  m_InstanceId: -273244
   m_LocalBounds:
     m_Center: {x: 0.0035929978, y: 0.0063259304, z: 0}
     m_Extent: {x: 0.04074821, y: 0.072499454, z: 0}
@@ -1275,6 +1276,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8890b1287fea54ba96b3ddaed21631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3481482976422034642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6151477697419286873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10d2b7bb1c9042f4bae796ca31e22717, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnEffect: {fileID: 1774106816898035848, guid: f779b6ecbc922374289c427461c7c3b7, type: 3}
+  Y: 0.3
 --- !u!1 &7474002985552803223
 GameObject:
   m_ObjectHideFlags: 0

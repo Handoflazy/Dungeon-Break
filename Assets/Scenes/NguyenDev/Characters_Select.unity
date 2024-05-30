@@ -3429,9 +3429,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerStatsSO: {fileID: 11400000, guid: 49a80fb274fc0dc4a8d48fa6534b3de6, type: 2}
+  enemyMeleeStatSO: {fileID: 11400000, guid: 16218f7990727c9489a3ba8ef66d6422, type: 2}
+  enemyRangerStatSO: {fileID: 11400000, guid: 4551d9643344fa244bda86e96e158bcf, type: 2}
   baseHP: 200
   baseLUXR: 10
   baseDuration: 100
+  baseHpMelee: 70
+  baseHpRanger: 35
+  basedmgMelee: 5
+  basedmgRanger: 10
+  baseMinXp: 10
+  baseMaxXp: 50
 --- !u!222 &1852299692
 CanvasRenderer:
   m_ObjectHideFlags: 0

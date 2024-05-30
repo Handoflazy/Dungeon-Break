@@ -33,6 +33,13 @@ public class EnemyAIBrain : ActorReform
             EnemyAttack = GetComponent<EnemyAttack>();
         }
     }
+
+    Player playerScript;
+    void Start()
+    {
+        playerScript = Target.GetComponent<Player>();
+        UpdateStatsByPlayer();
+    }
     private void Update()
     {
         if(Target == null)
@@ -73,5 +80,16 @@ public class EnemyAIBrain : ActorReform
     {
         playerEvents.OnMove?.Invoke(movementDirection);
        OnPointerPositionChange?.Invoke(targetPosition);
+    }
+
+    private void UpdateStatsByPlayer()
+    {
+        if (Target && !gameObject.CompareTag("BossForest") && !gameObject.CompareTag("BossGra"))
+        {
+            statsData.minXpBonus += Mathf.Max(0, playerScript.playerStats.level * (playerScript.playerStats.levelUpXpRequire / (playerScript.playerStats.levelUpXpRequire - playerScript.playerStats.levelUpXpRequireUp)));
+            statsData.maxXpBonus += Mathf.Max(0, playerScript.playerStats.level * (playerScript.playerStats.levelUpXpRequire / (playerScript.playerStats.levelUpXpRequire - playerScript.playerStats.levelUpXpRequireUp)));
+            statsData.damage += playerScript.playerStats.level / 10;
+            statsData.hp += playerScript.playerStats.level / 5;
+        }
     }
 }
