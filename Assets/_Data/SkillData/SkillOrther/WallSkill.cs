@@ -12,12 +12,32 @@ public class WallSkill : AbstractSkill
     [SerializeField]
     private float distanceWall = 0.5f;
     private AudioSource audioSource;
+    private GameObject shield;
 
     protected override void Awake()
     {
         base.Awake();
         cooldown = 2;
         audioSource = GetComponent<AudioSource>();
+    }
+
+    private void Update()
+    {
+        if (shield != null)
+        {
+            Vector2 targetPosition = GetPointerPos();
+            Vector2 currentPosition = transform.position;
+
+
+            Vector2 direction = (targetPosition - currentPosition).normalized;
+            //float distance = Vector2.Distance(targetPosition, currentPosition);
+
+            Vector2 finalPosition = currentPosition + direction * distanceWall;
+
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            shield.transform.position = finalPosition;
+            shield.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 180));
+        }
     }
 
     public override void OnUsed()
@@ -39,10 +59,10 @@ public class WallSkill : AbstractSkill
 
         Vector2 finalPosition = currentPosition + direction * distanceWall;
 
-        GameObject sword = Instantiate(wall, finalPosition, Quaternion.identity);
+        shield = Instantiate(wall, finalPosition, Quaternion.identity);
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        sword.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
-        Destroy(sword, 3f);
+        shield.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 180));
+        Destroy(shield, 3f);
 
 
     }

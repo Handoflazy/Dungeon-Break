@@ -154,7 +154,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2019883631844859593, guid: 8475d08507b441d4c9fce154d6a8782b, type: 3}
       propertyPath: m_InstanceId
-      value: -237836
+      value: -144418
       objectReference: {fileID: 0}
     - target: {fileID: 2392160469859247274, guid: 8475d08507b441d4c9fce154d6a8782b, type: 3}
       propertyPath: m_Enabled
@@ -384,12 +384,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6384787539367641855, guid: 8475d08507b441d4c9fce154d6a8782b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3916611719093024244}
-    - targetCorrespondingSourceObject: {fileID: 6384787539367641855, guid: 8475d08507b441d4c9fce154d6a8782b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3899554362232604466}
-    - targetCorrespondingSourceObject: {fileID: 6384787539367641855, guid: 8475d08507b441d4c9fce154d6a8782b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 9027416038884744455}
     - targetCorrespondingSourceObject: {fileID: 6475855918917186041, guid: 8475d08507b441d4c9fce154d6a8782b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7035075355456695228}
@@ -899,40 +893,6 @@ MonoBehaviour:
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 256
---- !u!114 &3899554362232604466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 420332854022434471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ea916485b6566d44843e684237b1ae2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 5
-  durationCost: 1
-  soundSkill: {fileID: 8300000, guid: c48a972d3d024c2408a3331750786a29, type: 3}
-  healPrefabs: {fileID: 5665817487409520497, guid: 1b6c2e832a97099468a79bf3dec24ca7, type: 3}
-  healAmount: 25
---- !u!114 &9027416038884744455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 420332854022434471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 220c41b591360724b9fbff43c55096fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 5
-  durationCost: 0
-  activeSkill: {fileID: 8300000, guid: c1325b8e904452742a3c2db4a5eeeead, type: 3}
-  wall: {fileID: 241248362681535046, guid: 176e9fde47e139143b94cfb70fc301df, type: 3}
-  distanceWall: 0.3
 --- !u!4 &837488227367616333 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6255882424801481493, guid: 8475d08507b441d4c9fce154d6a8782b, type: 3}

@@ -34,7 +34,6 @@ public class HealthSkill : AbstractSkill
             GameObject healPref = Instantiate(healPrefabs, transform.position, Quaternion.identity);
             health.AddHealth(healAmount);
             Destroy(healPref, 0.3f);
-
         }
     }
 
