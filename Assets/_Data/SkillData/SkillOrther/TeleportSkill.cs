@@ -52,8 +52,8 @@ public class TeleportSkill : AbstractSkill
 
         GameObject gate_2 = Instantiate(teleportGate, finalPosition, Quaternion.identity);
         transform.position = finalPosition;
-        Destroy(gate_1, 0.6f);
-        Destroy(gate_2, 1f);
+        Destroy(gate_1, 0.2f);
+        Destroy(gate_2, 0.2f);
         
         
     }

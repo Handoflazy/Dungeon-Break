@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor;
 //using UnityEditor.TerrainTools;
 using UnityEngine;
@@ -15,3 +16,4 @@ public class MyEditorClass : Editor
         bInt = serializedObject.FindProperty("aFloat");
     }
 }
+#endif

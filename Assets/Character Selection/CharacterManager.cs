@@ -1,4 +1,4 @@
-using UnityEditor.Animations;
+//using UnityEditor.Animations;
 using UnityEngine;
 //using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,7 +7,7 @@ public class CharacterManager : MonoBehaviour
 {
     public CharacterDatabase characterDB;
     public Text nameText;
-    public AnimatorController controllerCharacter;
+    public RuntimeAnimatorController controllerCharacter;
     private int selectedOption =0;
     public Image image;
 

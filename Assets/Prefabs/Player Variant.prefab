@@ -154,7 +154,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2019883631844859593, guid: 8475d08507b441d4c9fce154d6a8782b, type: 3}
       propertyPath: m_InstanceId
-      value: -29966
+      value: -237836
       objectReference: {fileID: 0}
     - target: {fileID: 2392160469859247274, guid: 8475d08507b441d4c9fce154d6a8782b, type: 3}
       propertyPath: m_Enabled
@@ -377,9 +377,6 @@ PrefabInstance:
       addedObject: {fileID: 8216330194424272618}
     - targetCorrespondingSourceObject: {fileID: 6384787539367641855, guid: 8475d08507b441d4c9fce154d6a8782b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8773035188071367139}
-    - targetCorrespondingSourceObject: {fileID: 6384787539367641855, guid: 8475d08507b441d4c9fce154d6a8782b, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 6051851240755413790}
     - targetCorrespondingSourceObject: {fileID: 6384787539367641855, guid: 8475d08507b441d4c9fce154d6a8782b, type: 3}
       insertIndex: -1
@@ -393,12 +390,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6384787539367641855, guid: 8475d08507b441d4c9fce154d6a8782b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9027416038884744455}
-    - targetCorrespondingSourceObject: {fileID: 6384787539367641855, guid: 8475d08507b441d4c9fce154d6a8782b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1962400532600870433}
-    - targetCorrespondingSourceObject: {fileID: 6384787539367641855, guid: 8475d08507b441d4c9fce154d6a8782b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6893367371807857741}
     - targetCorrespondingSourceObject: {fileID: 6475855918917186041, guid: 8475d08507b441d4c9fce154d6a8782b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7035075355456695228}
@@ -854,26 +845,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141526349cd2d3f4fa9adc92cfc9bb88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8773035188071367139
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 420332854022434471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a51e1f92da5387d40b6964646acd42f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 5
-  durationCost: 1
-  activeSkill: {fileID: 8300000, guid: 61d51534a8e9ce042ac43b51b0b65b1a, type: 3}
-  teleportDistance: 5
-  teleportGate: {fileID: 8096726402165710371, guid: 72bd49436826fda43a8c9076347a9c22, type: 3}
-  wallLayerMask:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!114 &6051851240755413790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -962,36 +933,6 @@ MonoBehaviour:
   activeSkill: {fileID: 8300000, guid: c1325b8e904452742a3c2db4a5eeeead, type: 3}
   wall: {fileID: 241248362681535046, guid: 176e9fde47e139143b94cfb70fc301df, type: 3}
   distanceWall: 0.3
---- !u!114 &1962400532600870433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 420332854022434471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adc2a7a19c76f8749891ea71a38e95e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventoryData: {fileID: 11400000, guid: 5dc21849ed43a1c4f90da2a1db6cd866, type: 2}
---- !u!114 &6893367371807857741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 420332854022434471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41e9d36aa0a08c54c9dfb5f3de267677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventoryUI: {fileID: 0}
-  inventoryData: {fileID: 11400000, guid: 5dc21849ed43a1c4f90da2a1db6cd866, type: 2}
-  dropItemPrefab: {fileID: 6330588511145620810, guid: 3936a804c4d68e7439b39745f0d1feac, type: 3}
-  dropClip: {fileID: 8300000, guid: 8d0923a0cf2c20f4790c77e85a27e518, type: 3}
-  audioSource: {fileID: 8704407580660603407}
 --- !u!4 &837488227367616333 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6255882424801481493, guid: 8475d08507b441d4c9fce154d6a8782b, type: 3}

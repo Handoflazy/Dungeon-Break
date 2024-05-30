@@ -31,12 +31,13 @@ public class CheckPlayerStatsSO: MonoBehaviour
         if (currentHP <= 0)
         {
             img_Continue.GetComponent<Button>().interactable = false;
-            _=img_Continue.color.WithAlpha(240);
+            img_Continue.color = new Color(img_Continue.color.r, img_Continue.color.g, img_Continue.color.b, 0.94f);  // Set alpha to 0.94 (approximately 240/255)
         }
         else
         {
             img_Continue.GetComponent<Button>().interactable = true;
-            _=img_Continue.color.WithAlpha(255);
+            img_Continue.color = new Color(img_Continue.color.r, img_Continue.color.g, img_Continue.color.b, 1f);  // Set alpha to 1 (fully opaque)
         }
+
     }
 }
