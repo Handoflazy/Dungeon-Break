@@ -8,11 +8,17 @@ using UnityEngine;
 [CreateAssetMenu(menuName ="Item/ModifierStat/HealthModifider")]
 public class CharacterHealthStatModifierSO : CharacterStatModifierSO
 {
-    public override void AffectCharacter(GameObject character, float val)
+    public override bool AffectCharacter(GameObject character, float val)
     {
         if(character.TryGetComponent<Health>(out Health health))
         {
+            if(health.isFull)
+            {
+                return false;
+            }
             health.AddHealth((int)val);
+            return true;
         }
+        return false;
     }
 }

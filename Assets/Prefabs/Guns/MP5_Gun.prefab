@@ -48,6 +48,7 @@ MonoBehaviour:
   pitchRandomness: 0.05
   shootBulletClip: {fileID: 8300000, guid: 657964c512702fa42af39a69243bb2ea, type: 3}
   outOfBulletsClip: {fileID: 8300000, guid: 56c260531cb172d40b5f6ed2f0f3a601, type: 3}
+  loadBulletClip: {fileID: 8300000, guid: 1adb6ab7f57563a4a952d8d20f2e415c, type: 3}
 --- !u!82 &8413070705645964483
 AudioSource:
   m_ObjectHideFlags: 0
@@ -320,6 +321,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  <OnLoadAmmo>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4849322309694467449
 GameObject:
   m_ObjectHideFlags: 0

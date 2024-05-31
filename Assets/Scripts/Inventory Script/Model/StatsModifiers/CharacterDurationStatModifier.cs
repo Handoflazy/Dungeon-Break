@@ -7,11 +7,17 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Item/ModifierStat/DurationModifider")]
 public class CharacterDurationStatModifier : CharacterStatModifierSO
 {
-    public override void AffectCharacter(GameObject character, float val)
+    public override bool AffectCharacter(GameObject character, float val)
     {
         if (character.TryGetComponent<Duration>(out Duration duration))
         {
-            duration.RefillDuration((int)val);
+            if (!duration.IsFull)
+            {
+                duration.RefillDuration((int)val);
+                return true;
+            }
+               
         }
+        return false;
     }
 }

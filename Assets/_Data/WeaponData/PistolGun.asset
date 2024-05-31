@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98eea4f1f3559147b5e173667ed8536, type: 3}
   m_Name: PistolGun
   m_EditorClassIdentifier: 
-  <BulletData>k__BackingField: {fileID: 11400000, guid: aef51930e14dcbc48afa6bcf57100daa, type: 2}
+  <BulletData>k__BackingField: {fileID: 11400000, guid: 707df64d15ea6c143b129aba45b721b6, type: 2}
   <AmmoCapacity>k__BackingField: 20
   <AutomaticFire>k__BackingField: 0
   <WeaponDelay>k__BackingField: 0.3

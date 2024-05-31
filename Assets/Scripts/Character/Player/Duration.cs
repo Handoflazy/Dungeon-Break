@@ -6,6 +6,8 @@ public class Duration : PlayerSystem
 {
     public int MaxDuration { get; private set; }
 
+    public bool IsFull { get  =>CurrentDuration>=MaxDuration;}
+
     [field:SerializeField]
     public int CurrentDuration { get; private set; }
 

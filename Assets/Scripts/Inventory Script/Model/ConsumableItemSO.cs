@@ -9,7 +9,7 @@ namespace Inventory.Model
     [CreateAssetMenu(menuName ="Item/Consumable")]
     public class ConsumableItemSO : ItemSO, IDestroyableItem, IItemAction
     {
-        public string ActionName => "Consume";
+        public string ActionName => "Use";
         [SerializeField]
         private List<ModifierData> modifierDatas = new List<ModifierData>();
         [field:SerializeField]
@@ -21,9 +21,12 @@ namespace Inventory.Model
         {
             foreach (ModifierData data in modifierDatas)
             {
-                data.statModifier.AffectCharacter(character, data.value);
+                if(data.statModifier.AffectCharacter(character, data.value))
+                {
+                    return true;
+                }
             }
-            return true;
+            return false;
         }
     }
 

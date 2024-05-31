@@ -20,7 +20,7 @@ namespace FirstVersion
         public UnityEvent OnHit;
 
 
-        public bool isFull { get; set; }
+        public bool isFull { get=>currentHealth>=maxHealth;}
 
 
         public int MaxHealth { get => maxHealth; set => maxHealth = value; }
@@ -49,10 +49,6 @@ namespace FirstVersion
                 OnDeathEvent?.Invoke();
                 OnDeathWithReference?.Invoke(sender);
             }
-            if (amount > 0)
-            {
-                isFull = false;
-            }
             SaveHP();
             OnHealthChange?.Invoke(currentHealth);
         }
@@ -76,7 +72,6 @@ namespace FirstVersion
             if(currentHealth > maxHealth)
             {
                 currentHealth = maxHealth;
-                isFull= true;
             }
             SaveHP();
             OnHealthChange?.Invoke(currentHealth);
@@ -95,7 +90,6 @@ namespace FirstVersion
             PlayerPrefs.GetInt(PrefConsts.MAX_HEALTH_KEY, maxHealth);
 
             currentHealth = PlayerPrefs.GetInt(PrefConsts.CURRENT_HEALTH_KEY);
-            if(currentHealth >= maxHealth) isFull = true;
             if(currentHealth > 0) isDead = false;
         }
         

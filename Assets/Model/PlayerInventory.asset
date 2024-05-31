@@ -13,50 +13,29 @@ MonoBehaviour:
   m_Name: PlayerInventory
   m_EditorClassIdentifier: 
   inventoryItems:
-  - quantity: 1
-    item: {fileID: 11400000, guid: 9604d645a47448940ad39e39f4e84e62, type: 2}
-    itemState: []
-  - quantity: 7
-    item: {fileID: 11400000, guid: df1cc01db0b41234fb31e0db94f80568, type: 2}
-    itemState: []
-  - quantity: 1
-    item: {fileID: 11400000, guid: 4e10d88825330f049a0312b964df4684, type: 2}
-    itemState: []
-  - quantity: 1
-    item: {fileID: 11400000, guid: 9604d645a47448940ad39e39f4e84e62, type: 2}
-    itemState: []
-  - quantity: 1
-    item: {fileID: 11400000, guid: fca7b790567c8314b9afde6c31059729, type: 2}
-    itemState: []
-  - quantity: 0
-    item: {fileID: 0}
-    itemState: []
-  - quantity: 1
-    item: {fileID: 11400000, guid: 36edd0500410d3c4cb6748065b8ed620, type: 2}
-    itemState: []
-  - quantity: 2
-    item: {fileID: 11400000, guid: de8498e3817809b45b1fdd54206ecf53, type: 2}
-    itemState: []
-  - quantity: 1
-    item: {fileID: 11400000, guid: fca7b790567c8314b9afde6c31059729, type: 2}
-    itemState: []
-  - quantity: 3
+  - quantity: 5
     item: {fileID: 11400000, guid: 81b6889d18e69ef41bf420fd326d787a, type: 2}
     itemState: []
   - quantity: 1
-    item: {fileID: 11400000, guid: 36edd0500410d3c4cb6748065b8ed620, type: 2}
+    item: {fileID: 11400000, guid: df1cc01db0b41234fb31e0db94f80568, type: 2}
     itemState: []
   - quantity: 1
-    item: {fileID: 11400000, guid: fca7b790567c8314b9afde6c31059729, type: 2}
+    item: {fileID: 11400000, guid: de8498e3817809b45b1fdd54206ecf53, type: 2}
     itemState: []
-  - quantity: 1
-    item: {fileID: 11400000, guid: 4e10d88825330f049a0312b964df4684, type: 2}
+  - quantity: 0
+    item: {fileID: 0}
     itemState: []
-  - quantity: 1
-    item: {fileID: 11400000, guid: 36edd0500410d3c4cb6748065b8ed620, type: 2}
+  - quantity: 0
+    item: {fileID: 0}
     itemState: []
-  - quantity: 1
-    item: {fileID: 11400000, guid: 4e10d88825330f049a0312b964df4684, type: 2}
+  - quantity: 4
+    item: {fileID: 11400000, guid: e6b415a0fc9fa8d4ab48061ae6580fb5, type: 2}
+    itemState: []
+  - quantity: 0
+    item: {fileID: 0}
+    itemState: []
+  - quantity: 4
+    item: {fileID: 11400000, guid: d5b4b51533469fe498af083581571702, type: 2}
     itemState: []
   - quantity: 0
     item: {fileID: 0}
@@ -73,4 +52,13 @@ MonoBehaviour:
   - quantity: 0
     item: {fileID: 0}
     itemState: []
-  <Size>k__BackingField: 20
+  - quantity: 0
+    item: {fileID: 0}
+    itemState: []
+  - quantity: 0
+    item: {fileID: 0}
+    itemState: []
+  - quantity: 0
+    item: {fileID: 0}
+    itemState: []
+  <Size>k__BackingField: 16

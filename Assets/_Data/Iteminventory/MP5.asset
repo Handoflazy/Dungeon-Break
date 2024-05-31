@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
-  <Name>k__BackingField: 
+  <Name>k__BackingField: MP5
   <Description>k__BackingField: 
-  <ItemImage>k__BackingField: {fileID: 1117130366, guid: fc0a2be7a6f21d6489f33446ee3187c7, type: 3}
+  <ItemImage>k__BackingField: {fileID: -831788218, guid: cdc9513078455424d9c2cfd316ea877b, type: 3}
   <DefautParameters>k__BackingField: []
   <WeaponPrefap>k__BackingField: {fileID: 4465499201024666103, guid: f2c6f9df48329b74f930c8909b1042b5, type: 3}
   <BulletItemSO>k__BackingField: {fileID: 11400000, guid: df1cc01db0b41234fb31e0db94f80568, type: 2}

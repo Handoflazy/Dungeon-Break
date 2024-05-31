@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9d965a84ff057c4dafc3f1cd35c3564, type: 3}
+  m_Name: Assaut Riffle
+  m_EditorClassIdentifier: 
+  <IsStackable>k__BackingField: 0
+  <MaxStackSize>k__BackingField: 1
+  <Name>k__BackingField: Assaut Riffle
+  <Description>k__BackingField: 
+  <ItemImage>k__BackingField: {fileID: 1748412923, guid: 3a9831b904b5e9f42bea2ca1a641909f, type: 3}
+  <DefautParameters>k__BackingField: []
+  <WeaponPrefap>k__BackingField: {fileID: 4465499201024666103, guid: c69a572e1409e4e44907e77f88eda3f7, type: 3}
+  <BulletItemSO>k__BackingField: {fileID: 11400000, guid: e8a2971447cff114796fcc4dcf8fe4a1, type: 2}
+  <ActionSFX>k__BackingField: {fileID: 8300000, guid: 1e4d438f9d286304b918672a47cba77f, type: 3}
