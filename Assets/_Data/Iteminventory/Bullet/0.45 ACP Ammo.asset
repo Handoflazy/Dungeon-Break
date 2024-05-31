@@ -15,7 +15,7 @@ MonoBehaviour:
   <IsStackable>k__BackingField: 1
   <MaxStackSize>k__BackingField: 10
   <Name>k__BackingField: 0.45 ACP Ammo
-  <Description>k__BackingField: P1911, Thomson, Vector.
+  <Description>k__BackingField: Bullet of P1911, Thomson, Vector, MP5.
   <ItemImage>k__BackingField: {fileID: -1110608095, guid: 1318a177970f94f47b3996d0bc412e23, type: 3}
   <DefautParameters>k__BackingField: []
   <BulletData>k__BackingField: {fileID: 11400000, guid: aef51930e14dcbc48afa6bcf57100daa, type: 2}

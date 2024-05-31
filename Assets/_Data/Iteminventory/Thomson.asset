@@ -15,7 +15,7 @@ MonoBehaviour:
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
   <Name>k__BackingField: Thomson
-  <Description>k__BackingField: chung sinh binh dang
+  <Description>k__BackingField: 0.45 ACP
   <ItemImage>k__BackingField: {fileID: 654211558, guid: cdc9513078455424d9c2cfd316ea877b, type: 3}
   <DefautParameters>k__BackingField: []
   <WeaponPrefap>k__BackingField: {fileID: 4465499201024666103, guid: 77d1cfa57ea604b4783a484f148bffb8, type: 3}

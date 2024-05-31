@@ -15,7 +15,7 @@ MonoBehaviour:
   <IsStackable>k__BackingField: 1
   <MaxStackSize>k__BackingField: 10
   <Name>k__BackingField: AmmoBox
-  <Description>k__BackingField: nap 30 vien dan
+  <Description>k__BackingField: Reload 30 Ammo.
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 441211d5cab46f741beebf018b465ad3, type: 3}
   <DefautParameters>k__BackingField: []
   BulletReload: 30

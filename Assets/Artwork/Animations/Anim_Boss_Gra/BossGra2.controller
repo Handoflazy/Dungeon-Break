@@ -793,7 +793,7 @@ MonoBehaviour:
   spellPrefab: {fileID: 1509413411915781915, guid: 93fd811d42d47444ba0db49f7077ae93, type: 3}
   warningAreaPrefab: {fileID: 624732170361569098, guid: 937b2b85cd35d60419aa8b94d599023e, type: 3}
   audioSource: {fileID: 0}
-  clipSound: {fileID: 8300000, guid: c389aa6a70af23b42a7be3caa70c76fa, type: 3}
+  clipSound: {fileID: 8300000, guid: 6cb2646ee973e9d45b5c30db63389ff9, type: 3}
 --- !u!1102 &5345834609661891665
 AnimatorState:
   serializedVersion: 6
@@ -1083,7 +1083,7 @@ MonoBehaviour:
   spawnRadius: 0.5
   numberSpawnEnemy: 2
   audioSource: {fileID: 0}
-  clipSound: {fileID: 0}
+  clipSound: {fileID: 8300000, guid: c389aa6a70af23b42a7be3caa70c76fa, type: 3}
 --- !u!114 &7610407007231032422
 MonoBehaviour:
   m_ObjectHideFlags: 1

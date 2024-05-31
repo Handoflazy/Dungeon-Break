@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aab48b47fdff6242aa4490c6fc2f65f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <InventoryItem>k__BackingField: {fileID: 11400000, guid: de8498e3817809b45b1fdd54206ecf53, type: 2}
-  <Quantity>k__BackingField: 5
+  <InventoryItem>k__BackingField: {fileID: 11400000, guid: e8a2971447cff114796fcc4dcf8fe4a1, type: 2}
+  <Quantity>k__BackingField: 1
   audioSource: {fileID: 7407295092694618059}
   duration: 0.3
 --- !u!82 &7407295092694618059
@@ -113,7 +113,7 @@ AudioSource:
   m_GameObject: {fileID: 6330588511145620810}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -9145463190550745253, guid: ad256c5cfd1ae0c44a430e7a9a076ccf, type: 2}
   m_audioClip: {fileID: 8300000, guid: 7ab1d9ce243bb564d9ec01dbea57b31b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

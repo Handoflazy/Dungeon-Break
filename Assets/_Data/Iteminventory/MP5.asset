@@ -15,7 +15,7 @@ MonoBehaviour:
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
   <Name>k__BackingField: MP5
-  <Description>k__BackingField: 
+  <Description>k__BackingField: 0.45 ACP
   <ItemImage>k__BackingField: {fileID: -831788218, guid: cdc9513078455424d9c2cfd316ea877b, type: 3}
   <DefautParameters>k__BackingField: []
   <WeaponPrefap>k__BackingField: {fileID: 4465499201024666103, guid: f2c6f9df48329b74f930c8909b1042b5, type: 3}

@@ -15,7 +15,7 @@ MonoBehaviour:
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
   <Name>k__BackingField: Assaut Riffle
-  <Description>k__BackingField: 
+  <Description>k__BackingField: 5.56 mm
   <ItemImage>k__BackingField: {fileID: 1748412923, guid: 3a9831b904b5e9f42bea2ca1a641909f, type: 3}
   <DefautParameters>k__BackingField: []
   <WeaponPrefap>k__BackingField: {fileID: 4465499201024666103, guid: c69a572e1409e4e44907e77f88eda3f7, type: 3}

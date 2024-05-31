@@ -13,7 +13,7 @@ public class WallSkill : AbstractSkill
     private float distanceWall = 0.5f;
     private AudioSource audioSource;
     private GameObject shield;
-
+    
     protected override void Awake()
     {
         base.Awake();
@@ -62,7 +62,7 @@ public class WallSkill : AbstractSkill
         shield = Instantiate(wall, finalPosition, Quaternion.identity);
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         shield.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 180));
-        Destroy(shield, 3f);
+        Destroy(shield, 4f);
 
 
     }

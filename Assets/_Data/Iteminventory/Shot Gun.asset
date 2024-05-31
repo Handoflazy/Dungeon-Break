@@ -15,7 +15,7 @@ MonoBehaviour:
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
   <Name>k__BackingField: ShotGun
-  <Description>k__BackingField: 1 QUA BAY DAU
+  <Description>k__BackingField: 12 Gauge
   <ItemImage>k__BackingField: {fileID: 1000657713, guid: 3a9831b904b5e9f42bea2ca1a641909f, type: 3}
   <DefautParameters>k__BackingField: []
   <WeaponPrefap>k__BackingField: {fileID: 8906520352500359294, guid: d006653e22d544f47bae3776b3aaff07, type: 3}

@@ -15,9 +15,9 @@ MonoBehaviour:
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
   <Name>k__BackingField: 'Silver Pistol '
-  <Description>k__BackingField: 
+  <Description>k__BackingField: 0.45 ACP
   <ItemImage>k__BackingField: {fileID: -1946176139, guid: cdc9513078455424d9c2cfd316ea877b, type: 3}
   <DefautParameters>k__BackingField: []
   <WeaponPrefap>k__BackingField: {fileID: 4465499201024666103, guid: 33a90a24ffccefb449650ce007bc24c4, type: 3}
-  <BulletItemSO>k__BackingField: {fileID: 11400000, guid: e8a2971447cff114796fcc4dcf8fe4a1, type: 2}
+  <BulletItemSO>k__BackingField: {fileID: 11400000, guid: df1cc01db0b41234fb31e0db94f80568, type: 2}
   <ActionSFX>k__BackingField: {fileID: 8300000, guid: 1adb6ab7f57563a4a952d8d20f2e415c, type: 3}
