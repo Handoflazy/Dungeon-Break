@@ -260,6 +260,39 @@ public class AgentInput : PlayerSystem, PlayerControls.IPlayerInputActions, Play
             Interact = true;
         }
     }
+
+    public void OnQuickSlot1(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            player.ID.playerEvents.OnQuickSlotToggle?.Invoke(0);
+        }
+       
+    }
+
+    public void OnQuickSlot2(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            player.ID.playerEvents.OnQuickSlotToggle?.Invoke(1);
+        }
+    }
+
+    public void OnQuickSlot3(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            player.ID.playerEvents.OnQuickSlotToggle?.Invoke(2);
+        }
+    }
+
+    public void OnQuickSlot4(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            player.ID.playerEvents.OnQuickSlotToggle?.Invoke(3);
+        }
+    }
 }
 
 

@@ -9,6 +9,8 @@ namespace Inventory.UI
     {
         [SerializeField] UIInventoryItem inventoryItemUIPrefab;
 
+        [SerializeField] Transform activePanel;
+
         [SerializeField] Transform contentPanel;
 
         [SerializeField]
@@ -38,7 +40,18 @@ namespace Inventory.UI
 
         public void InitiallizeInventoryUI(int inventorySize)
         {
-            for (int i = 0; i < inventorySize; i++)
+            for(int i = 0;i<4;i++)
+            {
+                UIInventoryItem uiItem = Instantiate(inventoryItemUIPrefab, Vector3.zero, Quaternion.identity);
+                uiItem.transform.SetParent(activePanel);
+                listOfUIItems.Add(uiItem);
+                uiItem.OnItemClicked += HandledItemSelection;
+                uiItem.OnItemBeginDrag += HandleBeginDrag;
+                uiItem.OnItemDroppedOn += HandleSwap;
+                uiItem.OnItemEndDrag += HandleEndDrag;
+                uiItem.OnRightMouseBtnClick += HandleShowItemActions;
+            }
+            for (int i = 4; i < inventorySize+4; i++)
             {
                 UIInventoryItem uiItem = Instantiate(inventoryItemUIPrefab, Vector3.zero, Quaternion.identity);
                 uiItem.transform.SetParent(contentPanel);

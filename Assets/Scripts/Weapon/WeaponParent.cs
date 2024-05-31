@@ -75,27 +75,20 @@ public class WeaponParent : PlayerSystem
         player.ID.playerEvents.OnRelease -= StopShoot;
         player.ID.playerEvents.OnReloadBullet -= QuickReloadBullet;
         if (WeaponSO == null) return;
-        if (WeaponSO.name == "Assaut Riffle Item")
+
+
+
+        for(int i = 0;i<weapons.Count;i++)
         {
-            PlayerPrefs.SetInt(PrefConsts.CURRENT_GUN_KEY, 0);
-        }
-        else if (WeaponSO.name == "ShotGunItemData")
-        {
-            PlayerPrefs.SetInt(PrefConsts.CURRENT_GUN_KEY, 1);
-        }
-        else if (WeaponSO.name == "PistolGun")
-        {
-            PlayerPrefs.SetInt(PrefConsts.CURRENT_GUN_KEY, 2);
-        }
-        else if (WeaponSO.name == "MP5")
-        {
-            PlayerPrefs.SetInt(PrefConsts.CURRENT_GUN_KEY, 3);
-        }
-        else if (WeaponSO.name == "ThomsonItemData")
-        {
-            PlayerPrefs.SetInt(PrefConsts.CURRENT_GUN_KEY, 4);
+            if (WeaponSO == weapons[i])
+            {
+                PlayerPrefs.SetInt(PrefConsts.CURRENT_GUN_KEY, i);
+                break;
+            }
         }
         PlayerPrefs.SetInt(PrefConsts.CURRENT_BULLET_COUNT_KEY, CurrentGun.Ammo);
+
+
     }
     private Vector2 GetPointerPos()
     {

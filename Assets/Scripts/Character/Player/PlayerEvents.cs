@@ -21,6 +21,8 @@ public struct PlayerEvents
     public Action OnUseMedit;
     public Action OnReloadBullet;
 
+    public Action<int> OnQuickSlotToggle;
+
 
     public Action OnZoomCamera;
 

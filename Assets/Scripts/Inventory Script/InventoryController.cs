@@ -27,7 +27,8 @@ namespace Inventory
         {
             player.ID.playerEvents.OnInventoryToggle += OnInventoryToggle;
             player.ID.playerEvents.OnDropItem += DropItem;
-            PrepareUIInventory();
+            player.ID.playerEvents.OnQuickSlotToggle += OnQuickSlotToggle;
+           PrepareUIInventory();
             PrepareInventoryData();
         }
 
@@ -36,12 +37,17 @@ namespace Inventory
             player.ID.playerEvents.OnInventoryToggle -= OnInventoryToggle;
             player.ID.playerEvents.OnDropItem -= DropItem;
             inventoryData.OnInventoryUpdated -= UpdateInventoryUI;
+            player.ID.playerEvents.OnQuickSlotToggle -= OnQuickSlotToggle;
         }
 
         private void Start()
         {
             if (inventoryUI.isActiveAndEnabled)
             {
+                foreach (var item in inventoryData.GetCurrentInventoryState())
+                {
+                    inventoryUI.UpdateData(item.Key, item.Value.item.ItemImage, item.Value.quantity);
+                }
                 OnInventoryToggle();
             }
         }
@@ -135,17 +141,23 @@ namespace Inventory
             if (inventoryItem.IsEmpty) return;
             IItemAction itemAction = inventoryItem.item as IItemAction;
             IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
+
         
             if (itemAction != null)
             {
+                if (destroyableItem != null)
+                {
+                    inventoryData.RemoveItem(itemIndex, 1);
+                    inventoryUI.ResetSelection();
+                }
                 if (itemAction.PerformAction(gameObject, inventoryItem.itemState))
                 {
                     audioSource.PlayOneShot(itemAction.ActionSFX);
-                    if (destroyableItem != null)
-                    {
-                        inventoryData.RemoveItem(itemIndex, 1);
-                        inventoryUI.ResetSelection();
-                    }
+                    
+                }
+                else
+                {
+                    inventoryData.AddItem(inventoryItem.item,1);
                 }
                 if (inventoryData.GetItemAt(itemIndex).IsEmpty)
                 {
@@ -211,6 +223,11 @@ namespace Inventory
 
             }
 
+        }
+
+        private void OnQuickSlotToggle(int i)
+        {
+            PerformAction(i);
         }
     }
 }

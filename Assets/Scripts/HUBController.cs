@@ -13,6 +13,8 @@ public class HUBController : MonoBehaviour
     [SerializeField] private SliderBar durationBar;
     [SerializeField] private ItemUI uiAmmo;
 
+    [SerializeField] private GameObject ActiveInventoryUI;
+
     [SerializeField] private Image WeaponImage;
 
     [SerializeField] GameObject deathMenu;
@@ -71,10 +73,12 @@ public class HUBController : MonoBehaviour
     public void HideHUB()
     {
         HUB.SetActive(false);
+        ActiveInventoryUI.SetActive(false);
     }
     public void DisplayHUB()
     {   
         HUB.SetActive(true );
+        ActiveInventoryUI.SetActive(true);
     }
 
     public void ToggleInventoryUI()
