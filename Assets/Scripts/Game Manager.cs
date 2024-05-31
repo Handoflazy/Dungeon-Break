@@ -60,7 +60,10 @@ public class GameManager : MonoBehaviour
         OnCompleteCallBack?.Invoke();
     }
 
-
+    private void OnDisable()
+    {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+    }
 
 
 

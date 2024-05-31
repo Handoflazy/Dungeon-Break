@@ -9,10 +9,11 @@ public class Summon : StateMachineBehaviour
     public GameObject[] enemyPrefab;
     public float spawnRadius = 0.5f;
     public int numberSpawnEnemy = 2;
-
+    public AudioSource audioSource;
+    public AudioClip clipSound;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        audioSource = animator.GetComponent<AudioSource>();
     }
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -28,6 +29,7 @@ public class Summon : StateMachineBehaviour
             Vector2 randomPosition = Random.insideUnitCircle.normalized * spawnRadius;
             Vector3 spawnPosition = animator.transform.position + new Vector3(randomPosition.x, randomPosition.y, 0f);
             Instantiate(enemyPrefab[enemyIndex], spawnPosition, Quaternion.identity);
+            audioSource.PlayOneShot(clipSound);
         }
     }
 

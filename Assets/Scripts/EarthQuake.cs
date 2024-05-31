@@ -11,6 +11,8 @@ public class EarthQuake : StateMachineBehaviour
     public GameObject warningAreaPrefab;
     Vector2 boomPos = Vector2.zero;
     private CoroutineRunner coroutineRunner;
+    public AudioSource audioSource;
+    public AudioClip clipSound;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -22,7 +24,7 @@ public class EarthQuake : StateMachineBehaviour
         {
             coroutineRunner = animator.gameObject.AddComponent<CoroutineRunner>();
         }
-
+        audioSource = animator.GetComponent<AudioSource>();
 
     }
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -39,6 +41,7 @@ public class EarthQuake : StateMachineBehaviour
         boomPos = new Vector2(playerPos.position.x, playerPos.position.y);
         coroutineRunner.StartCoroutine(AreaSkill(animator));
         Destroy(warningArea, 1f);
+        audioSource.PlayOneShot(clipSound);
         //Destroy(spell, 1.2f);
     }
 

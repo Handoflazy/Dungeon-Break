@@ -9,8 +9,10 @@ public class LaserBoss : StateMachineBehaviour
     public GameObject laserPrefab;
     //public GameObject spellPrefab;
     //public GameObject warningAreaPrefab;
-    Vector2 boomPos = Vector2.zero;
-    private CoroutineRunner coroutineRunner;
+    //Vector2 boomPos = Vector2.zero;
+    //private CoroutineRunner coroutineRunner;
+    public AudioSource audioSource;
+    public AudioClip clipSound;
     public int numberOfBullets;
     public float bulletSpacing = 0.2f;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -18,7 +20,7 @@ public class LaserBoss : StateMachineBehaviour
     {
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
         //collision.gameObject.layer == LayerMask.NameToLayer("Blocking")
-
+        audioSource = animator.GetComponent<AudioSource>();
         /*coroutineRunner = animator.GetComponent<CoroutineRunner>();
         if (coroutineRunner == null)
         {
@@ -62,6 +64,7 @@ public class LaserBoss : StateMachineBehaviour
             Destroy(laser, 1.5f);
             //Destroy(bullet, 5f);
             //bullet.SetActive(false);
+            audioSource.PlayOneShot(clipSound);
         }
 
 

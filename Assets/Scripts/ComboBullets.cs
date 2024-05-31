@@ -11,6 +11,9 @@ public class ComboBullets : StateMachineBehaviour
     public Transform player;
     public GameObject bulletPrefab;
     public float bulletSpacing = 0.2f;
+    public AudioSource audioSource;
+    public AudioClip clipSound;
+
     //public float timesinceFire = 0f;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -19,8 +22,8 @@ public class ComboBullets : StateMachineBehaviour
         /*detectTarget = animator.GetComponent<DetectPlayer>();
         player = detectTarget.DetectTarget();*/
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        audioSource = animator.GetComponent<AudioSource>();
 
-        
         //timesinceFire = Time.deltaTime;
         MultiBullet(animator);
     }
@@ -55,7 +58,8 @@ public class ComboBullets : StateMachineBehaviour
             rb.velocity = bullet.transform.right * 0.7f;
 
             bullet.transform.position += bullet.transform.right*bulletSpacing ;
-        Destroy(bullet,5f);
+            Destroy(bullet,5f);
+            audioSource.PlayOneShot(clipSound);
         //}
         /*else if (timesinceFire>= 1f)
         {

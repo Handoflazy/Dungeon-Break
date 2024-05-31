@@ -12,12 +12,14 @@ public class MultiSkull : StateMachineBehaviour
     private Transform playerPos;
     public GameObject bulletPrefab;
     public int numberOfBullets = 10;
-
+    public AudioSource audioSource;
+    public AudioClip clipSound;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
+        audioSource = animator.GetComponent<AudioSource>();
     }
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -56,6 +58,7 @@ public class MultiSkull : StateMachineBehaviour
             bullet.transform.position += bullet.transform.right * (bulletSpacing);
             Destroy(bullet, 5f);
             //bullet.SetActive(false);
+            audioSource.PlayOneShot(clipSound);
         }
     }
 

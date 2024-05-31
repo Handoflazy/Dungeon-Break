@@ -757,13 +757,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lootList:
-  - itemData: {fileID: 11400000, guid: 81b6889d18e69ef41bf420fd326d787a, type: 2}
-    dropChance: 70
+  - itemData: {fileID: 11400000, guid: df1cc01db0b41234fb31e0db94f80568, type: 2}
+    dropChance: 25
   - itemData: {fileID: 11400000, guid: f977a2c3b0d31cf4d8002d0cd95c334d, type: 2}
-    dropChance: 60
-  - itemData: {fileID: 11400000, guid: 7bc4a9b9f88b02540aec54e5d8578666, type: 2}
+    dropChance: 30
+  - itemData: {fileID: 11400000, guid: d5b4b51533469fe498af083581571702, type: 2}
     dropChance: 50
   - itemData: {fileID: 11400000, guid: e0c474a29f6674b4cb55297f0e1957ba, type: 2}
+    dropChance: 20
+  - itemData: {fileID: 11400000, guid: e8a2971447cff114796fcc4dcf8fe4a1, type: 2}
+    dropChance: 20
+  - itemData: {fileID: 11400000, guid: de8498e3817809b45b1fdd54206ecf53, type: 2}
     dropChance: 20
   dropItemSO: {fileID: 6330588511145620810, guid: 3936a804c4d68e7439b39745f0d1feac, type: 3}
   dropForce: 0

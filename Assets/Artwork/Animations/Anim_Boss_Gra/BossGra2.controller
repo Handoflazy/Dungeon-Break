@@ -35,6 +35,18 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!114 &-6909017169994305675
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5c5a6f2756e01e44a9945304f52cbc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-6831507335845083581
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -425,6 +437,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skullPrefab: {fileID: 8117173192462070342, guid: 4c6915e59dedaa543ba2fcdbb96dfe99, type: 3}
+  audioSource: {fileID: 0}
+  clipSound: {fileID: 8300000, guid: ba594a180807c4647832483adf777894, type: 3}
 --- !u!1101 &-515494986612143774
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -634,6 +648,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 2657269865228955643, guid: 636ab1c0d1d3f8b40bcf41417edc7651, type: 3}
   numberOfBullets: 10
+  audioSource: {fileID: 0}
+  clipSound: {fileID: 8300000, guid: a2dac498e68258547a09be04f4742c20, type: 3}
 --- !u!1101 &3600119469752495974
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -776,6 +792,8 @@ MonoBehaviour:
   boomPrefab: {fileID: 4649200106287446258, guid: abcf4827ddf5d62499a2975ed1d092bc, type: 3}
   spellPrefab: {fileID: 1509413411915781915, guid: 93fd811d42d47444ba0db49f7077ae93, type: 3}
   warningAreaPrefab: {fileID: 624732170361569098, guid: 937b2b85cd35d60419aa8b94d599023e, type: 3}
+  audioSource: {fileID: 0}
+  clipSound: {fileID: 8300000, guid: c389aa6a70af23b42a7be3caa70c76fa, type: 3}
 --- !u!1102 &5345834609661891665
 AnimatorState:
   serializedVersion: 6
@@ -1060,16 +1078,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab:
-  - {fileID: 2740027700450362, guid: a8193a5921ec5f44182c226d19edcaa3, type: 3}
-  - {fileID: 2800785178827647572, guid: a9ab076e0a7f6d84b952c5d1308e3b6c, type: 3}
-  - {fileID: 5841158169690837627, guid: e15bdc47c9c3de64db6987d2e2cb3abc, type: 3}
+  - {fileID: 6184835631616496394, guid: aebdc40abf74ff844b1de1739ae26749, type: 3}
   - {fileID: 4714774602406766223, guid: c8ecd75d2a9cb4d4491e28deee980d0c, type: 3}
-  - {fileID: 4655902690832302001, guid: dfb80f7c3dcac884595032f97cda6401, type: 3}
-  - {fileID: 8131946708836525807, guid: 567a9e0a0bee1a24692280bc32ca82ad, type: 3}
-  - {fileID: 505610022221737795, guid: 957c6dbb478af14478e23d77e155840f, type: 3}
-  - {fileID: 5491271163812444399, guid: 860aac2d563fdf64b9e8e56bcd4b5459, type: 3}
   spawnRadius: 0.5
   numberSpawnEnemy: 2
+  audioSource: {fileID: 0}
+  clipSound: {fileID: 0}
 --- !u!114 &7610407007231032422
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1142,6 +1156,7 @@ AnimatorState:
   - {fileID: -515494986612143774}
   m_StateMachineBehaviours:
   - {fileID: 7295961840518225218}
+  - {fileID: -6909017169994305675}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

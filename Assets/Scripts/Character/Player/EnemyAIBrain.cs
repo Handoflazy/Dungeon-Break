@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -35,9 +36,14 @@ public class EnemyAIBrain : ActorReform
     }
 
     Player playerScript;
+    RangeAttackAction rangeAttackAction;
+    AttackAction attackAction;
+
     void Start()
     {
         playerScript = Target.GetComponent<Player>();
+        rangeAttackAction = GetComponentInChildren<RangeAttackAction>();
+        attackAction = GetComponentInChildren<AttackAction>();
         UpdateStatsByPlayer();
     }
     private void Update()
@@ -84,12 +90,25 @@ public class EnemyAIBrain : ActorReform
 
     private void UpdateStatsByPlayer()
     {
-        if (Target && !gameObject.CompareTag("BossForest") && !gameObject.CompareTag("BossGra"))
+        if (attackAction)
         {
-            statsData.minXpBonus += Mathf.Max(0, playerScript.playerStats.level * (playerScript.playerStats.levelUpXpRequire / (playerScript.playerStats.levelUpXpRequire - playerScript.playerStats.levelUpXpRequireUp)));
-            statsData.maxXpBonus += Mathf.Max(0, playerScript.playerStats.level * (playerScript.playerStats.levelUpXpRequire / (playerScript.playerStats.levelUpXpRequire - playerScript.playerStats.levelUpXpRequireUp)));
-            statsData.damage += playerScript.playerStats.level / 10;
-            statsData.hp += playerScript.playerStats.level / 5;
+            if (Target && !gameObject.CompareTag("BossForest") && !gameObject.CompareTag("BossGra"))
+            {
+                statsData.minXpBonus = 10 + Mathf.Max(0, playerScript.playerStats.level * (playerScript.playerStats.levelUpXpRequire / (playerScript.playerStats.levelUpXpRequire - playerScript.playerStats.levelUpXpRequireUp)));
+                statsData.maxXpBonus = 30 + Mathf.Max(0, playerScript.playerStats.level * (playerScript.playerStats.levelUpXpRequire / (playerScript.playerStats.levelUpXpRequire - playerScript.playerStats.levelUpXpRequireUp)));
+                statsData.damage = 5 + playerScript.playerStats.level / 10;
+                statsData.hp = 40 + playerScript.playerStats.level / 5;
+            }
+        }
+        else if (rangeAttackAction)
+        {
+            if (Target && !gameObject.CompareTag("BossForest") && !gameObject.CompareTag("BossGra"))
+            {
+                statsData.minXpBonus = 10 + Mathf.Max(0, playerScript.playerStats.level * (playerScript.playerStats.levelUpXpRequire / (playerScript.playerStats.levelUpXpRequire - playerScript.playerStats.levelUpXpRequireUp)));
+                statsData.maxXpBonus = 30 + Mathf.Max(0, playerScript.playerStats.level * (playerScript.playerStats.levelUpXpRequire / (playerScript.playerStats.levelUpXpRequire - playerScript.playerStats.levelUpXpRequireUp)));
+                statsData.damage = 10 + playerScript.playerStats.level / 10;
+                statsData.hp = 20 + playerScript.playerStats.level / 5;
+            }
         }
     }
 }

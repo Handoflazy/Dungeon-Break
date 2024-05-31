@@ -27,6 +27,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPos: {fileID: 0}
   laserPrefab: {fileID: 3731427838290373722, guid: 015792ac49cf0d44b8ebe7c31fdee8e2, type: 3}
+  audioSource: {fileID: 0}
+  clipSound: {fileID: 8300000, guid: a38456db4b0f67d48b1d4888d5c7eb60, type: 3}
   numberOfBullets: 10
   bulletSpacing: 0.6
 --- !u!1101 &-8028919544938221398
@@ -142,6 +144,8 @@ MonoBehaviour:
   player: {fileID: 0}
   bulletPrefab: {fileID: 8054958553120026111, guid: bcf9c4285b02e02409664e344a2c5419, type: 3}
   bulletSpacing: 0.3
+  audioSource: {fileID: 0}
+  clipSound: {fileID: 8300000, guid: 4dd8f452c1a052746ae35b330b2a6bd7, type: 3}
 --- !u!1102 &-5366286705043241924
 AnimatorState:
   serializedVersion: 6
@@ -260,6 +264,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   earthPrefab: {fileID: 5567630424633385354, guid: 50162a04a164cc9409cdd50e9c13c672, type: 3}
   warningAreaPrefab: {fileID: 624732170361569098, guid: 1aeeba7b373ae13429e4da707cb5875f, type: 3}
+  audioSource: {fileID: 0}
+  clipSound: {fileID: 8300000, guid: b92026446e076684ea91cc10535f0e3e, type: 3}
 --- !u!1101 &-3570799753087018203
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -296,6 +302,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPos: {fileID: 0}
   laserPrefab: {fileID: 3731427838290373722, guid: 3ca0256960266ce48a682d304de3e49f, type: 3}
+  audioSource: {fileID: 0}
+  clipSound: {fileID: 8300000, guid: bc5b6af022a8e424bb476bf9ebd2c8bc, type: 3}
   numberOfBullets: 1
   bulletSpacing: 0.5
 --- !u!1101 &-2820295212927002076
