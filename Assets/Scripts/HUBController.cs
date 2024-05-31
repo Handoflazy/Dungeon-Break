@@ -16,7 +16,7 @@ public class HUBController : MonoBehaviour
     [SerializeField] GameObject deathMenu;
 
     [SerializeField] private GameObject HUB;
-    private void Start()
+    private void OnEnable()
     {
         playerID = NguyenSingleton.Instance.PlayerID;
         playerID.playerEvents.OnDialogueStart += HideHUB;

@@ -75,11 +75,11 @@ public class WeaponParent : PlayerSystem
         player.ID.playerEvents.OnRelease -= StopShoot;
         player.ID.playerEvents.OnReloadBullet -= QuickReloadBullet;
         if (WeaponSO == null) return;
-        if (WeaponSO.name == "Assaut Riffle")
+        if (WeaponSO.name == "Assaut Riffle Item")
         {
             PlayerPrefs.SetInt(PrefConsts.CURRENT_GUN_KEY, 0);
         }
-        else if (WeaponSO.name == "ShortGun")
+        else if (WeaponSO.name == "ShotGunItemData")
         {
             PlayerPrefs.SetInt(PrefConsts.CURRENT_GUN_KEY, 1);
         }
@@ -90,6 +90,10 @@ public class WeaponParent : PlayerSystem
         else if (WeaponSO.name == "MP5")
         {
             PlayerPrefs.SetInt(PrefConsts.CURRENT_GUN_KEY, 3);
+        }
+        else if (WeaponSO.name == "ThomsonItemData")
+        {
+            PlayerPrefs.SetInt(PrefConsts.CURRENT_GUN_KEY, 4);
         }
         PlayerPrefs.SetInt(PrefConsts.CURRENT_BULLET_COUNT_KEY, CurrentGun.Ammo);
     }
@@ -114,7 +118,7 @@ public class WeaponParent : PlayerSystem
             {
                 bullet = PlayerPrefs.GetInt(PrefConsts.CURRENT_BULLET_COUNT_KEY);
             }
-            //SetWeapon(weapons[indexCurrenGun], bullet);
+            SetWeapon(weapons[indexCurrenGun], bullet);
         }
     }
 
