@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: MP5_Gun
   m_EditorClassIdentifier: 
   <BulletData>k__BackingField: {fileID: 11400000, guid: aef51930e14dcbc48afa6bcf57100daa, type: 2}
-  <AmmoCapacity>k__BackingField: 50
+  <AmmoCapacity>k__BackingField: 100
   <AutomaticFire>k__BackingField: 1
   <WeaponDelay>k__BackingField: 0.1
   <SpreadAngle>k__BackingField: 2
   multiBulletShoot: 1
-  bulletCount: 3
+  bulletCount: 2

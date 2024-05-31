@@ -14,7 +14,7 @@ public class RegularBullet : Bullet
     [SerializeField]
     protected LayerMask ObstacleLayers,DamageableLayers;
 
-    private void OnEnable()
+    protected void OnEnable()
     {
         isDead = false;
         flyDistance = 0;
@@ -28,7 +28,7 @@ public class RegularBullet : Bullet
             rb.drag = BulletData.Friction;
         }
     }
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
         if (rb != null && BulletData)
         {
@@ -38,7 +38,7 @@ public class RegularBullet : Bullet
         CheckFlyDistance();
     }
 
-    private void CheckFlyDistance()
+    protected void CheckFlyDistance()
     {
         if (flyDistance >= bulletData.FlyDistance)
         {
@@ -47,7 +47,7 @@ public class RegularBullet : Bullet
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
         if(isDead&&bulletData.GoThrougHitable==false) return;
         isDead = true;
@@ -62,7 +62,7 @@ public class RegularBullet : Bullet
         gameObject.SetActive(false);
     }
 
-    private void HitEnemy(GameObject enemy)
+    protected void HitEnemy(GameObject enemy)
     {
         Vector2 randomOffset = Random.insideUnitCircle * 0.05f;
        
@@ -80,7 +80,7 @@ public class RegularBullet : Bullet
             Instantiate(BulletData.ImpactObstaclePrefab, enemy.transform.position + (Vector3)randomOffset, Quaternion.identity);
         }
     }
-    private void HitObstacle(GameObject obstacle)
+    protected void HitObstacle(GameObject obstacle)
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right);
 

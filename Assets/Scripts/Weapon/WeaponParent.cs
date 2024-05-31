@@ -122,6 +122,11 @@ public class WeaponParent : PlayerSystem
         }
     }
 
+    private void Start()
+    {
+        player.ID.playerEvents.OnChangeGun?.Invoke(CurrentGun);
+    }
+
     Vector2 direction;
     private void Update()
     {
@@ -170,7 +175,7 @@ public class WeaponParent : PlayerSystem
         this.WeaponSO = weaponItemS0;
         CurrentGun.Ammo = bulletNumber;
         player.ID.playerEvents.OnChangeGun?.Invoke(CurrentGun);
-      
+
 
     }
 

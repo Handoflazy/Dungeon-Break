@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 0.45 ACP Ammo
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 1
-  <MaxStackSize>k__BackingField: 30
+  <MaxStackSize>k__BackingField: 10
   <Name>k__BackingField: 0.45 ACP Ammo
   <Description>k__BackingField: P1911, Thomson, Vector.
   <ItemImage>k__BackingField: {fileID: 334286174, guid: 3a9831b904b5e9f42bea2ca1a641909f, type: 3}

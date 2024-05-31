@@ -7,7 +7,7 @@ using UnityEngine;
 public class BulletDataSO : ScriptableObject
 {
     [field: SerializeField]
-    public GameObject bulletPrefab {  get; set; }
+    public GameObject BulletPrefab {  get; set; }
     [field: SerializeField, Range(1, 10)]
     public int Damage { get; set; } = 1;
 

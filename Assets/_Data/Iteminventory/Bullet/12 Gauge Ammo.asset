@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 12 Gauge Ammo
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 1
-  <MaxStackSize>k__BackingField: 30
+  <MaxStackSize>k__BackingField: 5
   <Name>k__BackingField: 12 Gauge Ammo
   <Description>k__BackingField: Bullet of S1897, S686, S12K.
   <ItemImage>k__BackingField: {fileID: 130390477, guid: 3a9831b904b5e9f42bea2ca1a641909f, type: 3}

@@ -7,7 +7,7 @@ public class BulletGenerator : ObjectPool
     GameObject bulletToSpawn;
     private void Start()
     {
-       bulletToSpawn = transform.parent.GetComponent<BasicGun>().GetBulletData().bulletPrefab;
+       bulletToSpawn = transform.parent.GetComponent<BasicGun>().GetBulletData().BulletPrefab;
     }
     public GameObject GetBullet()
     {

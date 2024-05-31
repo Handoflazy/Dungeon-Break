@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00700bf59b3b1df44b1ad7e008caf77f, type: 3}
   m_Name: Regular Bullet
   m_EditorClassIdentifier: 
-  <bulletPrefab>k__BackingField: {fileID: 3345224553741461971, guid: 30ddf23c257fb4c4ba0928133117000b, type: 3}
-  <Damage>k__BackingField: 10
-  <Friction>k__BackingField: 10
-  <BulletSpeed>k__BackingField: 5.4
+  <BulletPrefab>k__BackingField: {fileID: 0}
+  <Damage>k__BackingField: 4
+  <Friction>k__BackingField: 3.4
+  <BulletSpeed>k__BackingField: 6
   <FlyDistance>k__BackingField: 5
   <Bounce>k__BackingField: 0
   <GoThrougHitable>k__BackingField: 1

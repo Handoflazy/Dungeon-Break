@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00700bf59b3b1df44b1ad7e008caf77f, type: 3}
   m_Name: 0.45 ACP Ammo
   m_EditorClassIdentifier: 
-  <bulletPrefab>k__BackingField: {fileID: 4591386308105941699, guid: c4b3a37f0947d9e44848341e8ecc25a5, type: 3}
-  <Damage>k__BackingField: 3
-  <Friction>k__BackingField: 10
+  <BulletPrefab>k__BackingField: {fileID: 4591386308105941699, guid: c4b3a37f0947d9e44848341e8ecc25a5, type: 3}
+  <Damage>k__BackingField: 4
+  <Friction>k__BackingField: 0
   <BulletSpeed>k__BackingField: 6
-  <FlyDistance>k__BackingField: 1.83
+  <FlyDistance>k__BackingField: 2
   <Bounce>k__BackingField: 0
   <GoThrougHitable>k__BackingField: 0
   <IsRaycast>k__BackingField: 1
   <ImpactObstaclePrefab>k__BackingField: {fileID: 737018255036195549, guid: a6066cf5408570548908e2155ee1c657, type: 3}
   <ImpactEnemyPrefab>k__BackingField: {fileID: 2143305333851338501, guid: 0f2df85a595f8214fad52f87c97ef007, type: 3}
-  <KnockBackPower>k__BackingField: 7.5
-  <KnockBackDelay>k__BackingField: 0.2
+  <KnockBackPower>k__BackingField: 1
+  <KnockBackDelay>k__BackingField: 0.06

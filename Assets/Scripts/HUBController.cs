@@ -13,6 +13,8 @@ public class HUBController : MonoBehaviour
     [SerializeField] private SliderBar durationBar;
     [SerializeField] private ItemUI uiAmmo;
 
+    [SerializeField] private Image WeaponImage;
+
     [SerializeField] GameObject deathMenu;
 
     [SerializeField] private GameObject HUB;
@@ -25,6 +27,7 @@ public class HUBController : MonoBehaviour
         playerID.playerEvents.OnDurationChanged += OnDurationChanged;
         playerID.playerEvents.onInitialDuration += InitialMaxValueDurationBar;
         playerID.playerEvents.OnUpdateAmmo += uiAmmo.UpdateNumberText;
+        playerID.playerEvents.OnChangeGun += OnChangeWeaponUI;
     }
     private void OnDisable()
     {
@@ -34,6 +37,7 @@ public class HUBController : MonoBehaviour
         playerID.playerEvents.OnDurationChanged -= OnDurationChanged;
         playerID.playerEvents.onInitialDuration -= InitialMaxValueDurationBar;
         playerID.playerEvents.OnUpdateAmmo -= uiAmmo.UpdateNumberText;
+        playerID.playerEvents.OnChangeGun -= OnChangeWeaponUI;
     }
 
     public void InitialMaxValueHealthBar(int maxHealth)
@@ -76,6 +80,20 @@ public class HUBController : MonoBehaviour
     public void ToggleInventoryUI()
     {
         NguyenSingleton.Instance.PlayerID.playerEvents.OnInventoryButtonToggle?.Invoke();
+    }
+
+    public void OnChangeWeaponUI(BasicGun newGun)
+    {
+        if (newGun)
+        {
+            WeaponImage.sprite = newGun.gameObject.GetComponent<SpriteRenderer>().sprite;
+            WeaponImage.enabled = true;
+        }
+        else
+        {
+            WeaponImage.enabled = false;
+            WeaponImage.sprite = null;
+        }
     }
     
 }

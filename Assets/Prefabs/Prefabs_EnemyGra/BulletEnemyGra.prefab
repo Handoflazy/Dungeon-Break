@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2574756622341220326}
   - component: {fileID: 6949053627721939488}
   - component: {fileID: -5860685642655244499}
-  m_Layer: 11
+  m_Layer: 7
   m_Name: BulletEnemyGra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ignoreMask:
     serializedVersion: 2
-    m_Bits: 34816
+    m_Bits: 34944
   damage: 20
 --- !u!114 &-5860685642655244499
 MonoBehaviour:
