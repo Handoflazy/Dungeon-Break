@@ -14,7 +14,9 @@
 
 - [🌟 Features](#-features)
 - [📸 Screenshots](#-screenshots)
+- [🎥 Video Demo](#-videodemo)
 - [🚀 Usage](#-usage)
+- [💻 Installation](#-installation)
 - [🛠 Technologies](#-technologies)
 
   ---
@@ -38,7 +40,7 @@
 **Please check on Itch.io**  
 (https://cn21gamemakergmailcom.itch.io/dungeon-break)
 ---
-## 🎥 Video Demo
+## 🎥 VideoDemo
 [![Watch the video](https://img.youtube.com/vi/rneVJAtgVaA/maxresdefault.jpg)](https://www.youtube.com/watch?v=rneVJAtgVaA)
 ---
 
