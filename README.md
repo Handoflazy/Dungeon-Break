@@ -47,7 +47,7 @@
 ## How to play
 **Use WASD keys to move.**      
 **Left mouse button to attack.**      
-**E to interac**     
+**Key E to interact**     
 ---
 ## 🚀 Usage
 
