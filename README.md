@@ -6,7 +6,7 @@
 
 
 🔗 **GitHub Repo:** [View Source](https://github.com/Handoflazy/Dungeon-Break)
-🔗 **Build: ** [Build](https://cn21gamemakergmailcom.itch.io/dungeon-break)
+🔗 **Build:** [Build](https://cn21gamemakergmailcom.itch.io/dungeon-break)
 
 ## Course:
 (https://courses.sunnyvalleystudio.com/p/make-a-juicy-2d-shooter-prototype-in-unity-2020)
